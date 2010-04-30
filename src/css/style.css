@@ -1,0 +1,331 @@
+/**
+ * General page resets
+ */
+body, html {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	font-size: 15px;
+	font-family: Helvetica;
+	background-color: lightgrey;
+}
+
+/*
+	166dpi - Nokia E52-1
+	232dpi - Nokia 5800 XpressMusic
+	265dpi - Samsung
+*/
+@media all and (min-resolution: 150dpi) {
+	body, html {
+		font-size: 12px;
+	}
+}
+@media all and (min-resolution: 200dpi) {
+	body, html {
+		font-size: 20px;
+	}
+}
+@media all and (min-resolution: 250dpi) {
+	body, html {
+		font-size: 26px;
+	}
+}
+
+
+
+/**
+ * General classes
+ */
+button {
+	padding: 2em;
+}
+button[disabled=disabled] {
+	opacity: 0.1;
+}
+
+.displayNone {
+	display: none;
+}
+
+/**
+ * Page styling
+ */
+.statusBar {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	border: 1px solid white;
+	border-width: 0 0 1px 0;
+	background: #727272 url(../img/bgStatus.png) repeat-x top left;
+	z-index: 100;
+	color: white;
+	padding: 0.3em;
+	height: 0.9em;
+}
+
+.copyright {
+	text-decoration: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index:200;
+	
+	background: #a0a0a0 url(../img/bgDialog.png) repeat-x top left;
+	text-align: center;
+	padding: 0.3em;
+	height: 0.9em;
+	border-color: white;
+	border-style: solid;
+	border-width: 0 0 0 1px;
+}
+
+.copyright img {
+	border: 0;
+}
+
+.content {
+	margin: 1.8em 0.25em 0.25em;
+	border: 1px solid #424242;
+	background: #f2f2f2;
+}
+
+	.content .invalidConfig {
+		padding: 0.5em;
+		border: 3px solid red;
+		color: red;
+	}
+	
+		.content .invalidConfig pre {
+			margin:1em;
+			white-space:normal;
+		}
+
+	.content .odd {
+		background: white;
+	}
+	
+	.content .row {
+		padding: 0.25em 0.25em 0.25em 0.25em;
+		position: relative;
+		border-bottom: 1px solid #666;
+		overflow: hidden; /* If content doesnt wrap dont let it flow out of the box, as e.g. window.addEventListener would */
+	}
+	
+	.content .row .id {
+		font-weight: bold;
+	}
+
+	.content .row.groupHeader {
+		font-weight: bold;
+		font-size: 1em;
+		border-bottom: 1px solid black;
+		margin: 0;
+		padding: 5px;
+		background: #a0a0a0 url(../img/bgDialog.png) repeat-x top left;
+		color: white;
+	}
+	
+	.content .row.failure {
+		background-color: #FAA;
+	}
+
+	.content .row.error {
+		background-color: red;
+		color: white;
+	}
+
+	/*.content .row.failure.odd {*/
+	/*	background-color: #FCC;*/
+	/*}*/
+
+	.content .row.success {
+		background-color: #AFA;
+	}
+
+	/*.content .row.success.odd {*/
+	/*	background-color: #CFC;*/
+	/*}*/
+
+	.content .row .message,
+	.content .row.success .result,
+	.content .row.notApplicable .details {
+		font-size: small;
+	}
+
+	.content .row.notApplicable {
+		color: grey;
+	}
+	
+	.content .row .fullError {
+		font-size: 0.8em;
+		white-space: normal;
+	}
+
+	.content .row .fullError strong {
+		margin-top: 1em;
+		color: darkBlue;
+	}
+
+	.content .row:last-child {
+		border-top: none;
+	}
+
+	.content .row.report {
+		background-color: white;
+		border: 1px solid black;
+		border-width: 1px 0 0 0;
+		padding:0em;
+	}
+
+		.content .row.report h1 {
+			font-size: 1em;
+			border-bottom: 1px solid black;
+			margin: 0;
+			padding: 5px;
+			background: #a0a0a0 url(../img/bgDialog.png) repeat-x top left;
+			color: white;
+		}
+		
+		.content .row.report .count,
+		.content .row.report .percent {
+			font-size: 0.8em;
+		}
+		
+		.content .row.report .count {
+			padding:0.4em 5px;
+		}
+		
+		.content .row.report .percent {
+			margin-bottom: -1px;
+			border-top: 1px solid #333;
+			color: white;
+		}
+		
+		.content .row.report .percent span {
+			display: inline-block;
+			padding: .3em;
+		}
+
+		.content .row.report .percent * {
+			display: inline-block;
+			color: white;
+			text-align: center;
+		}
+
+		.content .row.report .count * {
+			font-weight: bold;
+		}
+
+		.content .row.report .count .success {
+			color: #33cc2e;
+		}
+		
+		.content .row.report .count .error {
+			color: red;
+		}
+		
+		.content .row.report .count .failure {
+			color: #e84b4b;
+		}
+		
+		.content .row.report .count .notApplicable {
+			color: grey;
+		}
+		
+		.content .row.report .percent .success {
+			background: #33cc2e;
+		}
+		
+		.content .row.report .percent .error {
+			background: red;
+		}
+		
+		.content .row.report .percent .failure {
+			background: #e84b4b;
+		}
+		
+		.content .row.report .percent .notApplicable {
+			background: lightgrey;
+		}
+		
+	.content .row .percent > div {
+		padding: 0.5em 0;
+	}
+
+
+
+/*.content {*/
+/*	padding-top:1.5em;*/
+/*	background-color:lightyellow;*/
+/*}*/
+
+
+.manualTest {
+	display: none;
+	position: absolute; /* position:fixed didnt allow to scroll, which was really needed on small screens, to get to the ok/nok buttons. */
+	top: 0;
+	min-width: 80%;
+	margin: 2em 0.5em;
+	background-color: white;
+	z-index: 1;
+	border: 1px solid black;
+	background: #f2f2f2;
+}
+
+	.manualTest p {
+		font-size: 0.8em;
+		padding: 0.4em 5px;
+		margin: 0.2em;
+	}
+	
+	.manualTest h1 {
+		font-size: 1em;
+		margin: 0;
+		padding: 5px;
+		border-bottom: 1px solid black;
+		background: #aaa;
+		background: #a0a0a0 url(../img/bgDialog.png) repeat-x top left;
+		color: white;
+	}
+	
+	.manualTest > h1 {
+		color: black;
+	}
+	
+	.manualTest .result,
+	.manualTest .timeout {
+		display: none;
+		border-top: 1px solid black;
+	}
+	
+	.manualTest .timeout .countdown {
+		font-weight: bold;
+	}
+	
+	.manualTest button {
+		margin: 0 0 5px 5px;
+		padding: 1em 2em;
+		border: 1px solid black;
+		background: white;
+		font-weight: bold;
+	}
+
+	.manualTest .yesButton {
+		background-color: #33cc2e;
+		color: white;
+	}
+
+	.manualTest .noButton {
+		background-color: #e84b4b;
+		color: white;
+	}
+	
+	.manualTest .goButton {
+		background-color: white;
+	}
+	
+	.manualTest .testInfo {
+		display: none;
+		background-color: lightyellow;
+		color: red;
+	}

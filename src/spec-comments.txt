@@ -1,0 +1,154 @@
+*  In Widget.PIM we create AdressBookGroupNames and also delete AdressBookGroupNames and also getAdressBookGoupMembers but we get the
+  "AdressBookGoupNames" using getAvailableAddressGroupNames. So why is the Book missing?
+  
+* In Widget.PIM.findAddressBookItems the api doc says that wildcards are supported(plural!!!) and only defines *
+  What are the other wildcards?
+  
+* In Widget.PIM.findAddressBookItems there is no definition of what should happen if startInx <0 or endInx> length
+  or startInx>endInx and if endInx is included or excluded (i<=endInx or i<endInx)
+
+* In Widget.PIM.findAddressBookItems there is no definition what the result of the function is when no result is found: null or empty array
+
+* In the example of PIM.deleteAddressBookITem the myContact.update() call is missing. 
+
+* In the example of AddressbookItem.setAttributeValue the function setAttribute() (without the postfix Value!!!) is called
+  Same in the example of AddressBookItem.update()
+ 
+* In Widget.PIM.createAddressBookGroup there is no definition of what should happen if the group allready exists.
+
+* In Widget.PIM.deleteAddressBookGroup there is no definition of what should happen if the group not exists.
+  Note: Same missing information in other PIM.delete* functions
+  Also missing: Shell the groupnames be deleted from all the AddressBookItems when the goupname is deleted from PIM?
+
+* In AddressBookItem.setAddressGroupNames is not defined if this groups have to be existent and what to do if somebody sets a not eixtent group.
+
+  
+* Calendar Item:
+  The update function makes no sense without the setAttributeValue and getAttributeValue functions.
+  Interesting: In the example of update these functions are used without ever beeing defined.
+  
+* The parameter in PIM.deleteCalendarItem is called calendarId. This field in the class CalendarItem is called CalendarItemId.
+  In the method deleteAddressBookItem only the parameter is calles only id and not addressBookItemId. 
+
+* Telephony:
+  I miss the INCOMMING CallRecordType. When somebody is calling the onCallEvent is called and the RECEIVED type is used now.
+  If nobody answers the phone this will be an MISSED item. It is not logic to make an MISSED out of an RECEIVED item.
+  If it is RECEIVED it is not MISSED and vice versa. There should be an INCOMMING type which later will be saved as MISSED or
+  RECIEVED in the callrecords.
+
+
+* Widget.preference data, what is the max length that is allowed to be stored
+  in one key-value pair? currently the Samsung limits it to 190 chars,
+  opera runtime can do at least 8000. What does JIL specify?
+
+* onSignalSourceChange - What is this? Please clarify what source is meant, the cell? From GSM to UMTS, etc?
+	What is the source? How can it be tested?
+
+* Multimedia.Camera.startVideoCapture()
+  Is it supposed to return when the video capturing stops?
+  There is no callback or alike and it returns the filename ... a bit strange.
+  Suggestion as already suggested passs in parameters with callback and errback functions.
+  Where does the video play? Which container?
+  
+* addCalendarItem() MUST return a calendarId so we can reference 
+* addAddressBookItem() MUST return a reference 
+
+* AddresBookItem and CalendarItem API toooo different
+  Uses setAttributeValue() function
+     var myContact = new Widget.PIM.AddresBookItem();
+     myContact.setAttributeValue("mobilePhone", "555555555555");
+     Widget.PIM.addAddressBookItem(myContact);
+  BUT, here the JS properties can be set directly.
+     var myCalendarItem = new Widget.PIM.CalendarItem();
+     myCalendarItem.startTime = day;
+     myCalendarItem.eventName = "Meeting";
+  This is very unsatisfying when using the API, it MUST be consistent.
+
+* The encapsulation of calendar and address items inside the PIM NS is
+  also just causing confusion, should be split out separatly or
+  completely redesigned.
+
+---------------------- the comments below have been sent to dominik+klaus (5. Aug. 2009)----------------
+
+* Device.vibrate(secs)
+	The paramter should be in ms, this is the default in JS core
+	
+* Device.setRingtone()
+	Needs a return value, to know if setting the ringtone was successful or not.
+	Imagine: Device.setRingtone("home/bla.txt", <user>)
+	this should inform the caller that it wont work.
+	Or simply the file does not exist.
+	
+* Namespacing: Widget.Device.DeviceStateInfo, Widget.Device
+	For a JS API this is really long, esp. if every byte counts, which it does here.
+	And the names are redundant (twice "Device" in one reference)
+	Suggestion:
+		Widget.Device
+		Widget.DeviceStateInfo
+		Widget.Multimedia.Camera
+		OR
+		Widget.Device
+		Widget.Device.StateInfo
+		Widget.Camera
+
+* Device.copyFile() only returns boolean
+	Should throw an error why copying failed. There might be multiple possible errors:
+		see OS error messages, like permission denied, file exists, path doestn exist, etc.
+		
+* Missing Device.createFile() function, should be there imho.
+
+* Missing createDirectory() function.
+	copyFile() and deleteFile() say they all also apply to directories, but how can we create one?
+	
+* Device.findFiles() is asynch but can throw an exception :-(
+	1) If the method is asynchronous it should take a callback and an errback function,
+	and not mix error throwing and callback, this is very strange!!!
+	2) Default names for startInx and endInx parameter normally are "start" and "count".
+	
+	Imho it should look like so:
+		findFiles({searchString:"*.png",
+						start:0, count:10,
+						callback:function(data){},
+						errback:function(error){},
+				})
+	This allows for easy extending the parameters, for nice backwards compatibility, etc.
+	
+* Device.getDirectoryFileNames() - inconsistent to findFiles()
+	1) It returns an array, but findFiles() has onFilesFound, this is an inconsistent API.
+	2) findFiles() and getDirectoryFileNames() could also be put in one method,
+		it would just take one extra parameter to the above suggested, like so:
+				findFiles({searchDirectory:"/home/",
+								start:0, count:10,
+								callback:function(data){},
+								errback:function(error){},
+						})
+		and it could even be combined, search certain files in a certain dir
+				findFiles({searchDirectory:"/home/",
+								searchString:"*.png",
+								start:0, count:10,
+								callback:function(data){},
+								errback:function(error){},
+						})
+
+* DeviceStateInfo.keypadLightOn and backLightOn should be prefixed with "is"
+	isBackLightOn and isKeypadLightOn
+	this seems to be standard and makes it very clear from the start that this value is boolean.
+
+* Widget.Device.DeviceStateInfo.requestPositionInfo - hide the modes
+	Currently a mode "cellid", "gps" or "agps" has to be given as parameter.
+	This should be hidden from the user and evaluated inside which is the most
+	accurate that is available. E.g. if "gps" is available use it, if not
+	use the next best, and so on.
+	The user (programmer, user of the API) should not need to know how
+	the position is retreived.
+	
+* Widget.Device.DeviceStateInfo.requestPositionInfo - simpler call
+	The callback and erroback should be simpler, and not mixed asynch and
+	the error thrown synchronously.
+	Suggestion, to be save for future improvements, like the above
+		getPosition({
+				callback: function(data){ /* this is the positive callback*/ },
+				errback: function(error){ /* this is the error callback*/ }
+			}
+		);
+		

@@ -1,0 +1,7 @@
+* The confirm dialog after widget installation is unnecessary.
+  Maybe a message like the "Uninstall succeeded" at the bottom of the screen.
+  but no confirmation should be required.
+* When trying to install the same widget again ask "Should current widget be replaced?"
+  instead of "Application already installed".
+* After successful installation ask if the user wants to start the widget.
+* Make the letter-symbol in the top navigation bar clickable, or drawable like Android has it.

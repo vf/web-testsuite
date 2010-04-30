@@ -1,0 +1,28 @@
+Sprint 2
+
+Excpetion
+* throw excpetion and for-in over the props, that doesnt work on H2
+
+AudioPlayer
+* play remote media
+
+Widget
+* find out how to properly test onWakeUp() and onFocus()
+  either doesnt work or tests dont do it right
+
+DeviceInfo
+* verify that the returned values are correct, like phoneScreenHeight, phoneManufacturer, etc.
+
+
+RadioInfo
+* H2 reported wrong "GSM" though it was not connected, make user verify and test it
+
+
+Global
+* test exceptions etc. for various different config.xml setups, e.g. has jil NS, has w3c NS, etc.
+
+File
+* test delete directories
+* test delete dirs with files and without files in them ...
+* test dirs that contain dirs too (spec only says "If a directory is given as the target, and it contains any files, the folder will  
+not be deleted until it does not contain any files.") talks only abot file :)

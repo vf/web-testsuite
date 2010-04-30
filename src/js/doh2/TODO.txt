@@ -1,0 +1,5 @@
+TODO
+* what shall happen when tearDown() throws an error?
+  currently the error is caught, so the suite continues to execute, but shall this throw
+  an error, make the test fail, be silent? being silent means that the
+  following tests may fail because the test couldnt clean up ...

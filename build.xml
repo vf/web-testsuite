@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jil-api-tests" default="default">
+    
+    <description>
+        Packages the jil-api-test widgets
+    </description>
+    
+    <!-- include antcontrib to enable additional tasks like foreach or popertyregexp -->
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="${basedir}/util/ant-contrib-1.0b3.jar"/>
+        </classpath>
+    </taskdef>
+    
+		<!-- set some directories -->
+    <property name="dist" location="dist"/>
+    <property name="src" location="src"/>
+		<property name="test-src" location="${src}/tests" />
+    <property name="tmp" location="tmp" description="temporary folder to use, during build-process"/>
+    
+		
+    <target name="-collectTestNames">
+        <fileset id="tests.contents" dir="${test-src}/" includes="**/*.js"/>
+        <property name="test.names" refid="tests.contents"/>
+        <propertyregex override="true" property="test.names" input="${test.names}" regexp="\.js" replace="" global="true"/>
+        <propertyregex override="true" property="test.names" input="${test.names}" regexp="\\" replace="/" global="true"/>
+    </target>
+    
+		<target name="-setFileNameForTest">
+			<property name="test.filename" value="test-${test}" />
+      <propertyregex override="true" property="test.filename" input="${test.filename}" regexp="/" replace="-" global="true"/>
+		</target>
+    <!-- *** internal targets ***-->
+    
+    <!-- Fills template files with concrete values -->
+    <target name="specializeTemplates" depends="createTemp, -setFileNameForTest">
+        <!-- replace token in template files -->
+        <replace dir="${tmp}" token="$testfilename" value="${test.filename}">
+            <include name="**/*.tpl"/>
+        </replace>
+        <replace dir="${tmp}" token="$test" value="${test}">
+            <include name="**/*.tpl"/>
+        </replace>
+        
+        <!-- "rename" template files -->
+        <move file="${tmp}/index.html.tpl" tofile="${tmp}/index.html"/>
+        <move file="${tmp}/config.xml.tpl" tofile="${tmp}/config.xml"/>
+        <copy file="${tmp}/index.html" todir="${src}"/>
+        <copy file="${tmp}/config.xml" todir="${src}"/>
+    </target>
+    
+    <!-- create test-widget from temporary folder -->
+    <target name="createWgt" depends="specializeTemplates, createTemp, -setFileNameForTest">
+        <mkdir dir="${dist}"/>
+        <zip destfile="${dist}/${test.filename}.wgt">
+            <fileset dir="${tmp}">
+                <include name="**/*"/>
+            </fileset>
+        </zip>
+        <!-- do cleanup -->
+        <delete dir="${tmp}"/>
+    </target>
+    
+    <!-- create temporary-folder -->
+    <target name="createTemp">
+        <mkdir dir="${tmp}"/>
+        <copy todir="${tmp}">
+            <fileset dir="${src}">
+                <include name="**/css/*"/>
+                <include name="**/img/*"/>
+                <include if="isAudio" name="**/audio/**"/>
+                <include if="isAudioMp3Only" name="**/audio/mp3/*"/>
+                <include name="**/js/doh2/*.js"/>
+                <include name="**/tests/${test}.js"/>
+                <include name="**/js/*.js"/>
+                <include name="**/*.tpl"/>
+            </fileset>
+        </copy>
+    </target>
+    
+    <!-- writes the available tests to the console -->
+    <target name="echoTestfiles" depends="-collectTestNames">
+        <echo>${line.separator}### Available tests ###${line.separator}</echo>
+        <for list="${test.names}" param="test.name" delimiter=";">
+            <sequential>
+                <echo>@{test.name}</echo>
+            </sequential>
+        </for>
+				<echo>${line.separator}</echo>
+    </target>
+    
+    <!-- *** public targets (see description for details) *** -->
+    <target name="build" description="This target asks for a test to be build as a widget (and then, of course builds this widget).">
+        <echo level="info">### Building single test ###</echo>
+				<if>
+						<not><isset property="test" /></not>
+						<then>
+				        <antcall target="echoTestfiles" />
+				        <!-- fetch name of test to build -->
+				        <input addproperty="test" message="Build with which test? (Press Enter to build all tests)"/>
+						</then>
+				</if>
+				<if>
+          <not><equals arg1="${test}" arg2="" /></not>
+					<then>
+		        <property name="testfile" location="${test-src}/${test}.js"/>
+		        <!-- check if .js-file for given test is available (fail if not)-->
+		        <available file="${testfile}" type="file" property="testfileAvailable" value="true"/>
+		        <fail unless="testfileAvailable" message="Test not found. Make sure, that the desired test is located in the '${test-src}' directory."/>
+		        <!-- create .wgt-file (include audio-data if needed)-->
+		        <condition property="isAudioMp3Only" value="true">
+					<equals arg1="${test}" arg2="jil/Application"/> <!-- uses audiofiles to play them using launchApplication() -->
+				</condition>
+		        <condition property="isAudio" value="true">
+					<equals arg1="${test}" arg2="jil/AudioPlayer"/>
+		        </condition>
+		        <antcall target="createWgt" inheritall="true" />
+				  </then>
+					<else>
+						<antcall target="all"/>
+					</else>
+				</if>
+    </target>
+    
+    <!-- When creating new tests, insert an antcall here in this target -->
+    <target name="all" description="This target builds widgets for all tests." depends="-collectTestNames">
+        <echo level="info">### Building all tests ###</echo>
+				<for list="${test.names}" param="test.name" delimiter=";">
+            <sequential>
+				        <antcall target="createWgt">
+				            <param name="test" value="@{test.name}"/>
+				        </antcall>
+            </sequential>
+        </for>
+    </target>
+		
+		<target name="emu" description="Builds and copies the test to the emulator" depends="build, -setFileNameForTest">
+			<fail message='Please define your home! Use -Demulator.home="/home/myuser/emulator" from the commandline.' unless="emulator.home" />
+      <unzip src="${dist}/${test.filename}.wgt" dest="${emulator.home}/widgets/${test.filename}"/>
+    </target>
+    
+		<target name="emu_all" description="This target builds all widgets and copies them to the emulator."  depends="-collectTestNames">
+        <for list="${test.names}" param="test.name" delimiter=";">
+          <sequential>
+              <antcall target="emu">
+                <param name="test" value="@{test.name}"/>
+              </antcall>
+          </sequential>
+        </for>
+    </target>
+		
+    <target name="clean" description="removes temporary and distribution-folder">
+        <delete dir="${dist}"/>
+        <delete dir="${tmp}"/>
+    </target>
+    
+    <target name="default" description="The default behaviour is to build a single test-widget.">
+    	  <echo>
+HELP:
+
+Build a single test: ant -Dtest=&lt;testname&gt; (e.g. ant -Dtest=jil/File)
+Build all tests: ant all
+Build and copy to emulator: ant emu -Dtest=&lt;testname&gt; -Demulator.home="/home/myuser/emulator"
+Build all tests and copy to emulator: ant emu_all -Demulator.home="/home/myuser/emulator"
+    	  </echo>
+        <antcall target="build" inheritall="true" />
+    </target>
+    
+		<target name="emu_dir" description="Prints out a list that can be copied to dir.js of the emulator." depends="-collectTestNames">
+			<var name="dir_js" value= "var g_widgets = [${line.separator}" />
+
+			<for list="${test.names}" param="test.name" delimiter=";">
+				<sequential>
+					<var name="dir_js" value= "${dir_js}${line.separator}    'test-@{test.name}'," />
+				</sequential>
+			</for>
+			
+			<propertyregex property="dir_js2"
+         input="${dir_js}"
+         regexp="/"
+         replace="-"
+				 global="true" />
+				 
+			<propertyregex property="dir_js2"
+			   override="true"
+         input="${dir_js2}"
+         regexp=",$"
+         replace="${line.separator}];" />
+			<echo>${dir_js2}</echo>
+	  </target>
+</project>
+
+

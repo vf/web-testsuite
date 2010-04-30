@@ -1,0 +1,43 @@
+TODO
+* allow to modify the expectedResult/confirm message from within the test.
+  See PIM.getAddresBookItemsCount()
+* verify that requiredObjects OR test is given when adding a test, otherwise
+  the test is useless
+* make tpls DTL compat {{ var }}
+* make test switch on/off what features etc. in the config.xml are required, must be included into the build process somehow
+  (maybe using rhino+a more powerful tpl lang inside the config.xml.tpl)
+
+
+IDEAs
+* Allow dependencies of tests, if test1 failed dont even run test2 since it will surely fail anyway
+  e.g. when openURL() simple test fails the extended tests wont work either.
+* add test priority to show a chart/stats in the end/statusbar
+* Execute "requiredObjects" for a group and dont execute entire group of this is not fullfilled.
+* Preselect which tests to run (Show groups and let user choose, all, or just some)
+
+
+DONE
+* Feature determination before starting tests, e.g.
+  - onFocus only makes sense when task switching is possible (multiple apps), otherwise test useless
+  - clipboardString - can only be read if a clipboard exists on the device (seems not the case yet)
+Dont Do this! Let tests rather fail.
+* pause() doesnt work :-(
+* pause the test when the test instruction is on the screen
+
+
+
+
+
+Set of terms
+
+* configure the config.xml
+		"config.xml":{
+			"widget[xmlns]":false
+			"widget[xmlns]":"http://sldkfjsldkjfls"
+		}
+
+
+Config
+* screen width+heigth are configured in pixels
+* DPI values are always integer values (no float!!!)
+* allow extending config, ie H1 extends H1_Base and include least version number

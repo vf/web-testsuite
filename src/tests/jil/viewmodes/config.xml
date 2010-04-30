@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:jil="http://www.jil.org/ns/widgets1.2"
+	id="http://reference.vodafone.com/widgets/jil-viewmodes" version="0.2" viewmodes="floating fullscreen">
+	<widgetname>JIL Viewmodes</widgetname>
+	<width>600</width>
+	<height>800</height>
+	<icon>img/icon.png</icon>
+	<author>
+		<name>Wolfram Kriesing</name>
+		<organization>Vodafone</organization>
+		<link>http://vodafone.com</link>
+		<email>wk@uxebu.com</email>
+	</author>
+</widget>
