@@ -203,6 +203,7 @@
 					clearInterval(interval);
 				}
 			}
+//*/
 		]  
 	});
 })();

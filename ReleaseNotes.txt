@@ -1,0 +1,47 @@
+Version 1.4
+============
++ fixed various smaller bugs
+* MessagingEmailAccounts
+  + config.supportsDeleteEmailAccounts (false for H2) added according test to MessagingEmailAccount, 
+* RadioInfo
+  - disabled isRoaming tests ... dont know how to test them :(
+  + added tests for switching from 2G to 3G
+* Camera
+  + make fullscreen tests hide the preview after a bit, to allow user confirm result
++ Telephony - bugfixing in onCallEvent tests
+* VideoPlayer - changed type in <object> tag to "video/3gp"
++ VideoCamera - changed type in <object> tag to "video-camera/3gp", fixed wrong extensions "jpg" to "mp4" used in tests
+
+Version 1.4
+============
++ MQC release, created diff, etc.
+
+Version 1.3
+============
++ adding camera tests with bigger image sizes, where the preview has to be scaled up
++ mini changes in Telephony tests
++ Camera: fullscreen tests
++ RadioInfo: manual tests and onSignalSourceChange
++ GPS added proper H2 timeouts
++ basic VideoPlayer tests
+
+
+Version 1.2
+============
++ added some AudioPlayer tests, play files from /virtual/music, and some getVolume() tests
++ added config.supportsMultipleEmailAccounts, turned off on H2
++ Camera added some setWindow() tests, esp. for the different sizes
++ MessagingFolder - config.supportsMessagingFolderEditing=false for H2
+
+Version 1.1
+============
++ added Config tests back in
++ added Calendar test widget (and MQC data, which was missing before) sorry had forgotten Calendar for 1.0
+
+Version 1.0
+============
+- Initial Sprint 3 delivery
++ Newest test suite is for Telephony
+- Messaging is missing
+
+Major version 1.x contains all the JIL 1.2.1 tests.

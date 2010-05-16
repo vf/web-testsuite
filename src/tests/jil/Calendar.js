@@ -17,7 +17,7 @@
 		return ret.join(", ");
 	}
 	
-	dohx.add({name:"CalendarItem - Methods",
+	dohx.add({name:"Calendar",
 		mqcExecutionOrderBaseOffset:100000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:["Widget.PIM"],
 		tests:[
@@ -30,18 +30,11 @@
 				test:function(t){
 					var cal = new pim.CalendarItem();
 					cal.eventName = "Foo";
+//do add b4
 					cal.update();
 					t.success("Execution successful.");
 				}
-			}
-		]
-	});
-
-	
-	dohx.add({name:"Calendar methods of 'Widget.PIM'",
-		mqcExecutionOrderBaseOffset:110000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
-		requiredObjects:["Widget.PIM"],
-		tests:[
+			},
 			{
 				id:200,
 				name:"[1] addCalendarItem - Verify return value 'undefined'.",
@@ -196,30 +189,30 @@
 					t.assertTrue(util.isArray(items), "Return value is no array.");
 					return items.slice(0, 5);
 				}
-			},{
-				id:1100,
-				name:"deleteCalendarItem(<String> calendarId)",
-				test:function(){
-throw new Error("TODO test not yet implemented");
-				}
-			},{
-				id:1200,
-				name:"findCalendarItems(<CalendarItem> itemToMatch, <Number> startInx, <Number> endInx)",
-				test:function(){
-throw new Error("TODO test not yet implemented");
-				}
-			},{
-				id:1300,
-				name:"onCalendarItemAlert(calendarItem)",
-				test:function(){
-throw new Error("TODO test not yet implemented");
-				}
-			},{
-				id:1400,
-				name:"onCalendarItemsFound(<Array> calendarItemsFound)",
-				test:function(){
-throw new Error("TODO test not yet implemented");
-				}
+//			},{
+//				id:1100,
+//				name:"deleteCalendarItem(<String> calendarId)",
+//				test:function(){
+//TODO test not yet implemented
+//				}
+//			},{
+//				id:1200,
+//				name:"findCalendarItems(<CalendarItem> itemToMatch, <Number> startInx, <Number> endInx)",
+//				test:function(){
+//TODO test not yet implemented
+//				}
+//			},{
+//				id:1300,
+//				name:"onCalendarItemAlert(calendarItem)",
+//				test:function(){
+//TODO test not yet implemented
+//				}
+//			},{
+//				id:1400,
+//				name:"onCalendarItemsFound(<Array> calendarItemsFound)",
+//				test:function(){
+//TODO test not yet implemented
+//				}
 			}
 		]
 	});
@@ -228,33 +221,34 @@ throw new Error("TODO test not yet implemented");
 	//	Add the recurrence tests in a loop, since they are all the same tests
 	//	we can just write it once and add the same parametrized test in a loop.
 	//
+//h2 doesnt support all types, add a config.cal.availreoccurencetypes
 	var recurTypes = [
-		{name:'DAILY', id:1500},
-		{name:'NOT_REPEAT', id:1600},
-		{name:'EVERY_WEEKDAY', id:1700},
-		{name:'MONTHY_ON_DAY', id:1800},
-		{name:'MONTHLY_ON_DAY_COUNT', id:1900},
-		{name:'WEEKLY_ON_DAY', id:2000},
-		{name:'YEARLY', id:2100}
+		{name:'DAILY', id:3000},
+		{name:'NOT_REPEAT', id:3100},
+		{name:'EVERY_WEEKDAY', id:3200},
+		{name:'MONTHLY_ON_DAY', id:3300},
+		{name:'MONTHLY_ON_DAY_COUNT', id:3400},
+		{name:'WEEKLY_ON_DAY', id:3500},
+		{name:'YEARLY', id:3600}
 	];
 	for (var i=0, l=recurTypes.length, rType; i<l; i++){
 		(function(rType){
 			var rTypeLower = rType.name.toLowerCase();
 			// The actual test.
-			dohx.add({name:"Verify recurring events 'Widget.PIM.EventRecurrenceTypes'",
-				mqcExecutionOrderBaseOffset:120000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
+			dohx.add({name:"Calendar",
+				mqcExecutionOrderBaseOffset:100000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 				requiredObjects:["Widget.PIM"],
 				tests:[
 					{
 						id:rType.id,
-						name:"EventRecurrenceTypes - Verify recurrence type '"+rType+"'.",
+						name:"EventRecurrenceTypes - Verify recurrence type '" + rType.name + "'.",
 						requiredObjects:[
 							"Widget.PIM.findCalendarItems",
-							"Widget.PIM.EventRecurrenceTypes."+rType
+							"Widget.PIM.EventRecurrenceTypes."+rType.name
 						],
 						instructions:[
-							"Create an event with the name 'recurring "+ rTypeLower +"'!",
-							"Set the event to occur " + rType + "!",
+							"Create an event with the name 'recurring " + rTypeLower + "'!",
+							"Set the event to occur " + rType.name + "!",
 							"Click 'GO'!"
 						],
 						timeout:5*1000,
@@ -264,7 +258,7 @@ throw new Error("TODO test not yet implemented");
 									throw new Error("Calendar item not found, can't execute test.");
 								}
 								var item = items[0];
-								t.assertEqual(pim.EventRecurrenceTypes[rType], item.eventRecurrence);
+								t.assertEqual(pim.EventRecurrenceTypes[rType.name], item.eventRecurrence);
 								t.result = showCalendarInfo(item);
 							}
 							var item = new pim.CalendarItem();

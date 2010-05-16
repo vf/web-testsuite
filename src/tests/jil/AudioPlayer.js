@@ -3,7 +3,8 @@
 	var wm = util.isObject("Widget.Multimedia") ? Widget.Multimedia : {};
 	var wma = util.isObject("Widget.Multimedia.AudioPlayer") ? Widget.Multimedia.AudioPlayer : {};
 	var cf = config.fileSystem;
-	var audioFiles = cf.playableAudioFiles;
+	var audioFiles = cf.playableAudioFiles.inWidget;
+	var onDeviceAudioFiles = cf.playableAudioFiles.onDevice;
 	
 	// This is a mini object, to wrap audio functionality and make it better useable inside the
 	// tests.
@@ -77,6 +78,24 @@
 	// All tests will use this. Its global, so tearDown can access it too and clean up properly.
 	var audioObj;
 	
+	dohx.add({name:"AudioPlayer",
+		mqcExecutionOrderBaseOffset:70000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
+		tests:[
+			{
+				id:1,
+				name:"Verify Preconditions",
+				instructions:[
+					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
+					"Copy the content of the testsuite's zip-file's  folder 'audio' into the music directory on the phone. (The exact name of the destination folder may vary on your device.)",
+					"Click 'GO' to start testing."
+				],
+				test:function(t){
+					t.success("Preconditions met, user confirmed.");
+				}
+			}
+		]
+	});
+
 	dohx.add({name:"isAudioPlaying",
 		mqcExecutionOrderBaseOffset:50000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:[
@@ -305,7 +324,7 @@
 							setTimeout(function(){
 								wma.pause();
 								setTimeout(function(){
-									wma.play(1);
+									wma.resume();
 									setTimeout(function(){
 										wma.stop();
 									}, 500);
@@ -375,6 +394,36 @@
 				tearDown:function(){
 					audioObj.cleanUp();
 				}
+			},
+			{
+				id:700,
+				name:"play - Play MP3 file from device '" + onDeviceAudioFiles.songMp3 + "'.",
+				instructions:[
+					"Make sure you have copied the audio files in to the devices music folder.",
+					"Click 'GO'."
+				],
+				expectedResult:"Do you hear the audio play?",
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.songMp3, {autoPlay:true});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:800,
+				name:"play - Play WAV file from device '" + onDeviceAudioFiles.songWav + "'.",
+				instructions:[
+					"Make sure you have copied the audio files in to the devices music folder.",
+					"Click 'GO'."
+				],
+				expectedResult:"Do you hear the audio play?",
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.songWav, {autoPlay:true});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
 			}
 		]
 	});
@@ -410,7 +459,7 @@
 				id:200,
 				name:"Verify the volume value.",
 				instructions:[
-					"Change the volumne of the phone to very loud!",
+					"Change the volume of the phone to very loud!",
 					"Click 'GO'."
 				],
 				expectedResult:"Is the shown volume level correct?",
@@ -429,7 +478,30 @@
 				test:function(t){
 					dohx.showInfo("API reports volume is at: " + wm.getVolume()*10 +"%");
 				}
+			},
+			{
+				id:400,
+				name:"Verify the volume value, 100% (10).",
+				instructions:[
+					"Change the volume of the phone to the loudest possible!",
+					"Click 'GO'."
+				],
+				test:function(t){
+					t.assertEqual(10, wm.getVolume());
+				}
+			},
+			{
+				id:500,
+				name:"Verify the volume value, 0.",
+				instructions:[
+					"Change the volume of the phone to the lowest possible value!",
+					"Click 'GO'."
+				],
+				test:function(t){
+					t.assertEqual(0, wm.getVolume());
+				}
 			}
+//*/
 		]
 	});
 })();

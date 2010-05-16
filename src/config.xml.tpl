@@ -2,6 +2,8 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:jil="http://www.jil.org/ns/widgets1.2"
 	id="http://reference.vodafone.com/widgets/$testfilename" version="0.2"
 	width="800" height="600">
+	<width>800</width>
+	<height>1000</height>
 	<name>$test</name>
 	<icon src="img/icon.png"/>
 	<jil:maximum_display_mode height="800" width="600"/>

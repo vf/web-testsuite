@@ -1,13 +1,15 @@
 (function(){
 	// Check the config stuff we need for the tests.
-	//if (!util.isConfigured(["validAddressBookItemId"])){
-	//	return;
-	//}
+	if (!util.isConfigured(["validAddressBookItemId"])){
+		return;
+	}
 	
-	var pim = util.isObject("Widget.PIM") ? Widget.PIM : {},
-		addressProperties = ["address", "addressBookItemId", "company", "eMail", "fullName", "homePhone", "mobilePhone", "title", "workPhone"];
+	var pim = util.isObject("Widget.PIM") ? Widget.PIM : {};
+	var addressProperties = ["address", "addressBookItemId", "company", "eMail", "fullName", "homePhone", "mobilePhone", "title", "workPhone"];
+	var _testGroupName; // Will be filled by the tests, since multiple tests use it, its defined here.
+	var _testFullName;
 	
-	function showAddressInfo(info){
+	function _getAddressInfo(info){
 // TODO just here because iterating over the props doesnt work, using toJson()
 		var ret = [];
 		for (var i=0, l=addressProperties.length; i<l; i++){
@@ -17,115 +19,42 @@
 		return ret.join(", ");
 	}
 	
-	dohx.add({name:"AddressBookItem - Methods",
-		mqcExecutionOrderBaseOffset:10000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
-		requiredObjects:["Widget.PIM.AddressBookItem"],
-		tests:[
-			{
-				id:100,
-				name:"get/setAttributeValue() - Verify it's callable and sets the property correct.",
-				test:function(t){
-					var item = new pim.AddressBookItem();
-					item.setAttributeValue("fullName", "a*");
-					t.assertEqual("a*", item.getAttributeValue("fullName"));
-				}
-			},{
-				id:200,
-				name:"getAttributeValue() - Verify returns undefined for non-assigned attribute.",
-				test:function(t){
-					var item = new pim.AddressBookItem();
-					var ret = item.getAttributeValue("foobars_brother");
-					// Spec 1.2.1 says:
-					// This should be undefined if the 
-					// addressBookItem has no value assigned for the attribute. Note, however, that 
-					// under some implementations a null or empty string ("") value may also be 
-					// returned for unassigned attribute values. 
-					t.assertTrue(typeof ret=="undefined" || ret===null || ret==="");
-				}
-			},{
-				id:300,
-				name:"getAddressGroupNames() - Verify it returns an array.",
-				test:function(t){
-					var item = pim.getAddressBookItem(config.validAddressBookItemId);
-					t.assertTrue(doh.util.isArray(item.getAddressGroupNames()));
-				}
-			},{
-				id:400,
-				name:"getAddressGroupNames() - Verify content.",
-				instructions:"Click 'GO'.",
-				expectedResult:"Are the shown group names correct?",
-				test:function(t){
-					var item = pim.getAddressBookItem(config.validAddressBookItemId);
-					dohx.showInfo("Address group names: ", item.getAddressGroupNames().join(", "));
-				}
-			},{
-				id:500,
-				name:"getAvailableAttributes() - Verify it's an array.",
-				test:function(t){
-					var item = new pim.AddressBookItem();
-					t.assertTrue(doh.util.isArray(item.getAvailableAttributes()));
-				}
-			},{
-				id:600,
-				name:"getAddressGroupNames() - Verify content.",
-				instructions:[
-					"Find out all possible attributes a contact can have.",
-					"Click 'GO'."
-				],
-				expectedResult:"Are those all possible attributes?",
-				test:function(t){
-					var item = new pim.AddressBookItem();
-					dohx.showInfo("Reported attributes are: ", item.getAvailableAttributes().join(", "));
-				}
-			}
-		]
-	});
-
-	dohx.add({name:"AddressBook methods of 'Widget.PIM'",
+	dohx.add({name:"AddressBook",
 		mqcExecutionOrderBaseOffset:20000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:["Widget.PIM"],
 		tests:[
-//			{
-//				id:500,
-//				name:"addAddressBookItem - verify return value",
-//				requiredObjects:["Widget.PIM.addAddressBookItem"],
-//				test:function(t){
-//					var item = new pim.AddressBookItem();
-//					item.startTime = new Date ('2008-10-23');;
-//					item.eventName = "Meeting";
-//					var ret = pim.addCalendarItem(item);
-//					t.assertEqual(undefined, ret);
-//					
-////var myContact = new Widget.PIM.AddressBookItem();
-////     myContact.setAttributeValue("mobilePhone", "555555555555");
-////     Widget.PIM.addAddressBookItem(myContact); 
-//				}
-
 			{
-				id:600,
+				id:100,
+				requiredObjects:["Widget.PIM.getAddressBookItem", "Widget.PIM.AddressBookItem"],
 				name:"[1] getAddressBookItem - Get the one with ID "+ config.validAddressBookItemId +".",
 				instructions:[
 					"Make sure an address book item with the ID " + util.toJson(config.validAddressBookItemId) + " exists.",
 					"Press 'GO'."
 				],
-				requiredObjects:[
-					"Widget.PIM.getAddressBookItem",
-					"Widget.PIM.AddressBookItem"
-				],
 				test:function(t){
 					var item = pim.getAddressBookItem(config.validAddressBookItemId);
 					t.assertTrue(item instanceof pim.AddressBookItem);
-					return showAddressInfo(item);
+					return _getAddressInfo(item);
 				}
-			},{
-				id:700,
-				name:"[2] getAddressBookItem - Verify returned 'AddressBookItem' object.",
+			},
+			{
+				id:200,
+				requiredObjects:["Widget.PIM.getAddressBookItem", "Widget.PIM.AddressBookItem"],
+				name:"getAddressBookItem - Verify values.",
+				expectedResult:"Are the shown values correct?",
+				test:function(t){
+					dohx.showInfo(_getAddressInfo(pim.getAddressBookItem(config.validAddressBookItemId)));
+				}
+			},
+			{
+				id:300,
+				name:"getAddressBookItem - Verify returned 'AddressBookItem' object.",
 				requiredObjects:["Widget.PIM.getAddressBookItem"],
 				test:function(t){
 					var item = pim.getAddressBookItem(config.validAddressBookItemId)
 					var check = util.checkProperties(item, addressProperties);
 					t.assertTrue(check.missing.length==0, "Missing properties: " + check.missing.join(", ") + "!");
-					return showAddressInfo(item);
+					return _getAddressInfo(item);
 				}
 			},
 
@@ -133,7 +62,7 @@
 			//	getAddressBookItemsCount
 			//
 			{
-				id:800,
+				id:400,
 				name:"getAddressBookItemsCount - Verify it returns a number.",
 				requiredObjects:["Widget.PIM.getAddressBookItemsCount"],
 				test:function(t){
@@ -143,57 +72,77 @@
 				}
 			},
 			{
-				id:810,
+				id:500,
 				name:"getAddressBookItemsCount - Verify it returns a number.",
 				requiredObjects:["Widget.PIM.getAddressBookItemsCount"],
 				instructions:[
 					"Look up the number of contacts you have in your address book!",
 					"Click 'GO'."
 				],
-				expectedResult:'Is the number correct?',
+				expectedResult:'Is this the number of contacts in your addressbook?',
 				test:function(t){
-					dohx.showInfo("Number of addressbook items found: "+pim.getAddressBookItemsCount()+".");
+					dohx.showInfo("API reports "+pim.getAddressBookItemsCount()+" items found.");
 				}
 			},
 			//
 			//	findAddressBookItems
 			//
 			{
-				id:900,
+				id:600,
 				name:"findAddressBookItems - Verify it returns an array.",
 				requiredObjects:["Widget.PIM.findAddressBookItems"],
 				timeout: 10 * 1000,
 				test:function(t){
 					var addr = new pim.AddressBookItem();
-					addr.setAttributeValue("fullName", "*a*");
+					addr.setAttributeValue("fullName", "*");
 					Widget.PIM.onAddressBookItemsFound = function(items){
 						t.assertTrue(util.isArray(items), "Return value is not an array.");
 						t.result = items.length + " items found. " + util.toJson(items.slice(0, 5));
-//t.result = showAddressInfo(items[0]);
 					}
 					pim.findAddressBookItems(addr, 0, 10);
 				},
 				tearDown:function(){
 					delete pim.onAddressBookItemsFound;
 				}
-
-/*buggy :-(
-			},{
-				id:1000,
-				name:"findAddressBookItems - If either startInx/endInx is negative return empty array.",
+			},
+			{
+				id:700,
+				name:"findAddressBookItems - Search for 'ab*'.",
 				requiredObjects:["Widget.PIM.findAddressBookItems"],
-				timeout:5*1000,
+				instructions:[
+					"Make sure a contact who's name starts with 'ab' is in your addressbook.",
+					"Click 'GO'."
+				],
+				timeout: 10 * 1000,
 				test:function(t){
-					pim.onAddressBookItemsFound = function(items) {
-						t.assertTrue(items.length==0, "Number of items returned is not 0 but "+items.length+".");
+					var addr = new pim.AddressBookItem();
+					addr.setAttributeValue("fullName", "ab*");
+					Widget.PIM.onAddressBookItemsFound = function(items){
+						t.assertTrue(items.length > 0);
+						t.result = items.length ? _getAddressInfo(items[0]) : "No items found.";
 					}
-					pim.findAddressBookItems(new pim.AddressBookItem(), -1, -2);
+					pim.findAddressBookItems(addr, 0, 10);
 				},
 				tearDown:function(){
 					delete pim.onAddressBookItemsFound;
 				}
-			},{
-				id:1100,
+			},
+			{
+				id:800,
+				name:"findAddressBookItems - If either startInx/endInx is negative throw exception.",
+				requiredObjects:["Widget.PIM.findAddressBookItems"],
+				timeout:5*1000,
+				test:function(t){
+					try{
+						pim.findAddressBookItems(new pim.AddressBookItem(), -1, -2);
+						t.failure("Expected exception to be thrown.");
+					}catch(e){
+						t.assertJilException(e, Widget.ExceptionTypes.INVALID_PARAMETER);
+					}
+				}
+			},
+			{
+				id:900,
 				name:"findAddressBookItems - If startInx==endInx return only one item.",
 				requiredObjects:["Widget.PIM.findAddressBookItems"],
 				instructions:[
@@ -204,22 +153,129 @@
 				test:function(t){
 					pim.onAddressBookItemsFound = function(items) {
 						t.assertTrue(items.length==1, "Number of items returned is not 1 but "+items.length+".");
-						t.result = items;
+						t.result = _getAddressInfo(items[0]);
 					}
 					pim.findAddressBookItems(new pim.AddressBookItem(), 0, 0);
 				},
 				tearDown:function(){
 					delete pim.onAddressBookItemsFound;
 				}
-*/
+			},
+			//
+			//	getAvailableAddressGroupNames()
+			//
+			{
+				id:1000,
+				name:"getAvailableAddressGroupNames - verify its an array.",
+				requiredObjects:["Widget.PIM.getAvailableAddressGroupNames"],
+				test:function(t){
+					var groups = pim.getAvailableAddressGroupNames();
+					t.assertTrue(util.isArray(groups), "Expected array.");
+					return groups;
+				}
+			},
+			//
+			//	createAddressBookGroup
+			//
+			{
+				id:1100,
+				name:"createAddressBookGroup - verify group is added.",
+				requiredObjects:["Widget.PIM.createAddressBookGroup"],
+				test:function(t){
+					var numItems = pim.getAvailableAddressGroupNames().length;
+					_testGroupName = "TestGroup-" + new Date().getTime(); // Prevent nameclashes
+					pim.createAddressBookGroup(_testGroupName);
+					var newNumItems = pim.getAvailableAddressGroupNames().length;
+					t.assertTrue(newNumItems-numItems==1, "Adding new address group failed.");
+					return newNumItems;
+				}
+			},
+			{
+				id:1200,
+				name:"createAddressBookGroup - throw INVALID_PARAMETER",
+				requiredObjects:["Widget.PIM.createAddressBookGroup"],
+				test:function(t){
+					try{
+						pim.createAddressBookGroup();
+						t.failure("Expected INVALID_PARAMETER exception.");
+					}catch(e){
+						t.assertJilException(e, Widget.ExceptionTypes.INVALID_PARAMETER);
+					}
+				}
+			},
+			//
+			//	deleteAddressBookGroup
+			//
+			{
+				id:1300,
+				name:"deleteAddressBookGroup",
+				requiredObjects:["Widget.PIM.createAddressBookGroup"],
+				test:function(t){
+					var numItems = pim.getAvailableAddressGroupNames().length;
+					pim.deleteAddressBookGroup(_testGroupName);
+					var newNumItems = pim.getAvailableAddressGroupNames().length;
+					t.assertTrue(numItems-newNumItems==1, "Deleting address group failed.");
+					return newNumItems;
+				}
+			},
+			{
+				id:1400,
+				name:"deleteAddressBookGroup - throw INVALID_PARAMETER",
+				requiredObjects:["Widget.PIM.deleteAddressBookGroup"],
+				test:function(t){
+					try{
+						pim.deleteAddressBookGroup();
+						t.failure("Expected INVALID_PARAMETER exception.");
+					}catch(e){
+						t.assertJilException(e, Widget.ExceptionTypes.INVALID_PARAMETER);
+					}
+				}
+			},
+			//
+			//	addAddressBookItem
+			//
+			{
+				id:1500,
+				name:"addAddressBookItem",
+				requiredObjects:["Widget.PIM.addAddressBookItem"],
+				test:function(t){
+					var uniqueString = new Date().getTime();
+					var addr = new pim.AddressBookItem();
+					_testFullName = "test Contact " + uniqueString;
+					addr.setAttributeValue("fullName", _testFullName);
+					addr.setAttributeValue("address", "test Address " + uniqueString);
+					pim.addAddressBookItem(addr);
+					t.success("Didn't throw an exception.");
+				}
+			},
+			{
+				id:1600,
+				name:"addAddressBookItem - Verify just added item.",
+				requiredObjects:["Widget.PIM.findAddressBookItems"],
+				test:function(t){
+					var addr = new pim.AddressBookItem();
+					addr.setAttributeValue("fullName", _testFullName);
+					Widget.PIM.onAddressBookItemsFound = function(items){
+						t.assertTrue(items.length==1);
+						t.result = _getAddressInfo(items[0]);
+					}
+					pim.findAddressBookItems(addr, 0, 10);
+				}
+			},
+			{
+				id:1700,
+				name:"addAddressBookItem - throw INVALID_PARAMETER",
+				requiredObjects:["Widget.PIM.addAddressBookItem"],
+				test:function(t){
+					try{
+						pim.addAddressBookItem()
+						t.failure("Expected INVALID_PARAMETER exception.");
+					}catch(e){
+						t.assertJilException(e, Widget.ExceptionTypes.INVALID_PARAMETER);
+					}
+				}
 			}
-/*
-Possible tests (as defined in the spec., text copied form spec)
-* If startInx is greater than endInx in PIM_findAddressBookItems function, the returned addressBookItemsFound will be an empty array.
-* If startInx is greater than the number of found items in PIM_findAddressBookItems function, the returned addressBookItemsFound will be an empty array.
-* If endInx is greater than the number of found items in PIM_findAddressBookItems function, the returned addressBookItemsFound will contain items bwteeen startInx and the last returned item inclusively.
-
-*/
+//*/
 		]
 	});
 

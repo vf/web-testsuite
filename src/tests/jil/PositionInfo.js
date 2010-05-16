@@ -1,7 +1,8 @@
 (function(){
-	var wd = util.isObject("Widget.Device") ? Widget.Device : {},
-		wdd = util.isObject("DeviceStateInfo", wd) ? wd.DeviceStateInfo : {},
-		positionProperties = ["accuracy", "altitude", "altitudeAccuracy", "cellID", "latitude", "longitude", "timeStamp"];
+	var wd = util.isObject("Widget.Device") ? Widget.Device : {};
+	var wdd = util.isObject("DeviceStateInfo", wd) ? wd.DeviceStateInfo : {};
+	var positionProperties = ["accuracy", "altitude", "altitudeAccuracy", "cellID", "latitude", "longitude", "timeStamp"];
+	var locationTimeouts = config.geolocation.timeouts;
 	
 	function showPosInfo(posInfo){
 		var ret = [];
@@ -11,6 +12,8 @@
 		}
 		return ret.join(", ");
 	}
+	
+	var _fastestMethod = config.canGetPositionByCellid ? "cellid" : (config.canGetPositionByAgps ? "agps" : "gps");
 	
 	dohx.add({name:"PositionInfo",
 		mqcExecutionOrderBaseOffset:210000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
@@ -22,25 +25,25 @@
 				addIf:config.canGetPositionByCellid || config.canGetPositionByGps || config.canGetPositionByAgps,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 				instructions:"Click 'GO', to retreive your location.",
-				timeout:30 * 1000,
+				timeout:locationTimeouts.gps,
 				test:function(t){
 					wdd.onPositionRetrieved = function(posInfo, method){
 						t.success("Callback fired.");
 						t.result = showPosInfo(posInfo);
 					};
-					var method = config.canGetPositionByGps ? "gps" : (config.canGetPositionByAgps ? "agps" : "cellid");
-					wdd.requestPositionInfo(method);
+					wdd.requestPositionInfo(_fastestMethod);
 				},
 				tearDown:function(){
 					delete wdd.onPositionRetrieved;
 				}
-			},{
+			},
+			{
 				id:200,
 				name:"requestPositionInfo('cellid') - Verify return value is of type 'PositionInfo'.",
 				addIf:config.canGetPositionByCellid,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 				instructions:"Click 'GO' to get position!",
-				timeout:10 * 1000,
+				timeout:locationTimeouts.cellId,
 				test:function(t){
 					wdd.onPositionRetrieved = function(posInfo, method){
 						t.assertTrue(posInfo instanceof wd.PositionInfo);
@@ -51,13 +54,14 @@
 				tearDown:function(){
 					delete wdd.onPositionRetrieved;
 				}
-			},{
+			},
+			{
 				id:300,
 				name:"requestPositionInfo('gps') - Verify return value is of type 'PositionInfo'.",
 				addIf:config.canGetPositionByGps,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 				instructions:"Click 'GO' to get position!",
-				timeout:60 * 1000,
+				timeout:locationTimeouts.gps,
 				test:function(t){
 					wdd.onPositionRetrieved = function(posInfo, method){
 						t.assertTrue(posInfo instanceof wd.PositionInfo);
@@ -68,13 +72,14 @@
 				tearDown:function(){
 					delete wdd.onPositionRetrieved;
 				}
-			},{
+			},
+			{
 				id:400,
 				name:"requestPositionInfo('agps') - Verify return value is of type 'PositionInfo'.",
 				addIf:config.canGetPositionByAgps,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 				instructions:"Click 'GO' to get position!",
-				timeout:30 * 1000,
+				timeout:locationTimeouts.agps,
 				test:function(t){
 					wdd.onPositionRetrieved = function(posInfo, method){
 						t.assertTrue(posInfo instanceof wd.PositionInfo);
@@ -85,15 +90,15 @@
 				tearDown:function(){
 					delete wdd.onPositionRetrieved;
 				}
-			},{//*/
+			},
+			{
 				id:500,
 				name:"requestPositionInfo - Let user verify position.",
 				addIf:config.canGetPositionByCellid || config.canGetPositionByGps || config.canGetPositionByAgps,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 				instructions:"Click 'GO', to retreive your location.",
-//// TODO  ... the following is not too cool, but this way we can make the user confirm the data.
 				expectedResult:"Is the above your current position?",
-				timeout:30 * 1000,
+				timeout:locationTimeouts.gps,
 				test:function(t){
 					dohx.showInfo('Retreiving coordinates...');
 					// Find most accurate available method to get position.
@@ -102,7 +107,7 @@
 					wdd.onPositionRetrieved = function(posInfo){
 						var latLng = posInfo.latitude + "," + posInfo.longitude;
 						var url = "http://maps.google.com/staticmap?center="+latLng+"&zoom=16&size=250x100&maptype=mobile\&markers="+latLng;
-						dohx.showInfo('<img src="'+url+'" />');
+						dohx.showInfo('lat, lng:'+ latLng +'<br /><img src="'+url+'" />');
 						t.result = showPosInfo(posInfo);
 					};
 					wdd.requestPositionInfo(method);
@@ -115,17 +120,15 @@
 				name:"requestPositionInfo - Verify properties of returned 'PositionInfo' object.",
 				addIf:config.canGetPositionByCellid || config.canGetPositionByGps || config.canGetPositionByAgps,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
-				timeout:30 * 1000, // Wait max. 10sec.
+				timeout:locationTimeouts.gps,
 				test:function(t){
-					// Find most accurate available method to get position.
-					var method = config.canGetPositionByAgps ? "agps" : (config.canGetPositionByGps ? "gps" : "cellid");
 					// Get the position.
 					wdd.onPositionRetrieved = function(posInfo){
 						var check = util.checkProperties(posInfo, positionProperties);
 						t.assertTrue(check.missing.length==0, "Missing properties: " + check.missing.join(", ") + "!");
 						t.result = showPosInfo(posInfo);
 					};
-					wdd.requestPositionInfo(method);
+					wdd.requestPositionInfo(_fastestMethod);
 				},
 				tearDown:function(){
 					delete wdd.onPositionRetrieved;

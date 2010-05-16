@@ -71,7 +71,7 @@ dohx._testObject = {
 	runTest:function(t){
 		window.scrollTo(0, 0); // Show the manual test overlay always at top.
 		return this._runTest(t)
-	}
+	}	
 };
 
 dohx._manualTestObject = {};
@@ -82,16 +82,28 @@ doh.util.mixin(dohx._manualTestObject, {
 	
 	_goClicked:function(){
 		util.query(".manualTest .whatToDo .goButton")[0].setAttribute("disabled", "disabled");
-		var t = doh._current.test;
+		var t = doh._current.test; // We cant use this, since we dont have the context, so we use t.
 		if (t.instructions && !t.expectedResult){
 			doh._runTest();
 			if (doh._testInFlight){ // If the test didn't finish yet show the countdown, otherwise don't.
 				ui.dialog.showCountDown(t.startTime, t.timeout);
 			}
 		} else if (t.expectedResult){
+			// If we need the user to confirm the test result, because we cant do this programmatically
+			// we just run the test and trigger _runTest() later with the "user says ..." as result.
 			try{
+				if (t.setUp) t.setUp();
 				t.test(t);
 			}catch(e){
+				// If the test call itself fails make the test fail too, so we dont "swallow" error messages.
+				doh._current.test.test = function(t){
+					throw e;
+				};
+				// Run the actual test, but DONT run setUp() since we already executed it before test(), see above.
+				var oldSetUp = t.setUp;
+				t.setUp = function(){};
+				doh._runTest();
+				t.setUp = oldSetUp; // Put back the old setup.
 //console.log(e); maybe no test function is implemented, is possible and valid. See e.g. PowerInfo it makes use of that.
 			}
 			util.style(".manualTest .result", {display:"block"});
@@ -197,3 +209,14 @@ dohx.extendManualTestObject = function(obj){
 	}
 	return ret;
 };
+
+
+
+doh.assert.assertJilException = function(e, excType){
+	// If multiple asserts would work the following would be easier, but doh2 is not capable of that (yet).
+	var isInstanceof = e instanceof Widget.Exception;
+	var isExcTypeOk = e.type == excType
+	var msg = !isInstanceof ? "Exception not instance of Widget.Exception" :
+				(!isExcTypeOk ? "Exception.type is not the expected '" + excType + "' but was '"+ e.type +"'": "");
+	doh.assert.assertTrue(isInstanceof && isExcTypeOk, msg);
+}

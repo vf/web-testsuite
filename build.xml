@@ -70,6 +70,7 @@
                 <include name="**/img/*"/>
                 <include if="isAudio" name="**/audio/**"/>
                 <include if="isAudioMp3Only" name="**/audio/mp3/*"/>
+                <include if="isVideo" name="**/video/**"/>
                 <include name="**/js/doh2/*.js"/>
                 <include name="**/tests/${test}.js"/>
                 <include name="**/js/*.js"/>
@@ -113,6 +114,9 @@
 				</condition>
 		        <condition property="isAudio" value="true">
 					<equals arg1="${test}" arg2="jil/AudioPlayer"/>
+		        </condition>
+		        <condition property="isVideo" value="true">
+					<equals arg1="${test}" arg2="jil/VideoPlayer"/>
 		        </condition>
 		        <antcall target="createWgt" inheritall="true" />
 				  </then>

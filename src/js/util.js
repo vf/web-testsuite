@@ -81,7 +81,7 @@ var util = new (doh.util.extend(function(){},{
 					{
 						name:"config values",
 						test:function(t){
-							throw new Error("Missing configs: "+ missingConfigs.join(","));
+							throw new Error("Missing configs: "+ missingConfigs.join(",")+". Please edit 'config.js' and add the missing config settings.");
 						}
 					}
 				]

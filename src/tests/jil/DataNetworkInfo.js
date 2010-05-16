@@ -78,14 +78,14 @@
 					"Click 'GO'!",
 					"Connect to a different data network, e.g. from 3G to Wifi (within 30 seconds)."
 				],
-				timeout:30 * 1000,
+				timeout:60 * 1000,
 				test:function(t){
-					wdd.onNetworkConnectionChanges = function(con){
+					wdd.onNetworkConnectionChanged = function(con){
 						t.success(con);
 					}
 				},
 				tearDown:function(){
-					delete wdd.onNetworkConnectionChanges;
+					delete wdd.onNetworkConnectionChanged;
 				}
 			}
 		]

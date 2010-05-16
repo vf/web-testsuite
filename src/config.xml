@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:jil="http://www.jil.org/ns/widgets1.2"
-	id="http://reference.vodafone.com/widgets/test-jil-Widget" version="0.2"
+	id="http://reference.vodafone.com/widgets/test-jil-Telephony" version="0.2"
 	width="800" height="600">
-	<name>jil/Widget</name>
+	<width>800</width>
+	<height>1000</height>
+	<name>jil/Telephony</name>
 	<icon src="img/icon.png"/>
 	<jil:maximum_display_mode height="800" width="600"/>
 	<author href="http://vodafone.com" email="wk@uxebu.com">Wolfram Kriesing</author>

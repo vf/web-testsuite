@@ -76,6 +76,7 @@
 			},{
 				id:600,
 				name:"onFocus - Verify that callback is executed.",
+addIf:false, // disabled for now ... implement properly doesnt work on H2
 				//addIf:config.canDoMultitasking,
 				instructions:[
 					"Open multiple widgets on your screen.",
@@ -96,9 +97,9 @@ t.failure("TODO test not properly implemented imho");
 				id:700,
 				name:"onMaximize - Verify that callback is executed.",
 				instructions:[
-					"Minimize this application, to mini mode.",
 					"Click 'GO'.",
-					"Maximize it again, to full screen mode."
+					"Minimize this application, to mini mode.",
+					"Maximize it again, to full screen mode, test should pass (will timeout otherwise)."
 				],
 				timeout: 10 * 1000,
 				test:function(t){
@@ -115,9 +116,9 @@ t.failure("TODO test not properly implemented imho");
 				addIf:config.canDoMultitasking,
 				timeout: 10 * 1000,
 				instructions:[
-					"Hide this application.",
 					"Click 'GO'.",
-					"Restore it again."
+					"Hide/Minimize this application.",
+					"Restore it again, test should pass (will timeout otherwise)."
 				],
 				test:function(t){
 					w.onRestore = function(){
@@ -132,13 +133,12 @@ t.failure("TODO test not properly implemented imho");
 				name:"onWakeup - Verify that callback is executed.",
 				addIf:config.canDoMultitasking,
 				instructions:[
-					"Switch to a different application.",
 					"Click 'GO'.",
-					"Come back to this one (to wake it up)."
+					"Make your phone enter sleep mode.",
+					"Turn your phone back on, this should make this test pass (will timeout otherwise)."
 				],
-				timeout: 10 * 1000,
+				timeout: 20 * 1000,
 				test:function(t){
-t.failure("TODO test not properly implemented imho");
 					w.onWakeup = function(){
 						t.success("Callback executed.");
 					};

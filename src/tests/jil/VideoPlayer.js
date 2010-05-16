@@ -90,6 +90,16 @@
 		wmv.open(url);
 	};
 	
+	function _setUp(){
+		dohx.showInfo('<object id="_videoWindow_" type="video/3gp" width="240" height="320" />');
+		wmv.setWindow(util.byId("_videoWindow_"));
+	};
+	function _tearDown(){
+		wmv.setWindow(null);
+		videoObj.cleanUp();
+	};
+
+	
 	var videoObj;
 	
 	dohx.add({name:"VideoPlayer",
@@ -101,8 +111,11 @@
 		],
 		tests:[
 			//
-			//	Protocols. Spec says: http, https, file, rtsp and widget context (none of the listed prefixes) are supported.
+			//	Protocols. Spec says: http, https, file, rtsp and widget context (=none of the listed prefixes) are supported.
 			//
+			
+// TODO isVideoPlaying
+			
 /*			{
 				id:100,
 				name:"Protocol - http",
@@ -148,35 +161,33 @@
 					videoObj.cleanUp();
 				}
 			},
-			{
+*/			{
 				id:400,
 				name:"Protocol - file",
 				instructions:"Click 'GO' to play video.",
 				expectedResult:"Did you see the video?",
+				setUp:_setUp,
 				test:function(t){
-					videoObj = new myVideo(videoFiles.viaFile, {
+					videoObj = new myVideo(videoFiles.threeGp.onDevice, {
 						autoPlay:true,
 						stopAfter:10*1000
 					});
 				},
-				tearDown:function(){
-					videoObj.cleanUp();
-				}
+				tearDown:_tearDown
 			},
 			{
 				id:500,
 				name:"Protocol - widget context",
 				instructions:"Click 'GO' to play video.",
 				expectedResult:"Did you see the video?",
+				setUp:_setUp,
 				test:function(t){
-					videoObj = new myVideo(videoFiles.smallMp4, {
+					videoObj = new myVideo(videoFiles.threeGp.inWidget, {
 						autoPlay:true,
 						stopAfter:10*1000
 					});
 				},
-				tearDown:function(){
-					videoObj.cleanUp();
-				}
+				tearDown:_tearDown
 			},
 			//
 			//	play()
@@ -186,40 +197,39 @@
 				name:"play 2x loop",
 				instructions:"Click 'GO' to play video.",
 				expectedResult:"Did you see the video twice?",
+				setUp:_setUp,
 				test:function(t){
-					videoObj = new myVideo(videoFiles.loopMp4, {
+					videoObj = new myVideo(videoFiles.threeGp.inWidget, {
 						autoPlay:true,
 						stopAfter:10*1000,
 						repeatTimes:2
 					});
 				},
-				tearDown:function(){
-					videoObj.cleanUp();
-				}
+				tearDown:_tearDown
 			},
 			{
 				id:700,
 				name:"play 5x loop",
 				instructions:"Click 'GO' to play video.",
 				expectedResult:"Did you see the video five times?",
+				setUp:_setUp,
 				test:function(t){
-					videoObj = new myVideo(videoFiles.loopMp4, {
+					videoObj = new myVideo(videoFiles.threeGp.inWidget, {
 						autoPlay:true,
 						stopAfter:10*1000,
 						repeatTimes:2
 					});
 				},
-				tearDown:function(){
-					videoObj.cleanUp();
-				}
+				tearDown:_tearDown
 			},
-*/			{
+			{
 				id:800,
 				name:"play, pause and play again",
 				instructions:"Click 'GO' to play video.",
 				expectedResult:"Did the video play, pause and play again?",
+				setUp:_setUp,
 				test:function(t){
-					videoObj = new myVideo(videoFiles.smallMp4, {
+					videoObj = new myVideo(videoFiles.threeGp.inWidget, {
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){
@@ -231,29 +241,12 @@
 						}
 					});
 				},
-				tearDown:function(){
-					videoObj.cleanUp();
-				}
+				tearDown:_tearDown
 			},
+			
 			//
 			//	setWindow()
 			//
-			{
-				id:900,
-				name:"play, pause and play again",
-				instructions:"Click 'GO' to play video.",
-				expectedResult:"Did the video play, pause and play again?",
-				test:function(t){
-					dohx.showInfo('video: <div id="_video_" style="border:1px solid red;">ich</div>');
-					wmv.setWindow(util.byId("_video_"));
-					videoObj = new myVideo(videoFiles.smallMp4, {
-						autoPlay:true
-					});
-				},
-				tearDown:function(){
-					videoObj.cleanUp();
-				}
-			},
 		]
 	});
 })();

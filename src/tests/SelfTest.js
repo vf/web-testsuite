@@ -208,3 +208,26 @@ dohx.add({
 		}
 	]
 });
+
+//
+//	manual tests
+//
+(function(){
+	var _setUpCalled = false;
+	dohx.add({
+		name:"Manual Tests",
+		tests:[
+			{
+				name:"success: Make sure setUp is called AFTER 'GO' was clicked.",
+				instructions:"Click 'GO'.",
+				expectedResult:"Click 'YES'.",
+				setUp:function(){
+					_setUpCalled = true;
+				},
+				test:function(t){
+					if(!_setUpCalled) throw new Error("setUp was not called.");
+				}
+			}
+		]
+	});
+})();

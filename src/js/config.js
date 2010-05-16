@@ -2,6 +2,24 @@ var config = {
 	isValid: false
 };
 (function(){
+	
+// TOD how can we embed this into the synchronous loading process to fill the config??
+	//function _findValidAddressBookItemId(callback){
+	//	try{
+	//		var pim = Widget.PIM;
+	//		var addr = new pim.AddressBookItem();
+	//		addr.setAttributeValue("fullName", "*");
+	//		Widget.PIM.onAddressBookItemsFound = function(items){
+	//			if (items.length>0){
+	//				callback(items[0].addressBookItemId);
+	//			}
+	//		}
+	//		pim.findAddressBookItems(addr, 0, 1);
+	//		delete pim.onAddressBookItemsFound;
+	//	}catch(e){
+	//		callback(null);
+	//	}
+	//}
 
 	var defaults = {
 		// summary: This configuration defines the features of the phone.
@@ -14,6 +32,10 @@ var config = {
 		hasKeypadLight:false,
 		
 		supportsOrientationLandscape:true,
+		supportsMultipleEmailAccounts:true,
+		// The H2 for example doesn't support editing the folders in email, sms and MMS
+		// this option allows to disable it.
+		supportsMessagingFolderEditing:true,
 
 		
 		// Set this to true if the device can open multiple applications.
@@ -39,30 +61,50 @@ var config = {
 			readablePath:"/virtual/photos/",
 			// Specify a file name here for a file that is readable.
 			// E.g. for testing methods like getFile().
-			readableFile:"/virtual/photos/test.txt",
+			readableFile:"/virtual/photos/test-photo/test.txt",
+			emptyReadableDirectory:"/virtual/photos/test-photo/testdir",
 			
 			// Writeable file or path.
 			writeablePath:"/virtual/photos/",
-			writeableFile:"/virtual/photos/test-write.txt",
+			writeableFile:"/virtual/photos/test-photo/test-write.txt",
 			
 			// The root path of the widget, where we can e.g. read out all the
 			// files provided with the widget (like audio or video files).
 			widgetPath:"",
 			playableAudioFiles:{
-				songWav:"audio/wav/music.wav",
-				songMp3:"audio/mp3/music.mp3",
-				loopWav:"audio/wav/loop.wav",
-				loopMp3:"audio/mp3/loop.mp3"
+				inWidget:{
+					songWav:"audio/wav/music.wav",
+					songMp3:"audio/mp3/music.mp3",
+					loopWav:"audio/wav/loop.wav",
+					loopMp3:"audio/mp3/loop.mp3"
+				},
+				onDevice:{
+					songWav:"/virtual/music/test-audio/wav/music.wav",
+					songMp3:"/virtual/music/test-audio/mp3/music.mp3",
+					loopWav:"/virtual/music/test-audio/wav/loop.wav",
+					loopMp3:"/virtual/music/test-audio/mp3/loop.mp3"
+				}
 			},
 			playableVideoFiles:{
 				viaHttp:"http://...",
 				viaHttps:"https://...",
 				viaRtsp:"rtsp://...",
 				viaFile:"file:///", // ??? shall this be the virtual FS or the real FS (=device specific)???
-				smallMp4:"video/mp4/???.mp4",
-				loopMp4:"video/mp4/???.mp4"
+				threeGp:{
+					inWidget:"test-video/3gp/testvideo.3gp",
+					onDevice:"/virtual/videos/test-video/3gp/testvideo.3gp",
+				}
+				//loop3gp:"video/mp4/???.mp4"
 			},
 			imageFile:""
+		},
+		
+		geolocation:{
+			timeouts:{
+				gps:180 * 1000,
+				agps:5 * 1000,
+				cellId:5 * 1000
+			}
 		}
 	};
 
@@ -102,6 +144,16 @@ var config = {
 		//
 		"regexp:^WidgetManager;\\sSAMSUNG-GT-I8330-Vodafone;AppleWebKit.*":function(){
 			var ret = {
+				supportsMultipleEmailAccounts:false,
+				supportsMessagingFolderEditing:false,
+				validCalendarItemId:"1",
+				validAddressBookItemId:"1" // The first contact filled in this device really has the ID "1".
+			};
+			// AGPS==GPS
+			ret.geolocation = {
+				timeouts: {
+					agps: defaults.geolocation.timeouts.gps
+				}
 			};
 			return ret;
 		},
@@ -147,6 +199,15 @@ var config = {
 			};
 			return ret;
 		},
+		//
+		// Chrome, Ripple
+		//
+		"regexp:Mozilla.*Chrome":function(){
+			var ret = {
+			};
+			return ret;
+		},
+		
 		// Made for UAs
 		// 		WidgetManager; Nokia N96....
 		// 		WidgetManager; Nokia 5800...

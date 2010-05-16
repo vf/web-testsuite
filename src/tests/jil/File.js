@@ -25,7 +25,7 @@
 	// Suffix the filename with the test-case name e.g. "copy" or "delete" to create a unique filename for a set
 	// of test cases.
 	var _destFile = cfs.writeablePath + "test-" + new Date().getTime();
-	var testPath = "/virtual/photos/testdir/";
+	var testPath = cfs.emptyReadableDirectory;
 	
 	var w = util.isObject("Widget") ? Widget : {};
 	var wd = util.isObject("Widget.Device") ? Widget.Device : {};
@@ -37,6 +37,18 @@
 		mqcExecutionOrderBaseOffset:190000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:["Widget.Device.getFile"],
 		tests:[
+			{
+				id:1,
+				name:"Verify Preconditions",
+				instructions:[
+					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
+					"Copy the content of the testsuite's zip-file's folder 'photo' into the photo directory on the phone. (The exact name of the destination folder may vary on your device.)",
+					"Click 'GO' to start testing."
+				],
+				test:function(t){
+					t.success("Preconditions met, user confirmed.");
+				}
+			},
 			//
 			//	copyFile()
 			//
@@ -83,12 +95,7 @@
 						var ret = wd.getFile(_destFile+"-delete");
 						t.failure("Method getFile() didn't throw exception.");
 					}catch(e){
-						// If multiple asserts would work the following would be easier, but doh2 is not capable of that (yet).
-						var isInstanceof = e instanceof w.Exception;
-						var isExcTypeOk = e.type == w.ExceptionTypes.INVALID_PARAMETER
-						var msg = !isInstanceof ? "Exception not instance of Widget.Exception" :
-									(!isExcTypeOk ? "Exception.type is not the expected Widget.ExceptionTypes.INVALID_PARAMETER": "");
-						t.assertTrue(isInstanceof && isExcTypeOk, msg);
+						t.assertJilException(e, w.ExceptionTypes.INVALID_PARAMETER);
 						return e;
 					}
 					return ret;
@@ -103,12 +110,7 @@
 						var ret = wd.deleteFile(_destFile+"-delete");
 						t.failure("Method getFile() didn't throw exception.");
 					}catch(e){
-						// If multiple asserts would work the following would be easier, but doh2 is not capable of that (yet).
-						var isInstanceof = e instanceof w.Exception;
-						var isExcTypeOk = e.type == w.ExceptionTypes.INVALID_PARAMETER
-						var msg = !isInstanceof ? "Exception not instance of Widget.Exception" :
-									(!isExcTypeOk ? "Exception.type is not the expected Widget.ExceptionTypes.INVALID_PARAMETER": "");
-						t.assertTrue(isInstanceof && isExcTypeOk, msg);
+						t.assertJilException(e, w.ExceptionTypes.INVALID_PARAMETER);
 						return e;
 					}
 					return ret;
@@ -138,12 +140,7 @@
 						var ret = wd.getFile(testPath+"-delete");
 						t.failure("Method getFile() didn't throw exception.");
 					}catch(e){
-						// If multiple asserts would work the following would be easier, but doh2 is not capable of that (yet).
-						var isInstanceof = e instanceof w.Exception;
-						var isExcTypeOk = e.type == w.ExceptionTypes.INVALID_PARAMETER
-						var msg = !isInstanceof ? "Exception not instance of Widget.Exception" :
-									(!isExcTypeOk ? "Exception.type is not the expected Widget.ExceptionTypes.INVALID_PARAMETER": "");
-						t.assertTrue(isInstanceof && isExcTypeOk, msg);
+						t.assertJilException(e, w.ExceptionTypes.INVALID_PARAMETER);
 						return e;
 					}
 					return ret;
@@ -158,12 +155,7 @@
 						var ret = wd.deleteFile(_destFile+"-delete");
 						t.failure("Method getFile() didn't throw exception.");
 					}catch(e){
-						// If multiple asserts would work the following would be easier, but doh2 is not capable of that (yet).
-						var isInstanceof = e instanceof w.Exception;
-						var isExcTypeOk = e.type == w.ExceptionTypes.INVALID_PARAMETER
-						var msg = !isInstanceof ? "Exception not instance of Widget.Exception" :
-									(!isExcTypeOk ? "Exception.type is not the expected Widget.ExceptionTypes.INVALID_PARAMETER": "");
-						t.assertTrue(isInstanceof && isExcTypeOk, msg);
+						t.assertJilException(e, w.ExceptionTypes.INVALID_PARAMETER);
 						return e;
 					}
 					return ret;
@@ -286,8 +278,8 @@
 				name:"getDirectoryFileNames - Find directory "+ testPath +".",
 				requiredObjects:["Widget.Device.getDirectoryFileNames"],
 				test:function(t){
-					var files = wd.getDirectoryFileNames('/virtual/photos/');
-					t.assertTrue(files.indexOf("testdir")!=-1, "Expected 'testdir' to be in /virtual/photos, not found.");
+					var files = wd.getDirectoryFileNames('/virtual/photos/test-photo/');
+					t.assertTrue(files.indexOf("testdir")!=-1, "Expected 'testdir' to be in /virtual/photos/test-photo, not found.");
 				}
 			},
 			{
@@ -300,12 +292,7 @@
 						var dirs = wd.getDirectoryFileNames("/reallystrangeAndNOTEXISTING_PATH");
 						t.failure("Should have thrown an exception.");
 					}catch(e){
-						// If multiple asserts would work the following would be easier, but doh2 is not capable of that (yet).
-						var isInstanceof = e instanceof w.Exception;
-						var isExcTypeOk = e.type == w.ExceptionTypes.INVALID_PARAMETER
-						var msg = !isInstanceof ? "Exception not instance of Widget.Exception" :
-									(!isExcTypeOk ? "Exception.type is not the expected Widget.ExceptionTypes.INVALID_PARAMETER": "");
-						t.assertTrue(isInstanceof && isExcTypeOk, msg);
+						t.assertJilException(e, w.ExceptionTypes.INVALID_PARAMETER);
 						return e;
 					}
 					return dirs;
@@ -323,12 +310,7 @@
 						var file = wd.getFile("/notEXISTING_FILE.JOJO");
 						t.failure("Should have thrown an exception.");
 					}catch(e){
-						// If multiple asserts would work the following would be easier, but doh2 is not capable of that (yet).
-						var isInstanceof = e instanceof w.Exception;
-						var isExcTypeOk = e.type == w.ExceptionTypes.INVALID_PARAMETER
-						var msg = !isInstanceof ? "Exception not instance of Widget.Exception" :
-									(!isExcTypeOk ? "Exception.type is not the expected Widget.ExceptionTypes.INVALID_PARAMETER": "");
-						t.assertTrue(isInstanceof && isExcTypeOk, msg);
+						t.assertJilException(e, w.ExceptionTypes.INVALID_PARAMETER);
 						return e;
 					}
 					return file;

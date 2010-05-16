@@ -13,20 +13,22 @@
 				id: 100,
 				name: "Check that phoneMSISDN is not empty!",
 				test: function(t) {
-					t.assertTrue(!!wda.phoneMSISDN);
-					return wda.phoneMSISDN;
+					var msisdn = wda.phoneMSISDN;
+					t.assertTrue(!!msisdn);
+					return msisdn;
 				}
 			},
 			{
 				id: 200,
-				name: "phoneMSISDN",
+				name: "Check value of phoneMSISDN.",
 				instructions:[
 					"Try to find out your Mobile Directory Number (MDN) and not the Mobile Identification Number (MIN)",
 					"Click 'GO'."
 				],
 				expectedResult:"Is the above phoneMSISDN correct?",
 				test: function(t) {
-					dohx.showInfo("API reports phoneMSISDN: " + wda.phoneMSISDN);
+					var msisdn = wda.phoneMSISDN;
+					dohx.showInfo(msisdn ? ("API reports phoneMSISDN: " + msisdn) : "Could not read MSISDN.");
 				}
 			},
 			//
@@ -66,8 +68,11 @@
 			//
 			//	userAccountBalance
 			//
+// TODO the following ar edisabled for now, since I dont know how we can check if the tests are applicable for the current device,
+// actually better for the current operator and SIM card ... maybe untestable?
 			{
 				id: 600,
+addIf:false,
 				name: "userAccountBalance",
 				instructions:[
 					"Make sure you know your account balance.",
@@ -83,6 +88,7 @@
 			// 
 			{
 				id: 700,
+addIf:false,
 				name: "Check that userSubscriptionType is not empty!",
 				test: function(t) {
 					t.assertTrue(!!wda.userSubscriptionType);
@@ -91,6 +97,7 @@
 			},
 			{
 				id: 800,
+addIf:false,
 				name: "userSubscriptionType",
 				instructions:[
 					"Make sure you know your subscription type, e.g. prepaid, postpaid or other.",
@@ -101,6 +108,7 @@
 					dohx.showInfo("API reports : " + wda.userSubscriptionType);
 				}
 			}
+//*/
 		]  
 	});
 })();

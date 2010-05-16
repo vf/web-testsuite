@@ -15,7 +15,7 @@ DeviceInfo
 
 
 RadioInfo
-* H2 reported wrong "GSM" though it was not connected, make user verify and test it
+* how can we test different signal source types for onSignalSourceChange() ?
 
 
 Global
@@ -24,5 +24,22 @@ Global
 File
 * test delete directories
 * test delete dirs with files and without files in them ...
-* test dirs that contain dirs too (spec only says "IfÊaÊdirectoryÊisÊgivenÊasÊtheÊtarget,ÊandÊitÊcontainsÊanyÊfiles,ÊtheÊfolderÊwillÊ 
-notÊbeÊdeletedÊuntilÊitÊdoesÊnotÊcontainÊanyÊfiles.") talks only abot file :)
+* test dirs that contain dirs too (spec only says "If a directory isÂ givenÂ asÂ theÂ target,Â andÂ itÂ containsÂ anyÂ files,Â theÂ folderÂ willÂ  
+notÂ beÂ deletedÂ untilÂ itÂ doesÂ notÂ containÂ anyÂ files.") talks only abot file :)
+
+Application
+* test start widgets using launchApplication() using the widget:// URL
+
+AccountInfo
+* account balance and subscriptiontype, see following comment
+// TODO the following ar edisabled for now, since I dont know how we can check if the tests are applicable for the current device,
+// actually better for the current operator and SIM card ... maybe untestable?
+
+AddressBook
+Possible tests (as defined in the spec., text copied form spec) - FIX by new spec
+* If startInx is greater than endInx in PIM_findAddressBookItems function, the returned addressBookItemsFound will be an empty array.
+* If startInx is greater than the number of found items in PIM_findAddressBookItems function, the returned addressBookItemsFound will be an empty array.
+* If endInx is greater than the number of found items in PIM_findAddressBookItems function, the returned addressBookItemsFound will contain items bwteeen startInx and the last returned item inclusively.
+
+Telephony
+* see TODOs in the js file

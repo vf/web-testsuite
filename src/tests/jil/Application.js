@@ -3,8 +3,8 @@
 	var wd = util.isObject("Widget.Device") ? Widget.Device : {};
 	var wda = util.isObject("Widget.Device.ApplicationTypes") ? Widget.Device.ApplicationTypes : {};
 	var cfs = config.fileSystem;
-	//var localMp3File = "/virtual/widgethome/" + cfs.playableAudioFiles.songMp3;
-	var localMp3File = "music.mp3";
+	var widgethomeMp3File = "/virtual/widgethome/" + cfs.playableAudioFiles.inWidget.songMp3;
+	var musicFolderMp3File = cfs.playableAudioFiles.onDevice.songMp3;
 	
 	//
 	//	Application tests
@@ -32,17 +32,31 @@
 				instructions:"Click 'GO', should launch the calculator.",
 				expectedResult:"Did the calculator start?",
 				test:function(t){
-					return wd.launchApplication(wda.CALCULATOR, null);
+					return wd.launchApplication(wda.CALCULATOR, "");
 				}
-			},{
+			},
+			{
 				id:300,
-				name:"Start '" + wda.MEDIAPLAYER + "' with '" + localMp3File + "'.",
-				instructions:"Click 'GO', should launch an app.",
-				expectedResult:"Did the audio player start AND play the file?",
+				name:"Start '" + wda.MEDIAPLAYER + "' with '" + widgethomeMp3File + "'.",
+				instructions:"Click 'GO', should launch an the music player and play a tune.",
+				expectedResult:"Did the music player start AND play the file?",
 				test:function(t){
-					return wd.launchApplication(wda.MEDIAPLAYER, cfs.playableAudioFiles.songMp3);
+					return wd.launchApplication(wda.MEDIAPLAYER, widgethomeMp3File);
 				}
-//			},{
+			},
+			{
+				id:310,
+				name:"Start '" + wda.MEDIAPLAYER + "' with '" + musicFolderMp3File + "'.",
+				instructions:[
+					"Make sure the audio file '"+ musicFolderMp3File +"' exists!",
+					"Click 'GO', should launch an the music player and play a tune.",
+				],
+				expectedResult:"Did the music player start AND play the file?",
+				test:function(t){
+					return wd.launchApplication(wda.MEDIAPLAYER, musicFolderMp3File);
+				}
+			},
+//			{
 // TODO provide image file with the widget
 //				id:400,
 //				name:"Start '" + wda.MEDIAPLAYER + "' with '" + cfs.imageFile + "'.",
@@ -53,7 +67,8 @@
 //return "TODO"
 //					return wd.launchApplication(wda.MEDIAPLAYER, cfs.imageFile);
 //				}
-			},{
+//			},
+			{
 				id:500,
 				name:"Start '" + wda.MAIL + "' to 'email@vodafone.de'.",
 				instructions:[
@@ -126,7 +141,7 @@
 						],
 						expectedResult:'Did app launch?',
 						test:function(t){
-							return wd.launchApplication(app.app, null);
+							return wd.launchApplication(app.app, "");
 						}
 					}
 				]

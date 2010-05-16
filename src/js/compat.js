@@ -100,7 +100,14 @@
 					isRadioEnabled:true,
 					isRoaming:true,
 					radioSignalSource:"towa",
-					radioSignalStrengthPercent:100
+					radioSignalStrengthPercent:100,
+					RadioSignalSourceTypes:{
+						"CDMA":"CDMA",
+						"GSM":"GSM",
+						"LTE":"LTE",
+						"TDSCDMA":"TDSCDMA",
+						"WCDMA":"WCDMA"
+					}
 				}
 			},
 			
@@ -108,18 +115,16 @@
 				doh.util.mixin(this, params);
 			},
 			ExceptionTypes:{
-				INVALID_PARAMETER:"INVALID_PARAMETER"
-			},
-				
-			Multimedia: {
-				Camera: {
-					startVideoCapture:function(){}
-				}
+				INVALID_PARAMETER:"INVALID_PARAMETER",
+				UNSUPPORTED:"UNSUPPORTED"
 			},
 				
 			PIM:{
 				addCalendarItem:function(){},
-				findAddressBookItems:function(){
+				findAddressBookItems:function(address, startIndex, endIndex){
+					if (!util.isNumber(startIndex) || startIndex<0 || !util.isNumber(endIndex) || endIndex<0){
+						throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
+					}
 					setTimeout(doh.util.hitch(this, function(){
 						if (this.onAddressBookItemsFound){
 							this.onAddressBookItemsFound([new Widget.PIM.AddressBookItem()]);
@@ -214,6 +219,12 @@ Widget.Device.launchApplication = function(){
 }
 
 //
+//	Multimedia
+//
+
+Widget.Multimedia = {};
+
+//
 //	AudioPlayer
 //
 Widget.Multimedia.AudioPlayer = {
@@ -255,25 +266,33 @@ console.log("resume");
 console.log("stop");
 		_triggerOnStageChange("stopped");
 	}
+	v.setWindow = function(){}
 })();
 
 
 //
 //	Camera
 //
-Widget.Multimedia.Camera.captureImage = function(fileName){
-	if (fileName.toLowerCase().indexOf("invalid")!=-1){
-		throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
-	}
-	// Simulate that we do take a pic and trigger the callback after a bit :-).
-	setTimeout(doh.util.hitch(this, function(){
-		if (this.onCameraCaptured){
-			this.onCameraCaptured(fileName);
+(function(){
+	var wmc = Widget.Multimedia.Camera = {};
+	
+	wmc.setWindow = function(){};
+	
+	wmc.startVideoCapture = wmc.captureImage = function(fileName){
+		if (fileName.toLowerCase().indexOf("invalid")!=-1){
+			throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
 		}
-	}), 500);
-	return fileName;
-};
-
+		// Simulate that we do take a pic and trigger the callback after a bit :-).
+		setTimeout(doh.util.hitch(this, function(){
+			if (this.onCameraCaptured){
+				this.onCameraCaptured(fileName);
+			}
+		}), 500);
+		return fileName;
+	};
+	
+	wmc.stopVideoCapture = function(){};
+})();
 
 //
 //	File
@@ -312,3 +331,159 @@ Widget.Device.findFiles = function(){
 		}
 	}, 10);
 };
+
+//
+//	Telephony
+//
+(function(){
+	var wt = Widget.Telephony = {};
+	
+	wt.CallRecord = {
+		callRecordAddress:"",
+		callRecordId:"",
+		callRecordName:"",
+		callRecordType:"",
+		durationSeconds:0,
+		startTime:new Date()
+	};
+	
+	wt.CallRecordTypes = {
+		MISSED:'MISSED',
+		OUTGOING:'OUTGOING',
+		RECEIVED:'RECEIVED'
+	};
+	
+	wt.findCallRecords = function(){
+		setTimeout(doh.util.hitch(this, function(){
+			if (this.onCallRecordsFound){
+				this.onCallRecordsFound();
+			}
+		}), 10);
+	};
+	
+	wt.getCallRecord = function(){
+		return wt.CallRecord;
+	};
+	
+	wt.getCallRecordCnt = function(){
+		return 0;
+	};
+	
+	wt.initiateVoiceCall = 
+	wt.deleteCallRecord =
+	wt.deleteAllCallRecords = function(){}
+
+})();
+
+//
+//	Messaging
+//
+(function(){
+	var wm = Widget.Messaging = {};
+	
+	wm.Account = {
+		accountId:"",
+		accountName:""
+	};
+	
+	wm.MessageFolderTypes = {
+		DRAFTS:"DRAFTS",
+		INBOX:"INBOX",
+		OUTBOX:"OUTBOX",
+		SENTBOX:"SENTBOX"
+	};
+	
+	wm.MessageTypes = {
+		EmailMessage:"EmailMessage",
+		MMSMessage:"MMSMessage",
+		SMSMessage:"SMSMessage"
+	};
+	
+	wm.getMessageQuantities = function(){
+		return doh.util.mixin({}, Widget.Messaging.MessageQuantities); // Clone the object and return it
+	}
+	wm.createMessage = function(msgType){
+		if (typeof msgType=="undefined" || msgType.toLowerCase().indexOf("invalid")!=-1){
+			throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
+		}
+		return new wm.Message();
+	}
+	wm.moveMessageToFolder = function(){}
+	wm.deleteMessage = function(){}
+	wm.findMessages = function(){
+		setTimeout(function(){
+			if (wm.onMessagesFound){
+				wm.onMessagesFound([], "");
+			}
+		}, 10);
+	}
+	wm.getMessage = function(){
+		return new wm.Message();
+	}
+	
+	//
+	//	Email account stuff
+	//
+	wm.getEmailAccounts = function(){
+		return [doh.util.mixin({}, wm.Account), doh.util.mixin({}, wm.Account)];
+	}
+	wm.getCurrentEmailAccount = function(){
+		return doh.util.mixin({}, wm.Account);
+	}
+	wm.setCurrentEmailAccount = function(account){
+		if (typeof account=="undefined" || account.toLowerCase().indexOf("invalid")!=-1){
+			throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
+		}
+	}
+	wm.deleteEmailAccount = function(account){
+		if (typeof account=="undefined" || account.toLowerCase().indexOf("invalid")!=-1){
+			throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
+		}
+	}
+	
+	//
+	//	Folder stuff
+	//
+	wm.createFolder = function(msgType, folderName){
+		if (typeof msgType=="undefined" || typeof folderName=="undefined" || folderName.toLowerCase().indexOf("invalid")!=-1){
+			throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
+		}
+	}
+	wm.getFolderNames = function(){
+		return [];
+	}
+	
+	//
+	//	Message
+	//
+	wm.Message = function(){
+		this.attachments = [];
+		this.bccAddress = [];
+		this.body = "";
+		this.callbackNumber = "";
+		this.ccAddress = [];
+		this.destinationAddress = [];
+		this.isRead = false;
+		this.messageId = "";
+		this.messagePriority= false;
+		this.messageType = "";
+		this.sourceAddress = "";
+		this.subject = "";
+		this.time = new Date();
+		this.validityPeriodHours = 0;
+		
+		this.addAddress = function(){};
+		this.addAttachment = function(){};
+		this.deleteAddress = function(){};
+		this.deleteAttachment = function(){};
+		this.saveAttachment = function(){};
+	}
+})();
+
+(function(){
+	Widget.Messaging.MessageQuantities = {
+		totalMessageCnt:0,
+		totalMessageReadCnt:0,
+		totalMessageUnreadCnt:0
+	};
+})();
