@@ -11,6 +11,7 @@
 	<div class="statusBar">
 		<span class="numTestsDone">0</span>/<span class="numTests">0</span> tests,
 		<span class="numFailed">0</span> failed (<span class="percentFailed">0</span>%)
+		<span class="notCustomConfigured" style="display:none; color:#FBB;">[not configured]</span>
 	</div>
 	
 	<a href="javascript:widget.openURL('http://vodafone.com')" class="copyright">
@@ -91,19 +92,14 @@
 				dbgNode.innerHTML += Array.prototype.slice.call(arguments, 0).join(", ")+" ";
 			}};
 		}
-		if (!config.isValid){
-			ui.invalidConfig();
-		}
 	</script>
 	<script src='tests/$test.js' type='text/javascript'></script>
 	<script type="text/javascript">
-		if (config.isValid){
-			util.query(".statusBar .numTests")[0].innerHTML = doh._numTests;
-			try{
-				doh.run();
-			}catch(e){
-				util.query(".content")[0].innerHTML += e;
-			}
+		util.query(".statusBar .numTests")[0].innerHTML = doh._numTests;
+		try{
+			doh.run();
+		}catch(e){
+			util.query(".content")[0].innerHTML += e;
 		}
 	</script>
 </body>

@@ -1,6 +1,7 @@
 var config = {
-	isValid: false
+	isCustomConfiguration:false
 };
+
 (function(){
 	
 // TOD how can we embed this into the synchronous loading process to fill the config??
@@ -145,9 +146,9 @@ var config = {
 			return ret;
 		},
 		//
-		//	Vodafone 360 Devices, H2, M2
+		//	Vodafone 360 Devices, H2 (I8330), M2 (I6420)
 		//
-		"regexp:^WidgetManager;\\sSAMSUNG-GT-I8330-Vodafone;AppleWebKit.*":function(){
+		"regexp:^WidgetManager;\\sSAMSUNG-GT-I\d{4}-Vodafone;AppleWebKit.*":function(){
 			var ret = {
 				supportsMultipleEmailAccounts:false,
 				supportsDeleteEmailAccounts:false,
@@ -193,18 +194,18 @@ var config = {
 		//	Firefox on PC
 		//
 		// e.g. "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-GB; rv:1.9.2) Gecko/20100115 Firefox/3.6"
-		"regexp:Mozilla.*Gecko\/\\d+\\sFirefox.*":function(){
-// using only "AppleWebkit" here would also be found on the H2
-		//"regexp:(.*AppleWebKit.*)|(Mozilla.*Gecko\/\\d+\\sFirefox.*)":function(){
-			var ret = {
-				hasClipboard:true,
-				hasClamshell:false,
-				validAddressBookItemId:1,
-				validCalendarItemId:1,
-				validPhoneNumber:"00491234567890"
-			};
-			return ret;
-		},
+//		"regexp:Mozilla.*Gecko\/\\d+\\sFirefox.*":function(){
+//// using only "AppleWebkit" here would also be found on the H2
+//		//"regexp:(.*AppleWebKit.*)|(Mozilla.*Gecko\/\\d+\\sFirefox.*)":function(){
+//			var ret = {
+//				hasClipboard:true,
+//				hasClamshell:false,
+//				validAddressBookItemId:1,
+//				validCalendarItemId:1,
+//				validPhoneNumber:"00491234567890"
+//			};
+//			return ret;
+//		},
 		//
 		// Chrome, Ripple
 		//
@@ -265,18 +266,21 @@ var config = {
 			break;
 		}
 	}
-	if (configToMixin!==null){
-		doh.util.mixin(config, defaults);
-		// Mixin the additional config params.
-		// Mixin recursively so objects don't have to declare each key again!
-		for (var key in configToMixin){
-			var v = configToMixin[key];
-			if (typeof v=="object"){
-				doh.util.mixin(config[key], v);
-			} else {
-				config[key] = v;
-			}
+	if (configToMixin===null){
+		configToMixin = doh.util.mixin({}, defaults);
+	} else {
+		configToMixin.isCustomConfiguration = true;
+	}
+	
+	doh.util.mixin(config, defaults);
+	// Mixin the additional config params.
+	// Mixin recursively so objects don't have to declare each key again!
+	for (var key in configToMixin){
+		var v = configToMixin[key];
+		if (typeof v=="object"){
+			doh.util.mixin(config[key], v);
+		} else {
+			config[key] = v;
 		}
-		config.isValid = true;
 	}
 })();
