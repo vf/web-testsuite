@@ -280,14 +280,14 @@
 	
 	// Start at ID offset 3000, just to have some place before.
 	var _videoFiles = [
-		{id:3000, "type":"avc", location:"inWidget"},
-		{id:3010, "type":"avc", location:"onDevice"},
 		{id:3020, "type":"h263", location:"inWidget"},
 		{id:3030, "type":"h263", location:"onDevice"},
 		{id:3040, "type":"h264", location:"inWidget"},
 		{id:3050, "type":"h264", location:"onDevice"},
 		{id:3060, "type":"mp4", location:"inWidget"},
-		{id:3070, "type":"mp4", location:"onDevice"}
+		{id:3070, "type":"mp4", location:"onDevice"},
+		{id:3080, "type":"h264", location:"inWidget1"},
+		{id:3090, "type":"h264", location:"onDevice1"},
 	];
 	for (var i=0, l=_videoFiles.length; i<l; i++){
 		(function(videoFileInfo){
