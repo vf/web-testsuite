@@ -94,6 +94,10 @@ var config = {
 				threeGp:{
 					inWidget:"test-video/3gp/testvideo.3gp",
 					onDevice:"/virtual/videos/test-video/3gp/testvideo.3gp",
+				},
+				h264:{
+					inWidget:"test-video/h264/h264.mov",
+					onDevice:"/virtual/videos/test-video/h264/h264.mov",
 				}
 				//loop3gp:"video/mp4/???.mp4"
 			},
