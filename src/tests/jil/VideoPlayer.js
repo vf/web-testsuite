@@ -161,9 +161,10 @@
 					videoObj.cleanUp();
 				}
 			},
-*/			{
+*/
+			{
 				id:400,
-				name:"Protocol - file",
+				name:"Protocol - 3GP file",
 				instructions:"Click 'GO' to play video.",
 				expectedResult:"Did you see the video?",
 				setUp:_setUp,
@@ -176,13 +177,41 @@
 				tearDown:_tearDown
 			},
 			{
+				id:410,
+				name:"Protocol - H.264 file",
+				instructions:"Click 'GO' to play video.",
+				expectedResult:"Did you see the video?",
+				setUp:_setUp,
+				test:function(t){
+					videoObj = new myVideo(videoFiles.h264.onDevice, {
+						autoPlay:true,
+						stopAfter:10*1000
+					});
+				},
+				tearDown:_tearDown
+			},
+			{
 				id:500,
-				name:"Protocol - widget context",
+				name:"Protocol - 3GP widget context",
 				instructions:"Click 'GO' to play video.",
 				expectedResult:"Did you see the video?",
 				setUp:_setUp,
 				test:function(t){
 					videoObj = new myVideo(videoFiles.threeGp.inWidget, {
+						autoPlay:true,
+						stopAfter:10*1000
+					});
+				},
+				tearDown:_tearDown
+			},
+			{
+				id:510,
+				name:"Protocol - H.264 widget context",
+				instructions:"Click 'GO' to play video.",
+				expectedResult:"Did you see the video?",
+				setUp:_setUp,
+				test:function(t){
+					videoObj = new myVideo(videoFiles.h264.inWidget, {
 						autoPlay:true,
 						stopAfter:10*1000
 					});

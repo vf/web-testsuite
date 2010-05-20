@@ -16,12 +16,9 @@ mkdir tmp-mqcbuild
 
 cp dist/test* tmp-mqcbuild
 cp ReleaseNotes.txt tmp-mqcbuild
-mkdir tmp-mqcbuild/test-audio
-mkdir tmp-mqcbuild/test-video
-mkdir tmp-mqcbuild/test-photo
-cp -R src/audio/* tmp-mqcbuild/test-audio
-cp -R src/video/* tmp-mqcbuild/test-video
-cp -R src/photo/* tmp-mqcbuild/test-photo
+cp -R src/test-audio tmp-mqcbuild/
+cp -R src/test-video tmp-mqcbuild/
+cp -R src/test-photo tmp-mqcbuild/
 
 cd tmp-mqcbuild
 zip -r ../mqc-widget-suite-$1.zip *

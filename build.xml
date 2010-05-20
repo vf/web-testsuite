@@ -68,9 +68,9 @@
             <fileset dir="${src}">
                 <include name="**/css/*"/>
                 <include name="**/img/*"/>
-                <include if="isAudio" name="**/audio/**"/>
-                <include if="isAudioMp3Only" name="**/audio/mp3/*"/>
-                <include if="isVideo" name="**/video/**"/>
+                <include if="isAudio" name="**/test-audio/**"/>
+                <include if="isAudioMp3Only" name="**/test-audio/mp3/*"/>
+                <include if="isVideo" name="**/test-video/**"/>
                 <include name="**/js/doh2/*.js"/>
                 <include name="**/tests/${test}.js"/>
                 <include name="**/js/*.js"/>
