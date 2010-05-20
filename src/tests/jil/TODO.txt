@@ -43,3 +43,6 @@ Possible tests (as defined in the spec., text copied form spec) - FIX by new spe
 
 Telephony
 * see TODOs in the js file
+
+VideoPlayer
+* fullscreen mode, setWindow 100%
