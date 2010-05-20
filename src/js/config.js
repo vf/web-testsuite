@@ -74,10 +74,10 @@ var config = {
 			widgetPath:"",
 			playableAudioFiles:{
 				inWidget:{
-					songWav:"audio/wav/music.wav",
-					songMp3:"audio/mp3/music.mp3",
-					loopWav:"audio/wav/loop.wav",
-					loopMp3:"audio/mp3/loop.mp3"
+					songWav:"test-audio/wav/music.wav",
+					songMp3:"test-audio/mp3/music.mp3",
+					loopWav:"test-audio/wav/loop.wav",
+					loopMp3:"test-audio/mp3/loop.mp3"
 				},
 				onDevice:{
 					songWav:"/virtual/music/test-audio/wav/music.wav",
