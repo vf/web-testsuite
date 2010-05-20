@@ -3,6 +3,7 @@
 	var wm = util.isObject("Widget.Messaging") ? Widget.Messaging : {};
 	var wmt = util.isObject("Widget.Messaging.MessageTypes") ? Widget.Messaging.MessageTypes : {};
 	
+	var supports = config.supports.Messaging;
 	var _folderName = "test-folder-" + new Date().getTime();
 	
 	dohx.add({name:"MessagingFolder",
@@ -15,7 +16,7 @@
 			{
 				id: 100,
 				name: "createFolder - in emails",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.getFolderNames", "Widget.Messaging.createFolder"],
 				test: function(t) {
 					var folderNames = wm.getFolderNames(wmt.EmailMessage);
@@ -26,7 +27,7 @@
 			{
 				id: 200,
 				name: "createFolder - in SMS",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.getFolderNames", "Widget.Messaging.createFolder"],
 				test: function(t) {
 					var folderNames = wm.getFolderNames(wmt.SMSMessage);
@@ -37,7 +38,7 @@
 			{
 				id: 300,
 				name: "createFolder - in MMS",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.getFolderNames", "Widget.Messaging.createFolder"],
 				test: function(t) {
 					var folderNames = wm.getFolderNames(wmt.MMSMessage);
@@ -48,7 +49,7 @@
 			{
 				id: 400,
 				name: "createFolder - Throw INVALID_PARAMETER for adding existing folder.",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.createFolder"],
 				test: function(t) {
 					try{
@@ -62,7 +63,7 @@
 			{
 				id: 500,
 				name: "createFolder - Throw INVALID_PARAMETER for no params.",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.createFolder"],
 				test: function(t) {
 					try{
@@ -76,7 +77,7 @@
 			{
 				id: 600,
 				name: "createFolder - Throw INVALID_PARAMETER for missing params.",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.createFolder"],
 				test: function(t) {
 					try{
@@ -90,7 +91,7 @@
 			{
 				id: 700,
 				name: "createFolder - Throw INVALID_PARAMETER for invalid message type.",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.createFolder"],
 				test: function(t) {
 					try{
@@ -104,7 +105,7 @@
 			{
 				id: 800,
 				name: "createFolder - Throw INVALID_PARAMETER for empty message type.",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.createFolder"],
 				test: function(t) {
 					try{
@@ -119,7 +120,7 @@
 			{
 				id: 850,
 				name: "createFolder is not supported - Throws UNSUPPORTED.",
-				addIf:!config.supportsMessagingFolderEditing,
+				addIf:!supports.editFolder,
 				requiredObjects:["Widget.Messaging.createFolder"],
 				test: function(t) {
 					try{
@@ -133,7 +134,7 @@
 			{
 				id: 860,
 				name: "createFolder is not supported - Throws UNSUPPORTED also if parameters are missing.",
-				addIf:!config.supportsMessagingFolderEditing,
+				addIf:!supports.editFolder,
 				requiredObjects:["Widget.Messaging.createFolder"],
 				test: function(t) {
 					try{
@@ -151,7 +152,7 @@
 			{
 				id: 900,
 				name: "deleteFolder - Let's remove the one we created in 'SMS'.",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.getFolderNames", "Widget.Messaging.deleteFolder"],
 				test: function(t) {
 					wm.deleteFolder(wmt.SMSMessage, _folderName);
@@ -161,7 +162,7 @@
 			{
 				id: 1000,
 				name: "deleteFolder - Delete the same one again, should throw an exception.",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.deleteFolder"],
 				test: function(t) {
 					try{
@@ -175,7 +176,7 @@
 			{
 				id: 1100,
 				name: "deleteFolder - Let's remove the one we created in 'MMS'.",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.getFolderNames", "Widget.Messaging.deleteFolder"],
 				test: function(t) {
 					wm.deleteFolder(wmt.MMSMessage, _folderName);
@@ -185,7 +186,7 @@
 			{
 				id: 1200,
 				name: "deleteFolder - Delete the same one again, should throw an exception.",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.deleteFolder"],
 				test: function(t) {
 					try{
@@ -199,7 +200,7 @@
 			{
 				id: 1300,
 				name: "deleteFolder - Let's remove the one we created in 'EMail'.",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.getFolderNames", "Widget.Messaging.deleteFolder"],
 				test: function(t) {
 					wm.deleteFolder(wmt.EmailMessage, _folderName);
@@ -209,7 +210,7 @@
 			{
 				id: 1400,
 				name: "deleteFolder - Delete the same one again, should throw an exception.",
-				addIf:config.supportsMessagingFolderEditing,
+				addIf:supports.editFolder,
 				requiredObjects:["Widget.Messaging.deleteFolder"],
 				test: function(t) {
 					try{
@@ -224,7 +225,7 @@
 			{
 				id: 1450,
 				name: "deleteFolder is not supported - Throws UNSUPPORTED.",
-				addIf:!config.supportsMessagingFolderEditing,
+				addIf:!supports.editFolder,
 				requiredObjects:["Widget.Messaging.deleteFolder"],
 				test: function(t) {
 					try{
@@ -238,7 +239,7 @@
 			{
 				id: 1460,
 				name: "deleteFolder is not supported - Throws UNSUPPORTED also if parameters are missing.",
-				addIf:!config.supportsMessagingFolderEditing,
+				addIf:!supports.editFolder,
 				requiredObjects:["Widget.Messaging.deleteFolder"],
 				test: function(t) {
 					try{

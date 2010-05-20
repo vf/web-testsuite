@@ -35,9 +35,20 @@ var config = {
 		supportsOrientationLandscape:true,
 		supportsMultipleEmailAccounts:true,
 		supportsDeleteEmailAccounts:true,
-		// The H2 for example doesn't support editing the folders in email, sms and MMS
-		// this option allows to disable it.
-		supportsMessagingFolderEditing:true,
+		
+		// Some devices/platforms don't support certain features and they normally need to return UNSUPPORTED
+		// exception, but to run the correct tests (those testing for the exception) we need to configure
+		// the platforms. That is done here.
+		// The list below ONLY lists those features that need to be turned off for a certain platform
+		// if there is one missing add it, by default the features are all expected to be supported (default value is true).
+		supports:{
+			// On the first the module (=test file) is given.
+			Messaging:{
+				moveMessage:true, // moveToFolder()
+				editFolder:true, // If createFolder(), moveFolder(), deleteFolder() are NOT supported set this to false.
+				multipleEmailAccounts:true
+			}
+		},
 
 		
 		// Set this to true if the device can open multiple applications.
@@ -102,7 +113,9 @@ var config = {
 				},
 				h264:{
 					inWidget:"test-video/h264/H264_256K_QVGA_15_plus_AAC_22_2.mp4",
-					onDevice:"/virtual/videos/test-video/h264/H264_256K_QVGA_15_plus_AAC_22_2.mp4"
+					onDevice:"/virtual/videos/test-video/h264/H264_256K_QVGA_15_plus_AAC_22_2.mp4",
+					inWidget1:"test-video/h264/HMC_boa_320_240.MP4",
+					onDevice1:"/virtual/videos/test-video/h264/HMC_boa_320_240.MP4"
 				},
 				mp4:{
 					inWidget:"test-video/mp4/MP4V_508K_QVGA_15_plus_MP4AAC_32_2.mp4",
@@ -161,19 +174,25 @@ var config = {
 		//
 		"regexp:^WidgetManager;\\sSAMSUNG-GT-I\\d{4}-Vodafone;AppleWebKit.*":function(){
 			var ret = {
-				supportsMultipleEmailAccounts:false,
-				supportsDeleteEmailAccounts:false,
-				supportsMessagingFolderEditing:false,
 				validCalendarItemId:"1",
-				validAddressBookItemId:"1" // The first contact filled in this device really has the ID "1".
-			};
+				validAddressBookItemId:"1", // The first contact filled in this device really has the ID "1".
 			// AGPS==GPS
-			ret.geolocation = {
-				timeouts: {
-					agps: defaults.geolocation.timeouts.gps
+				geolocation:{
+					timeouts: {
+						agps: defaults.geolocation.timeouts.gps
+					}
+				},
+				events: {
+					invalidRecurrenceTypes: ['EVERY_WEEKDAY', 'MONTHLY_ON_DAY_COUNT']
+				},
+				supports: {
+					Messaging:{
+						moveMessage: false,
+						editFolder: false,
+						multipleEmailAccounts: false
+					}
 				}
 			};
-			ret.events.invalidRecurrenceTypes = ['EVERY_WEEKDAY', 'MONTHLY_ON_DAY_COUNT'];
 			return ret;
 		},
 		//
@@ -263,8 +282,8 @@ var config = {
 	//
 	// Find the config we have to mixin.
 	//
-	var ua = window.navigator.userAgent,
-		configToMixin = null;
+	var ua = window.navigator.userAgent;
+	var configToMixin = null;
 //ua = "WidgetManager; SAMSUNG-GT-I8320-Vodafone;AppleWebKit/528.5+(X11;U;Linux;en;i8329BUIH8)";
 	for (var key in configs){
 		var c = configs[key];

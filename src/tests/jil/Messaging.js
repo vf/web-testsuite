@@ -7,24 +7,35 @@
 	var _testMessage = {
 		subject:"test subject " + new Date().getTime(),
 		body:"test body " + new Date().getTime(),
-		destinationAddress:"test-email@home.earth"
+		destinationAddress:["test-email@home.earth"]
 	};
-	var _folderName = config.supportsMessagingFolderEditing ? "test-messaging-" + new Date().getTime() : wmft.DRAFTS;
+	var supports = config.supports.Messaging;
+	var _folderName = supports.editFolder ? "test-messaging-" + new Date().getTime() : wmft.DRAFTS;
 	var _smsRecipient = "017516646437";
 	var _mmsRecipient = "017516646437";
 	var _emailRecipient = "foo@uxebu.com";
 
 	var _createdMessages = {}; // Store the messages in here, so we have a ref to delete them later.
 	function _createTestMessage(msgType, destFolder){
-		if (config.supportsMessagingFolderEditing){
+		// summary:
+		//		Creates a test message and moves it into our (test) folder if that
+		//		is possible.
+		// description:
+		// 		We create our own folder in order to have full control over the data.
+		// 		So we can e.g. later remove the entire folder.
+		
+		// Make sure the (test) folder exists, so we can move the message there.
+		if (supports.editFolder){
 			wm.createFolder(msgType, _folderName);
 		}
-
 		var msg = wm.createMessage(wmt.SMSMessage);
 		for (var prop in _testMessage){
 			msg[prop] = _testMessage[prop];
 		}
-		wm.moveMessageToFolder(msg, _folderName);
+		// Move the message to the given (test) folder.
+		if (supports.moveMessage){
+			wm.moveMessageToFolder(msg, _folderName);
+		}
 		_createdMessages[msgType] = msg;
 	}
 
@@ -224,7 +235,7 @@
 					for (var prop in _testMessage){
 						msg[prop] = _testMessage[prop];
 					}
-					msg.destinationAddress = _smsRecipient;
+					msg.destinationAddress = [_smsRecipient];
 					wm.sendMessage(msg);
 				}
 			},
@@ -249,7 +260,7 @@
 						for (var prop in _testMessage){
 							msg[prop] = _testMessage[prop];
 						}
-						msg.destinationAddress = "000000000000UNKNOWN";
+						msg.destinationAddress = ["000000000000UNKNOWN"];
 						wm.sendMessage(msg);
 						t.failure("Exception not thrown.");
 					}catch(e){
@@ -268,7 +279,7 @@
 					for (var prop in _testMessage){
 						msg[prop] = _testMessage[prop];
 					}
-					msg.destinationAddress = _mmsRecipient;
+					msg.destinationAddress = [_mmsRecipient];
 					wm.sendMessage(msg);
 				}
 			},
@@ -281,7 +292,7 @@
 						for (var prop in _testMessage){
 							msg[prop] = _testMessage[prop];
 						}
-						msg.destinationAddress = "000000000000UNKNOWN";
+						msg.destinationAddress = ["000000000000UNKNOWN"];
 						wm.sendMessage(msg);
 						t.failure("Exception not thrown.");
 					}catch(e){
@@ -300,7 +311,7 @@
 					for (var prop in _testMessage){
 						msg[prop] = _testMessage[prop];
 					}
-					msg.destinationAddress = _emailRecipient;
+					msg.destinationAddress = [_emailRecipient];
 					wm.sendMessage(msg);
 				}
 			},
@@ -313,7 +324,7 @@
 						for (var prop in _testMessage){
 							msg[prop] = _testMessage[prop];
 						}
-						msg.destinationAddress = "unknown@vf.commmmmm";
+						msg.destinationAddress = ["unknown@vf.commmmmm"];
 						wm.sendMessage(msg);
 						t.failure("Exception not thrown.");
 					}catch(e){
@@ -339,7 +350,7 @@
 					for (var prop in _testMessage){
 						msg[prop] = _testMessage[prop];
 					}
-					msg.destinationAddress = _smsRecipient;
+					msg.destinationAddress = [_smsRecipient];
 					wm.onMessageSendingFailure = function(msg, error){
 						t.success("OK, onMessageSendingFailure got called.");
 					}
@@ -364,7 +375,7 @@
 					for (var prop in _testMessage){
 						msg[prop] = _testMessage[prop];
 					}
-					msg.destinationAddress = _mmsRecipient;
+					msg.destinationAddress = [_mmsRecipient];
 					wm.onMessageSendingFailure = function(msg, error){
 						t.success("OK, onMessageSendingFailure got called.");
 					}
@@ -389,7 +400,7 @@
 					for (var prop in _testMessage){
 						msg[prop] = _testMessage[prop];
 					}
-					msg.destinationAddress = _emailRecipient;
+					msg.destinationAddress = [_emailRecipient];
 					wm.onMessageSendingFailure = function(msg, error){
 						t.success("OK, onMessageSendingFailure got called.");
 					}
@@ -412,7 +423,7 @@
 					for (var prop in _testMessage){
 						msg[prop] = _testMessage[prop];
 					}
-					msg.destinationAddress = _smsRecipient;
+					msg.destinationAddress = [_smsRecipient];
 					wm.onMessageArrived = function(msg){
 						t.success("OK, onMessageArrived got called.");
 					}
@@ -431,7 +442,7 @@
 					for (var prop in _testMessage){
 						msg[prop] = _testMessage[prop];
 					}
-					msg.destinationAddress = _mmsRecipient;
+					msg.destinationAddress = [_mmsRecipient];
 					wm.onMessageArrived = function(msg){
 						t.success("OK, onMessageArrived got called.");
 					}
@@ -450,7 +461,7 @@
 					for (var prop in _testMessage){
 						msg[prop] = _testMessage[prop];
 					}
-					msg.destinationAddress = _emailRecipient;
+					msg.destinationAddress = [_emailRecipient];
 					wm.onMessageArrived = function(msg){
 						t.success("OK, onMessageArrived got called.");
 					}

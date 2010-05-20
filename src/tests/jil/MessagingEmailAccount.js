@@ -2,6 +2,8 @@
 	
 	var wm = util.isObject("Widget.Messaging") ? Widget.Messaging : {};
 	var wmm = util.isObject("Widget.Messaging.MessageTypes") ? Widget.Messaging.MessageTypes : {};
+
+	var supports = config.supports.Messaging;
 	
 	dohx.add({name:"MessagingEmailAccount",
 		mqcExecutionOrderBaseOffset:310000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
@@ -57,7 +59,7 @@
 			{
 				id:400,
 				name:"setCurrentEmailAccount - Switch.",
-				addIf:config.supportsMultipleEmailAccounts,
+				addIf:supports.multipleEmailAccounts,
 				requiredObjects:["Widget.Messaging.getEmailAccounts", "Widget.Messaging.getCurrentEmailAccount", "Widget.Messaging.setCurrentEmailAccount"],
 				instructions:[
 					"Make sure you have at least TWO Email accounts configured.",
@@ -85,7 +87,7 @@
 			{
 				id:500,
 				name:"setCurrentEmailAccount - Throw INVALID_PARAMETER for invalid param.",
-				addIf:config.supportsMultipleEmailAccounts,
+				addIf:supports.multipleEmailAccounts,
 				requiredObjects:["Widget.Messaging.setCurrentEmailAccount"],
 				test:function(t){
 					try{
@@ -99,7 +101,7 @@
 			{
 				id:600,
 				name:"setCurrentEmailAccount - Throw INVALID_PARAMETER for no param.",
-				addIf:config.supportsMultipleEmailAccounts,
+				addIf:supports.multipleEmailAccounts,
 				requiredObjects:["Widget.Messaging.setCurrentEmailAccount"],
 				test:function(t){
 					try{
@@ -118,7 +120,7 @@
 				id:700,
 				name:"deleteEmailAccount - Verify it works.",
 				requiredObjects:["Widget.Messaging.deleteEmailAccount"],
-				addIf:config.supportsDeleteEmailAccounts,
+				addIf:supports.multipleEmailAccounts,
 				instructions:[
 					"Make sure you have at least ONE Email accounts configured.",
 					"Click 'GO'."
@@ -136,7 +138,7 @@
 				id:800,
 				name:"deleteEmailAccount - Throw INVALID_PARAMETER for invalid param.",
 				requiredObjects:["Widget.Messaging.deleteEmailAccount"],
-				addIf:config.supportsDeleteEmailAccounts,
+				addIf:supports.multipleEmailAccounts,
 				test:function(t){
 					try{
 						wm.deleteEmailAccount("nix da INVALID");
@@ -150,7 +152,7 @@
 				id:900,
 				name:"deleteEmailAccount - Throw INVALID_PARAMETER for no param.",
 				requiredObjects:["Widget.Messaging.deleteEmailAccount"],
-				addIf:config.supportsDeleteEmailAccounts,
+				addIf:supports.multipleEmailAccounts,
 				test:function(t){
 					try{
 						wm.deleteEmailAccount();
@@ -164,7 +166,7 @@
 				id:910,
 				name:"deleteEmailAccount not supported - throw exception",
 				requiredObjects:["Widget.Messaging.deleteEmailAccount"],
-				addIf:!config.supportsDeleteEmailAccounts,
+				addIf:!supports.multipleEmailAccounts,
 				test:function(t){
 					try{
 						wm.deleteEmailAccount();
