@@ -33,6 +33,7 @@ var config = {
 		
 		supportsOrientationLandscape:true,
 		supportsMultipleEmailAccounts:true,
+		supportsDeleteEmailAccounts:true,
 		// The H2 for example doesn't support editing the folders in email, sms and MMS
 		// this option allows to disable it.
 		supportsMessagingFolderEditing:true,
@@ -140,11 +141,12 @@ var config = {
 			return ret;
 		},
 		//
-		//	Vodafone 360 Devices, H2
+		//	Vodafone 360 Devices, H2, M2
 		//
 		"regexp:^WidgetManager;\\sSAMSUNG-GT-I8330-Vodafone;AppleWebKit.*":function(){
 			var ret = {
 				supportsMultipleEmailAccounts:false,
+				supportsDeleteEmailAccounts:false,
 				supportsMessagingFolderEditing:false,
 				validCalendarItemId:"1",
 				validAddressBookItemId:"1" // The first contact filled in this device really has the ID "1".
@@ -202,11 +204,11 @@ var config = {
 		//
 		// Chrome, Ripple
 		//
-		"regexp:Mozilla.*Chrome":function(){
-			var ret = {
-			};
-			return ret;
-		},
+		//"regexp:Mozilla.*Chrome":function(){
+		//	var ret = {
+		//	};
+		//	return ret;
+		//},
 		
 		// Made for UAs
 		// 		WidgetManager; Nokia N96....
