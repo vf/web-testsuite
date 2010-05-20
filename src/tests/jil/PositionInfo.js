@@ -25,6 +25,7 @@
 				addIf:config.canGetPositionByCellid || config.canGetPositionByGps || config.canGetPositionByAgps,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 				instructions:"Click 'GO', to retreive your location.",
+//fails now, didnt in v1.2
 				timeout:locationTimeouts.gps,
 				test:function(t){
 					wdd.onPositionRetrieved = function(posInfo, method){
