@@ -76,7 +76,7 @@ var util = new (doh.util.extend(function(){},{
 			}
 		}
 		if (missingConfigs.length){
-			dohx.add({name:"Preconditions",
+			dohx.add({name:"__preconditions__",
 				tests:[
 					{
 						name:"config values",

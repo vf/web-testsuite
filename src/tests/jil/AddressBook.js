@@ -23,6 +23,24 @@
 		mqcExecutionOrderBaseOffset:20000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:["Widget.PIM"],
 		tests:[
+			//
+			// Preconditions
+			//
+			{
+				id:1,
+				name:"Verify Preconditions",
+				instructions:[
+					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
+					"The very first contact added on an H2 will have the ID=1.",
+					"Click 'GO' to start testing."
+				],
+				test:function(t){
+					t.success("Preconditions met, user confirmed.");
+				}
+			},
+			//
+			//	The real stuff.
+			//
 			{
 				id:100,
 				requiredObjects:["Widget.PIM.getAddressBookItem", "Widget.PIM.AddressBookItem"],
@@ -73,7 +91,7 @@
 			},
 			{
 				id:500,
-				name:"getAddressBookItemsCount - Verify it returns a number.",
+				name:"getAddressBookItemsCount - Verify it returns the right number.",
 				requiredObjects:["Widget.PIM.getAddressBookItemsCount"],
 				instructions:[
 					"Look up the number of contacts you have in your address book!",

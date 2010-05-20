@@ -6,6 +6,7 @@ TODO
 * make tpls DTL compat {{ var }}
 * make test switch on/off what features etc. in the config.xml are required, must be included into the build process somehow
   (maybe using rhino+a more powerful tpl lang inside the config.xml.tpl)
+* show ui.invalidConfig() when clicking on [not configured] in the headline (which is shown when the config was not found)
 
 
 IDEAs

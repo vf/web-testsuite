@@ -24,13 +24,13 @@
 			{
 				id:100,
 				name:"update - Verify the method call works at all.",
-				//requiredObjects:[
-				//	"Widget.PIM.CalendarItem.prototype.update"
-				//],
+// Add this again, actually imho this is how it should be, but H2 doesnt do it that way yet
+addIf:false,
 				test:function(t){
 					var cal = new pim.CalendarItem();
 					cal.eventName = "Foo";
 //do add b4
+//ask ricardo 
 					cal.update();
 					t.success("Execution successful.");
 				}
@@ -221,7 +221,6 @@
 	//	Add the recurrence tests in a loop, since they are all the same tests
 	//	we can just write it once and add the same parametrized test in a loop.
 	//
-//h2 doesnt support all types, add a config.cal.availreoccurencetypes
 	var recurTypes = [
 		{name:'DAILY', id:3000},
 		{name:'NOT_REPEAT', id:3100},
@@ -238,6 +237,7 @@
 			dohx.add({name:"Calendar",
 				mqcExecutionOrderBaseOffset:100000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 				requiredObjects:["Widget.PIM"],
+				addIf:config.events.invalidRecurrenceTypes.indexOf(recurTypes[i].name)==-1,
 				tests:[
 					{
 						id:rType.id,

@@ -338,13 +338,13 @@ Widget.Device.findFiles = function(){
 (function(){
 	var wt = Widget.Telephony = {};
 	
-	wt.CallRecord = {
-		callRecordAddress:"",
-		callRecordId:"",
-		callRecordName:"",
-		callRecordType:"",
-		durationSeconds:0,
-		startTime:new Date()
+	wt.CallRecord = function(){
+		this.callRecordAddress = "",
+		this.callRecordId = "";
+		this.callRecordName = "";
+		this.callRecordType = "";
+		this.durationSeconds = 0;
+		this.startTime = new Date();
 	};
 	
 	wt.CallRecordTypes = {
@@ -362,7 +362,7 @@ Widget.Device.findFiles = function(){
 	};
 	
 	wt.getCallRecord = function(){
-		return wt.CallRecord;
+		return new wt.CallRecord();
 	};
 	
 	wt.getCallRecordCnt = function(){

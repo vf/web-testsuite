@@ -148,7 +148,7 @@ addIf:false,
 				test:function(t){
 					dohx.showInfo("Waiting...");
 					wdr.onSignalSourceChange = function(src, isRoaming){
-						dohs.showInfo("API resports signalSource:", src);
+						dohx.showInfo("API resports signalSource:", src);
 					}
 				},
 				tearDown:function(){
@@ -169,7 +169,7 @@ addIf:false,
 				test:function(t){
 					dohx.showInfo("Waiting...");
 					wdr.onSignalSourceChange = function(src, isRoaming){
-						dohs.showInfo("API resports signalSource:", src);
+						dohx.showInfo("API resports signalSource:", src);
 					}
 				},
 				tearDown:function(){

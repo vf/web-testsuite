@@ -11,6 +11,9 @@ if [ $# = 0 ]; then
 	exit;
 fi
 
+rm dist/test-SelfTest.wgt 2> /dev/null
+rm mqc-widget-suite-$1.zip 2> /dev/null # Remove an already generated bundle.
+
 rm -Rf tmp-mqcbuild 2> /dev/null
 mkdir tmp-mqcbuild
 

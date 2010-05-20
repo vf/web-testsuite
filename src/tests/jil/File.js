@@ -42,7 +42,7 @@
 				name:"Verify Preconditions",
 				instructions:[
 					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
-					"Copy the content of the testsuite's zip-file's folder 'photo' into the photo directory on the phone. (The exact name of the destination folder may vary on your device.)",
+					"Copy the folder 'test-photo' into the photo directory on the phone. (The exact name of the destination folder may vary on your device.)",
 					"Click 'GO' to start testing."
 				],
 				test:function(t){

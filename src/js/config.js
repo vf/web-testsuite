@@ -88,21 +88,32 @@ var config = {
 				}
 			},
 			playableVideoFiles:{
-				viaHttp:"http://...",
-				viaHttps:"https://...",
-				viaRtsp:"rtsp://...",
-				viaFile:"file:///", // ??? shall this be the virtual FS or the real FS (=device specific)???
-				threeGp:{
-					inWidget:"test-video/3gp/testvideo.3gp",
-					onDevice:"/virtual/videos/test-video/3gp/testvideo.3gp",
+				//viaHttp:"http://...",
+				//viaHttps:"https://...",
+				//viaRtsp:"rtsp://...",
+				//viaFile:"file:///", // ??? shall this be the virtual FS or the real FS (=device specific)???
+				avc:{
+					inWidget:"test-video/avc/AVC_AAC_48K_30F_QVGA.mp4",
+					onDevice:"/virtual/videos/test-video/avc/AVC_AAC_48K_30F_QVGA.mp4"
+				},
+				h263:{
+					inWidget:"test-video/h263/H263_148K_QCIF_15_plus_MP4AAC_22_1.3gp",
+					onDevice:"/virtual/videos/test-video/h263/H263_148K_QCIF_15_plus_MP4AAC_22_1.3gp"
 				},
 				h264:{
-					inWidget:"test-video/h264/h264.mov",
-					onDevice:"/virtual/videos/test-video/h264/h264.mov",
+					inWidget:"test-video/h264/H264_256K_QVGA_15_plus_AAC_22_2.mp4",
+					onDevice:"/virtual/videos/test-video/h264/H264_256K_QVGA_15_plus_AAC_22_2.mp4"
+				},
+				mp4:{
+					inWidget:"test-video/mp4/MP4V_508K_QVGA_15_plus_MP4AAC_32_2.mp4",
+					onDevice:"/virtual/videos/test-video/mp4/MP4V_508K_QVGA_15_plus_MP4AAC_32_2.mp4"
 				}
-				//loop3gp:"video/mp4/???.mp4"
 			},
 			imageFile:""
+		},
+		
+		events:{
+			invalidRecurrenceTypes:[] // By default all are valid, just list those here that are in the spec but not valid.
 		},
 		
 		geolocation:{
@@ -148,7 +159,7 @@ var config = {
 		//
 		//	Vodafone 360 Devices, H2 (I8330), M2 (I6420)
 		//
-		"regexp:^WidgetManager;\\sSAMSUNG-GT-I\d{4}-Vodafone;AppleWebKit.*":function(){
+		"regexp:^WidgetManager;\\sSAMSUNG-GT-I\\d{4}-Vodafone;AppleWebKit.*":function(){
 			var ret = {
 				supportsMultipleEmailAccounts:false,
 				supportsDeleteEmailAccounts:false,
@@ -162,6 +173,7 @@ var config = {
 					agps: defaults.geolocation.timeouts.gps
 				}
 			};
+			ret.events.invalidRecurrenceTypes = ['EVERY_WEEKDAY', 'MONTHLY_ON_DAY_COUNT'];
 			return ret;
 		},
 		//
@@ -194,18 +206,18 @@ var config = {
 		//	Firefox on PC
 		//
 		// e.g. "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-GB; rv:1.9.2) Gecko/20100115 Firefox/3.6"
-//		"regexp:Mozilla.*Gecko\/\\d+\\sFirefox.*":function(){
-//// using only "AppleWebkit" here would also be found on the H2
-//		//"regexp:(.*AppleWebKit.*)|(Mozilla.*Gecko\/\\d+\\sFirefox.*)":function(){
-//			var ret = {
-//				hasClipboard:true,
-//				hasClamshell:false,
-//				validAddressBookItemId:1,
-//				validCalendarItemId:1,
-//				validPhoneNumber:"00491234567890"
-//			};
-//			return ret;
-//		},
+		"regexp:Mozilla.*Gecko\/\\d+\\sFirefox.*":function(){
+// using only "AppleWebkit" here would also be found on the H2
+		//"regexp:(.*AppleWebKit.*)|(Mozilla.*Gecko\/\\d+\\sFirefox.*)":function(){
+			var ret = {
+				hasClipboard:true,
+				hasClamshell:false,
+				validAddressBookItemId:1,
+				validCalendarItemId:1,
+				validPhoneNumber:"00491234567890"
+			};
+			return ret;
+		},
 		//
 		// Chrome, Ripple
 		//

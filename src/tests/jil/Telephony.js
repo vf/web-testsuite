@@ -40,7 +40,9 @@
 						t.assertTrue(util.isArray(res));
 						t.result = res.length;
 					}
-					wt.findCallRecords({callRecordType:"*"}, 0, 10);
+					var searchFor = new wt.CallRecord();
+					searchFor.callRecordType = "*";
+					wt.findCallRecords(searchFor, 0, 10);
 				},
 				tearDown:function(){
 					delete wt.onCallRecordsFound;
@@ -54,7 +56,9 @@
 					wt.onCallRecordsFound = function(res){
 						t.success("Callback 'onCallRecordsFound' fired.");
 					}
-					wt.findCallRecords({callRecordType:"*"}, 0, 10);
+					var searchFor = new wt.CallRecord();
+					searchFor.callRecordType = "*";
+					wt.findCallRecords(searchFor, 0, 10);
 				},
 				tearDown:function(){
 					delete wt.onCallRecordsFound;
@@ -67,6 +71,7 @@
 				test:function(t){
 					try{
 						wt.findCallRecords();
+						t.failure("Expected exception to be thrown.");
 					}catch(e){
 						t.assertJilException(e, Widget.ExceptionTypes.INVALID_PARAMETER);
 					}
@@ -78,7 +83,8 @@
 				requiredObjects:["Widget.Telephony.findCallRecords"],
 				test:function(t){
 					try{
-						wt.findCallRecords({}, 0, 10);
+						wt.findCallRecords(new wt.CallRecord());
+						t.failure("Expected exception to be thrown.");
 					}catch(e){
 						t.assertJilException(e, Widget.ExceptionTypes.INVALID_PARAMETER);
 					}
@@ -102,7 +108,10 @@
 				requiredObjects:["Widget.Telephony.findCallRecords"],
 				test:function(t){
 					try{
-						wt.findCallRecords({callRecordType:"*"}, 0, "a");
+						var searchFor = new wt.CallRecord();
+						searchFor.callRecordType = "*";
+						wt.findCallRecords(searchFor, 0, "a");
+						t.failure("Expected exception to be thrown.");
 					}catch(e){
 						t.assertJilException(e, Widget.ExceptionTypes.INVALID_PARAMETER);
 					}
@@ -124,7 +133,9 @@
 						dohx.showInfo("API reports:", res.length);
 						t.result = res.length;
 					}
-					wt.findCallRecords({callRecordType:wtcType.MISSED}, 0, 10);
+					var searchFor = new wt.CallRecord();
+					searchFor.callRecordType = wtcType.MISSED;
+					wt.findCallRecords(searchFor, 0, 10);
 				},
 				tearDown:function(){
 					delete wt.onCallRecordsFound;
@@ -146,7 +157,9 @@
 						dohx.showInfo("API reports:", res.length);
 						t.result = res.length;
 					}
-					wt.findCallRecords({callRecordType:wtcType.OUTGOING}, 0, 10);
+					var searchFor = new wt.CallRecord();
+					searchFor.callRecordType = wtcType.OUTGOING;
+					wt.findCallRecords(searchFor, 0, 10);
 				},
 				tearDown:function(){
 					delete wt.onCallRecordsFound;
@@ -168,7 +181,9 @@
 						dohx.showInfo("API reports:", res.length);
 						t.result = res.length;
 					}
-					wt.findCallRecords({callRecordType:wtcType.RECEIVED}, 0, 10);
+					var searchFor = new wt.CallRecord();
+					searchFor.callRecordType = wtcType.RECEIVED;
+					wt.findCallRecords(searchFor, 0, 10);
 				},
 				tearDown:function(){
 					delete wt.onCallRecordsFound;
@@ -355,11 +370,12 @@
 					"Click 'GO'.",
 					"Call this phone's number, make sure it rings.",
 					"Don't pick up the phone!",
+					"Hang up the phone you are calling from.",
 					"This widget should be triggered and make this test pass automatically (times out otherwise)."
 				],
 				test:function(t){
 					wt.onCallEvent = function(recType){
-						t.assertTrue(wtcType.MISSED, recType);
+						t.assertEqual(wtcType.MISSED, recType);
 					} 
 				},
 				tearDown:function(){
@@ -374,12 +390,13 @@
 				instructions:[
 					"Click 'GO'.",
 					"Call this phone's number, make sure it rings.",
-					"Pick up the phone!",
+					"Pick up the phone (to make sure call was received)!",
+					"Hang up now.",
 					"This widget should be triggered and make this test pass automatically (times out otherwise)."
 				],
 				test:function(t){
 					wt.onCallEvent = function(recType){
-						t.assertTrue(wtcType.RECEIVED, recType);
+						t.assertEqual(wtcType.RECEIVED, recType);
 					} 
 				},
 				tearDown:function(){
@@ -399,7 +416,7 @@
 				],
 				test:function(t){
 					wt.onCallEvent = function(recType){
-						t.assertTrue(wtcType.OUTGOING, recType);
+						t.assertEqual(wtcType.OUTGOING, recType);
 					} 
 				},
 				tearDown:function(){
@@ -419,6 +436,7 @@
 				],
 				expectedResult:"Is the above number the one you called this phone from?",
 				test:function(t){
+					dohx.showInfo("Waiting for incoming call...");
 					wt.onCallEvent = function(recType, phoneNumber){
 						dohx.showInfo("API reported: ", phoneNumber);
 					} 
@@ -440,6 +458,7 @@
 				],
 				expectedResult:"Is the above number the one you called this phone from?",
 				test:function(t){
+					dohx.showInfo("Waiting for incoming call...");
 					wt.onCallEvent = function(recType, phoneNumber){
 						dohx.showInfo("API reported: ", phoneNumber);
 					} 
@@ -450,17 +469,19 @@
 			},
 			{
 				id:3100,
-				name:"onCallEvent - Verify number for '" + wtcType.RECEIVED + "' call?",
-				requiredObjects:["Widget.Telephony.CallRecordTypes.RECEIVED"],
+				name:"onCallEvent - Verify number for '" + wtcType.OUTGOING + "' call?",
+				requiredObjects:["Widget.Telephony.CallRecordTypes.OUTGOING"],
 				timeout:30 * 1000,
 				instructions:[
 					"Click 'GO'.",
 					"Put widget into mini/floating mode.",
 					"Open the dialer and call any number.",
+					"Hang up after it rang at least once.",
 					"This widget should be triggered and make this test pass automatically (times out otherwise)."
 				],
-				expectedResult:"Is the above number the one you called?",
+				expectedResult:"Is the above number the one you dialed?",
 				test:function(t){
+					dohx.showInfo("Waiting for outgoing call...");
 					wt.onCallEvent = function(recType, phoneNumber){
 						dohx.showInfo("API reported: ", phoneNumber);
 					} 

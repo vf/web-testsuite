@@ -1,3 +1,28 @@
+Version 1.5.3
+============
+* VideoPlayer: raised timeouts 10 to 20s, fixed some bugs
+* Calendar: disable some recurrence types that are not applicable on H2
+
+Version 1.5.2
+============
+* changed version in feature URL in config.xml
+  http://jil.org/jil/api/1.2/device => http://jil.org/jil/api/1.1/device
+  http://jil.org/jil/api/1.2/widget => http://jil.org/jil/api/1.1/widget
++ VideoPlayer: added new video formats as provided by Samsung
++ M2 now also supported
+
+Version 1.5.1
+============
+* Added more exact instructions for PHONECALL case.
+* use new wt.CallRecord()
+* Telephony, Application, RadioInfo, VideoCamera, Calendar: fix various bugs
+* Messaging: dont create folders if not supported
+
+Version 1.5
+============
++ VideoPlayer: H.264 test
++ moved test-* files for easier building, fixed AudioPlayer
+
 Version 1.4.1
 ============
 + fixed various smaller bugs

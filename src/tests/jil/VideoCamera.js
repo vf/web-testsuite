@@ -5,7 +5,7 @@
 	
 	// Create a unique filename, so we dont have to rely on deleteFile() to work
 	// and filenames dont clash with old tests. When using be sure to add some suffix,
-	// like imgFile+"-wtf.jpg"
+	// like imgFile+"-wtf.mp4"
 	var videoFile = "/virtual/photos/test-videocamera-" + new Date().getTime();
 	
 	function _setUp(){
@@ -17,6 +17,7 @@
 		delete wmc.onCameraCaptured;
 	};
 	
+	var _timeout = 20 * 1000;
 	dohx.add({name:"Camera",
 		mqcExecutionOrderBaseOffset:290000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:["Widget.Multimedia.Camera"],
@@ -25,7 +26,7 @@
 				id:100,
 				name:"Callback 'onCameraCaptured' triggered?",
 				requiredObjects:["Widget.Multimedia.Camera.startVideoCapture", "Widget.Multimedia.Camera.stopVideoCapture"],
-				timeout:20*1000,
+				timeout:_timeout,
 				setUp:_setUp,
 				test:function(t){
 					wmc.onCameraCaptured = function(fileName){
@@ -51,7 +52,7 @@
 						t.assertTrue(typeof f.fileSize!="undefined" && f.fileSize>0, "Filesize expected to be >0, but is: " + f.fileSize);
 						t.result = util.toJson(f);
 					}
-					wmc.startVideoCapture(videoFile + "-creates-file.jpg", true, 1, false);
+					wmc.startVideoCapture(videoFile + "-creates-file.mp4", true, 1, false);
 				},
 				tearDown:_tearDown
 			},
@@ -80,7 +81,7 @@
 				requiredObjects:["Widget.Multimedia.Camera.startVideoCapture", "Widget.Multimedia.Camera.stopVideoCapture"],
 				test:function(t){
 					try{
-						wmc.startVideoCapture("/root/INVALIDDIR/1.jpg", true, 1, false);
+						wmc.startVideoCapture("/root/INVALIDDIR/1.mp4", true, 1, false);
 					}catch(e){
 						t.assertJilException(e, w.ExceptionTypes.INVALID_PARAMETER);
 						return e;
@@ -95,7 +96,7 @@
 				name:"lowRes",
 				requiredObjects:["Widget.Multimedia.Camera.startVideoCapture", "Widget.Multimedia.Camera.stopVideoCapture"],
 				expectedResult:"Please 1) open the filebrowser and 2) verify that the picture with the given name is the one you have taken.<br />Is it ok?",
-				timeout:10*1000, // User may has to confirm security dialog.
+				timeout:_timeout,
 				setUp:_setUp,
 				test:function(t){
 					wmc.onCameraCaptured = function(fileName){
@@ -103,7 +104,7 @@
 						//dohx.showInfo('<img src="file://'+fileName+'" />'); doesnt work neither :(
 						dohx.showInfo("Picture take stored at: '"+fileName+"'.");
 					}
-					wmc.startVideoCapture(videoFile + "-lowRes.jpg", true, 1, false);
+					wmc.startVideoCapture(videoFile + "-lowRes.mp4", true, 1, false);
 				},
 				tearDown:_tearDown
 			},
@@ -111,7 +112,7 @@
 				id:700,
 				name:"lowRes - verify the stored file",
 				requiredObjects:["Widget.Multimedia.Camera.startVideoCapture"],
-				timeout:10*1000, // User may has to confirm security dialog.
+				timeout:_timeout,
 				setUp:_setUp,
 				test:function(t){
 					wmc.onCameraCaptured = function(fileName){
@@ -123,7 +124,7 @@
 						t.assertTrue(fileName.indexOf(f.fileName)!=-1, "Expected to find '"+fileName+"' but got path:'"+f.filePath+"' file:'"+f.fileName+"'");
 						t.result = fileName;
 					}
-					wmc.startVideoCapture(videoFile + "-lowRes-verify.jpg", true, 1, false);
+					wmc.startVideoCapture(videoFile + "-lowRes-verify.mp4", true, 1, false);
 				},
 				tearDown:_tearDown
 			},
@@ -134,7 +135,8 @@
 				id:800,
 				name:"hiRes - verify the stored file",
 				requiredObjects:["Widget.Multimedia.Camera.startVideoCapture"],
-				timeout:10*1000,
+				timeout:_timeout,
+				setUp:_setUp,
 				test:function(t){
 					wmc.onCameraCaptured = function(fileName){
 						try {
@@ -145,11 +147,9 @@
 						t.assertTrue(fileName.indexOf(f.fileName)!=-1, "Expected to find '"+fileName+"' but got path:'"+f.filePath+"' file:'"+f.fileName+"'");
 						t.result = fileName;
 					}
-					wmc.startVideoCapture(videoFile + "-hiRes-verify.mp4", true, 1, false);
+					wmc.startVideoCapture(videoFile + "-hiRes-verify.mp4", true, 1, true);
 				},
-				tearDown:function(){
-					delete wmc.onCameraCaptured;
-				}
+				tearDown:_tearDown
 			},
 			//
 			//	Test parameters
@@ -159,10 +159,12 @@
 				name:"Controls shown?",
 				requiredObjects:["Widget.Multimedia.Camera.startVideoCapture"],
 				expectedResult:"Did you see the video recorder controls (e.g. play, pause, ...)?",
-				timeout:10*1000,
+				timeout:_timeout,
+				setUp:_setUp,
 				test:function(t){
 					wmc.startVideoCapture(videoFile + "-verify-controls.mp4", true, 1, true);
-				}
+				},
+				tearDown:_tearDown
 			},
 			{
 				id:1000,

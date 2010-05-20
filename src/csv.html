@@ -73,6 +73,9 @@
 			_csvDiffData:[],
 			_allTestIds:[], // Store all the unique test IDs in here, those are actually the values we store in the field "execution order".
 			add:function(obj){
+				if (obj.name.indexOf("__preconditions__")!=-1){
+					return;
+				}
 				var tests = obj.tests, data;
 				for (var i=0, l=tests.length, t; i<l; i++){
 					t = tests[i];
@@ -91,6 +94,10 @@
 					wgtName = wgtName.substr(0, wgtName.length-3); // Remove the trailing ".js".
 					var subject = "TC Now+ Vertical\\WidgetRuntime\\JIL\\" + wgtName;
 					var executionOrder = obj.mqcExecutionOrderBaseOffset + t.id;
+					if (!util.isNumber(executionOrder)){
+						alert("Error, executionOrder ID missing in '" + wgtName + "' test name '" + t.name + "'");
+						throw Error("Error, executionOrder ID missing.");
+					}
 					data = [
 						t.name.replace(/[^0-9a-zA-Z]/g, " "), // Test Name
 						subject, // Subject
@@ -204,6 +211,7 @@
 	<script type="text/javascript" src="tests/jil/DeviceInfo.js"></script>
 	<script type="text/javascript" src="tests/jil/DeviceStateInfo.js"></script>
 	<script type="text/javascript" src="tests/jil/File.js"></script>
+	<script type="text/javascript" src="tests/jil/MessagingQuantities.js"></script>
 	<script type="text/javascript" src="tests/jil/Messaging.js"></script>
 	<script type="text/javascript" src="tests/jil/MessagingEmailAccount.js"></script>
 	<script type="text/javascript" src="tests/jil/MessagingFolder.js"></script>
@@ -212,6 +220,7 @@
 	<script type="text/javascript" src="tests/jil/RadioInfo.js"></script>
 	<script type="text/javascript" src="tests/jil/Telephony.js"></script>
 	<script type="text/javascript" src="tests/jil/VideoCamera.js"></script>
+	<script type="text/javascript" src="tests/jil/VideoPlayer.js"></script>
 	<script type="text/javascript" src="tests/jil/Widget.js"></script>
 	<script type="text/javascript">
 		document.getElementById("allCsvNode").innerHTML = dohx.createCsv();

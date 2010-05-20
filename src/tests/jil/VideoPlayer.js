@@ -98,7 +98,6 @@
 		wmv.setWindow(null);
 		videoObj.cleanUp();
 	};
-
 	
 	var videoObj;
 	
@@ -162,62 +161,62 @@
 				}
 			},
 */
-			{
-				id:400,
-				name:"Protocol - 3GP file",
-				instructions:"Click 'GO' to play video.",
-				expectedResult:"Did you see the video?",
-				setUp:_setUp,
-				test:function(t){
-					videoObj = new myVideo(videoFiles.threeGp.onDevice, {
-						autoPlay:true,
-						stopAfter:10*1000
-					});
-				},
-				tearDown:_tearDown
-			},
-			{
-				id:410,
-				name:"Protocol - H.264 file",
-				instructions:"Click 'GO' to play video.",
-				expectedResult:"Did you see the video?",
-				setUp:_setUp,
-				test:function(t){
-					videoObj = new myVideo(videoFiles.h264.onDevice, {
-						autoPlay:true,
-						stopAfter:10*1000
-					});
-				},
-				tearDown:_tearDown
-			},
-			{
-				id:500,
-				name:"Protocol - 3GP widget context",
-				instructions:"Click 'GO' to play video.",
-				expectedResult:"Did you see the video?",
-				setUp:_setUp,
-				test:function(t){
-					videoObj = new myVideo(videoFiles.threeGp.inWidget, {
-						autoPlay:true,
-						stopAfter:10*1000
-					});
-				},
-				tearDown:_tearDown
-			},
-			{
-				id:510,
-				name:"Protocol - H.264 widget context",
-				instructions:"Click 'GO' to play video.",
-				expectedResult:"Did you see the video?",
-				setUp:_setUp,
-				test:function(t){
-					videoObj = new myVideo(videoFiles.h264.inWidget, {
-						autoPlay:true,
-						stopAfter:10*1000
-					});
-				},
-				tearDown:_tearDown
-			},
+			//{
+			//	id:400,
+			//	name:"Protocol - 3GP file",
+			//	instructions:"Click 'GO' to play video.",
+			//	expectedResult:"Did you see the video?",
+			//	setUp:_setUp,
+			//	test:function(t){
+			//		videoObj = new myVideo(videoFiles.threeGp.onDevice, {
+			//			autoPlay:true,
+			//			stopAfter:10*1000
+			//		});
+			//	},
+			//	tearDown:_tearDown
+			//},
+			//{
+			//	id:410,
+			//	name:"Protocol - H.264 file",
+			//	instructions:"Click 'GO' to play video.",
+			//	expectedResult:"Did you see the video?",
+			//	setUp:_setUp,
+			//	test:function(t){
+			//		videoObj = new myVideo(videoFiles.h264.onDevice, {
+			//			autoPlay:true,
+			//			stopAfter:10*1000
+			//		});
+			//	},
+			//	tearDown:_tearDown
+			//},
+			//{
+			//	id:500,
+			//	name:"Protocol - 3GP widget context",
+			//	instructions:"Click 'GO' to play video.",
+			//	expectedResult:"Did you see the video?",
+			//	setUp:_setUp,
+			//	test:function(t){
+			//		videoObj = new myVideo(videoFiles.threeGp.inWidget, {
+			//			autoPlay:true,
+			//			stopAfter:10*1000
+			//		});
+			//	},
+			//	tearDown:_tearDown
+			//},
+			//{
+			//	id:510,
+			//	name:"Protocol - H.264 widget context",
+			//	instructions:"Click 'GO' to play video.",
+			//	expectedResult:"Did you see the video?",
+			//	setUp:_setUp,
+			//	test:function(t){
+			//		videoObj = new myVideo(videoFiles.h264.inWidget, {
+			//			autoPlay:true,
+			//			stopAfter:10*1000
+			//		});
+			//	},
+			//	tearDown:_tearDown
+			//},
 			//
 			//	play()
 			//
@@ -228,7 +227,7 @@
 				expectedResult:"Did you see the video twice?",
 				setUp:_setUp,
 				test:function(t){
-					videoObj = new myVideo(videoFiles.threeGp.inWidget, {
+					videoObj = new myVideo(videoFiles.mp4.inWidget, {
 						autoPlay:true,
 						stopAfter:10*1000,
 						repeatTimes:2
@@ -243,7 +242,7 @@
 				expectedResult:"Did you see the video five times?",
 				setUp:_setUp,
 				test:function(t){
-					videoObj = new myVideo(videoFiles.threeGp.inWidget, {
+					videoObj = new myVideo(videoFiles.mp4.inWidget, {
 						autoPlay:true,
 						stopAfter:10*1000,
 						repeatTimes:2
@@ -258,7 +257,7 @@
 				expectedResult:"Did the video play, pause and play again?",
 				setUp:_setUp,
 				test:function(t){
-					videoObj = new myVideo(videoFiles.threeGp.inWidget, {
+					videoObj = new myVideo(videoFiles.mp4.inWidget, {
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){
@@ -278,4 +277,46 @@
 			//
 		]
 	});
+	
+	// Start at ID offset 3000, just to have some place before.
+	var _videoFiles = [
+		{id:3000, "type":"avc", location:"inWidget"},
+		{id:3010, "type":"avc", location:"onDevice"},
+		{id:3020, "type":"h263", location:"inWidget"},
+		{id:3030, "type":"h263", location:"onDevice"},
+		{id:3040, "type":"h264", location:"inWidget"},
+		{id:3050, "type":"h264", location:"onDevice"},
+		{id:3060, "type":"mp4", location:"inWidget"},
+		{id:3070, "type":"mp4", location:"onDevice"}
+	];
+	for (var i=0, l=_videoFiles.length; i<l; i++){
+		(function(videoFileInfo){
+			var filename = videoFiles[videoFileInfo.type][videoFileInfo.location];
+			dohx.add({name:"VideoPlayer",
+				mqcExecutionOrderBaseOffset:250000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
+				requiredObjects:[
+					"Widget.Multimedia.VideoPlayer.open",
+					"Widget.Multimedia.VideoPlayer.play",
+					"Widget.Multimedia.VideoPlayer.stop"
+				],
+				tests:[
+					{
+						id:videoFileInfo.id,
+						name:"Protocol - Test codec '"+ videoFileInfo.type +"' from '" + filename + "'",
+						instructions:"Click 'GO' to play video.",
+						expectedResult:"Did you see the video?",
+						setUp:_setUp,
+						test:function(t){
+							videoObj = new myVideo(filename, {
+								autoPlay:true,
+								stopAfter:10*1000
+							});
+						},
+						tearDown:_tearDown
+					}
+				]
+			});
+		})(_videoFiles[i]);
+	};
+	
 })();

@@ -29,6 +29,7 @@ not be deleted until it does not contain any files.") talks only abot f
 
 Application
 * test start widgets using launchApplication() using the widget:// URL
+* add PICTURES with a real image
 
 AccountInfo
 * account balance and subscriptiontype, see following comment

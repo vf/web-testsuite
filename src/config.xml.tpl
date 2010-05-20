@@ -19,6 +19,7 @@
 	<feature name="http://jil.org/jil/api/1.1/calendaritem" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/callrecord" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/config" required="false"/>
+	<feature name="http://jil.org/jil/api/1.1/device" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/deviceinfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/devicestateinfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/eventrecurrencetypes" required="false"/>
@@ -29,6 +30,7 @@
 	<feature name="http://jil.org/jil/api/1.1/multimedia" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/powerinfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/positioninfo" required="false"/>
+	<feature name="http://jil.org/jil/api/1.1/widget" required="false"/>
 	
 	<feature name="http://jil.org/jil/api/1.1.1/datanetworkinfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.1/file" required="false"/>
@@ -47,9 +49,6 @@
 	<feature name="http://jil.org/jil/api/1.1.5/exception" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.5/exceptiontypes" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.5/radiosignalsourcetypes" required="false"/>
-	
-	<feature name="http://jil.org/jil/api/1.2/widget" required="false"/>
-	<feature name="http://jil.org/jil/api/1.2/device" required="false"/>
 	
 	<access network="true" localfs="true"/> <!-- until JIL 1.1 this was enough -->
 	<jil:access network="true" localfs="true" remote_scripts="true"/> <!-- this is needed for JIL1.2 -->

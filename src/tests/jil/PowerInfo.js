@@ -164,7 +164,7 @@
 					'1) Plug in charger.',
 					"2) Press 'GO'.",
 					'3) Wait until fully charged (test waits max. 2h).'].join('<br />'),
-				timeout:2 * 60 * 1000,
+				timeout:2 * 60 * 60 * 1000,
 				test:function(t){
 					wdp.onChargeStateChange = function(stage){
 						t.assertEqual(stage, "full");

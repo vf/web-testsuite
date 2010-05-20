@@ -6,6 +6,7 @@
 	var widgethomeMp3File = "/virtual/widgethome/" + cfs.playableAudioFiles.inWidget.songMp3;
 	var musicFolderMp3File = cfs.playableAudioFiles.onDevice.songMp3;
 	
+
 	//
 	//	Application tests
 	//
@@ -137,7 +138,7 @@
 						requiredObjects:["Widget.Device.launchApplication", "Widget.Device.getAvailableApplications"],
 						instructions:[
 							"Click 'GO', should launch '"+ app.app +"'.",
-							'Close app (if it opened) and come back to this app.'
+							app.app==wda.PHONECALL ? 'Dial any number and hang up, the app will close automatically.' : 'Close app (if it opened) and come back to this app.'
 						],
 						expectedResult:'Did app launch?',
 						test:function(t){
