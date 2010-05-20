@@ -41,7 +41,7 @@
 						t.result = res.length;
 					}
 					var searchFor = new wt.CallRecord();
-					searchFor.callRecordType = "*";
+					searchFor.callRecordName = "*";
 					wt.findCallRecords(searchFor, 0, 10);
 				},
 				tearDown:function(){
@@ -57,7 +57,7 @@
 						t.success("Callback 'onCallRecordsFound' fired.");
 					}
 					var searchFor = new wt.CallRecord();
-					searchFor.callRecordType = "*";
+					searchFor.callRecordName = "*";
 					wt.findCallRecords(searchFor, 0, 10);
 				},
 				tearDown:function(){
@@ -109,7 +109,7 @@
 				test:function(t){
 					try{
 						var searchFor = new wt.CallRecord();
-						searchFor.callRecordType = "*";
+						searchFor.callRecordName = "*";
 						wt.findCallRecords(searchFor, 0, "a");
 						t.failure("Expected exception to be thrown.");
 					}catch(e){
