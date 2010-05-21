@@ -1,3 +1,12 @@
+Version 1.5.4
+============
+* fixed a bug in config.js which broke all the widgets that had been built for 1.5.3
+* Telephony: wildcard in callrecordtype not supported, only in name - fixed
+* videocamera: hiRes flag was not set properly for hiRes tests
+* videoplayer: replace with video from email
+* messaging: move msg to folder is not supported, adding a lot of config stuff
+
+
 Version 1.5.3
 ============
 * VideoPlayer: raised timeouts 10 to 20s, fixed some bugs
