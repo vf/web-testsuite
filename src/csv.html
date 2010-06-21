@@ -99,7 +99,7 @@
 						throw Error("Error, executionOrder ID missing.");
 					}
 					data = [
-						t.name.replace(/[^0-9a-zA-Z]/g, " "), // Test Name
+						(""+t.name).replace(/[^0-9a-zA-Z]/g, " "), // Test Name
 						subject, // Subject
 						util.getTestId(t, obj.name), // Test ID
 						"vg_phennes", // TC Coordinator

@@ -1,3 +1,16 @@
+Version 1.5.7
+============
+* Messaging: added a looot of tests
+* PowerInfo: fixed some timeouts, added more precise instructions
+* VideoPlayer, AudioPlayer: fixed loop times
+* base-window: completely new tests
+* base-widget: completely new tests
+* DataNetworkInfo: Fixed the tests, be more precise and explicit, added edge cases.
+* RadioInfo: Added some more explicitness
+* AudioPlayer: added a volume change tests, while playing a file
+* Messaging: fixed namespace issue
+* Telephony: added some new tests
+
 Version 1.5.6
 ============
 * Camera, VideoCamera: better fullscreen test, use gallery to verify picture taken
