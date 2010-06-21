@@ -16,6 +16,7 @@ DeviceInfo
 
 RadioInfo
 * how can we test different signal source types for onSignalSourceChange() ?
+* how can we explicitly connect to a certain radioSignalSource to check the property's value, see test 300 and 310 (they are just the basic tests, every source value should be testable)
 
 
 Global
@@ -44,6 +45,7 @@ Possible tests (as defined in the spec., text copied form spec) - FIX by new spe
 
 Telephony
 * see TODOs in the js file
+* TODO search in date ranges
 
 VideoPlayer
 * fullscreen mode, setWindow 100%

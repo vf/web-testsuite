@@ -500,6 +500,23 @@
 				test:function(t){
 					t.assertEqual(0, wm.getVolume());
 				}
+			},
+			{
+				id:600,
+				name:"Change volume while song is playing", // Seems not to be working in latest firmware.
+				instructions:[
+					"Change the volume up, to as loud as possible.",
+					"Click 'GO'!",
+					"Turn down the volume to the lowest possible value.",
+					"Turn down the volume back up.",
+				],
+				expectedResult:"Had you been able to turn down the volume and back up?",
+				test:function(t){
+					audioObj = new myAudio(audioFiles.songMp3, {autoPlay:true, repeatTimes:5});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
 			}
 //*/
 		]

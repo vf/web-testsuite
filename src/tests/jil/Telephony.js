@@ -189,7 +189,6 @@
 					delete wt.onCallRecordsFound;
 				}
 			},
-
 // TODO search in date ranges
 			
 			//
@@ -200,6 +199,7 @@
 				name:"getCallRecord - Verify first MISSED call.",
 				requiredObjects:["Widget.Telephony.getCallRecord"],
 				test:function(t){
+//double check ....
 					var callType = wtcType.MISSED;
 					if (typeof _callRecords[callType]=="undefined" || !_callRecords[callType].length){
 						t.failure("Expected at least one '" + callType + "' call to find on the phone, none found.");
@@ -215,6 +215,7 @@
 				name:"getCallRecord - Verify first OUTGOING call.",
 				requiredObjects:["Widget.Telephony.getCallRecord"],
 				test:function(t){
+//double check ....
 					var callType = wtcType.OUTGOING;
 					if (typeof _callRecords[callType]=="undefined" || !_callRecords[callType].length){
 						t.failure("Expected at least one '" + callType + "' call to find on the phone, none found.");
@@ -227,10 +228,11 @@
 			},
 			{
 				id:1100,
-				name:"getCallRecord - Verify first OUTGOING call.",
+				name:"getCallRecord - Verify first RECEIVED call.",
 				requiredObjects:["Widget.Telephony.getCallRecord"],
 				test:function(t){
-					var callType = wtcType.OUTGOING;
+//double check ....
+					var callType = wtcType.RECEIVED;
 					if (typeof _callRecords[callType]=="undefined" || !_callRecords[callType].length){
 						t.failure("Expected at least one '" + callType + "' call to find on the phone, none found.");
 					}
@@ -299,6 +301,39 @@
 				test:function(t){
 					var numCalls = wt.getCallRecordCnt(wtcType.MISSED);
 					t.assertTrue(util.isNumber(numCalls));
+					return numCalls;
+				}
+			},
+			{
+				id:1610,
+				name:"getCallRecordCnt - Verify number of missed calls.",
+				requiredObjects:["Widget.Telephony.getCallRecordCnt"],
+				expectedResult:"Is the number of missed calls correct?",
+				test:function(t){
+					var numCalls = wt.getCallRecordCnt(wtcType.MISSED);
+					dohx.showInfo("API reports:", numCalls);
+					return numCalls;
+				}
+			},
+			{
+				id:1620,
+				name:"getCallRecordCnt - Verify number of received calls.",
+				requiredObjects:["Widget.Telephony.getCallRecordCnt"],
+				expectedResult:"Is the number of received calls correct?",
+				test:function(t){
+					var numCalls = wt.getCallRecordCnt(wtcType.RECEIVED);
+					dohx.showInfo("API reports:", numCalls);
+					return numCalls;
+				}
+			},
+			{
+				id:1630,
+				name:"getCallRecordCnt - Verify number of outgoing calls.",
+				requiredObjects:["Widget.Telephony.getCallRecordCnt"],
+				expectedResult:"Is the number of outgoing calls correct?",
+				test:function(t){
+					var numCalls = wt.getCallRecordCnt(wtcType.OUTGOING);
+					dohx.showInfo("API reports:", numCalls);
 					return numCalls;
 				}
 			},
@@ -510,15 +545,16 @@
 					delete wt.onCallEvent;
 				}
 			},
-			
 			//
 			//	deleteCallRecord 
 			//
-			{
+/*			{
+TODO ... finish thos
 				id:3300,
 				name:"deleteCallRecord - Remove first MISSED call.",
 				requiredObjects:["Widget.Telephony.deleteCallRecord"],
 				test:function(t){
+//double check ....
 					var callType = wtcType.MISSED;
 					if (typeof _callRecords[callType]=="undefined" || !_callRecords[callType].length){
 						t.failure("Expected at least one '" + callType + "' call to find on the phone, none found.");
@@ -532,6 +568,7 @@
 				name:"deleteCallRecord - Remove first OUTGOING call.",
 				requiredObjects:["Widget.Telephony.deleteCallRecord"],
 				test:function(t){
+//double check ....
 					var callType = wtcType.OUTGOING;
 					if (typeof _callRecords[callType]=="undefined" || !_callRecords[callType].length){
 						t.failure("Expected at least one '" + callType + "' call to find on the phone, none found.");
@@ -545,6 +582,7 @@
 				name:"deleteCallRecord - Remove first RECEIVED call.",
 				requiredObjects:["Widget.Telephony.deleteCallRecord"],
 				test:function(t){
+//double check ....
 					var callType = wtcType.RECEIVED;
 					if (typeof _callRecords[callType]=="undefined" || !_callRecords[callType].length){
 						t.failure("Expected at least one '" + callType + "' call to find on the phone, none found.");
@@ -563,6 +601,7 @@
 				name:"deleteAllCallRecords - Remove all MISSED calls.",
 				requiredObjects:["Widget.Telephony.deleteAllCallRecords"],
 				test:function(t){
+//double check ....
 					var callType = wtcType.MISSED;
 					if (typeof _callRecords[callType]=="undefined" || !_callRecords[callType].length){
 						t.failure("Expected at least one '" + callType + "' call to find on the phone, none found.");
@@ -576,6 +615,7 @@
 				name:"deleteAllCallRecords - Remove all OUTGOING calls.",
 				requiredObjects:["Widget.Telephony.deleteAllCallRecords"],
 				test:function(t){
+//double check ....
 					var callType = wtcType.OUTGOING;
 					if (typeof _callRecords[callType]=="undefined" || !_callRecords[callType].length){
 						t.failure("Expected at least one '" + callType + "' call to find on the phone, none found.");
@@ -589,6 +629,7 @@
 				name:"deleteAllCallRecords - Remove all RECEIVED calls.",
 				requiredObjects:["Widget.Telephony.deleteAllCallRecords"],
 				test:function(t){
+//double check ....
 					var callType = wtcType.RECEIVED;
 					if (typeof _callRecords[callType]=="undefined" || !_callRecords[callType].length){
 						t.failure("Expected at least one '" + callType + "' call to find on the phone, none found.");

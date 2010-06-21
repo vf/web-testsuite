@@ -51,7 +51,6 @@
 					console.log("vibrating "+secs+" seconds");
 				},
 				// Objects
-				DataNetworkInfo:{},
 				DeviceInfo:{
 					ownerInfo:"me",
 					phoneColorDepthDefault:1,
@@ -179,7 +178,7 @@
 
 
 //
-//	Application
+//	AccountInfo
 //
 Widget.Device.AccountInfo = {
 	phoneMSISDN:"myID",
@@ -217,6 +216,35 @@ Widget.Device.getAvailableApplications = function(){
 Widget.Device.launchApplication = function(){
 	console.log("launchApplication = ", arguments);
 }
+
+//
+//	DataNetworkInfo
+//
+Widget.Device.DataNetworkInfo = {};
+Widget.Device.DataNetworkInfo.DataNetworkConnectionTypes = {
+	BLUETOOTH: "bluetooth",
+	EDGE: "edge",
+	EVDO: "evdo",
+	GPRS: "gprs",
+	IRDA: "irda",
+	LTE: "lte",
+	ONEXRTT: "1xrtt",
+	WIFI: "wifi"
+};
+(function(){
+	var wdd = Widget.Device.DataNetworkInfo;
+	wdd.isDataNetworkConnected = false;
+	wdd.networkConnectionType = [];
+	for (var key in wdd.DataNetworkConnectionTypes){
+		wdd.networkConnectionType.push(wdd.DataNetworkConnectionTypes[key]);
+	}
+	wdd.getNetworkConnectionName = function(networkConnectionType){
+		if (!networkConnectionType || networkConnectionType.toLowerCase().indexOf("invalid")!=-1){
+			throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
+		}
+		return "home " + networkConnectionType;
+	};
+})();
 
 //
 //	Multimedia
@@ -491,3 +519,5 @@ Widget.Device.findFiles = function(){
 		totalMessageUnreadCnt:0
 	};
 })();
+
+//*/
