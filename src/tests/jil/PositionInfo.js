@@ -107,7 +107,7 @@
 					// Get the position.
 					wdd.onPositionRetrieved = function(posInfo){
 						var latLng = posInfo.latitude + "," + posInfo.longitude;
-						var url = "http://maps.google.com/staticmap?center="+latLng+"&zoom=16&size=250x100&maptype=mobile\&markers="+latLng;
+						var url = "http://maps.google.com/staticmap?center="+latLng+"&zoom=16&size=500x500&maptype=mobile\&markers="+latLng;
 						dohx.showInfo('lat, lng:'+ latLng +'<br /><img src="'+url+'" />');
 						t.result = showPosInfo(posInfo);
 					};

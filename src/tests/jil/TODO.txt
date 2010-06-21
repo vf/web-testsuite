@@ -47,3 +47,6 @@ Telephony
 
 VideoPlayer
 * fullscreen mode, setWindow 100%
+
+PositionInfo
+* make sure the GPS symbol in the top status bar turns off after a while when not in use (seems like it doenst currently)

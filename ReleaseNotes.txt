@@ -1,3 +1,7 @@
+Version 1.5.5
+============
+* PositionInfo: cellId timeout 5s => 15s, show bigger map
+
 Version 1.5.4
 ============
 * fixed a bug in config.js which broke all the widgets that had been built for 1.5.3
