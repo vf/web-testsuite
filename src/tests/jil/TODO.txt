@@ -50,3 +50,6 @@ VideoPlayer
 
 PositionInfo
 * make sure the GPS symbol in the top status bar turns off after a while when not in use (seems like it doenst currently)
+
+Camera/VideoCamera
+* always needs a setWindow() for the preview ... I dont know if this is right, what does the spec say?

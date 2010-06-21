@@ -70,12 +70,14 @@
 				id:400,
 				name:"Proper return value?",
 				requiredObjects:["Widget.Multimedia.Camera.captureImage"],
+				setUp:_setUp,
 				test:function(t){
 					var myFileName = imgFile+"-retval.jpg";
 					var ret = wmc.captureImage(myFileName, true);
 					t.assertEqual(ret, myFileName);
 					return "Returned expected filename: " + ret;
-				}
+				},
+				tearDown:_tearDown
 			},
 			{
 				id:500,

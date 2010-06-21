@@ -68,12 +68,14 @@
 				id:400,
 				name:"Proper return value from startVideoCapture()?",
 				requiredObjects:["Widget.Multimedia.Camera.startVideoCapture", "Widget.Multimedia.Camera.stopVideoCapture"],
+				setUp:_setUp,
 				test:function(t){
 					var myFileName = videoFile + "-retval.mp4";
 					var ret = wmc.startVideoCapture(myFileName, true, 1, false);
 					t.assertEqual(ret, myFileName);
 					return "Returned expected filename: " + ret;
-				}
+				},
+				tearDown:_tearDown
 			},
 			{
 				id:500,

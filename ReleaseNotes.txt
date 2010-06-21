@@ -1,6 +1,8 @@
 Version 1.5.5
 ============
 * PositionInfo: cellId timeout 5s => 15s, show bigger map
+* VideoPlayer: fixed w/h ratio, was h/w, make tests 600 and 700 work properly
+* Camera/VideoCamera: tests 400 fixed, missed setWindow() calls for preview img
 
 Version 1.5.4
 ============
