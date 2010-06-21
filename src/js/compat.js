@@ -406,7 +406,9 @@ Widget.Device.findFiles = function(){
 		if (typeof msgType=="undefined" || msgType.toLowerCase().indexOf("invalid")!=-1){
 			throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
 		}
-		return new wm.Message();
+		var ret = new wm.Message();
+		ret.messageType = msgType;
+		return ret;
 	}
 	wm.moveMessageToFolder = function(){}
 	wm.deleteMessage = function(){}
@@ -419,6 +421,8 @@ Widget.Device.findFiles = function(){
 	}
 	wm.getMessage = function(){
 		return new wm.Message();
+	}
+	wm.sendMessage = function(){
 	}
 	
 	//

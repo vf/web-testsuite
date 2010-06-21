@@ -1,3 +1,9 @@
+Version 1.5.6
+============
+* Camera, VideoCamera: better fullscreen test, use gallery to verify picture taken
+* Calendar: added missing recurrence tests again
+* bugfix in dohx
+
 Version 1.5.5
 ============
 * PositionInfo: cellId timeout 5s => 15s, show bigger map

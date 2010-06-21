@@ -55,3 +55,6 @@ Camera/VideoCamera
 * always needs a setWindow() for the preview ... I dont know if this is right, what does the spec say?
 * I think we can use the resulting image/video and show it inside the widget to verify the captured content, try this
 * add tests which verifies the length of the video exactly, seems 3s video is only about 2sec long
+
+Messaging
+* createMessage/send: huge messages, wrong numbers, invalid recipients, etc.
