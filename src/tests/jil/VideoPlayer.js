@@ -91,7 +91,7 @@
 	};
 	
 	function _setUp(){
-		dohx.showInfo('<object id="_videoWindow_" type="video/3gp" width="240" height="320" />');
+		dohx.showInfo('<object id="_videoWindow_" type="video/3gp" width="320" height="240" />');
 		wmv.setWindow(util.byId("_videoWindow_"));
 	};
 	function _tearDown(){
@@ -229,7 +229,6 @@
 				test:function(t){
 					videoObj = new myVideo(videoFiles.mp4.inWidget, {
 						autoPlay:true,
-						stopAfter:10*1000,
 						repeatTimes:2
 					});
 				},
@@ -244,8 +243,7 @@
 				test:function(t){
 					videoObj = new myVideo(videoFiles.mp4.inWidget, {
 						autoPlay:true,
-						stopAfter:10*1000,
-						repeatTimes:2
+						repeatTimes:5
 					});
 				},
 				tearDown:_tearDown
