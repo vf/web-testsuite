@@ -133,7 +133,7 @@ var config = {
 			timeouts:{
 				gps:180 * 1000,
 				agps:5 * 1000,
-				cellId:5 * 1000
+				cellId:15 * 1000
 			}
 		}
 	};
@@ -176,7 +176,7 @@ var config = {
 			var ret = {
 				validCalendarItemId:"1",
 				validAddressBookItemId:"1", // The first contact filled in this device really has the ID "1".
-			// AGPS==GPS
+				// AGPS==GPS so set the timeout to the same on the H2
 				geolocation:{
 					timeouts: {
 						agps: defaults.geolocation.timeouts.gps
@@ -233,7 +233,22 @@ var config = {
 				hasClamshell:false,
 				validAddressBookItemId:1,
 				validCalendarItemId:1,
-				validPhoneNumber:"00491234567890"
+				validPhoneNumber:"00491234567890",
+				geolocation:{
+					timeouts: {
+						agps: defaults.geolocation.timeouts.gps
+					}
+				},
+				events: {
+					invalidRecurrenceTypes: ['EVERY_WEEKDAY', 'MONTHLY_ON_DAY_COUNT']
+				},
+				supports: {
+					Messaging:{
+						moveMessage: false,
+						editFolder: false,
+						multipleEmailAccounts: false
+					}
+				}
 			};
 			return ret;
 		},
@@ -284,7 +299,7 @@ var config = {
 	//
 	var ua = window.navigator.userAgent;
 	var configToMixin = null;
-//ua = "WidgetManager; SAMSUNG-GT-I8320-Vodafone;AppleWebKit/528.5+(X11;U;Linux;en;i8329BUIH8)";
+//var ua = "WidgetManager; SAMSUNG-GT-I8320-Vodafone;AppleWebKit/528.5+(X11;U;Linux;en;i8329BUIH8)";
 	for (var key in configs){
 		var c = configs[key];
 		if (key.indexOf("regexp:")===0){
@@ -303,13 +318,31 @@ var config = {
 		configToMixin.isCustomConfiguration = true;
 	}
 	
+	// config is still empty at this point, just contains key "isCustomConfiguration".
 	doh.util.mixin(config, defaults);
 	// Mixin the additional config params.
 	// Mixin recursively so objects don't have to declare each key again!
+	function _mixin(base, overrider){
+		// summary:
+		// 		Recursive object mixin.
+		// description:
+		// 		base is the initial object, overrider contains values that
+		// 		override the according values in base.
+		var ret = doh.util.mixin({}, base); // clone base
+		for (var key in overrider){
+			var v = overrider[key];
+			if (typeof v=="object"){
+				ret[key] = _mixin(ret[key], v);
+			} else {
+				ret[key] = v;
+			}
+		}
+		return ret;
+	}
 	for (var key in configToMixin){
 		var v = configToMixin[key];
-		if (typeof v=="object"){
-			doh.util.mixin(config[key], v);
+		if (typeof v=="object" && !doh.util.isArray(v)){
+			config[key] = _mixin(config[key], v);
 		} else {
 			config[key] = v;
 		}
