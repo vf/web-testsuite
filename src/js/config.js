@@ -331,7 +331,7 @@ var config = {
 		var ret = doh.util.mixin({}, base); // clone base
 		for (var key in overrider){
 			var v = overrider[key];
-			if (typeof v=="object"){
+			if (!doh.util.isArray(v) && typeof v=="object"){
 				ret[key] = _mixin(ret[key], v);
 			} else {
 				ret[key] = v;

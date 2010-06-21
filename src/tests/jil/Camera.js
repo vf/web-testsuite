@@ -9,7 +9,11 @@
 	var imgFile = "/virtual/photos/test-camera-" + new Date().getTime();
 	
 	function _setUp(){
-		dohx.showInfo('<object id="_cameraWindow_" type="video-camera/3gp" width="240" height="320" />');
+		dohx.showInfo('<object id="_cameraWindow_" type="video-camera/3gp" width="320" height="240" />');
+		wmc.setWindow(util.byId("_cameraWindow_"));
+	};
+	function _setUpFullscreen(){
+		dohx.showInfo('<object id="_cameraWindow_" type="video-camera/3gp" width="320" height="240" />');
 		wmc.setWindow(util.byId("_cameraWindow_"));
 	};
 	function _tearDown(){
@@ -60,6 +64,7 @@
 			},
 			{
 				id:300,
+addIf:false,
 				name:"Error during capture should pass 'undefined' to onCameraCaptured.",
 				test:function(t){
 // TODO verify this form the spec "If there is an error during capture,  onCameraCaptured will be called with an undefined parameter. "
@@ -105,14 +110,17 @@
 				id:600,
 				name:"captureImage, lowRes - takes a picture at all?",
 				requiredObjects:["Widget.Multimedia.Camera.captureImage"],
-				expectedResult:"Please 1) open the filebrowser and 2) verify that the picture with the given name is the one you have taken.<br />Is it ok?",
+				instructions:[
+					"Click 'GO'.",
+					"The picture will be taken.",
+					"This picture will be opened in the gallery app."
+				],
+				expectedResult:"Did the gallery app show the picture you just took?",
 				timeout:10*1000, // User may has to confirm security dialog.
 				setUp:_setUp,
 				test:function(t){
 					wmc.onCameraCaptured = function(fileName){
-//Widget.Device.launchApplication(Widget.Device.ApplicationTypes.PICTURES, fileName); <= if that worked we could use it :(
-						//dohx.showInfo('<img src="file://'+fileName+'" />'); doesnt work neither :(
-						dohx.showInfo("Picture take stored at: '"+fileName+"'.");
+						wd.launchApplication(wd.ApplicationTypes.PICTURES, fileName);
 					}
 					wmc.captureImage(imgFile+"-lowRes.jpg", true);
 				},
@@ -157,7 +165,7 @@
 						t.assertTrue(fileName.indexOf(f.fileName)!=-1, "Expected to find '"+fileName+"' but got path:'"+f.filePath+"' file:'"+f.fileName+"'");
 						t.result = fileName;
 					}
-					wmc.captureImage(imgFile+"-hiRes-verify.jpg", true);
+					wmc.captureImage(imgFile+"-hiRes-verify.jpg", false);
 				},
 				tearDown:function(){
 					delete wmc.onCameraCaptured;
@@ -226,41 +234,70 @@
 				requiredObjects:["Widget.Multimedia.Camera.setWindow"],
 				timeout:10*1000,
 				setUp:function(){
-					dohx.showInfo('<object id="_cameraWindow_" type="video-camera/3gp" width="100%" height="100%" style="position:absolute; top:0; left:0;"></div>');
-					wmc.setWindow(util.byId("_cameraWindow_"));
+					var node = document.createElement("object");
+					var values = {id:"_cameraWindow_", type:"video-camera/3gp", height:"95%", width:"95%"}
+					for (var key in values) node[key] = values[key];
+					var styleValues = {position:"absolute", top:"2px", left:"2px", border:"2px solid red", zIndex:"100"};
+					for (var key in styleValues) node.style[key] = styleValues[key];
+					document.body.appendChild(node);
+					wmc.setWindow(node);
 				},
-				expectedResult:"Did you see a downscaled preview of the camera image?",
+				expectedResult:"Did you see a fullscreen preview of the camera image?",
 				test:function(t){
 					wmc.onCameraCaptured = function(){
-						t.success("Callback 'onCameraCaptured' fired.");
 						// Hide the preview node, which filled the entire screen, to let user confirm result.
 						setTimeout(function(){
-							util.style("_cameraWindow_", "display", "none");
+							wmc.setWindow(null);
+							var node = util.byId("_cameraWindow_");
+							node.parentNode.removeChild(node);
 						}, 5000);
 					}
-					wmc.captureImage(imgFile + "-setWindow-" + new Date().getTime() + ".jpg", true);
+					wmc.captureImage(imgFile + "-fullscreen-" + new Date().getTime() + ".jpg", true);
 				},
 				tearDown:_tearDown
 			},
 			{
 				id:1300,
+addIf:false, // I dont know right now how to add a div with: type:"video-camera/3gp" ... maybe only object makes sense???
 				name:"setWindow - Using &lt;div&gt; fullscreen",
 				requiredObjects:["Widget.Multimedia.Camera.setWindow"],
 				timeout:10*1000,
+				expectedResult:"Do you see a fullscreen preview of the camera image?",
 				setUp:function(){
-					dohx.showInfo('<div id="_cameraWindow_" type="video-camera/3gp" style="position:absolute; top:0; left:0; width:100%; height:100%;">&nbsp;</div>');
-					wmc.setWindow(util.byId("_cameraWindow_"));
+					var node = document.createElement("div");
+					var values = {id:"_cameraWindow_", height:"95%", width:"95%"}
+					for (var key in values) node[key] = values[key];
+					var styleValues = {position:"absolute", top:"2px", left:"2px", border:"2px solid red", zIndex:"100"};
+					for (var key in styleValues) node.style[key] = styleValues[key];
+					document.body.appendChild(node);
+					wmc.setWindow(node);
 				},
-				expectedResult:"Do you see a downscaled preview of the camera image?",
 				test:function(t){
 					wmc.onCameraCaptured = function(){
-						t.success("Callback 'onCameraCaptured' fired.");
 						// Hide the preview node, which filled the entire screen, to let user confirm result.
 						setTimeout(function(){
 							util.style("_cameraWindow_", "display", "none");
 						}, 5000);
 					}
-					wmc.captureImage(imgFile + "-setWindow-" + new Date().getTime() + ".jpg", true);
+					wmc.captureImage(imgFile + "-fullscreen1-" + new Date().getTime() + ".jpg", true);
+				},
+				tearDown:_tearDown
+			},
+			{
+				// Spec page 118. Camera.setWindow
+				// Passing a null value will disassociate the  
+				// preview window from the HTML; widget developers should do this in order to free  
+				// resources and restore the display when previewing is no longer required.
+				id:1400,
+				name:"setWindow - Disassociate preview window: setWindow(null).",
+				requiredObjects:["Widget.Multimedia.Camera.setWindow"],
+				timeout:10*1000,
+				setUp:_setUp,
+				expectedResult:"Did the preview window disappear after about 5 seconds?",
+				test:function(t){
+					setTimeout(function(){
+						wmc.setWindow(null);
+					}, 5000);
 				},
 				tearDown:_tearDown
 			}

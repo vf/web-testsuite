@@ -5,12 +5,12 @@ dohx = {
 		// Add requiredObjects to each tests.
 		// TODO maybe add this magically as a test and make all tests just depend on it.
 		if (obj.requiredObjects){
-			for (var i=0; t=tests[i]; i++){
+			for (var i=0, t; t=tests[i]; i++){
 				t.requiredObjects = t.requiredObjects ? (t.requiredObjects.concat(obj.requiredObjects)) : obj.requiredObjects;
 			}
 		}
 		var dohTests = [];
-		for (var i=0; t=tests[i]; i++){
+		for (var i=0, t; t=tests[i]; i++){
 			// Copy the addIf=false value to each test of a group.
 			if ("addIf" in obj){
 				t.addIf = !!obj.addIf;
@@ -115,12 +115,14 @@ doh.util.mixin(dohx._manualTestObject, {
 		ui.dialog.hide();
 	},
 	_successfulTestFunction:function(){
+		doh._current.test.setUp = function(){};
 		doh._current.test.test = function(t){
 			t.success("User confirmed success, pressed 'Yes'.");
 		};
 		doh._runTest();
 	},
 	_failTestFunction:function(){
+		doh._current.test.setUp = function(){};
 		doh._current.test.test = function(t){
 			t.failure("User declined success, pressed 'No'.")
 		};
@@ -181,6 +183,9 @@ doh.config.testFunctionName = "runTest";
 
 dohx.showInfo = function(){
 	ui.showInfo(Array.prototype.slice.apply(arguments).join(" "));
+}
+dohx.hideInfo = function(){
+	ui.hideInfo();
 }
 
 dohx.extendTestObject = function(obj){
