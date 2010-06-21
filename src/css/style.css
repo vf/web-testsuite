@@ -326,6 +326,7 @@ button[disabled=disabled] {
 	
 	.manualTest .testInfo {
 		display: none;
-		background-color: lightyellow;
+		/*background-color: lightyellow;*/
+		background-color: black;
 		color: red;
 	}
