@@ -4,8 +4,8 @@
 		return;
 	}
 	
-	var pim = util.isObject("Widget.PIM") ? Widget.PIM : {},
-		calendarProperties = ["alarmDate", "alarmed", "calendarItemId", "eventEndTime", "eventName", "eventNotes", "eventRecurrence", "eventStartTime"];
+	var pim = util.isObject("Widget.PIM") ? Widget.PIM : {};
+	var calendarProperties = ["alarmDate", "alarmed", "calendarItemId", "eventEndTime", "eventName", "eventNotes", "eventRecurrence", "eventStartTime"];
 	
 	function showCalendarInfo(info){
 // TODO just here because iterating over the props doesnt work, using toJson()
@@ -237,7 +237,7 @@ addIf:false,
 			dohx.add({name:"Calendar",
 				mqcExecutionOrderBaseOffset:100000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 				requiredObjects:["Widget.PIM"],
-				addIf:config.events.invalidRecurrenceTypes.indexOf(recurTypes[i].name)==-1,
+				addIf:config.events.invalidRecurrenceTypes.indexOf(rType.name)==-1,
 				tests:[
 					{
 						id:rType.id,

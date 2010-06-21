@@ -183,7 +183,7 @@ var config = {
 					}
 				},
 				events: {
-					invalidRecurrenceTypes: ['EVERY_WEEKDAY', 'MONTHLY_ON_DAY_COUNT']
+					invalidRecurrenceTypes: ['EVERY_WEEKDAY', 'MONTHLY_ON_DAY']
 				},
 				supports: {
 					Messaging:{
@@ -240,7 +240,7 @@ var config = {
 					}
 				},
 				events: {
-					invalidRecurrenceTypes: ['EVERY_WEEKDAY', 'MONTHLY_ON_DAY_COUNT']
+					invalidRecurrenceTypes: ['EVERY_WEEKDAY', 'MONTHLY_ON_DAY']
 				},
 				supports: {
 					Messaging:{

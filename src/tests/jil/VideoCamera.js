@@ -6,7 +6,7 @@
 	// Create a unique filename, so we dont have to rely on deleteFile() to work
 	// and filenames dont clash with old tests. When using be sure to add some suffix,
 	// like imgFile+"-wtf.mp4"
-	var videoFile = "/virtual/photos/test-videocamera-" + new Date().getTime();
+	var videoFile = "/virtual/videos/test-videocamera-" + new Date().getTime();
 	
 	function _setUp(){
 		dohx.showInfo('<object id="_cameraWindow_" type="video-camera/3gp" width="160" height="120" />');
@@ -58,6 +58,7 @@
 			},
 			{
 				id:300,
+addIf:false,
 				name:"Error during capture should pass 'undefined' to onCameraCaptured.",
 				test:function(t){
 // TODO verify this form the spec "If there is an error during capture,  onCameraCaptured will be called with an undefined parameter. "
@@ -97,16 +98,22 @@
 				id:600,
 				name:"lowRes",
 				requiredObjects:["Widget.Multimedia.Camera.startVideoCapture", "Widget.Multimedia.Camera.stopVideoCapture"],
-				expectedResult:"Please 1) open the filebrowser and 2) verify that the picture with the given name is the one you have taken.<br />Is it ok?",
+				instructions:[
+					"Click 'GO'.",
+					"A movie of about 3 seconds length will be recorded.",
+					"This movie will be opened in the movie player.",
+					"Please start the movie there and verify it's the one you recorded!"
+				],
+				expectedResult:"Did the movie you had just taken open?",
 				timeout:_timeout,
 				setUp:_setUp,
 				test:function(t){
 					wmc.onCameraCaptured = function(fileName){
-//Widget.Device.launchApplication(Widget.Device.ApplicationTypes.PICTURES, fileName); <= if that worked we could use it :(
 						//dohx.showInfo('<img src="file://'+fileName+'" />'); doesnt work neither :(
-						dohx.showInfo("Picture take stored at: '"+fileName+"'.");
+						//dohx.showInfo("Movie stored at: '"+fileName+"'.");
+						wd.launchApplication(wd.ApplicationTypes.PICTURES, fileName);
 					}
-					wmc.startVideoCapture(videoFile + "-lowRes.mp4", true, 1, false);
+					wmc.startVideoCapture(videoFile + "-lowRes.mp4", true, 3, false);
 				},
 				tearDown:_tearDown
 			},
@@ -149,7 +156,30 @@
 						t.assertTrue(fileName.indexOf(f.fileName)!=-1, "Expected to find '"+fileName+"' but got path:'"+f.filePath+"' file:'"+f.fileName+"'");
 						t.result = fileName;
 					}
-					wmc.startVideoCapture(videoFile + "-hiRes-verify.mp4", true, 1, true);
+					wmc.startVideoCapture(videoFile + "-hiRes-verify.mp4", false, 1, false);
+				},
+				tearDown:_tearDown
+			},
+			{
+				id:810,
+				name:"hiRes",
+				requiredObjects:["Widget.Multimedia.Camera.startVideoCapture", "Widget.Multimedia.Camera.stopVideoCapture"],
+				instructions:[
+					"Click 'GO'.",
+					"A movie of about 3 seconds length will be recorded.",
+					"This movie will be opened in the movie player.",
+					"Please start the movie there and verify it's the one you recorded!"
+				],
+				expectedResult:"Did the high resolution movie you had just taken open?",
+				timeout:_timeout,
+				setUp:_setUp,
+				test:function(t){
+					wmc.onCameraCaptured = function(fileName){
+						//dohx.showInfo('<img src="file://'+fileName+'" />'); doesnt work neither :(
+						//dohx.showInfo("Movie stored at: '"+fileName+"'.");
+						wd.launchApplication(wd.ApplicationTypes.PICTURES, fileName);
+					}
+					wmc.startVideoCapture(videoFile + "-lowRes.mp4", false, 3, false);
 				},
 				tearDown:_tearDown
 			},
