@@ -273,6 +273,25 @@
 			//
 			//	setWindow()
 			//
+			{
+				// Spec page 124. VideoPlayer.setWindow
+				// Passing a null value will disassociate the  
+				// preview window from the HTML; widget developers should do this in order to free  
+				// resources and restore the display when previewing is no longer required.
+addIf:false, // make this a somehow meaningful test, it is a bit strange right now, just a black screen and thats it ....
+				id:1000,
+				name:"setWindow - Disassociate preview window: setWindow(null).",
+				requiredObjects:["Widget.Multimedia.VideoPlayer.setWindow"],
+				timeout:10*1000,
+				setUp:_setUp,
+				expectedResult:"Did the preview window disappear after about 5 seconds?",
+				test:function(t){
+					setTimeout(function(){
+						wmv.setWindow(null);
+					}, 5000);
+				},
+				tearDown:_tearDown
+			}
 		]
 	});
 	
