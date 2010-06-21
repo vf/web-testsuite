@@ -62,12 +62,12 @@
 		if (options.autoPlay){
 			if (!options.onOpen){
 				options.onOpen = function(){
-					wma.play(options.repeatTimes ? options.repeatTimes+1 : 1);
+					wma.play(options.repeatTimes ? options.repeatTimes : 1);
 				}
 			} else {
 				var b4 = options.onOpen;
 				options.onOpen = function(){
-					wma.play(options.repeatTimes ? options.repeatTimes+1 : 1);
+					wma.play(options.repeatTimes ? options.repeatTimes : 1);
 					b4();
 				}
 			}
@@ -346,7 +346,7 @@
 				test:function(t){
 					audioObj = new myAudio(audioFiles.loopMp3, {
 						autoPlay: true,
-						repeatTimes: 1
+						repeatTimes: 2
 					});
 				},
 				tearDown:function(){
@@ -362,7 +362,7 @@
 				test:function(t){
 					audioObj = new myAudio(audioFiles.loopMp3, {
 						autoPlay: true,
-						repeatTimes: 4
+						repeatTimes: 5
 					});
 				},
 				tearDown:function(){

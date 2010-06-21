@@ -67,12 +67,12 @@
 		if (options.autoPlay){
 			if (!options.onOpen){
 				options.onOpen = function(){
-					wmv.play(options.repeatTimes ? options.repeatTimes+1 : 1);
+					wmv.play(options.repeatTimes ? options.repeatTimes : 1);
 				}
 			} else {
 				var b4 = options.onOpen;
 				options.onOpen = function(){
-					wmv.play(options.repeatTimes ? options.repeatTimes+1 : 1);
+					wmv.play(options.repeatTimes ? options.repeatTimes : 1);
 					b4();
 				}
 			}

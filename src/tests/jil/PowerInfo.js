@@ -113,7 +113,7 @@
 					"Click 'GO'.",
 					"Change the charge stage, either by unplugging or plugging in the charger."
 				],
-				timeout:10 * 1000,
+				timeout:60 * 60 * 1000,
 				test:function(t){
 					wdp.onChargeStateChange = function(stage){
 						t.success("Callback fired (stage="+stage+").");
@@ -130,7 +130,7 @@
 					"Press 'GO'.",
 					'Unplug the charger.'
 				],
-				timeout:10 * 1000,
+				timeout:60 * 60 * 1000,
 				test:function(t){
 					wdp.onChargeStateChange = function(stage){
 						t.assertEqual(stage, "discharging");
@@ -144,10 +144,10 @@
 				id:900,
 				name:"onChargeStateChange - Verify change to 'charging'.",
 				instructions:[
-					'1) Unplug the charger.',
-					"2) Press 'GO'.",
-					'3) Plug in the charger.'].join('<br />'),
-				timeout:10 * 1000,
+					'Unplug the charger.',
+					"Press 'GO'.",
+					'Plug in the charger.'],
+				timeout:60 * 60 * 1000,
 				test:function(t){
 					wdp.onChargeStateChange = function(stage){
 						t.assertEqual(stage, "charging");
@@ -161,9 +161,9 @@
 				id:1000,
 				name:"onChargeStateChange - Verify change to 'full'.",
 				instructions:[
-					'1) Plug in charger.',
-					"2) Press 'GO'.",
-					'3) Wait until fully charged (test waits max. 2h).'].join('<br />'),
+					'Plug in charger.',
+					"Press 'GO'.",
+					'Wait until fully charged (test waits max. 2h).'],
 				timeout:2 * 60 * 60 * 1000,
 				test:function(t){
 					wdp.onChargeStateChange = function(stage){

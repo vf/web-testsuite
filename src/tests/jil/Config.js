@@ -1,7 +1,7 @@
 (function(){
 	var wddc = util.isObject("Widget.Device.DeviceStateInfo.Config") ? Widget.Device.DeviceStateInfo.Config : {};
 	
-	dohx.add({name:"Widget.Device.DeviceStateInfo.Config",
+	dohx.add({name:"Config",
 		mqcExecutionOrderBaseOffset:140000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:["Widget.Device.DeviceStateInfo.Config"],
 		tests:[

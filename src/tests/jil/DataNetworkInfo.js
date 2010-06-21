@@ -19,12 +19,13 @@
 					t.assertTrue(val===true || val===false);
 					return val;
 				}
-			},{
+			},
+			{
 				id:200,
 				name:"isDataNetworkConnected - Verify that 'false' is returned properly?",
 				requiredObjects:["Widget.Device.DataNetworkInfo.isDataNetworkConnected"],
 				instructions:[
-					"Disconnect the phone from the network!",
+					"Disconnect the phone from any network (WiFi, Bluetooth, Edge, IRDA, etc.)!",
 					"Press 'GO'."
 				],
 				test:function(t){
@@ -32,12 +33,13 @@
 					t.assertFalse(val);
 					return val;
 				}
-			},{
+			},
+			{
 				id:300,
 				name:"isDataNetworkConnected - Verify that 'true' is returned properly?",
 				requiredObjects:["Widget.Device.DataNetworkInfo.isDataNetworkConnected"],
 				instructions:[
-					"Connect the phone to the network.",
+					"Connect the phone to some network (WiFi, Bluetooth, Edge, IRDA, etc.)!",
 					"Press 'GO'."
 				],
 				test:function(t){
@@ -45,13 +47,25 @@
 					t.assertTrue(val);
 					return val;
 				}
-			},{
+			},
+			{
 				id:400,
 				name:"networkConnectionType - Verify it returns an array.",
 				requiredObjects:["Widget.Device.DataNetworkInfo.networkConnectionType"],
 				test:function(t){
 					var val = wdd.networkConnectionType;
 					t.assertTrue(util.isArray(val), "Should be an array.");
+					return val;
+				}
+			},
+			{
+				id:410,
+				name:"networkConnectionType - Verify the values.",
+				requiredObjects:["Widget.Device.DataNetworkInfo.networkConnectionType"],
+				expectedResult:"Are the listed connection types those that the phone is connected to?",
+				test:function(t){
+					var val = wdd.networkConnectionType;
+					dohx.showInfo("API reports: ", val);
 					return val;
 				}
 			},
@@ -65,20 +79,71 @@
 				test:function(t){
 					var types = wdd.networkConnectionType;
 					if (!util.isArray(types) || types.length==0){
-						throw new Error("Property 'networkConnectionType' returned no valid data, can't execute test.");
+						throw new Error("Property 'networkConnectionType' returned only '" + util.toJson(types) + "', can not execute test.");
 					}
 					var val = wdd.getNetworkConnectionName(types[0]);
 					t.assertNotEqual("", val, "Should not be empty.");
 					return val;
 				}
-			},{
+			},
+			{
+				id:510,
+				name:"getNetworkConnectionName - Verify that each type returns a value.",
+				requiredObjects:["Widget.Device.DataNetworkInfo.getNetworkConnectionName", "Widget.Device.DataNetworkInfo.networkConnectionType"],
+				test:function(t){
+					var types = wdd.networkConnectionType;
+					if (!util.isArray(types) || types.length==0){
+						throw new Error("Property 'networkConnectionType' returned only '" + util.toJson(types) + "', can't execute test.");
+					}
+					var success = true;
+					var errors = [];
+					var ret = [];
+					for (var i=0, l=types.length; i<l; i++){
+						var val = wdd.getNetworkConnectionName(types[i]);
+						if (!val){
+							success = false;
+							errors.push(types[i] + "= '" + util.toJson(val) + "'");
+						}
+						ret.push(types[i] + ": " + val);
+					}
+					t.assertTrue(success, "Invalid values returned for the following network connection types: " + errors.join(","));
+					return ret;
+				}
+			},
+			{
+				id:520,
+				name:"getNetworkConnectionName - missing parameter",
+				requiredObjects:["Widget.Device.DataNetworkInfo.getNetworkConnectionName", "Widget.Device.DataNetworkInfo.networkConnectionType"],
+				test:function(t){
+					try{
+						wdd.getNetworkConnectionName()
+						t.failure("Expected exception to be thrown.");
+					}catch(e){
+						t.assertJilException(e, Widget.ExceptionTypes.INVALID_PARAMETER);
+					}
+				}
+			},
+			{
+				id:530,
+				name:"getNetworkConnectionName - invalid parameter",
+				requiredObjects:["Widget.Device.DataNetworkInfo.getNetworkConnectionName", "Widget.Device.DataNetworkInfo.networkConnectionType"],
+				test:function(t){
+					try{
+						var val = wdd.getNetworkConnectionName("invalid")
+						t.failure("Expected exception to be thrown, but it returend: '" + val + "'.");
+					}catch(e){
+						t.assertJilException(e, Widget.ExceptionTypes.INVALID_PARAMETER);
+					}
+				}
+			},
+			{
 				id:600,
 				name:"onNetworkConnectionChanged - Verify that the callback fires.",
 				instructions:[
 					"Click 'GO'!",
-					"Connect to a different data network, e.g. from 3G to Wifi (within 30 seconds)."
+					"Connect to a different data network, e.g. from 3G to WiFi (within 2 minutes)."
 				],
-				timeout:60 * 1000,
+				timeout:2 * 60 * 1000,
 				test:function(t){
 					wdd.onNetworkConnectionChanged = function(con){
 						t.success(con);
@@ -88,6 +153,7 @@
 					delete wdd.onNetworkConnectionChanged;
 				}
 			}
+//*/
 		]
 	});
 })();

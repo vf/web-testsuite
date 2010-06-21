@@ -13,7 +13,7 @@
 			//
 			{
 				id:100,
-				name:"isRadioEnabled",
+				name:"isRadioEnabled - is it boolean?",
 				requiredObjects:["Widget.Device.RadioInfo.isRadioEnabled"],
 				test:function(t){
 					var val = wdr.isRadioEnabled;
@@ -23,18 +23,29 @@
 			},
 			{
 				id:110,
-				name:"isRadioEnabled - Verify.",
+				name:"isRadioEnabled - Verify false.",
 				requiredObjects:["Widget.Device.RadioInfo.isRadioEnabled"],
-				expectedResult:"Is the above value correct?",
+				instructions:"Make sure you have NO phone line coverage (e.g. remove the SIM card).",
 				test:function(t){
 					var val = wdr.isRadioEnabled;
-					dohx.showInfo("API reports:", val);
+					t.assertFalse(val);
+					return val;
+				}
+			},
+			{
+				id:120,
+				name:"isRadioEnabled - Verify true.",
+				requiredObjects:["Widget.Device.RadioInfo.isRadioEnabled"],
+				instructions:"Make sure you have phone line coverage!",
+				test:function(t){
+					var val = wdr.isRadioEnabled;
+					t.assertTrue(val);
 					return val;
 				}
 			},
 			{
 				id:200,
-				name:"isRoaming",
+				name:"isRoaming - returns boolean?",
 				requiredObjects:["Widget.Device.RadioInfo.isRoaming"],
 				test:function(t){
 					var val = wdr.isRoaming;
@@ -44,18 +55,29 @@
 			},
 			{
 				id:210,
-				name:"isRoaming - Verify.",
+				name:"isRoaming - Verify false.",
 				requiredObjects:["Widget.Device.RadioInfo.isRoaming"],
-				expectedResult:"Is the above value correct?",
+				instructions:"Make sure your phone does NOT do roaming!",
 				test:function(t){
 					var val = wdr.isRoaming;
-					dohx.showInfo("API reports:", val);
+					t.assertFalse(val);
+					return val;
+				}
+			},
+			{
+				id:220,
+				name:"isRoaming - Verify true.",
+				requiredObjects:["Widget.Device.RadioInfo.isRoaming"],
+				instructions:"Make sure your phone is in roaming mode (e.g. by using a foreign SIM card).",
+				test:function(t){
+					var val = wdr.isRoaming;
+					t.assertTrue(val);
 					return val;
 				}
 			},
 			{
 				id:300,
-				name:"'radioSignalSource' exists at all?",
+				name:"radioSignalSource - Exists at all?",
 				requiredObjects:["Widget.Device.RadioInfo.radioSignalSource"],
 				test:function(t){
 					var val = wdr.radioSignalSource;
@@ -65,9 +87,9 @@
 			},
 			{
 				id:310,
-				name:"'radioSignalSource' - Verify?",
+				name:"radioSignalSource - Verify?",
 				requiredObjects:["Widget.Device.RadioInfo.radioSignalSource"],
-				expectedResult:"Is the above value correct?",
+				expectedResult:"Is the above the type of source your phone currently uses for phone calls?",
 				test:function(t){
 					var val = wdr.radioSignalSource;
 					dohx.showInfo("API reports:", val);
@@ -75,8 +97,20 @@
 				}
 			},
 			{
+				id:320,
+				name:"radioSignalSource - Verify GSM?",
+				requiredObjects:["Widget.Device.RadioInfo.radioSignalSource"],
+				instructions:"Switch your phone to use GSM!",
+				test:function(t){
+					var val = wdr.radioSignalSource;
+					t.assertEqual(wdrTypes.GSM, val);
+					return val;
+				}
+			},
+			{
 				id:400,
 				name:"radioSignalStrengthPercent",
+//TODO more explicit questions!!!
 				requiredObjects:["Widget.Device.RadioInfo.radioSignalStrengthPercent"],
 				test:function(t){
 					var val = wdr.radioSignalStrengthPercent;
@@ -87,6 +121,7 @@
 			{
 				id:410,
 				name:"'radioSignalStrengthPercent' - Verify?",
+//TODO more explicit questions!!!
 				requiredObjects:["Widget.Device.RadioInfo.radioSignalStrengthPercent"],
 				expectedResult:"Is the above value correct?",
 				test:function(t){
