@@ -170,6 +170,7 @@
 		Widget.PIM.AddressBookItem.prototype = {
 			setAttributeValue:function(){},
 			getAttributeValue:function(){},
+			getAddressGroupNames:function(){},
 			update:function(){}
 		};
 		Widget.PIM.CalendarItem.prototype.update = function(){}
