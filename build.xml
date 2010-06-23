@@ -16,7 +16,7 @@
     <property name="dist" location="dist"/>
     <property name="src" location="src"/>
 		<property name="test-src" location="${src}/tests" />
-    <property name="tmp" location="tmp" description="temporary folder to use, during build-process"/>
+    <property name="tmp" location="_tmp_" description="temporary folder to use, during build-process"/>
     
 		
     <target name="-collectTestNames">
