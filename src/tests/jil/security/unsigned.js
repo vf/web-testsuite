@@ -44,6 +44,8 @@
 					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
 					"At least one contact has to exist on the phone. (contact with the ID '" + config.validAddressBookItemId + "' will be used)",
 					"Copy the content of the testsuite's zip-file's  folder 'audio' into the music directory on the phone. (The exact name of the destination folder may vary on your device.)",
+					"At least one calendar item has to exist on the phone. (calender item with the ID '" + config.validCalendarItemId + "' will be used)",
+					"At least one call record item has to exist on the phone. (call record item with the ID '" + config.validCallRecordId + "' will be used)",
 					"Click 'GO' to start testing."
 				],
 				test:function(t){
@@ -133,7 +135,7 @@
 		},
 		
 		//
-		//	PIM, AddressBook, AddressBookItem
+		//	Addressbook stuff - PIM, AddressBook, AddressBookItem
 		//
 		{
 			// Do this before the tests that just check the access on AddressBookItem properties, so they
@@ -273,6 +275,73 @@
 			name:"AudioPlayer.onStateChange",
 			test:function(){
 				Widget.Multimedia.AudioPlayer.onStateChange = function(){};
+			}
+		},
+		
+		//
+		// Calendar stuff - CalendarItem, PIM
+		//
+		{
+			id: 700,
+			name:"PIM.getCalendarItem",
+			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
+			test:function(){
+				tmp = {calendarItem: Widget.PIM.getCalendarItem(config.validCalendarItemId)};
+			}
+		},
+		{
+			id: 702,
+			name:"CalendarItem (all properties)",
+			test:function(){
+				loopAllProperties(tmp.calendarItem);
+			}
+		},
+		{
+			id: 704,
+			name:"CalendarItem.update",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				tmp.calendarItem.eventName = "Foo " + new Date().getTime();
+				tmp.calendarItem.update();
+			}
+		},
+		
+		//
+		//	Telephony stuff - CallRecord, CallRecordTypes
+		//
+		{
+			id: 800,
+			name:"Telephony.getCallRecord",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				tmp = {callRecord:Widget.Telephony.getCallRecord(config.validCallRecordId??????)};
+			}
+		},
+		{
+			id: 802,
+			name:"CallRecord (all properties)",
+			test:function(){
+				loopAllProperties(tmp.callRecord);
+			}
+		},
+		{
+			id: 804,
+			name:"CallRecordTypes (all properties)",
+			requiredObjects:["Widget.Telephony.CallRecordTypes"],
+			test:function(){
+				loopAllProperties(Widget.Telephony.CallRecordTypes);
+			}
+		},
+		
+		//
+		//	Camera
+		//
+		{
+			id: 900,
+			name:"Camera.captureImage",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				
 			}
 		},
 		
