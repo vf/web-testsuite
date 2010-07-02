@@ -171,7 +171,7 @@ doh._runNextTest = function(){
 		} else {
 			instructions = c.test.instructions;
 		}
-		ui.dialog.show(c.test.name, instructions, c.test.expectedResult);
+		ui.dialog.show(c.test.id + ": " + c.test.name, instructions, c.test.expectedResult);
 	} else {
 		this._runTest();
 	}
