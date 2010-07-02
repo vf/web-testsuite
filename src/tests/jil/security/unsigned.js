@@ -13,6 +13,8 @@
 	//
 	var runTestWithPermissionLevel = permissionLevels.UNSIGNED;
 	var testGroupName = "Unsigned tests";
+	//var runTestWithPermissionLevel = permissionLevels.OPERATOR_SIGNED;
+	//var testGroupName = "Operator signed tests";
 	//
 	//	Configure END
 	//
@@ -45,7 +47,8 @@
 					"At least one contact has to exist on the phone. (contact with the ID '" + config.validAddressBookItemId + "' will be used)",
 					"Copy the content of the testsuite's zip-file's  folder 'audio' into the music directory on the phone. (The exact name of the destination folder may vary on your device.)",
 					"At least one calendar item has to exist on the phone. (calender item with the ID '" + config.validCalendarItemId + "' will be used)",
-					"At least one call record item has to exist on the phone. (call record item with the ID '" + config.validCallRecordId + "' will be used)",
+					"At least one MISSED call has to exist on the phone.",
+					"Copy the content of the testsuite's zip-file's  folder 'audio' into the music directory on the phone. (The exact name of the destination folder may vary on your device.)",
 					"Click 'GO' to start testing."
 				],
 				test:function(t){
@@ -214,10 +217,22 @@
 		//
 		{
 			id: 400,
-			name:"ApplicationTypes (all properties)",
-			requiredObjects:["Widget.Device.ApplicationTypes"],
+			loopAllProperties:"Widget.Device.ApplicationTypes"
+		},
+		{
+			id: 402,
+			name:"Device.getAvailableApplications",
+			permissions:[p.BLANKET, p.ALLOWED, p.ALLOWED],
 			test:function(){
-				loopAllProperties(Widget.Device.ApplicationTypes);
+				Widget.Device.getAvailableApplications();
+			}
+		},
+		{
+			id: 404,
+			name:"Device.launchApplication",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				Widget.Device.launchApplication(Widget.Device.ApplicationTypes.BROWSER);
 			}
 		},
 		
@@ -311,26 +326,46 @@
 		//
 		{
 			id: 800,
-			name:"Telephony.getCallRecord",
-			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
-			test:function(){
-				tmp = {callRecord:Widget.Telephony.getCallRecord(config.validCallRecordId??????)};
+			name:"Telephony.findCallRecords",
+			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
+			requiredObjects:["Widget.Telephony.CallRecordTypes", "Widget.Telephony.findCallRecords"],
+			timeout:100,
+			test:function(t){
+				Widget.Telephony.onCallRecordsFound = function(res){
+					if (res.length==0){
+						tmp = {callRecord:{}};
+// TODO this currently doesnt work with the test framework yet, because we add "expectedResult" which
+// makes t.failure() not work :( yet!!! should be fixed in dohx or doh2
+						t.failure("No MISSED call found. Following tests will fail too.");
+					}
+					tmp = {callRecord:res[0]};
+				}
+				
+				var types = Widget.Telephony.CallRecordTypes;
+				var searchFor = new Widget.Telephony.CallRecord();
+				searchFor.callRecordType = types.MISSED;
+				Widget.Telephony.findCallRecords(searchFor, 0, 10);
 			}
 		},
 		{
 			id: 802,
+			name:"Telephony.getCallRecord",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				var types = Widget.Telephony.CallRecordTypes;
+				Widget.Telephony.getCallRecord(types.MISSED, tmp.callRecord.callRecordId);
+			}
+		},
+		{
+			id: 804,
 			name:"CallRecord (all properties)",
 			test:function(){
 				loopAllProperties(tmp.callRecord);
 			}
 		},
 		{
-			id: 804,
-			name:"CallRecordTypes (all properties)",
-			requiredObjects:["Widget.Telephony.CallRecordTypes"],
-			test:function(){
-				loopAllProperties(Widget.Telephony.CallRecordTypes);
-			}
+			id: 806,
+			loopAllProperties:"Widget.Telephony.CallRecordTypes"
 		},
 		
 		//
@@ -341,12 +376,220 @@
 			name:"Camera.captureImage",
 			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
 			test:function(){
-				
+				Widget.Camera.captureImage("test-img-" + new Date().getTime() + ".jpg", true);
+			}
+		},
+		{
+			id: 902,
+			name:"Camera.startVideoCapture",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				Widget.Camera.startVideoCapture(new Date().getTime() + "-video.mp4", true, 1, false);
+			}
+		},
+		{
+			id: 904,
+			name:"Camera.stopVideoCapture",
+			test:function(){
+				Widget.Camera.stopVideoCapture();
+			}
+		},
+		{
+			id: 904,
+			name:"Camera.onCameraCaptured",
+			test:function(){
+				Widget.Camera.onCameraCaptured = function(){}
 			}
 		},
 		
-//*/		
+		//
+		//	config stuff - Config, ringtone, wallpaper etc.
+		//
+		{
+			id: 1000,
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			loopAllProperties:"Widget.Config"
+		},
+		{
+			id: 1002,
+			name:"Config.setAsWallpaper",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.BLANKET],
+			test:function(){
+				Widget.Config.setAsWallpaper("img/logo.jpg");
+			}
+		},
+		{
+			id: 1004,
+			name:"Camera.setDefaultRingtone",
+			test:function(){
+				Widget.Config.setDefaultRingtone(config.fileSystem.playableAudioFiles.onDevice.loopMp3);
+			}
+		},
+		{
+			id: 1006,
+			name:"Device.setRingtone",
+			test:function(){
+				var addressBookItem = Widget.PIM.getAddressBookItem(config.validAddressBookItemId);
+				Widget.Device.setRingtone(config.fileSystem.playableAudioFiles.onDevice.loopMp3, addressBookItem);
+			}
+		},
+		
+		//
+		//	DataNetwork
+		//
+		{
+			id: 1100,
+			loopAllProperties:"Widget.Device.DataNetworkInfo.DataNetworkConnectionTypes"
+		},
+		{
+			id: 1102,
+			loopAllProperties:"Widget.Device.DataNetworkInfo"
+		},
+		{
+			id: 1104,
+			name:"DataNetworkInfo.onNetworkConnectionChanged",
+			test:function(){
+				Widget.Device.DataNetworkInfo.onNetworkConnectionChanged = function(){}
+			}
+		},
+		{
+			id: 1106,
+			name:"DataNetworkInfo.getNetworkConnectionName",
+			test:function(){
+				Widget.Device.DataNetworkInfo.getNetworkConnectionName("wifi");
+			}
+		},
+		{
+			id: 1108,
+			name:"DataNetworkInfo.isDataNetworkConnected",
+			test:function(){
+				Widget.Device.DataNetworkInfo.isDataNetworkConnected();
+			}
+		},
+		
+		//
+		//	File
+		//
+		{
+			id: 1200,
+			name:"Device.copyFile",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				// We do all the copying of files here, also for those that we will use later, i.e. for deleting or moving, etc.
+				// because we should NOT do copy inside the "deleteFile" or "moveFile"-test, since that might
+				// blur the test result.
+				tmp = {
+					deleteFile: config.fileSystem.writeablePath + "delete-file-" + new Date().getTime(),
+					moveFile: config.fileSystem.writeablePath + "move-file-" + new Date().getTime()
+				};
+				Widget.Device.copyFile(config.fileSystem.readableFile, tmp.deleteFile);
+				Widget.Device.copyFile(config.fileSystem.readableFile, tmp.moveFile);
+			}
+		},
+		{
+			id: 1202,
+			name:"Device.deleteFile",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				Widget.Device.deleteFile(tmp.deleteFile);
+			}
+		},
+		{
+			id: 1204,
+			name:"Device.findFiles",
+			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
+			test:function(){
+				var f = new Widget.Device.File();
+				f.fileName = "*.jpg";
+				Widget.Device.findFiles(f, 0, 10);
+			}
+		},
+		{
+			id: 1206,
+			name:"Device.onFilesFound",
+			test:function(){
+				Widget.Device.onFilesFound = function(){};
+			}
+		},
+		{
+			id: 1208,
+			name:"Device.getDirectoryFileNames",
+			permissions:[p.BLANKET, p.BLANKET, p.ALLOWED],
+			test:function(){
+				Widget.Device.getDirectoryFileNames(config.fileSystem.readablePath);
+			}
+		},
+		{
+			id: 1210,
+			name:"Device.getFile",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				Widget.Device.getFile(config.fileSystem.readableFile);
+			}
+		},
+		{
+			id: 1212,
+			name:"Device.getFileSystemRoots",
+			permissions:[p.BLANKET, p.ALLOWED, p.ALLOWED],
+			test:function(){
+				Widget.Device.getFileSystemRoots();
+			}
+		},
+		{
+			id: 1214,
+			name:"Device.getFileSystemSize",
+			test:function(){
+				Widget.Device.getFileSystemSize("/");
+			}
+		},
+		{
+			id: 1216,
+			name:"Device.moveFile",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				Widget.Device.moveFile(tmp.moveFile, tmp.moveFile+"-moved");
+			}
+		},
+		{
+			id: 1218,
+			loopAllProperties:"Widget.Device.File"
+		},
+		
+		//
+		//	info stuff - AccountInfo, DeviceInfo, etc.
+		//
+		{
+			id: 1300,
+			loopAllProperties:"Widget.Device.AccountInfo"
+		},
+		{
+			id: 1302,
+			loopAllProperties:"Widget.Device.DeviceInfo"
+		},
+		{
+			id: 1304,
+			loopAllProperties:"Widget.Device.DeviceStateInfo"
+		},
+		{
+			id: 1306,
+			loopAllProperties:"Widget.Device.PowerInfo"
+		},
+		
+		//
+		//	GPS, PositionInfo ...
+		//
+		{
+			id: 1400,
+			loopAllProperties:"Widget.Device.PositionInfo"
+		},
+//*/
 	];
+	
+	
+	
+	
+	
+	
 	
 	//
 	// Generate tests for adding them.
@@ -354,21 +597,26 @@
 	var testsToAdd = [];
 	for (var i=0, l=tests.length, t; i<l; i++){
 		t = tests[i];
-		var tmp = {
-			id:t.id,
-			name: t.name || t.propertyToTest,
-			test: t.test || null
-		};
-		if (typeof t.propertyToTest!="undefined"){
-			tmp.requiredObjects = [t.propertyToTest];
-		}
+		var tmp = doh.util.mixin({}, t); // Clone all props.
+		t.test = t.test || null;
 		// Generate the function "test" if it doesn't exist.
 		if (tmp.test==null){
-			tmp.test = (function(objName){
-				return function(){
-					var val = util.getObject(objName);
-				}
-			})(t.propertyToTest);
+			if (t.propertyToTest){
+				tmp.name = t.propertyToTest;
+				tmp.requiredObjects = [t.propertyToTest];
+				tmp.test = (function(objName){
+					return function(){ var val = util.getObject(objName); }
+				})(t.propertyToTest);
+			} else if (t.loopAllProperties){
+				// Make the object to loop over also required.
+				tmp.name = t.loopAllProperties;
+				tmp.requiredObjects = [t.loopAllProperties];
+				tmp.test = (function(objName){
+					return function(){ loopAllProperties(objName); }
+				})(t.loopAllProperties);
+			} else {
+				throw new Error("No test function found for " + t.name + " (ID=" + t.id + ")");
+			}
 		}
 		// No permission given => unrestricted
 		if (typeof t.permissions=="undefined"){
