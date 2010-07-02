@@ -12,7 +12,6 @@
 	//	This should be set depending on the way the widget is built!!!!!!!!!!!
 	//
 	var runTestWithPermissionLevel = permissionLevels.UNSIGNED;
-	var runTestWithPermissionLevel = permissionLevels.DEVELOPER_SIGNED;
 	var testGroupName = "Unsigned tests";
 	//
 	//	Configure END
@@ -29,7 +28,7 @@
 	var expectedResults = {};
 	expectedResults[p.ALLOWED]  = "No security dialog should have opened, was that the case?";
 	expectedResults[p.ONE_SHOT] = "Did you have to confirm the security message?";
-	expectedResults[p.BLANKET] = "blanket";
+	expectedResults[p.BLANKET] = "blanket question ...";
 	expectedResults[p.SESSION] = "Did you have to confirm the security message?";
 	expectedResults["SESSION 2nd message"] = "No security dialog should have opened, was that the case?";
 	expectedResults[p.UNRESTRICTED] = "No security dialog should have opened, was that the case?";
@@ -53,6 +52,18 @@
 		]
 	});
 	
+	//
+	// Test helpers
+	// 
+	var tmp = {}; // Use this variable to pass values from one test to another.
+	function loopAllProperties(obj){
+		// summary:
+		// 		Use this to loop over all the properties of an object to ensure they all are accessible.
+		// 		Mostly this is used testing unrestricted access.
+		for (var key in obj){
+			var val = obj[key];
+		}
+	}
 	
 	var tests = [
 		// Add the tests always with every 2nd ID, so we have one gap inbetween which we
@@ -60,6 +71,9 @@
 		// to check that every time the security dialog is prompted.
 		// Dont use ID+100 steps because we will have a looooot tests in here.
 		
+		//
+		//	AccelerometerInfo
+		//
 		{
 			id:100,
 			name:"AccelerometerInfo (all properties)",
@@ -70,8 +84,12 @@
 				var z = obj.zAxis;
 			}
 		},
+		
+		//
+		//	AccountInfo
+		//
 		{
-			id: 102,
+			id: 200,
 			name: "Account.accountId (Widget.Messaging.getCurrentEmailAccount)",
 			test: function(t){
 				var acc = Widget.Messaging.getCurrentEmailAccount()
@@ -79,7 +97,7 @@
 			}
 		},
 		{
-			id: 104,
+			id: 202,
 			name: "Account.accountName (Widget.Messaging.getCurrentEmailAccount)",
 			test: function(t){
 				var acc = Widget.Messaging.getCurrentEmailAccount()
@@ -87,55 +105,116 @@
 			}
 		},
 		{
-			id: 106,
+			id: 204,
 			name: "AccountInfo.phoneUserUniqueId",
 			test: function(t){
 				var val = Widget.Device.AccountInfo.phoneUserUniqueId;
 			}
 		},
 		{
-			id: 108,
+			id: 206,
 			permissions:[p.DISALLOWED, p.ONE_SHOT, p.ALLOWED],
 			propertyToTest:"Widget.Device.AccountInfo.phoneMSISDN"
 		},
 		{
-			id: 110,
+			id: 208,
 			propertyToTest:"Widget.Device.AccountInfo.phoneOperatorName"
 		},
 		{
-			id: 112,
+			id: 210,
 			permissions:[p.BLANKET, p.BLANKET, p.ALLOWED],
 			propertyToTest:"Widget.Device.AccountInfo.userSubscriptionType"
 		},
 		{
-			id: 114,
+			id: 212,
 			permissions:[p.BLANKET, p.BLANKET, p.ALLOWED],
 			propertyToTest:"Widget.Device.AccountInfo.userAccountBalance"
 		},
+		
+		//
+		//	PIM, AddressBook, AddressBookItem
+		//
 		{
-			id: 116,
-			name:"AddressBook (all properties)",
+			// Do this before the tests that just check the access on AddressBookItem properties, so they
+			// can use the returned object.
+			id: 300,
+			name:"PIM.getAddressBookItem",
+			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
 			test:function(){
-				var item = Widget.PIM.getAddressBookItem(config.validAddressBookItemId);
-				for (var key in item){
-					var val = item[key]; // Access each available property.
-				}
+				tmp = {addressBookItem:Widget.PIM.getAddressBookItem(config.validAddressBookItemId)};
 			}
 		},
 		{
-			id: 118,
+			// Do this before the tests that just check the access on AddressBookItem properties, so they
+			// can use the returned object.
+			id: 302,
+			name:"PIM.getAvailableAddressGroupNames",
+			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
+			test:function(){
+				tmp.addressGroupNames = Widget.PIM.getAvailableAddressGroupNames();
+			}
+		},
+		{
+			id: 304,
+			name:"AddressBook (all properties)",
+			test:function(){
+				loopAllProperties(tmp.addressBookItem);
+			}
+		},
+		{
+			id: 306,
 			name:"AddressBookItem.getAddressGroupNames",
 			test:function(){
-				var item = Widget.PIM.getAddressBookItem(config.validAddressBookItemId);
-				item.getAddressGroupNames();
+				tmp.addressBookItem.getAddressGroupNames();
+			}
+		},
+		{
+			id: 308,
+			name:"AddressBookItem.getAttributeValue",
+			test:function(){
+				tmp.addressBookItem.getAttributeValue("fullName");
+			}
+		},
+		{
+			id: 310,
+			name:"AddressBookItem.getAvailableAttributes",
+			test:function(){
+				tmp.addressBookItem.getAvailableAttributes();
+			}
+		},
+		{
+			id: 312,
+			name:"AddressBookItem.setAddressGroupNames",
+			test:function(){
+				tmp.addressBookItem.setAddressGroupNames(tmp.addressGroupNames);
+			}
+		},
+		{
+			id: 314,
+			name:"AddressBookItem.setAttributeValue",
+			test:function(){
+				// Use some random phonenumber so we are sure update() will have work.
+				tmp.addressBookItem.setAttributeValue("mobilePhone", (""+Math.random()).replace(/[^0-9]/, ""));
+			}
+		},
+		{
+			id: 316,
+			name:"AddressBookItem.update",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				tmp.addressBookItem.update();
+			}
+		},
+		//
+		//	Application, ApplicationTypes
+		//
+		{
+			id: 400,
+			name:"ApplicationTypes (all properties)",
+			test:function(){
+				loopAllProperties(Widget.Device.ApplicationTypes);
 			}
 		}
-		//{
-		//	id: 112,
-		//	test:function(){
-		//		Widget.PIM.AddressBookItem.getAttributeValue();
-		//	},
-		//{id: 113, functionToTest:"Widget.PIM.AddressBookItem.getAvailableAttributes"},
 //*/		
 	];
 	
