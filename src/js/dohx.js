@@ -71,7 +71,7 @@ dohx._testObject = {
 	runTest:function(t){
 		window.scrollTo(0, 0); // Show the manual test overlay always at top.
 		return this._runTest(t)
-	}	
+	}
 };
 
 dohx._manualTestObject = {};
@@ -82,18 +82,21 @@ doh.util.mixin(dohx._manualTestObject, {
 	
 	_goClicked:function(){
 		util.query(".manualTest .whatToDo .goButton")[0].setAttribute("disabled", "disabled");
-		var t = doh._current.test; // We cant use this, since we dont have the context, so we use t.
+		var t = doh._current.test; // We cant use "this", since we dont have the context, so we use t.
 		if (t.instructions && !t.expectedResult){
 			doh._runTest();
 			if (doh._testInFlight){ // If the test didn't finish yet show the countdown, otherwise don't.
 				ui.dialog.showCountDown(t.startTime, t.timeout);
 			}
 		} else if (t.expectedResult){
-			// If we need the user to confirm the test result, because we cant do this programmatically
+			// If we need the user to confirm the test result, because we can't do this programmatically
 			// we just run the test and trigger _runTest() later with the "user says ..." as result.
 			try{
 				if (t.setUp) t.setUp();
-				t.test(t);
+// TODO the real assertObject gets created in doh._runTest() so we have no way of passing it in as a parameter
+// here, this should be made possible imho, so one could also call t.failure() even though an expectedResult is given.
+// Couldnt figure out how to do that yet :( way to tricky it seems.
+				t.test(); // Passing in "t" is wrong, "t" is the test not the assert object.
 			}catch(e){
 				// If the test call itself fails make the test fail too, so we dont "swallow" error messages.
 				doh._current.test.test = function(t){
