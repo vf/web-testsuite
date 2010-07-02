@@ -259,6 +259,8 @@ Widget.Multimedia = {};
 Widget.Multimedia.AudioPlayer = {
 	open:function(){},
 	play:function(){},
+	pause:function(){},
+	resume:function(){},
 	stop:function(){}
 };
 
