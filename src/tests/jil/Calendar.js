@@ -22,6 +22,18 @@
 		requiredObjects:["Widget.PIM"],
 		tests:[
 			{
+				id:1,
+				name:"Verify Preconditions",
+				instructions:[
+					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
+					"At least one calendar item has to exist on the phone. (calender item with the ID '" + config.validCalendarItemId + "' will be used)",
+					"Click 'GO' to start testing."
+				],
+				test:function(t){
+					t.success("Preconditions met, user confirmed.");
+				}
+			},
+			{
 				id:100,
 				name:"update - Verify the method call works at all.",
 // Add this again, actually imho this is how it should be, but H2 doesnt do it that way yet
