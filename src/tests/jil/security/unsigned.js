@@ -43,6 +43,7 @@
 				instructions:[
 					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
 					"At least one contact has to exist on the phone. (contact with the ID '" + config.validAddressBookItemId + "' will be used)",
+					"Copy the content of the testsuite's zip-file's  folder 'audio' into the music directory on the phone. (The exact name of the destination folder may vary on your device.)",
 					"Click 'GO' to start testing."
 				],
 				test:function(t){
@@ -205,16 +206,76 @@
 				tmp.addressBookItem.update();
 			}
 		},
+		
 		//
 		//	Application, ApplicationTypes
 		//
 		{
 			id: 400,
 			name:"ApplicationTypes (all properties)",
+			requiredObjects:["Widget.Device.ApplicationTypes"],
 			test:function(){
 				loopAllProperties(Widget.Device.ApplicationTypes);
 			}
-		}
+		},
+		
+		//
+		//	Messaging, Attachment
+		//
+		{
+			id: 500,
+			name:"Attachment (all properties)",
+			test:function(){
+// TODO
+			}
+		},
+		
+		//
+		//	AudioPlayer
+		//
+		{
+			id: 600,
+			name:"AudioPlayer.open",
+			test:function(){
+				Widget.Multimedia.AudioPlayer.open(config.fileSystem.playableAudioFiles.onDevice.songMp3);
+			}
+		},
+		{
+			id: 602,
+			name:"AudioPlayer.play",
+			test:function(){
+				Widget.Multimedia.AudioPlayer.play(1);
+			}
+		},
+		{
+			id: 604,
+			name:"AudioPlayer.pause",
+			test:function(){
+				Widget.Multimedia.AudioPlayer.pause();
+			}
+		},
+		{
+			id: 606,
+			name:"AudioPlayer.resume",
+			test:function(){
+				Widget.Multimedia.AudioPlayer.pause();
+			}
+		},
+		{
+			id: 608,
+			name:"AudioPlayer.stop",
+			test:function(){
+				Widget.Multimedia.AudioPlayer.pause();
+			}
+		},
+		{
+			id: 610,
+			name:"AudioPlayer.onStateChange",
+			test:function(){
+				Widget.Multimedia.AudioPlayer.onStateChange = function(){};
+			}
+		},
+		
 //*/		
 	];
 	
