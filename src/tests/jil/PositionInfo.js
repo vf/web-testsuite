@@ -19,6 +19,20 @@
 		mqcExecutionOrderBaseOffset:210000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:["Widget.Device.DeviceStateInfo"],
 		tests:[
+			//
+			// Preconditions
+			//
+			{
+				id:1,
+				name:"Verify Preconditions",
+				instructions:[
+					"Make sure you have good GPS reception (best done outside).",
+					"Click 'GO' to start testing."
+				],
+				test:function(t){
+					t.success("Preconditions met, user confirmed.");
+				}
+			},
 			{
 				id:100,
 				name:"Widget.Device.DeviceStateInfo.onPositionRetrieved - Verify that callback fires.",
