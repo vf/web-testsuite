@@ -42,6 +42,7 @@ Possible tests (as defined in the spec., text copied form spec) - FIX by new spe
 * If startInx is greater than endInx in PIM_findAddressBookItems function, the returned addressBookItemsFound will be an empty array.
 * If startInx is greater than the number of found items in PIM_findAddressBookItems function, the returned addressBookItemsFound will be an empty array.
 * If endInx is greater than the number of found items in PIM_findAddressBookItems function, the returned addressBookItemsFound will contain items bwteeen startInx and the last returned item inclusively.
+* setAddressGroupNames(groups)
 
 Telephony
 * see TODOs in the js file
