@@ -62,7 +62,6 @@ var config = {
 		
 		validAddressBookItemId:"",
 		validCalendarItemId:"",
-		validPhoneNumber:"0049123456789",
 		
 		// Various file system settings that will be used for testing, etc.
 		// NOTE: Paths must always end with the directorySeparator
@@ -164,7 +163,6 @@ var config = {
 				canDoMultitasking:false,
 				validCalendarItemId:"1",
 				validAddressBookItemId:"1",
-				validPhoneNumber:"00491234567890"
 				// Add the device's configuration, different from the default here!
 			};
 			return ret;
@@ -212,7 +210,6 @@ var config = {
 				hasClamshell:false,
 				validAddressBookItemId:1,
 				validCalendarItemId:1,
-				validPhoneNumber:"00491234567890"
 			};
 			return ret;
 		},
@@ -233,7 +230,6 @@ var config = {
 				hasClamshell:false,
 				validAddressBookItemId:1,
 				validCalendarItemId:1,
-				validPhoneNumber:"00491234567890",
 				geolocation:{
 					timeouts: {
 						agps: defaults.geolocation.timeouts.gps
@@ -271,7 +267,6 @@ var config = {
 				hasClamshell:false,
 				validAddressBookItemId:"00e150ed9bcd6f11",
 				validCalendarItemId:1,
-				validPhoneNumber:"00491234567890"
 			};
 			return ret;
 		},
@@ -282,7 +277,6 @@ var config = {
 				hasClamshell:false,
 				validAddressBookItemId:1,
 				validCalendarItemId:1,
-				validPhoneNumber:"00491234567890"
 			};
 			return ret;
 		}
