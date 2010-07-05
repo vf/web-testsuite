@@ -625,16 +625,16 @@
 			var curPerm = t.permissions[runTestWithPermissionLevel];
 			tmp.expectedResult = expectedResults[curPerm];
 			if (curPerm==p.DISALLOWED){
-				tmp.test = (function(objName){
+				tmp.test = (function(testFnc){
 					return function(t){
 						try{
-							var val = util.getObject(objName);
+							testFnc();
 							t.failure("Expected SECURITY Exception to be thrown.");
 						}catch(e){
 							t.assertJilException(e, Widget.ExceptionTypes.SECURITY);
 						}
 					}
-				})(t.propertyToTest);
+				})(tmp.test);
 			} else if (curPerm==p.ONE_SHOT){
 				// ONE_SHOT means the user has to confirm every time the method is called,
 				// so call it a second time to see that it has to be confirmed again and it is not
