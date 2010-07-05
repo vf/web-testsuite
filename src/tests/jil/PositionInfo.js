@@ -2,7 +2,8 @@
 	var wd = util.isObject("Widget.Device") ? Widget.Device : {};
 	var wdd = util.isObject("DeviceStateInfo", wd) ? wd.DeviceStateInfo : {};
 	var positionProperties = ["accuracy", "altitude", "altitudeAccuracy", "cellID", "latitude", "longitude", "timeStamp"];
-	var locationTimeouts = config.geolocation.timeouts;
+	var geoConfig = config.geolocation;
+	var locationTimeouts = geoConfig.timeouts;
 	
 	function showPosInfo(posInfo){
 		var ret = [];
@@ -13,7 +14,7 @@
 		return ret.join(", ");
 	}
 	
-	var _fastestMethod = config.canGetPositionByCellid ? "cellid" : (config.canGetPositionByAgps ? "agps" : "gps");
+	var _fastestMethod = geoConfig.supportsCellId ? "cellid" : (geoConfig.supportsAgps ? "agps" : "gps");
 	
 	dohx.add({name:"PositionInfo",
 		mqcExecutionOrderBaseOffset:210000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
@@ -36,7 +37,7 @@
 			{
 				id:100,
 				name:"Widget.Device.DeviceStateInfo.onPositionRetrieved - Verify that callback fires.",
-				addIf:config.canGetPositionByCellid || config.canGetPositionByGps || config.canGetPositionByAgps,
+				addIf:geoConfig.supportsCellId || geoConfig.supportsGps || geoConfig.supportsAgps,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 				instructions:"Click 'GO', to retreive your location.",
 //fails now, didnt in v1.2
@@ -55,7 +56,7 @@
 			{
 				id:200,
 				name:"requestPositionInfo('cellid') - Verify return value is of type 'PositionInfo'.",
-				addIf:config.canGetPositionByCellid,
+				addIf:geoConfig.supportsCellId,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 				instructions:"Click 'GO' to get position!",
 				timeout:locationTimeouts.cellId,
@@ -73,7 +74,7 @@
 			{
 				id:300,
 				name:"requestPositionInfo('gps') - Verify return value is of type 'PositionInfo'.",
-				addIf:config.canGetPositionByGps,
+				addIf:geoConfig.supportsGps,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 				instructions:"Click 'GO' to get position!",
 				timeout:locationTimeouts.gps,
@@ -91,7 +92,7 @@
 			{
 				id:400,
 				name:"requestPositionInfo('agps') - Verify return value is of type 'PositionInfo'.",
-				addIf:config.canGetPositionByAgps,
+				addIf:geoConfig.supportsAgps,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 				instructions:"Click 'GO' to get position!",
 				timeout:locationTimeouts.agps,
@@ -109,7 +110,7 @@
 			{
 				id:500,
 				name:"requestPositionInfo - Let user verify position.",
-				addIf:config.canGetPositionByCellid || config.canGetPositionByGps || config.canGetPositionByAgps,
+				addIf:geoConfig.supportsCellId || geoConfig.supportsGps || geoConfig.supportsAgps,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 				instructions:"Click 'GO', to retreive your location.",
 				expectedResult:"Is the above your current position?",
@@ -117,7 +118,7 @@
 				test:function(t){
 					dohx.showInfo('Retreiving coordinates...');
 					// Find most accurate available method to get position.
-					var method = config.canGetPositionByGps ? "gps" : (config.canGetPositionByAgps ? "agps" : "cellid");
+					var method = geoConfig.supportsGps ? "gps" : (geoConfig.supportsAgps ? "agps" : "cellid");
 					// Get the position.
 					wdd.onPositionRetrieved = function(posInfo){
 						var latLng = posInfo.latitude + "," + posInfo.longitude;
@@ -133,7 +134,7 @@
 			},{
 				id:600,
 				name:"requestPositionInfo - Verify properties of returned 'PositionInfo' object.",
-				addIf:config.canGetPositionByCellid || config.canGetPositionByGps || config.canGetPositionByAgps,
+				addIf:geoConfig.supportsCellId || geoConfig.supportsGps || geoConfig.supportsAgps,
 				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 				timeout:locationTimeouts.gps,
 				test:function(t){
@@ -151,7 +152,7 @@
 //			},{
 //				id:700,
 //				name:"requestPositionInfo - Verify types of properties of returned 'PositionInfo' object.",
-//				addIf:config.canGetPositionByCellid || config.canGetPositionByGps || config.canGetPositionByAgps,
+//				addIf:geoConfig.supportsCellId || geoConfig.supportsGps || geoConfig.supportsAgps,
 //				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
 //				//timeout:30 * 1000, // Wait max. 10sec.
 //				test:function(t){

@@ -56,10 +56,6 @@ var config = {
 		// application in the background.
 		canDoMultitasking:true,
 		
-		canGetPositionByCellid:true,
-		canGetPositionByGps:true,
-		canGetPositionByAgps:true,
-		
 		validAddressBookItemId:"",
 		validCalendarItemId:"",
 		
@@ -129,6 +125,9 @@ var config = {
 		},
 		
 		geolocation:{
+			supportsAgps:true,
+			supportsCellId:true,
+			supportsGps:true,
 			timeouts:{
 				gps:180 * 1000,
 				agps:5 * 1000,
