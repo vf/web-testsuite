@@ -1,2 +1,9 @@
 
 * https://www.jil.org/web/jil/forums/-/message_boards/message/96492
+
+* HTML fragments not removed from screen (screen is not properly updated from DOM)
+* Buttons retain outline after beeing clicked
+* screen.availHeight and screen.availWidth are not correct
+* When setting position of body and have a background image in body then the image is shifted 1 pixel toward right bottom corner.
+  (https://www.jil.org/web/jil/forums/-/message_boards/message/96492)
+
