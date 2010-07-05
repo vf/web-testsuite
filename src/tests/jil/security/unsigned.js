@@ -90,6 +90,10 @@
 				var z = obj.zAxis;
 			}
 		},
+		{
+			id:102,
+			propertyToTest:"Widget.Device.DeviceStateInfo.AccelerometerInfo"
+		},
 		
 		//
 		//	AccountInfo
@@ -319,6 +323,10 @@
 				tmp.calendarItem.eventName = "Foo " + new Date().getTime();
 				tmp.calendarItem.update();
 			}
+		},
+		{
+			id: 706,
+			loopAllProperties:"Widget.PIM.EventRecurrenceTypes"
 		},
 		
 		//
@@ -574,6 +582,108 @@
 			id: 1306,
 			loopAllProperties:"Widget.Device.PowerInfo"
 		},
+		{
+			id: 1308,
+			loopAllProperties:"Widget.Device.RadioInfo"
+		},
+		{
+			id: 1310,
+			name:"Device.clipboardString",
+			permissions:[p.SESSION, p.ALLOWED, p.ALLOWED],
+			test:function(){
+				var val = Widget.Device.clipboardString;
+			}
+		},
+		{
+			id: 1312,
+			propertyToTest:"Widget.Device.widgetEngineName"
+		},
+		{
+			id: 1314,
+			propertyToTest:"Widget.Device.widgetEngineProvider"
+		},
+		{
+			id: 1316,
+			propertyToTest:"Widget.Device.widgetEngineVersion"
+		},
+		{
+			id: 1318,
+			propertyToTest:"Widget.Device.DeviceInfo.ownerInfo"
+		},
+		{
+			id: 1320,
+			propertyToTest:"Widget.Device.DeviceInfo.phoneColorDepthDefault"
+		},
+		{
+			id: 1322,
+			propertyToTest:"Widget.Device.DeviceInfo.phoneFirmware"
+		},
+		{
+			id: 1324,
+			propertyToTest:"Widget.Device.DeviceInfo.phoneManufacturer"
+		},
+		{
+			id: 1326,
+			propertyToTest:"Widget.Device.DeviceInfo.phoneModel"
+		},
+		{
+			id: 1328,
+			propertyToTest:"Widget.Device.DeviceInfo.phoneOS"
+		},
+		{
+			id: 1330,
+			propertyToTest:"Widget.Device.DeviceInfo.phoneSoftware"
+		},
+		{
+			id: 1332,
+			propertyToTest:"Widget.Device.DeviceInfo.screenHeightDefault"
+		},
+		{
+			id: 1334,
+			propertyToTest:"Widget.Device.DeviceInfo.screenWidthDefault"
+		},
+		{
+			id: 1336,
+			propertyToTest:"Widget.Device.DeviceInfo.totalMemory"
+		},
+		{
+			id: 1338,
+			name:"DeviceStateInfo.onScreenChangeDimensions",
+			test:function(){
+				Widget.Device.DeviceStateInfo.onScreenChangeDimensions = function(width, height){}
+			}
+		},
+		{
+			id: 1340,
+			name:"DeviceStateInfo.onFlipEvent",
+			test:function(){
+				Widget.Device.DeviceStateInfo.onScreenChangeDimensions = function(width, height){}
+			}
+		},
+		{
+			id: 1342,
+			propertyToTest:"Widget.Device.DeviceStateInfo.keypadLightOn"
+		},
+		{
+			id: 1344,
+			propertyToTest:"Widget.Device.DeviceStateInfo.backLightOn"
+		},
+		{
+			id: 1346,
+			propertyToTest:"Widget.Device.DeviceStateInfo.availableMemory"
+		},
+		{
+			id: 1348,
+			propertyToTest:"Widget.Device.DeviceStateInfo.language"
+		},
+		{
+			id: 1348,
+			propertyToTest:"Widget.Device.DeviceStateInfo.audioPath"
+		},
+		{
+			id: 1350,
+			propertyToTest:"Widget.Device.DeviceStateInfo.processorUtilizationPercent"
+		},
 		
 		//
 		//	GPS, PositionInfo ...
@@ -581,6 +691,23 @@
 		{
 			id: 1400,
 			loopAllProperties:"Widget.Device.PositionInfo"
+		},
+		{
+			id: 1402,
+			name:"DeviceStateInfo.onPositionRetreived",
+			test:function(){
+				Widget.Device.DeviceStateInfo.onPositionRetreived = function(){}
+			}
+		},
+		{
+			id: 1404,
+			name:"DeviceStateInfo.requestPositionInfo",
+			permissions:[p.ONE_SHOT, p.SESSION, p.ALLOWED],
+			test:function(){
+				var c = config.geolocation;
+				var fastestLocationService = c.supportsCellId ? "cellid" : (c.supportsAgps ? "agps" : "gps");
+				Widget.Device.DeviceStateInfo.requestPositionInfo(fastestLocationService);
+			}
 		},
 //*/
 	];
