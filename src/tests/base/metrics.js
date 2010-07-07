@@ -53,6 +53,22 @@
 				test: function(){
 					dohx.showInfo('<div style="width: 10em; font-size: 0.1in">' + RULER_IN_HTML + '</div>');
 				}
+			},
+			{
+				id: 500,
+				name: "Font in <code>mm</code> (CSS shorthand syntax), width in <code>em</code>",
+				expectedResult: "Please measure the width of the box with a metric ruler. Is the width exactly 3&nbsp;cm? (1&nbsp;cm = 0.3937&nbsp;in)",
+				test: function(){
+					dohx.showInfo('<div style="width: 10em; font: 3mm/1.5 sans-serif">' + RULER_MM_HTML + '</div>');
+				}
+			},
+			{
+				id: 600,
+				name: "Font in <code>in</code> (CSS shorthand syntax), width in <code>em</code>",
+				expectedResult: "Please measure the width of the box with an inch-based ruler. Is the width exactly 1&nbsp;inch? (1&nbsp;in = 2.54&nbsp cm)",
+				test: function(){
+					dohx.showInfo('<div style="width: 10em; font: 0.1in/1.5 sans-serif">' + RULER_IN_HTML + '</div>');
+				}
 			}
 		]
 
