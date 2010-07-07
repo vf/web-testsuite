@@ -23,9 +23,22 @@
 		requiredObjects: [],
 		tests: [
 			{
+				id: 1,
+				name: "Instructions",
+				instructions: [
+						"This series of tests checks whether physical lengths are displayed correctly on the device.",
+						"You will need a ruler to measure objects on the screen.",
+						"For each test, please check whether the size of the box displayed matches the expected result."
+					].join("<br><br>"),
+				test: function(t){
+					t.success()
+				}
+			},
+			{
 				id: 100,
 				name: "Millimeters",
-				expectedResult: "Please measure the width of the box with a metric ruler. Is the width exactly 3&nbsp;cm? (1&nbsp;cm = 0.3937&nbsp;in)",
+				instructions: "This test displays a box with <code>width</code> set to <code>3cm</code>. <br><br>Please measure the width with the ruler.",
+				expectedResult: "Is the width of the box exactly 3&nbsp;cm? (1&nbsp;cm = 0.3937&nbsp;in)",
 				test: function(){
 					dohx.showInfo('<div style="width: 3cm">' + RULER_MM_HTML + '</div>');
 				}
@@ -33,7 +46,8 @@
 			{
 				id: 200,
 				name: "Inches",
-				expectedResult: "Please measure the width of the box with an inch-based ruler. Is the width exactly 1&nbsp;inch? (1&nbsp;in = 2.54&nbsp cm)",
+				instructions: "This test displays a box with <code>width</code> set to <code>1in</code>. <br><br>Please measure the width with the ruler.",
+				expectedResult: "Is the width of the box exactly 1&nbsp;inch? (1&nbsp;in = 2.54&nbsp cm)",
 				test: function(){
 					dohx.showInfo('<div style="width: 1in">' + RULER_IN_HTML + '</div>');
 				}
@@ -41,7 +55,8 @@
 			{
 				id: 300,
 				name: "Font in <code>mm</code>, width in <code>em</code>",
-				expectedResult: "Please measure the width of the box with a metric ruler. Is the width exactly 3&nbsp;cm? (1&nbsp;cm = 0.3937&nbsp;in)",
+				instructions: "This test displays a box with <code>width:10 em; font-size: 3mm;</code>.<br><br>Please measure the width with the ruler.",
+				expectedResult: "Is the width of the box exactly 3&nbsp;cm? (1&nbsp;cm = 0.3937&nbsp;in)",
 				test: function(){
 					dohx.showInfo('<div style="width: 10em; font-size: 3mm">' + RULER_MM_HTML + '</div>');
 				}
@@ -49,7 +64,8 @@
 			{
 				id: 400,
 				name: "Font in <code>in</code>, width in <code>em</code>",
-				expectedResult: "Please measure the width of the box with an inch-based ruler. Is the width exactly 1&nbsp;inch? (1&nbsp;in = 2.54&nbsp cm)",
+				instructions: "This test displays a box with <code>width:10 em; font-size: 0.1in;</code>.<br><br>Please measure the width with the ruler.",
+				expectedResult: "Is the width of the box exactly 1&nbsp;inch? (1&nbsp;in = 2.54&nbsp cm)",
 				test: function(){
 					dohx.showInfo('<div style="width: 10em; font-size: 0.1in">' + RULER_IN_HTML + '</div>');
 				}
@@ -57,7 +73,8 @@
 			{
 				id: 500,
 				name: "Font in <code>mm</code> (CSS shorthand syntax), width in <code>em</code>",
-				expectedResult: "Please measure the width of the box with a metric ruler. Is the width exactly 3&nbsp;cm? (1&nbsp;cm = 0.3937&nbsp;in)",
+				instructions: "This test displays a box with <code>width: 10em; font: 3mm/1.5 sans-serif;</code> to test the <code>font</code> shorthand syntax.<br><br>Please measure the width with the ruler.",
+				expectedResult: "Is the width of the box exactly 3&nbsp;cm? (1&nbsp;cm = 0.3937&nbsp;in)",
 				test: function(){
 					dohx.showInfo('<div style="width: 10em; font: 3mm/1.5 sans-serif">' + RULER_MM_HTML + '</div>');
 				}
@@ -65,7 +82,8 @@
 			{
 				id: 600,
 				name: "Font in <code>in</code> (CSS shorthand syntax), width in <code>em</code>",
-				expectedResult: "Please measure the width of the box with an inch-based ruler. Is the width exactly 1&nbsp;inch? (1&nbsp;in = 2.54&nbsp cm)",
+				instructions: "This test displays a box with <code>width: 10em; font: 0.1in/1.5 sans-serif;</code> to test the <code>font</code> shorthand syntax.<br><br>Please measure the width with the ruler.",
+				expectedResult: "Is the width exactly 1&nbsp;inch? (1&nbsp;in = 2.54&nbsp cm)",
 				test: function(){
 					dohx.showInfo('<div style="width: 10em; font: 0.1in/1.5 sans-serif">' + RULER_IN_HTML + '</div>');
 				}
