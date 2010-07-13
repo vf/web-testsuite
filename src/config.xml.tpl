@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:jil="http://www.jil.org/ns/widgets1.2"
-	id="http://reference.vodafone.com/widgets/$testfilename" version="0.2"
+	id="http://reference.vodafone.com/widgets/$testfilename" version="0.2$versionsuffix"
 	width="800" height="600">
 	<width>800</width>
 	<height>1000</height>
@@ -31,7 +31,7 @@
 	<feature name="http://jil.org/jil/api/1.1/powerinfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/positioninfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/widget" required="false"/>
-	
+
 	<feature name="http://jil.org/jil/api/1.1.1/datanetworkinfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.1/file" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.1/radioinfo" required="false"/>
@@ -39,7 +39,7 @@
 	<feature name="http://jil.org/jil/api/1.1.1/telephony" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.1/callrecordtypes" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.1/widgetmanager" required="false"/>
-	
+
 	<feature name="http://jil.org/jil/api/1.1.2/camera" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.2/videoplayer" required="false"/>
 
@@ -49,7 +49,7 @@
 	<feature name="http://jil.org/jil/api/1.1.5/exception" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.5/exceptiontypes" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.5/radiosignalsourcetypes" required="false"/>
-	
+
 	<access network="true" localfs="true"/> <!-- until JIL 1.1 this was enough -->
 	<jil:access network="true" localfs="true" remote_scripts="true"/> <!-- this is needed for JIL1.2 -->
 	<!--<update href="http://www.jil.org/widgets/" period="1"/>	-->
