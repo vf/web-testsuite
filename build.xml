@@ -120,10 +120,7 @@
 		        <fail unless="testfileAvailable" message="Test not found. Make sure, that the desired test is located in the '${test-src}' directory."/>
 		        <!-- create .wgt-file (include audio-data if needed) -->
 		        <condition property="isAudioMp3Only" value="true">
-					<or>
-						<equals arg1="${test}" arg2="jil/Application"/> <!-- uses audiofiles to play them using launchApplication() -->
-						<equals arg1="${test}" arg2="jil/security/unsigned"/> <!-- we need some test audio here too -->
-					</or>
+					<equals arg1="${test}" arg2="jil/Application"/> <!-- uses audiofiles to play them using launchApplication() -->
 				</condition>
 		        <condition property="isAudio" value="true">
 					<equals arg1="${test}" arg2="jil/AudioPlayer"/>
