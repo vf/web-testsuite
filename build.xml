@@ -118,9 +118,12 @@
 		        <!-- check if .js-file for given test is available (fail if not)-->
 		        <available file="${testfile}" type="file" property="testfileAvailable" value="true"/>
 		        <fail unless="testfileAvailable" message="Test not found. Make sure, that the desired test is located in the '${test-src}' directory."/>
-		        <!-- create .wgt-file (include audio-data if needed)-->
+		        <!-- create .wgt-file (include audio-data if needed) -->
 		        <condition property="isAudioMp3Only" value="true">
-					<equals arg1="${test}" arg2="jil/Application"/> <!-- uses audiofiles to play them using launchApplication() -->
+					<or>
+						<equals arg1="${test}" arg2="jil/Application"/> <!-- uses audiofiles to play them using launchApplication() -->
+						<equals arg1="${test}" arg2="jil/security/unsigned"/> <!-- we need some test audio here too -->
+					</or>
 				</condition>
 		        <condition property="isAudio" value="true">
 					<equals arg1="${test}" arg2="jil/AudioPlayer"/>
