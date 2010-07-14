@@ -149,7 +149,7 @@
 					}
 					var msg = wm.createMessage(wmt.EmailMessage);
 					msg.subject = "*";
-					wm.findMessages(msg, wmt.EmailMessage, 0, 10);
+					wm.findMessages(msg, wmft.INBOX, 0, 10);
 				},
 				tearDown:function(){
 					delete wm.onMessagesFound;
@@ -165,7 +165,7 @@
 					}
 					var msg = wm.createMessage(wmt.EmailMessage);
 					msg.subject = _testMessage.subject;
-					wm.findMessages(msg, wmt.EmailMessage, 0, 10);
+					wm.findMessages(msg, wmft.OUTBOX, 0, 10);
 				},
 				tearDown:function(){
 					delete wm.onMessagesFound;
