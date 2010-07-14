@@ -48,6 +48,7 @@
 					"Copy the content of the testsuite's zip-file's  folder 'audio' into the music directory on the phone. (The exact name of the destination folder may vary on your device.)",
 					"At least one calendar item has to exist on the phone. (calender item with the ID '" + config.validCalendarItemId + "' will be used)",
 					"At least one MISSED call has to exist on the phone.",
+					"Copy the content of the testsuite's zip-file's  folder 'video' into the videos directory on the phone. (The exact name of the destination folder may vary on your device.)",
 					"Click 'GO' to start testing."
 				],
 				test:function(t){
@@ -1093,7 +1094,109 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 			id: 1500,
 			loopAllProperties:"Widget.Multimedia.isVideoPlaying"
 		},
+		{
+			id: 1502,
+			name:"VideoPlayer.setWindow",
+			test:function(){
+				dohx.showInfo('<object id="_videoWindow_" type="video/3gp" width="320" height="240" />');
+				Widget.Multimedia.VideoPlayer.setWindow(util.byId("_videoWindow_"));
+			}
+		},
+		{
+			id: 1504,
+			name:"VideoPlayer.onStateChange",
+			test:function(){
+				Widget.Multimedia.VideoPlayer.onStateChange = function(){}
+			}
+		},
+		{
+			id: 1506,
+			name:"VideoPlayer.open",
+			test:function(){
+				Widget.Multimedia.VideoPlayer.open(config.playableVideoFiles.mp4.inWidget);
+			}
+		},
+		{
+			id: 1508,
+			name:"VideoPlayer.play",
+			test:function(){
+				Widget.Multimedia.VideoPlayer.play(1);
+			}
+		},
+		{
+			id: 1508,
+			name:"VideoPlayer.pause",
+			test:function(){
+				Widget.Multimedia.VideoPlayer.pause();
+			}
+		},
+		{
+			id: 1510,
+			name:"VideoPlayer.resume",
+			test:function(){
+				Widget.Multimedia.VideoPlayer.resume();
+			}
+		},
+		{
+			id: 1512,
+			name:"VideoPlayer.stop",
+			test:function(){
+				Widget.Multimedia.VideoPlayer.stop();
+			}
+		},
 
+		//
+		//	Widget
+		//
+		{
+			id: 1600,
+			name: "Widget.onFocus",
+			test:function(){
+				Widget.onFocus = function(){}
+			}
+		},
+		{
+			id: 1602,
+			name: "Widget.onMaximize",
+			test:function(){
+				Widget.onFocus = function(){}
+			}
+		},
+		{
+			id: 1604,
+			name: "Widget.onRestore",
+			test:function(){
+				Widget.onFocus = function(){}
+			}
+		},
+		{
+			id: 1606,
+			name: "Widget.onWakeup",
+			test:function(){
+				Widget.onFocus = function(){}
+			}
+		},
+		{
+			id: 1608,
+			name: "Widget.openURL",
+			test:function(){
+				Widget.openURL("http://vodafone.com");
+			}
+		},
+		{
+			id: 1610,
+			name: "Widget.setPreferenceForKey",
+			test:function(){
+				Widget.setPreferenceForKey(1, "test_key");
+			}
+		},
+		{
+			id: 1612,
+			name: "Widget.preferenceForKey",
+			test:function(){
+				Widget.preferenceForKey("test_key");
+			}
+		},
 //*/
 	];
 	
