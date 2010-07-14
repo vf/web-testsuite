@@ -304,8 +304,31 @@
 		{
 			id: 334,
 			name:"Device.setRingtone",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
 			test:function(){
 				Widget.Device.setRingtone(config.fileSystem.playableAudioFiles.onDevice.loopMp3, tmp.addressBookItem);
+			}
+		},
+		{
+			id: 336,
+			name:"Device.getAddressBookItemsCount",
+			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
+			test:function(){
+				Widget.PIM.getAddressBookItemsCount();
+			}
+		},
+		{
+			id: 338,
+			name:"Device.onAddressBookItemsFound",
+			test:function(){
+				Widget.PIM.onAddressBookItemsFound = function(){}
+			}
+		},
+		{
+			id: 340,
+			name:"Device.onVCardExportingFinish",
+			test:function(){
+				Widget.PIM.onVCardExportingFinish = function(){}
 			}
 		},
 		
@@ -558,17 +581,44 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 				Widget.PIM.findCalendarItems(tmp.calendarItem, 0, 10);
 			}
 		},
+		{
+			id: 716,
+			name:"PIM.getCalendarItems",
+			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
+			test:function(){
+				var year = new Date().getFullYear();
+				Widget.PIM.getCalendarItems(new Date(year, 0, 1), new Date(year, 11, 1));
+			}
+		},
+		{
+			id: 718,
+			name:"PIM.onCalendarItemAlert",
+			test:function(){
+				Widget.PIM.onCalendarItemAlert = function(){}
+			}
+		},
+		{
+			id: 720,
+			name:"PIM.onCalendarItemsFound",
+			test:function(){
+				Widget.PIM.onCalendarItemsFound = function(){}
+			}
+		},
 		
 		//
 		//	Telephony stuff - CallRecord, CallRecordTypes
 		//
 		{
 			id: 800,
-			name:"Telephony.findCallRecords",
-			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
-			requiredObjects:["Widget.Telephony.CallRecordTypes", "Widget.Telephony.findCallRecords"],
-			timeout:100,
-			test:function(t){
+			name:"Telephony - new Telephony",
+			test:function(){
+				tmp.searchForCallRecord = new Widget.Telephony.CallRecord();
+			}
+		},
+		{
+			id: 802,
+			name:"Telephony.onCallRecordsFound",
+			test:function(){
 				Widget.Telephony.onCallRecordsFound = function(res){
 					if (res.length==0){
 						tmp = {callRecord:{}};
@@ -578,15 +628,22 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 					}
 					tmp = {callRecord:res[0]};
 				}
-				
-				var types = Widget.Telephony.CallRecordTypes;
-				var searchFor = new Widget.Telephony.CallRecord();
-				searchFor.callRecordType = types.MISSED;
+			}
+		},
+		{
+			id: 804,
+			name:"Telephony.findCallRecords",
+			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
+			requiredObjects:["Widget.Telephony.CallRecordTypes", "Widget.Telephony.findCallRecords"],
+			timeout:100,
+			test:function(t){
+				var searchFor = tmp.searchForCallRecord;
+				searchFor.callRecordType = Widget.Telephony.CallRecordTypes.MISSED;
 				Widget.Telephony.findCallRecords(searchFor, 0, 10);
 			}
 		},
 		{
-			id: 802,
+			id: 806,
 			name:"Telephony.getCallRecord",
 			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
 			test:function(){
@@ -595,15 +652,54 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 			}
 		},
 		{
-			id: 804,
+			id: 808,
 			name:"CallRecord (all properties)",
 			test:function(){
 				loopAllProperties(tmp.callRecord);
 			}
 		},
 		{
-			id: 806,
+			id: 810,
 			loopAllProperties:"Widget.Telephony.CallRecordTypes"
+		},
+		{
+			id: 812,
+			name:"Telephony.deleteCallRecord",
+			permissions:[p.DISALLOWED, p.ONE_SHOT, p.ALLOWED],
+			test:function(){
+				Widget.Telephony.deleteCallRecord(tmp.callRecord);
+			}
+		},
+		{
+			id: 814,
+			name:"Telephony.getCallRecordCnt",
+			permissions:[p.SESSION, p.ALLOWED, p.ALLOWED],
+			test:function(){
+				Widget.Telephony.getCallRecordCnt();
+			}
+		},
+		{
+			id: 816,
+			name:"Telephony.initiateVoiceCall",
+			permissions:[p.ONE_SHOT, p.ONE_SHOT, p.ALLOWED],
+			test:function(){
+				Widget.Telephony.initiateVoiceCall("+4921182000000");
+			}
+		},
+		{
+			id: 818,
+			name:"Telephony.onCallEvent",
+			test:function(){
+				Widget.Telephony.onCallEvent = function(){}
+			}
+		},
+		{
+			id: 820,
+			name:"Telephony.deleteAllCallRecords",
+			permissions:[p.DISALLOWED, p.ONE_SHOT, p.ALLOWED],
+			test:function(){
+				Widget.Telephony.deleteAllCallRecords(Widget.Telephony.CallRecordTypes.MISSED);
+			}
 		},
 		
 		//
@@ -906,23 +1002,77 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 			id: 1350,
 			propertyToTest:"Widget.Device.DeviceStateInfo.processorUtilizationPercent"
 		},
+		{
+			id: 1352,
+			name:"PowerInfo.onLowBattery",
+			test:function(){
+				Widget.Device.PowerInfo.onLowBattery = function(){}
+			}
+		},
+		{
+			id: 1354,
+			name:"PowerInfo.onChargeLevelChange",
+			test:function(){
+				Widget.Device.PowerInfo.onChargeLevelChange = function(){}
+			}
+		},
+		{
+			id: 1356,
+			name:"PowerInfo.onChargeStateChange",
+			test:function(){
+				Widget.Device.PowerInfo.onChargeStateChange = function(){}
+			}
+		},
+		{
+			id: 1358,
+			propertyToTest:"Widget.Device.PowerInfo.isCharging"
+		},
+		{
+			id: 1360,
+			propertyToTest:"Widget.Device.PowerInfo.percentRemaining"
+		},
+		{
+			id: 1362,
+			propertyToTest:"Widget.Device.RadioInfo.isRadioEnabled"
+		},
+		{
+			id: 1364,
+			propertyToTest:"Widget.Device.RadioInfo.isRoaming"
+		},
+		{
+			id: 1366,
+			propertyToTest:"Widget.Device.RadioInfo.radioSignalSource"
+		},
+		{
+			id: 1368,
+			propertyToTest:"Widget.Device.RadioInfo.radioSignalStrengthPercent"
+		},
+		{
+			id: 1370,
+			name:"RadioInfo.onSignalSourceChange",
+			test:function(){
+				Widget.Device.RadioInfo.onSignalSourceChange = function(){}
+			}
+		},
+		{
+			id: 1372,
+			loopAllProperties:"Widget.Device.RadioInfo.RadioSignalSourceTypes"
+		},
 		
 		//
 		//	GPS, PositionInfo ...
 		//
 		{
 			id: 1400,
-			loopAllProperties:"Widget.Device.PositionInfo"
-		},
-		{
-			id: 1402,
 			name:"DeviceStateInfo.onPositionRetreived",
 			test:function(){
-				Widget.Device.DeviceStateInfo.onPositionRetreived = function(){}
+				Widget.Device.DeviceStateInfo.onPositionRetreived = function(pos){
+					tmp = {positionInfo:pos};
+				}
 			}
 		},
 		{
-			id: 1404,
+			id: 1402,
 			name:"DeviceStateInfo.requestPositionInfo",
 			permissions:[p.ONE_SHOT, p.SESSION, p.ALLOWED],
 			test:function(){
@@ -930,6 +1080,10 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 				var fastestLocationService = c.supportsCellId ? "cellid" : (c.supportsAgps ? "agps" : "gps");
 				Widget.Device.DeviceStateInfo.requestPositionInfo(fastestLocationService);
 			}
+		},
+		{
+			id: 1404,
+			loopAllProperties:"Widget.Device.PositionInfo"
 		},
 		
 		//
