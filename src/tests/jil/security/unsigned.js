@@ -15,6 +15,8 @@
 	var testGroupName = "Unsigned tests";
 	//var runTestWithPermissionLevel = permissionLevels.OPERATOR_SIGNED;
 	//var testGroupName = "Operator signed tests";
+	//var runTestWithPermissionLevel = permissionLevels.DEVELOPER_SIGNED;
+	//var testGroupName = "Developer signed tests";
 	//
 	//	Configure END
 	//
@@ -30,7 +32,8 @@
 	var expectedResults = {};
 	expectedResults[p.ALLOWED]  = "No security dialog should have opened, was that the case?";
 	expectedResults[p.ONE_SHOT] = "Did you have to confirm the security message?";
-	expectedResults[p.BLANKET] = "blanket question ...";
+	expectedResults[p.BLANKET] = "Did you have to confirm the security message?";
+	expectedResults["BLANKET 2nd+ message"] = "No security dialog should have opened, was that the case?";
 	expectedResults[p.SESSION] = "Did you have to confirm the security message?";
 	expectedResults["SESSION 2nd message"] = "No security dialog should have opened, was that the case?";
 	expectedResults[p.UNRESTRICTED] = "No security dialog should have opened, was that the case?";
@@ -359,7 +362,7 @@
 			}
 		},
 		
-		//
+/*		//
 		//	Messaging, Attachment
 		//
 		{
@@ -452,11 +455,12 @@ throw new Error("TODO - test needs to be implemented still");
 throw new Error("TODO - a looooooooot of messaaging tests still missing");
 			}
 		},
+*/
 		
 		//
 		//	AudioPlayer
 		//
-		{
+/*		{
 			id: 600,
 			name:"AudioPlayer.open",
 			test:function(){
@@ -1090,7 +1094,7 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		//
 		//	Video
 		//
-		{
+/*		{
 			id: 1500,
 			loopAllProperties:"Widget.Multimedia.isVideoPlaying"
 		},
@@ -1262,6 +1266,27 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 				testsToAdd.push(doh.util.mixin({}, tmp));
 				tmp.id = tmp.id+1;
 				tmp.expectedResult = expectedResults["SESSION 2nd message"];
+			} else if (curPerm==p.BLANKET){
+				// BLANKET means the user has to confirm once after the widget had been first installed,
+				// we store this in the key+value store and the user should never be asked again.
+				// If there is something in the keyvalue store than this method had been called, so just
+				// verify no msg appears, otherwise trigger the method twice to verify the security msg appears
+				// and that it doesnt later.
+				var key = "BLANKET_" + tmp.id;
+				if (!Widget.preferenceForKey(key)){
+					tmp.expectedResult = expectedResults[p.BLANKET];
+					var actualTest = tmp.test;
+					tmp.test = (function(testFnc){
+						return function(t){
+							Widget.setPreferenceForKey(true, key);
+							testFnc();
+						}
+					})(tmp.test);
+					testsToAdd.push(doh.util.mixin({}, tmp));
+					tmp.test = actualTest;
+					tmp.id = tmp.id+1;
+				}
+				tmp.expectedResult = expectedResults["BLANKET 2nd+ message"];
 			}
 		}
 		testsToAdd.push(tmp);
