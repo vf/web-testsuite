@@ -53,8 +53,8 @@
 				id: 1,
 				name:"Verify Preconditions",
 				instructions:[
-					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
-					"Click 'GO' to start testing."
+					"You will requested some phone numbers to use for sending SMS, MMS, etc.",
+					"Click 'GO' to start."
 				],
 				timeout: 2 * 60 * 1000, // 2mins should be enough, I hope
 				test:function(t){
@@ -188,7 +188,7 @@
 			{
 				id: 900,
 				name: "getMessage - Verify EMail with subject '" + _testMessage.subject + "'.",
-				requiredObjects:["Widget.Messaging.getMessage", "Widget.Messaging.MessageTypes.EmailMessage", "Widget.MessageFolderTypes.SENTBOX"],
+				requiredObjects:["Widget.Messaging.getMessage", "Widget.Messaging.MessageTypes.EmailMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
 				expectedResult:"Is this message shown correct?",
 				test: function(t){
 					var msg = wm.getMessage(wmt.EmailMessage, wmft.SENTBOX, 0);
@@ -198,7 +198,7 @@
 			{
 				id: 1000,
 				name: "getMessage - Verify MMS with subject '" + _testMessage.subject + "'.",
-				requiredObjects:["Widget.Messaging.getMessage", "Widget.Messaging.MessageTypes.MMSMessage", "Widget.MessageFolderTypes.SENTBOX"],
+				requiredObjects:["Widget.Messaging.getMessage", "Widget.Messaging.MessageTypes.MMSMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
 				expectedResult:"Is this message shown correct?",
 				test: function(t){
 					var msg = wm.getMessage(wmt.MMSMessage, wmft.SENTBOX, 0);
@@ -240,7 +240,7 @@
 			{
 				id: 1100,
 				name: "deleteMessage - Delete MMS with subject '" + _testMessage.subject + "'.",
-				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.SMSMessage", "Widget.MessageFolderTypes.SENTBOX"],
+				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.SMSMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
 				test: function(t){
 					wm.deleteMessage(wmt.MMSMessage, wmft.SENTBOX, _createdMessages["mms"].messageId);
 				}
@@ -248,7 +248,7 @@
 			{
 				id: 1200,
 				name: "deleteMessage - Delete SMS with subject '" + _testMessage.subject + "'.",
-				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.MMSMessage", "Widget.MessageFolderTypes.SENTBOX"],
+				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.MMSMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
 				test: function(t){
 					wm.deleteMessage(wmt.SMSMessage, wmft.SENTBOX, _createdMessages["sms"].messageId);
 				}
@@ -256,7 +256,7 @@
 			{
 				id: 1300,
 				name: "deleteMessage - Delete EMail with subject '" + _testMessage.subject + "'.",
-				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.EmailMessage", "Widget.MessageFolderTypes.SENTBOX"],
+				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.EmailMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
 				test: function(t){
 					wm.deleteMessage(wmt.EmailMessage, wmft.SENTBOX, _createdMessages["email"].messageId);
 				}
@@ -264,7 +264,7 @@
 			{
 				id: 1400,
 				name: "deleteMessage - Delete already deleted MMS again.",
-				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.MMSMessage", "Widget.MessageFolderTypes.SENTBOX"],
+				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.MMSMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
 				test: function(t) {
 					try{
 						wm.deleteMessage(wmt.MMSMessage, wmft.SENTBOX, _createdMessages["mms"].messageId);
@@ -277,7 +277,7 @@
 			{
 				id: 1500,
 				name: "deleteMessage - Delete already deleted SMS again.",
-				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.SMSMessage", "Widget.MessageFolderTypes.SENTBOX"],
+				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.SMSMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
 				test: function(t) {
 					try{
 						wm.deleteMessage(wmt.SMSMessage, wmft.SENTBOX, _createdMessages["sms"].messageId);
@@ -290,7 +290,7 @@
 			{
 				id: 1600,
 				name: "deleteMessage - Delete already deleted EMail again.",
-				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.EmailMessage", "Widget.MessageFolderTypes.SENTBOX"],
+				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.EmailMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
 				test: function(t) {
 					try{
 						wm.deleteMessage(wmt.EmailMessage, wmft.SENTBOX, _createdMessages["email"].messageId);
