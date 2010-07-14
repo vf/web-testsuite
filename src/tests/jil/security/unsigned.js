@@ -293,6 +293,21 @@
 				Widget.PIM.exportAsVCard([tmp.addAddressBookItem]);
 			}
 		},
+		{
+			id: 332,
+			name:"PIM.findAddressBookItems",
+			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
+			test:function(){
+				Widget.PIM.findAddressBookItems(tmp.addressBookItem, 0, 10);
+			}
+		},
+		{
+			id: 334,
+			name:"Device.setRingtone",
+			test:function(){
+				Widget.Device.setRingtone(config.fileSystem.playableAudioFiles.onDevice.loopMp3, tmp.addressBookItem);
+			}
+		},
 		
 
 		
@@ -535,6 +550,14 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 				Widget.PIM.deleteCalendarItem(tmp.newCalendarItem);
 			}
 		},
+		{
+			id: 714,
+			name:"PIM.findCalendarItems",
+			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
+			test:function(){
+				Widget.PIM.findCalendarItems(tmp.calendarItem, 0, 10);
+			}
+		},
 		
 		//
 		//	Telephony stuff - CallRecord, CallRecordTypes
@@ -638,14 +661,6 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 			name:"Camera.setDefaultRingtone",
 			test:function(){
 				Widget.Config.setDefaultRingtone(config.fileSystem.playableAudioFiles.onDevice.loopMp3);
-			}
-		},
-		{
-			id: 1006,
-			name:"Device.setRingtone",
-			test:function(){
-				var addressBookItem = Widget.PIM.getAddressBookItem(config.validAddressBookItemId);
-				Widget.Device.setRingtone(config.fileSystem.playableAudioFiles.onDevice.loopMp3, addressBookItem);
 			}
 		},
 		
