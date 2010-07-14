@@ -48,7 +48,6 @@
 					"Copy the content of the testsuite's zip-file's  folder 'audio' into the music directory on the phone. (The exact name of the destination folder may vary on your device.)",
 					"At least one calendar item has to exist on the phone. (calender item with the ID '" + config.validCalendarItemId + "' will be used)",
 					"At least one MISSED call has to exist on the phone.",
-					"Copy the content of the testsuite's zip-file's  folder 'audio' into the music directory on the phone. (The exact name of the destination folder may vary on your device.)",
 					"Click 'GO' to start testing."
 				],
 				test:function(t){
@@ -76,6 +75,15 @@
 		// need for ONE_SHOT which automatically generates another test right afterwards
 		// to check that every time the security dialog is prompted.
 		// Dont use ID+100 steps because we will have a looooot tests in here.
+		//
+		// All the tests try to affect ONLY the functionality that shall be tested for.
+		// E.g. if addAddressBookItem is tested we actually need to do the following:
+		// 		var addr = new pim.AddressBookItem();  				=>  UNRESTRICTED
+		//		addr.setAttributeValue("address", "test Address " + uniqueString);  => UNRESTRICTED
+		//		pim.addAddressBookItem(addr);						=> ONE_SHOT, BLANKET, ALLOWED
+		// which basically uses three different methods that have three different security settings.
+		// There we split this up in three separate tests! And we use the global variable "tmp"
+		// to pass the data from one test to another, see tests 318, 320, 322.
 		
 		//
 		//	AccelerometerInfo
@@ -215,6 +223,78 @@
 				tmp.addressBookItem.update();
 			}
 		},
+		{
+			id: 318,
+			name:"AddressBookItem - new Widget.PIM.AddressBookItem",
+			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
+			test:function(){
+				tmp.newAddressBookItem = new Widget.PIM.AddressBookItem();
+			}
+		},
+		{
+			// This is actually a duplicate test, but this one is working on a new AddressBookItem
+			// unlinke test 314 which works on an existing item.
+			id: 320,
+			name:"AddressBookItem.setAttributeValue",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				var uniqueString = new Date().getTime();
+				var _testFullName = "test Contact " + uniqueString;
+				tmp.newAddressBookItem.setAttributeValue("fullName", _testFullName);
+				tmp.newAddressBookItem.setAttributeValue("address", "test Address " + uniqueString);
+			}
+		},
+		{
+			id: 322,
+			name:"PIM.addAddressBookItem",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				Widget.PIM.addAddressBookItem(tmp.newAddressBookItem);
+			}
+		},
+		{
+			id: 324,
+			name:"PIM.getAddressBookGroupMembers",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				Widget.PIM.getAddressBookGroupMembers(tmp.addressGroupNames[0]);
+			}
+		},
+		{
+			id: 324,
+			name:"PIM.createAddressBookGroup",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				var name = "TestGroup-" + new Date().getTime(); // Prevent nameclashes
+				tmp.newAddressBookGroup = Widget.PIM.createAddressBookGroup(name);
+			}
+		},
+		{
+			id: 326,
+			name:"PIM.deleteAddressBookGroup",
+			permissions:[p.DISALLOWED, p.ONE_SHOT, p.ALLOWED],
+			test:function(){
+				Widget.PIM.deleteAddressBookGroup(tmp.newAddressBookGroup);
+			}
+		},
+		{
+			id: 328,
+			name:"PIM.deleteAddressBookItem",
+			permissions:[p.DISALLOWED, p.ONE_SHOT, p.ALLOWED],
+			test:function(){
+				Widget.PIM.deleteAddressBookItem(tmp.newAddressBookItem);
+			}
+		},
+		{
+			id: 330,
+			name:"PIM.exportAsVCard",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				Widget.PIM.exportAsVCard([tmp.addAddressBookItem]);
+			}
+		},
+		
+
 		
 		//
 		//	Application, ApplicationTypes
@@ -245,9 +325,92 @@
 		//
 		{
 			id: 500,
+			propertyToTest:"Widget.Messaging.MessageTypes"
+		},
+		{
+			id: 502,
+			propertyToTest:"Widget.Messaging.MessageFolderTypes"
+		},
+		{
+			id: 504,
 			name:"Attachment (all properties)",
 			test:function(){
-// TODO
+throw new Error("TODO - test needs to be implemented still");
+			}
+		},
+		{
+			id: 504,
+			name:"Message (all properties)",
+			test:function(){
+throw new Error("TODO - test needs to be implemented still");
+			}
+		},
+		{
+			id: 506,
+			name:"Message.addAddress",
+			test:function(){
+throw new Error("TODO - test needs to be implemented still");
+			}
+		},
+		{
+			id: 508,
+			name:"Message.addAttachment",
+			test:function(){
+throw new Error("TODO - test needs to be implemented still");
+			}
+		},
+		{
+			id: 510,
+			name:"Message.deleteAddress",
+			permissions:[p.DISALLOWED, p.ONE_SHOT, p.ALLOWED],
+			test:function(){
+throw new Error("TODO - test needs to be implemented still");
+			}
+		},
+		{
+			id: 512,
+			name:"Message.deleteAttachment",
+			permissions:[p.DISALLOWED, p.ONE_SHOT, p.ALLOWED],
+			test:function(){
+throw new Error("TODO - test needs to be implemented still");
+			}
+		},
+		{
+			id: 514,
+			name:"Message.saveAttachment",
+			permissions:[p.ONE_SHOT, p.SESSION, p.BLANKET],
+			test:function(){
+throw new Error("TODO - test needs to be implemented still");
+			}
+		},
+		{
+			id: 516,
+			name:"MessageQuantities",
+			test:function(){
+throw new Error("TODO - test needs to be implemented still");
+			}
+		},
+		{
+			id: 518,
+			name:"Messaging.copyMessageToFolder",
+			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
+			test:function(){
+throw new Error("TODO - test needs to be implemented still");
+			}
+		},
+		{
+			id: 520,
+			name:"Messaging.createFolder",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+throw new Error("TODO - test needs to be implemented still");
+			}
+		},
+		{
+			id: 522,
+			name:"Messaging........",
+			test:function(){
+throw new Error("TODO - a looooooooot of messaaging tests still missing");
 			}
 		},
 		
@@ -296,6 +459,24 @@
 				Widget.Multimedia.AudioPlayer.onStateChange = function(){};
 			}
 		},
+		{
+			id: 612,
+			name:"Multimedia.getVolume",
+			test:function(){
+				var v = Widget.Multimedia.getVolume();
+			}
+		},
+		{
+			id: 614,
+			name:"Multimedia.stopAll",
+			test:function(){
+				var v = Widget.Multimedia.stopAll();
+			}
+		},
+		{
+			id: 616,
+			propertyToTest:"Widget.Multimedia.isAudioPlaying"
+		},
 		
 		//
 		// Calendar stuff - CalendarItem, PIM
@@ -327,6 +508,32 @@
 		{
 			id: 706,
 			loopAllProperties:"Widget.PIM.EventRecurrenceTypes"
+		},
+		{
+			id: 708,
+			name:"CalendarItem - new CalendarItem",
+			test:function(){
+				tmp.newCalendarItem = new Widget.PIM.CalendarItem();
+			}
+		},
+		{
+			id: 710,
+			name:"PIM.addCalendarItem",
+			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
+			test:function(){
+				var item = tmp.newCalendarItem;
+				item.startTime = new Date();
+				item.eventName = "Meeting";
+				Widget.PIM.addCalendarItem(item);
+			}
+		},
+		{
+			id: 712,
+			name:"PIM.deleteCalendarItem",
+			permissions:[p.DISALLOWED, p.ONE_SHOT, p.ALLOWED],
+			test:function(){
+				Widget.PIM.deleteCalendarItem(tmp.newCalendarItem);
+			}
 		},
 		
 		//
@@ -709,6 +916,15 @@
 				Widget.Device.DeviceStateInfo.requestPositionInfo(fastestLocationService);
 			}
 		},
+		
+		//
+		//	Video
+		//
+		{
+			id: 1500,
+			loopAllProperties:"Widget.Multimedia.isVideoPlaying"
+		},
+
 //*/
 	];
 	
