@@ -109,6 +109,18 @@
 			"Widget.Multimedia.VideoPlayer.stop"
 		],
 		tests:[
+			{
+				id:1,
+				name:"Verify Preconditions",
+				instructions:[
+					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
+					"Copy the content of the testsuite's zip-file's  folder 'video' into the videos directory on the phone. (The exact name of the destination folder may vary on your device.)",
+					"Click 'GO' to start testing."
+				],
+				test:function(t){
+					t.success("Preconditions met, user confirmed.");
+				}
+			}
 			//
 			//	Protocols. Spec says: http, https, file, rtsp and widget context (=none of the listed prefixes) are supported.
 			//
