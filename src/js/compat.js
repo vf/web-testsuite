@@ -129,14 +129,14 @@
 						if (this.onAddressBookItemsFound){
 							this.onAddressBookItemsFound([new Widget.PIM.AddressBookItem()]);
 						}
-					}), 500);
+					}), 400);
 				},
 				findCalendarItems:function(){
 					setTimeout(doh.util.hitch(this, function(){
 						if (this.onCalendarItemsFound){
 							this.onCalendarItemsFound([new Widget.PIM.CalendarItem()]);
 						}
-					}), 500);
+					}), 400);
 				},
 				getAddressBookItem:function(){
 					return new Widget.PIM.AddressBookItem();
@@ -144,7 +144,7 @@
 				getCalendarItem:function(){
 					return new Widget.PIM.CalendarItem();
 				},
-				getAddressBookItemsCount:function(){ return 6 },
+				getAddressBookItemsCount:function(){ return 106 },
 				
 				// Objects
 				AddressBookItem:function(){

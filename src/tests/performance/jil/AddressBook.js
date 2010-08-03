@@ -44,11 +44,12 @@
 					var started = new Date().getTime();
 					Widget.PIM.onAddressBookItemsFound = function(items){
 						var duration = new Date().getTime() - started;
-						t.result = items.length + " items found in " + duration/1000 +"s";
-						if (duration < 500){
-							t.success();
+						var result = items.length + " items found in " + duration/1000 +"s";
+						var maxMs = 500; // The max number of ms 
+						if (duration < maxMs){
+							t.success(result);
 						} else {
-							t.failure();
+							t.failure(result + " - " + (duration-maxMs)/1000 + "ms to slow");
 						}
 					}
 					pim.findAddressBookItems(addr, 0, 100);
