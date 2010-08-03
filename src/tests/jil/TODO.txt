@@ -1,4 +1,7 @@
-Sprint 2
+TODO
+
+* make config.xml ONLY contain the feature URLs that the test needs,
+  add a first test that verifies that all methods can be accessed and dont throw security exceptions (opera currently also requires widget and device for PositionInfo functioanlity)
 
 Excpetion
 * throw excpetion and for-in over the props, that doesnt work on H2
