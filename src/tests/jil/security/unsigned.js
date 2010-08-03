@@ -460,7 +460,7 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		//
 		//	AudioPlayer
 		//
-/*		{
+		{
 			id: 600,
 			name:"AudioPlayer.open",
 			test:function(){
@@ -1094,7 +1094,7 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		//
 		//	Video
 		//
-/*		{
+		{
 			id: 1500,
 			loopAllProperties:"Widget.Multimedia.isVideoPlaying"
 		},
