@@ -136,7 +136,11 @@
 					
 					<!-- create .wgt-file (include audio-data if needed) -->
 					<condition property="isAudioMp3Only" value="true">
-						<equals arg1="${test}" arg2="jil/Application"/> <!-- uses audiofiles to play them using launchApplication() -->
+						<or>
+							<!-- uses audiofiles to play them using launchApplication() -->
+							<equals arg1="${test}" arg2="jil/Application"/>
+							<equals arg1="${test}" arg2="jil/security/policy"/>
+						</or>
 					</condition>
 					<condition property="isAudio" value="true">
 						<equals arg1="${test}" arg2="jil/AudioPlayer"/>
