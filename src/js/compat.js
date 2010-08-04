@@ -3,6 +3,7 @@
 //
 
 (function(){
+	var __prefStore = {};
 	if (window["opera"]){
 		// Make "console.log()" work.
 		console = {};
@@ -36,9 +37,13 @@
 		Widget = {
 			
 			// Methods.
-			setPreferenceForKey:function(){},
+			setPreferenceForKey:function(value, key){
+				__prefStore[key] = value;
+			},
 			openURL:function(){},
-			preferenceForKey:function(){},
+			preferenceForKey:function(key){
+				return __prefStore[key];
+			},
 			
 			// Objects.
 			Device:{
