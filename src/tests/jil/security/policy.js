@@ -165,7 +165,7 @@
 			test:function(){
 				tmp = {addressBookItem:Widget.PIM.getAddressBookItem(config.validAddressBookItemId)};
 				if (!tmp.addressBookItem){
-					throw new Error("Following tests might fail. No valid AddressBookItem found, using 'Widget.PIM.getAddressBookItem(config.validAddressBookItemId)'.");
+					throw new Error("WRT Bug!? Following tests might fail. No valid AddressBookItem returned by 'Widget.PIM.getAddressBookItem(\"" + config.validAddressBookItemId +  "\")'.");
 				}
 			}
 		},
@@ -177,6 +177,9 @@
 			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
 			test:function(){
 				tmp.addressGroupNames = Widget.PIM.getAvailableAddressGroupNames();
+				if (!tmp.addressGroupNames){
+					throw new Error("WRT Bug!? Following tests might fail. Widget.PIM.getAvailableAddressGroupNames() returned '" + tmp.addressGroupNames + "'.");
+				}
 			}
 		},
 		{
@@ -268,7 +271,7 @@
 			}
 		},
 		{
-			id: 324,
+			id: 326,
 			name:"PIM.createAddressBookGroup",
 			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
 			test:function(){
@@ -277,7 +280,7 @@
 			}
 		},
 		{
-			id: 326,
+			id: 328,
 			name:"PIM.deleteAddressBookGroup",
 			permissions:[p.DISALLOWED, p.ONE_SHOT, p.ALLOWED],
 			test:function(){
@@ -285,7 +288,7 @@
 			}
 		},
 		{
-			id: 328,
+			id: 330,
 			name:"PIM.deleteAddressBookItem",
 			permissions:[p.DISALLOWED, p.ONE_SHOT, p.ALLOWED],
 			test:function(){
@@ -293,7 +296,7 @@
 			}
 		},
 		{
-			id: 330,
+			id: 332,
 			name:"PIM.exportAsVCard",
 			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
 			test:function(){
@@ -301,7 +304,7 @@
 			}
 		},
 		{
-			id: 332,
+			id: 334,
 			name:"PIM.findAddressBookItems",
 			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
 			test:function(){
@@ -309,7 +312,7 @@
 			}
 		},
 		{
-			id: 334,
+			id: 336,
 			name:"Device.setRingtone",
 			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
 			test:function(){
@@ -317,7 +320,7 @@
 			}
 		},
 		{
-			id: 336,
+			id: 338,
 			name:"Device.getAddressBookItemsCount",
 			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
 			test:function(){
@@ -325,21 +328,20 @@
 			}
 		},
 		{
-			id: 338,
+			id: 340,
 			name:"Device.onAddressBookItemsFound",
 			test:function(){
 				Widget.PIM.onAddressBookItemsFound = function(){}
 			}
 		},
 		{
-			id: 340,
+			id: 342,
 			name:"Device.onVCardExportingFinish",
 			test:function(){
 				Widget.PIM.onVCardExportingFinish = function(){}
 			}
 		},
 		
-
 		
 		//
 		//	Application, ApplicationTypes
@@ -467,7 +469,9 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 			id: 600,
 			name:"AudioPlayer.open",
 			test:function(){
-				Widget.Multimedia.AudioPlayer.open(config.fileSystem.playableAudioFiles.onDevice.songMp3);
+				// We use the inWidget.songMp3 just because operas WRT for android currently cant open file:/// urls
+				// it throws invalid_parameter ... grrrr but we want to be able to do this and the following tests :-|
+				Widget.Multimedia.AudioPlayer.open(config.fileSystem.playableAudioFiles.inWidget.songMp3);
 			}
 		},
 		{
@@ -488,14 +492,14 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 			id: 606,
 			name:"AudioPlayer.resume",
 			test:function(){
-				Widget.Multimedia.AudioPlayer.pause();
+				Widget.Multimedia.AudioPlayer.resume();
 			}
 		},
 		{
 			id: 608,
 			name:"AudioPlayer.stop",
 			test:function(){
-				Widget.Multimedia.AudioPlayer.pause();
+				Widget.Multimedia.AudioPlayer.stop();
 			}
 		},
 		{
@@ -715,32 +719,32 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		//
 		{
 			id: 900,
-			name:"Camera.captureImage",
+			name:"Multimedia.Camera.captureImage",
 			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
 			test:function(){
-				Widget.Camera.captureImage("test-img-" + new Date().getTime() + ".jpg", true);
+				Widget.Multimedia.Camera.captureImage("test-img-" + new Date().getTime() + ".jpg", true);
 			}
 		},
 		{
 			id: 902,
-			name:"Camera.startVideoCapture",
+			name:"Multimedia.Camera.startVideoCapture",
 			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
 			test:function(){
-				Widget.Camera.startVideoCapture(new Date().getTime() + "-video.mp4", true, 1, false);
+				Widget.Multimedia.Camera.startVideoCapture(new Date().getTime() + "-video.mp4", true, 1, false);
 			}
 		},
 		{
 			id: 904,
-			name:"Camera.stopVideoCapture",
+			name:"Multimedia.Camera.stopVideoCapture",
 			test:function(){
-				Widget.Camera.stopVideoCapture();
+				Widget.Multimedia.Camera.stopVideoCapture();
 			}
 		},
 		{
 			id: 904,
-			name:"Camera.onCameraCaptured",
+			name:"Multimedia.Camera.onCameraCaptured",
 			test:function(){
-				Widget.Camera.onCameraCaptured = function(){}
+				Widget.Multimedia.Camera.onCameraCaptured = function(){}
 			}
 		},
 		
@@ -750,11 +754,11 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		{
 			id: 1000,
 			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
-			loopAllProperties:"Widget.Config"
+			loopAllProperties:"Widget.Device.DeviceStateInfo.Config"
 		},
 		{
 			id: 1002,
-			name:"Config.setAsWallpaper",
+			name:"Device.DeviceStateInfo.Config.setAsWallpaper",
 			permissions:[p.ONE_SHOT, p.BLANKET, p.BLANKET],
 			test:function(){
 				Widget.Config.setAsWallpaper("img/logo.jpg");
@@ -762,9 +766,9 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		},
 		{
 			id: 1004,
-			name:"Camera.setDefaultRingtone",
+			name:"Device.DeviceStateInfo.Config.setDefaultRingtone",
 			test:function(){
-				Widget.Config.setDefaultRingtone(config.fileSystem.playableAudioFiles.onDevice.loopMp3);
+				Widget.Device.DeviceStateInfo.Config.setDefaultRingtone(config.fileSystem.playableAudioFiles.onDevice.loopMp3);
 			}
 		},
 		
@@ -781,24 +785,21 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		},
 		{
 			id: 1104,
-			name:"DataNetworkInfo.onNetworkConnectionChanged",
+			name:"Device.DataNetworkInfo.onNetworkConnectionChanged",
 			test:function(){
 				Widget.Device.DataNetworkInfo.onNetworkConnectionChanged = function(){}
 			}
 		},
 		{
 			id: 1106,
-			name:"DataNetworkInfo.getNetworkConnectionName",
+			name:"Device.DataNetworkInfo.getNetworkConnectionName",
 			test:function(){
 				Widget.Device.DataNetworkInfo.getNetworkConnectionName("wifi");
 			}
 		},
 		{
 			id: 1108,
-			name:"DataNetworkInfo.isDataNetworkConnected",
-			test:function(){
-				Widget.Device.DataNetworkInfo.isDataNetworkConnected();
-			}
+			propertyToTest:"Device.DataNetworkInfo.isDataNetworkConnected"
 		},
 		
 		//
@@ -1103,7 +1104,7 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		},
 		{
 			id: 1502,
-			name:"VideoPlayer.setWindow",
+			name:"Multimedia.VideoPlayer.setWindow",
 			test:function(){
 				dohx.showInfo('<object id="_videoWindow_" type="video/3gp" width="320" height="240" />');
 				Widget.Multimedia.VideoPlayer.setWindow(util.byId("_videoWindow_"));
@@ -1111,42 +1112,42 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		},
 		{
 			id: 1504,
-			name:"VideoPlayer.onStateChange",
+			name:"Multimedia.VideoPlayer.onStateChange",
 			test:function(){
 				Widget.Multimedia.VideoPlayer.onStateChange = function(){}
 			}
 		},
 		{
 			id: 1506,
-			name:"VideoPlayer.open",
+			name:"Multimedia.VideoPlayer.open",
 			test:function(){
 				Widget.Multimedia.VideoPlayer.open(config.playableVideoFiles.mp4.inWidget);
 			}
 		},
 		{
 			id: 1508,
-			name:"VideoPlayer.play",
+			name:"Multimedia.VideoPlayer.play",
 			test:function(){
 				Widget.Multimedia.VideoPlayer.play(1);
 			}
 		},
 		{
 			id: 1508,
-			name:"VideoPlayer.pause",
+			name:"Multimedia.VideoPlayer.pause",
 			test:function(){
 				Widget.Multimedia.VideoPlayer.pause();
 			}
 		},
 		{
 			id: 1510,
-			name:"VideoPlayer.resume",
+			name:"Multimedia.VideoPlayer.resume",
 			test:function(){
 				Widget.Multimedia.VideoPlayer.resume();
 			}
 		},
 		{
 			id: 1512,
-			name:"VideoPlayer.stop",
+			name:"Multimedia.VideoPlayer.stop",
 			test:function(){
 				Widget.Multimedia.VideoPlayer.stop();
 			}
@@ -1216,7 +1217,7 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		// summary:
 		// 		Return true/false if the given API is supported on the current device.
 		// apiString: String
-		// 		Like "Widget.Camera.captureImage" or any other API string.
+		// 		Like "Widget.Multimedia.Camera.captureImage" or any other API string.
 		var apis = config.unsupportedApis;
 		if (apis.indexOf(apiString)!=-1){
 			return false;
