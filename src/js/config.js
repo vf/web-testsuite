@@ -36,6 +36,8 @@ var config = {
 		supportsMultipleEmailAccounts:true,
 		supportsDeleteEmailAccounts:true,
 		
+		unsupportedApis:[],
+		
 		// Some devices/platforms don't support certain features and they normally need to return UNSUPPORTED
 		// exception, but to run the correct tests (those testing for the exception) we need to configure
 		// the platforms. That is done here.
@@ -56,8 +58,8 @@ var config = {
 		// application in the background.
 		canDoMultitasking:true,
 		
-		validAddressBookItemId:"",
-		validCalendarItemId:"",
+		validAddressBookItemId:"1",
+		validCalendarItemId:"1", // The first contact filled in an H2 really has the ID "1".
 		
 		// Various file system settings that will be used for testing, etc.
 		// NOTE: Paths must always end with the directorySeparator
@@ -159,9 +161,7 @@ var config = {
 			var widgetPath = readableFile.replace(/\/js\/config\.js$/, "").replace(/\/+$/, "")+"/";
 			
 			var ret = {
-				canDoMultitasking:false,
-				validCalendarItemId:"1",
-				validAddressBookItemId:"1",
+				canDoMultitasking:false
 				// Add the device's configuration, different from the default here!
 			};
 			return ret;
@@ -171,8 +171,6 @@ var config = {
 		//
 		"regexp:^WidgetManager;\\sSAMSUNG-GT-I\\d{4}-Vodafone;AppleWebKit.*":function(){
 			var ret = {
-				validCalendarItemId:"1",
-				validAddressBookItemId:"1", // The first contact filled in this device really has the ID "1".
 				// AGPS==GPS so set the timeout to the same on the H2
 				geolocation:{
 					timeouts: {
@@ -197,6 +195,55 @@ var config = {
 		//
 		"regexp:^WidgetManager;.*\\(Android.*Opera.*Widgets.*":function(){
 			var ret = {
+				unsupportedApis:[
+					"Widget.RadioInfo.radioSignalSource",
+					"Widget.RadioInfo.radioSignalStrengthPercent",
+					"Widget.RadioInfo.onSignalSourceChange",
+					"Widget.DataNetworkInfo.onNetworkConnectionChanged",
+					"Widget.DataNetworkInfo.getNetworkConnectionName",
+					"Widget.DataNetworkInfo.networkConnectionType",
+					"Widget.Device.clipboardString",
+					"Widget.Device.copyFile",
+					"Widget.Device.deleteFile",
+					"Widget.Device.findFiles",
+					"Widget.Device.getFileSystemRoots",
+					"Widget.Device.getFileSystemSize",
+					"Widget.Device.moveFile",
+					"Widget.Device.onFilesFound",
+					"Widget.Device.setRingtone",
+					"Widget.Device.vibrate",
+					"Widget.Device.PowerInfo",
+					"Widget.DeviceInfo.totalMemory",
+					"Widget.DeviceStateInfo.backLightOn",
+					"Widget.DeviceStateInfo.keypadLightOn",
+					"Widget.DeviceStateInfo.onScreenChangeDimensions",
+					"Widget.DeviceStateInfo.Config",
+					"Widget.PositionInfo.altitudeAccuracy",
+					"Widget.PositionInfo.cellID",
+					"Widget.PIM.deleteAddressBookItem",
+					"Widget.Multimedia.isVideoPlaying",
+					"Widget.VideoPlayer.*",
+					"Widget.PIM.addCalendarItem",
+					"Widget.PIM.deleteCalendarItem",
+					"Widget.PIM.exportAsVCard",
+					"Widget.PIM.findCalendarItems",
+					"Widget.PIM.getCalendarItem",
+					"Widget.PIM.getCalendarItems",
+					"Widget.PIM.onCalendarItemAlert",
+					"Widget.PIM.onCalendarItemsFound",
+					"Widget.Calendar*",
+					"Widget.EventRecurrenceTypes",
+					"Widget.Device.AccountInfo.phoneMSISDN",
+					"Widget.Device.AccountInfo.userSubscriptionType",
+					"Widget.Device.AccountInfo.userAccountBalance",
+					"Widget.Telephony*",
+					"Widget.CallRecord*",
+					"Widget.Messag*", // includes Message, Messaging, etc.
+					"Widget.Attachment",
+					"Widget.Account",
+					"Widget.Config",
+					"Widget.PowerInfo",
+				]
 			};
 			return ret;
 		},
@@ -206,9 +253,7 @@ var config = {
 		"regexp:Opera\\/9\\.64(.*)Presto\\/2\\.1\\.1":function(){
 			var ret = {
 				hasClipboard:true,
-				hasClamshell:false,
-				validAddressBookItemId:1,
-				validCalendarItemId:1,
+				hasClamshell:false
 			};
 			return ret;
 		},
@@ -227,8 +272,6 @@ var config = {
 			var ret = {
 				hasClipboard:true,
 				hasClamshell:false,
-				validAddressBookItemId:1,
-				validCalendarItemId:1,
 				geolocation:{
 					timeouts: {
 						agps: defaults.geolocation.timeouts.gps
@@ -263,9 +306,7 @@ var config = {
 			var widgetPath = (""+window.location).replace("widget://localhost/", "").replace(/index.html$/, "");
 			var ret = {
 				hasClipboard:true,
-				hasClamshell:false,
-				validAddressBookItemId:"00e150ed9bcd6f11",
-				validCalendarItemId:1,
+				hasClamshell:false
 			};
 			return ret;
 		},
@@ -273,9 +314,7 @@ var config = {
 			var widgetPath = (""+window.location).replace("widget://localhost/", "").replace(/index.html$/, "");
 			var ret = {
 				hasClipboard:true,
-				hasClamshell:false,
-				validAddressBookItemId:1,
-				validCalendarItemId:1,
+				hasClamshell:false
 			};
 			return ret;
 		}

@@ -11,12 +11,12 @@
 	//
 	//	This should be set depending on the way the widget is built!!!!!!!!!!!
 	//
-	var runTestWithPermissionLevel = permissionLevels.UNSIGNED;
-	var testGroupName = "Unsigned tests";
+	//var runTestWithPermissionLevel = permissionLevels.UNSIGNED;
+	//var testGroupName = "Unsigned tests";
 	//var runTestWithPermissionLevel = permissionLevels.OPERATOR_SIGNED;
 	//var testGroupName = "Operator signed tests";
-	//var runTestWithPermissionLevel = permissionLevels.DEVELOPER_SIGNED;
-	//var testGroupName = "Developer signed tests";
+	var runTestWithPermissionLevel = permissionLevels.DEVELOPER_SIGNED;
+	var testGroupName = "Developer signed tests";
 	//
 	//	Configure END
 	//
@@ -128,7 +128,7 @@
 		},
 		{
 			id: 204,
-			name: "AccountInfo.phoneUserUniqueId",
+			name: "Widget.Device.AccountInfo.phoneUserUniqueId",
 			test: function(t){
 				var val = Widget.Device.AccountInfo.phoneUserUniqueId;
 			}
@@ -164,6 +164,9 @@
 			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
 			test:function(){
 				tmp = {addressBookItem:Widget.PIM.getAddressBookItem(config.validAddressBookItemId)};
+				if (!tmp.addressBookItem){
+					throw new Error("Following tests might fail. No valid AddressBookItem found, using 'Widget.PIM.getAddressBookItem(config.validAddressBookItemId)'.");
+				}
 			}
 		},
 		{
@@ -1209,6 +1212,29 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 	
 	
 	
+	function isApiSupported(apiString){
+		// summary:
+		// 		Return true/false if the given API is supported on the current device.
+		// apiString: String
+		// 		Like "Widget.Camera.captureImage" or any other API string.
+		var apis = config.unsupportedApis;
+		if (apis.indexOf(apiString)!=-1){
+			return false;
+		}
+		for (var i=0, l=apis.length; i<l; i++){
+			var api = apis[i];
+			var apiLength = api.length;
+			// Filter out unsupportedApis listed like so "Widget.Messag*"
+			if (api[apiLength-1]=="*"){
+				if (apiString.indexOf(api.substr(0, apiLength-2))!=-1){
+					return false;
+				}
+			} else if (apiString.indexOf(api)!=-1){ // Return false if apiString starts with api
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	//
 	// Generate tests for adding them.
@@ -1216,6 +1242,22 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 	var testsToAdd = [];
 	for (var i=0, l=tests.length, t; i<l; i++){
 		t = tests[i];
+		
+		// Check if the test shall be added at all.
+		// Depending on config.unsupportedApis we add tests that are not in there,
+		// we match this against:  t.name || t.propertyToTest || t.loopAllProperties
+		// If test.api is not given we expect test.name to contain exactly the API's name/string.
+		var apiString = t.name || t.propertyToTest || t.loopAllProperties;
+		if (apiString.split(" ").length){ // If the name of the test starts with the API remove the rest behind it.
+			apiString = apiString.split(" ")[0];
+		}
+		if (apiString.indexOf("Widget")!=0){
+			apiString = "Widget." + apiString;
+		}
+		if (!isApiSupported(apiString)){
+			continue;
+		}
+		
 		var tmp = doh.util.mixin({}, t); // Clone all props.
 		t.test = t.test || null;
 		// Generate the function "test" if it doesn't exist.
