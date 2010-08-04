@@ -195,13 +195,26 @@ var config = {
 		//
 		"regexp:^WidgetManager;.*\\(Android.*Opera.*Widgets.*":function(){
 			var ret = {
+				fileSystem:{
+					readablePath:"/sdcard",
+					readableFile:"/sdcard/test-audio/mp3/loop.mp3",
+					playableAudioFiles:{
+						onDevice:{
+							// Hope we soon wont need it and opera builds the virtual fs
+							songWav:"file:///sdcard/test-audio/wav/music.wav",
+							songMp3:"file:///sdcard/test-audio/mp3/music.mp3",
+							loopWav:"file:///sdcard/test-audio/wav/loop.wav",
+							loopMp3:"file:///sdcard/test-audio/mp3/loop.mp3"
+						}
+					}
+				},
 				unsupportedApis:[
-					"Widget.RadioInfo.radioSignalSource",
-					"Widget.RadioInfo.radioSignalStrengthPercent",
-					"Widget.RadioInfo.onSignalSourceChange",
-					"Widget.DataNetworkInfo.onNetworkConnectionChanged",
-					"Widget.DataNetworkInfo.getNetworkConnectionName",
-					"Widget.DataNetworkInfo.networkConnectionType",
+					"Widget.Device.RadioInfo.radioSignalSource",
+					"Widget.Device.RadioInfo.radioSignalStrengthPercent",
+					"Widget.Device.RadioInfo.onSignalSourceChange",
+					"Widget.Device.DataNetworkInfo.onNetworkConnectionChanged",
+					"Widget.Device.DataNetworkInfo.getNetworkConnectionName",
+					"Widget.Device.DataNetworkInfo.networkConnectionType",
 					"Widget.Device.clipboardString",
 					"Widget.Device.copyFile",
 					"Widget.Device.deleteFile",
@@ -213,16 +226,16 @@ var config = {
 					"Widget.Device.setRingtone",
 					"Widget.Device.vibrate",
 					"Widget.Device.PowerInfo",
-					"Widget.DeviceInfo.totalMemory",
-					"Widget.DeviceStateInfo.backLightOn",
-					"Widget.DeviceStateInfo.keypadLightOn",
-					"Widget.DeviceStateInfo.onScreenChangeDimensions",
-					"Widget.DeviceStateInfo.Config",
-					"Widget.PositionInfo.altitudeAccuracy",
-					"Widget.PositionInfo.cellID",
+					"Widget.Device.DeviceInfo.totalMemory",
+					"Widget.Device.DeviceStateInfo.backLightOn",
+					"Widget.Device.DeviceStateInfo.keypadLightOn",
+					"Widget.Device.DeviceStateInfo.onScreenChangeDimensions",
+					"Widget.Device.DeviceStateInfo.Config",
+					"Widget.Device.PositionInfo.altitudeAccuracy",
+					"Widget.Device.PositionInfo.cellID",
 					"Widget.PIM.deleteAddressBookItem",
 					"Widget.Multimedia.isVideoPlaying",
-					"Widget.VideoPlayer.*",
+					"Widget.Multimedia.VideoPlayer.*",
 					"Widget.PIM.addCalendarItem",
 					"Widget.PIM.deleteCalendarItem",
 					"Widget.PIM.exportAsVCard",
@@ -231,8 +244,8 @@ var config = {
 					"Widget.PIM.getCalendarItems",
 					"Widget.PIM.onCalendarItemAlert",
 					"Widget.PIM.onCalendarItemsFound",
-					"Widget.Calendar*",
-					"Widget.EventRecurrenceTypes",
+					"Widget.PIM.Calendar*",
+					"Widget.PIM.EventRecurrenceTypes",
 					"Widget.Device.AccountInfo.phoneMSISDN",
 					"Widget.Device.AccountInfo.userSubscriptionType",
 					"Widget.Device.AccountInfo.userAccountBalance",
@@ -241,8 +254,7 @@ var config = {
 					"Widget.Messag*", // includes Message, Messaging, etc.
 					"Widget.Attachment",
 					"Widget.Account",
-					"Widget.Config",
-					"Widget.PowerInfo",
+					"Widget.Config"
 				]
 			};
 			return ret;
