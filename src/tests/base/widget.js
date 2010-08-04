@@ -41,12 +41,7 @@
 				name:"showNotification - Missing params",
 				requiredObjects:["widget.showNotification"],
 				test:function(t){
-					try{
-						widget.showNotification();
-						t.failure("Exception should have been thrown.");
-					}catch(e){
-						t.success("Exception caught: " + e);
-					}
+					widget.showNotification(); // Should be no problem, also no excpetion should be thrown.
 				}
 			},
 		]
