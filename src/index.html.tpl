@@ -48,25 +48,6 @@
 		</div>
 	</div>
 	
-	
-	<script type="text/javascript">
-		//window.onerror = function(){
-		//	var ret = ["ERROR"];
-		//	for (var i=0, l=arguments.length; i<l; i++){
-		//		var v = arguments[i];
-		//		if (typeof v=="object"){
-		//			for (var k in v){
-		//				if (typeof v[k]=="function") continue;
-		//				if (k==k.toUpperCase()) continue;
-		//				ret.push(k + ": " + v[k]);
-		//			}
-		//		} else {
-		//			ret.push(v);
-		//		}
-		//	}
-		//	alert(ret.join(" | "));
-		//}
-	</script>
 	<script type="text/javascript" src="js/doh2/doh.js"></script>
 	<script type="text/javascript" src="js/doh2/config.js"></script>
 	<script type="text/javascript" src="js/doh2/util.js"></script>
@@ -86,14 +67,13 @@
 			document.write("<scri"+"pt src='js/compat.js' type='text/javascript'></scr"+"ipt>");
 		}
 		if (typeof console=="undefined" || !console.log){
-		//else {
 			var dbgNode = document.getElementById("dbg");
 			console = {log:function(){
 				dbgNode.innerHTML += Array.prototype.slice.call(arguments, 0).join(", ")+" ";
 			}};
 		}
 	</script>
-	<script src='tests/$test.js' type='text/javascript'></script>
+	<script src='$test.js' type='text/javascript'></script>
 	<script type="text/javascript">
 		util.query(".statusBar .numTests")[0].innerHTML = doh._numTests;
 		try{
