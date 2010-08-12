@@ -1,3 +1,18 @@
+Version 1.6
+============
+* rebuilt all tests to make use of all new features
+* added "unsupportedApis" configuration and execute tests only if the API is supported
+* added way more explicit error message, a dev could look at a failed test and see the test's source code
+* using real units, cm, for styling
+* Acceleromter: improved the tests by very much, way more explicit instructions
+* added a first performance test for reading a lot address book items
+* test-base-metrics.wgt - added metrics tests to verify rendering using exact units like cm and inch
+* added a lot of preconditions and better, more explicit instructions for the user
+* let user enter a phone number before each test if required
+* showing test ID on the screen when executing the test
+* test-jil-security-policy.wgt - added security tests to test signed widget from an identified domain (JIL signed)
+* widget.showNotification tests - fixed
+
 Version 1.5.7
 ============
 * Messaging: added a looot of tests
