@@ -138,6 +138,7 @@
 addIf:false,
 // I dont know how to test it :(
 				name:"onSignalSourceChange - Turn roaming off.",
+				mustSupportApis:["Widget.Device.RadioInfo.onSignalSourceChange"],
 				instructions:[
 					"Make sure roaming is turned off (usually this simply requires a SIM card from your country).",
 					"Click 'GO'."
@@ -156,6 +157,7 @@ addIf:false,
 addIf:false,
 // I dont know how to test it :(
 				name:"onSignalSourceChange - Turn roaming on.",
+				mustSupportApis:["Widget.Device.RadioInfo.onSignalSourceChange"],
 				instructions:[
 					"Make sure roaming is turned on (mostly requires a foreign SIM card).",
 					"Click 'GO'."
@@ -172,6 +174,7 @@ addIf:false,
 			{
 				id:700,
 				name:"onSignalSourceChange - Turn on 2G.",
+				mustSupportApis:["Widget.Device.RadioInfo.onSignalSourceChange"],
 				instructions:[
 					"Make sure 3G is turned on.",
 					"Click 'GO'.",
@@ -193,6 +196,7 @@ addIf:false,
 			{
 				id:800,
 				name:"onSignalSourceChange - Turn on 3G.",
+				mustSupportApis:["Widget.Device.RadioInfo.onSignalSourceChange"],
 				instructions:[
 					"Make sure 2G is turned on.",
 					"Click 'GO'.",

@@ -139,6 +139,7 @@
 			{
 				id:600,
 				name:"onNetworkConnectionChanged - Verify that the callback fires.",
+				mustSupportApis:["Widget.Device.DataNetworkInfo.onNetworkConnectionChanged"],
 				instructions:[
 					"Click 'GO'!",
 					"Connect to a different data network, e.g. from 3G to WiFi (within 2 minutes)."
