@@ -2,6 +2,9 @@ var util = new (doh.util.extend(function(){},{
 	
 	checkProperties:function(obj, expected){
 		// summary: This method checks if all the expected properties are given.
+		if (!obj || typeof obj!="object"){
+			throw new Error("Expected object, got: '" + obj + "' (type: " + (typeof obj) +")");
+		}
 		var props = [], missing = [];
 		for (var i=0, prop, l=expected.length; i<l; i++){
 			prop = expected[i];
