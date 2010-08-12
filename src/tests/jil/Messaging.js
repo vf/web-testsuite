@@ -179,6 +179,7 @@
 				id: 800,
 				name: "getMessage - Verify SMS with subject '" + _testMessage.subject + "'.",
 				requiredObjects:["Widget.Messaging.getMessage", "Widget.Messaging.MessageTypes.SMSMessage"],
+				instructions:"Please verify that at least one SMS had been sent.",
 				expectedResult:"Is this message shown correct?",
 				test: function(t){
 					var msg = wm.getMessage(wmt.SMSMessage, wmft.SENTBOX, 0);
