@@ -10,7 +10,15 @@ var ui = {};
 					'<div class="id">${id}</div>'+
 					'${name}'+
 					'<div class="message">${messagePreview}</div>'+
-					'<pre class="fullError displayNone">${error}</pre>'+
+					//'<pre class="fullError displayNone"><code>${testSourceCode}</code><hr/>${error}</pre>'+
+					'<div class="fullError displayNone">'+
+						'<hr/>'+
+						'Test function source code:'+
+						'<pre>${testSourceCode}</pre>'+
+						'<hr/>'+
+						'Error message:'+
+						'<pre>${error}</pre>'+
+					'</div>'+
 				'</div>'
 			,
 			GROUP_HEADER:
@@ -133,7 +141,8 @@ var ui = {};
 				id: util.getTestId(test),
 				messagePreview: msg.length>60 ? msg.substr(0,58)+"..." : msg,
 				error:errorParts.join("\n"),
-				failureOrError:isError ? "error" : "failure"
+				failureOrError:isError ? "error" : "failure",
+				testSourceCode:test.test.toString().replace(/\t/g, " ")
 			}, this._templates.FAILURE_OR_ERROR);
 		},
 		
