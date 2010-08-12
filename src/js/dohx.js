@@ -110,6 +110,7 @@ doh.util.mixin(dohx._manualTestObject, {
 				t.test(); // Passing in "t" is wrong, "t" is the test not the assert object.
 			}catch(e){
 				// If the test call itself fails make the test fail too, so we dont "swallow" error messages.
+				doh._current.test._actualTestFunction = t.test;
 				doh._current.test.test = function(t){
 					throw e;
 				};

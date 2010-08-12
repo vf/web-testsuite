@@ -142,7 +142,7 @@ var ui = {};
 				messagePreview: msg.length>60 ? msg.substr(0,58)+"..." : msg,
 				error:errorParts.join("\n"),
 				failureOrError:isError ? "error" : "failure",
-				testSourceCode:test.test.toString().replace(/\t/g, " ")
+				testSourceCode:(test._actualTestFunction || test.test).toString().replace(/\t/g, " ")
 			}, this._templates.FAILURE_OR_ERROR);
 		},
 		
