@@ -199,7 +199,7 @@
 				name:"getCallRecord - Verify first MISSED call.",
 				requiredObjects:["Widget.Telephony.getCallRecord"],
 				test:function(t){
-//double check ....
+// double check .... failed on H2
 					var callType = wtcType.MISSED;
 					if (typeof _callRecords[callType]=="undefined" || !_callRecords[callType].length){
 						t.failure("Expected at least one '" + callType + "' call to find on the phone, none found.");
@@ -215,7 +215,7 @@
 				name:"getCallRecord - Verify first OUTGOING call.",
 				requiredObjects:["Widget.Telephony.getCallRecord"],
 				test:function(t){
-//double check ....
+// double check .... failed on H2
 					var callType = wtcType.OUTGOING;
 					if (typeof _callRecords[callType]=="undefined" || !_callRecords[callType].length){
 						t.failure("Expected at least one '" + callType + "' call to find on the phone, none found.");
@@ -231,7 +231,7 @@
 				name:"getCallRecord - Verify first RECEIVED call.",
 				requiredObjects:["Widget.Telephony.getCallRecord"],
 				test:function(t){
-//double check ....
+// double check ....
 					var callType = wtcType.RECEIVED;
 					if (typeof _callRecords[callType]=="undefined" || !_callRecords[callType].length){
 						t.failure("Expected at least one '" + callType + "' call to find on the phone, none found.");
