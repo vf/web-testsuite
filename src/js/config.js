@@ -227,6 +227,7 @@ var config = {
 					"Widget.Device.vibrate",
 					"Widget.Device.PowerInfo",
 					"Widget.Device.DeviceInfo.totalMemory",
+					"Widget.Device.DeviceStateInfo.audioPath",
 					"Widget.Device.DeviceStateInfo.backLightOn",
 					"Widget.Device.DeviceStateInfo.keypadLightOn",
 					"Widget.Device.DeviceStateInfo.onScreenChangeDimensions",
