@@ -77,7 +77,7 @@
 			{
 				id:300,
 				name:"[1] deleteFile - Verify that it returns true.",
-				requiredObjects:["Widget.Device.deleteFile"],
+				requiredObjects:["Widget.Device.copyFile", "Widget.Device.deleteFile"],
 				test:function(t){
 // TODO the following three tests could be in one test, once mutliple asserts inside one test work again, imho.
 					wd.copyFile(cfs.readableFile, _destFile+"-delete");
@@ -122,7 +122,7 @@
 			{
 				id:510,
 				name:"[1] deleteFile(path) - Verify that it returns true.",
-				requiredObjects:["Widget.Device.deleteFile"],
+				requiredObjects:["Widget.Device.copyFile", "Widget.Device.deleteFile"],
 				instructions:"Make sure an empty directory '" + testPath + "' exists.",
 				test:function(t){
 					var destPath = testPath+"-delete";
@@ -170,6 +170,7 @@
 				id:600,
 				name:"findFiles, onFilesFound - Search for {fileName:'*.jpg'}.",
 				requiredObjects:["Widget.Device.findFiles"],
+				mustSupportApis:["Widget.Device.onFilesFound"],
 				timeout:5*1000,
 				test:function(t){
 					wd.onFilesFound = function(files) {
@@ -189,6 +190,7 @@
 				id:610,
 				name:"findFiles, onFilesFound - Search for {pathName:'/virtual/', fileName:'*.jpg'}.",
 				requiredObjects:["Widget.Device.findFiles"],
+				mustSupportApis:["Widget.Device.onFilesFound"],
 				timeout:5*1000,
 				test:function(t){
 					wd.onFilesFound = function(files) {
@@ -209,6 +211,7 @@
 				id:620,
 				name:"findFiles, onFilesFound - Search for {pathName:'/virtual/photos', fileName:'*.jpg'}.",
 				requiredObjects:["Widget.Device.findFiles"],
+				mustSupportApis:["Widget.Device.onFilesFound"],
 				timeout:5*1000,
 				test:function(t){
 					wd.onFilesFound = function(files) {
@@ -229,6 +232,7 @@
 				id:630,
 				name:"findFiles, onFilesFound - Search for {pathName:'*', fileName:'*.jpg'}.",
 				requiredObjects:["Widget.Device.findFiles"],
+				mustSupportApis:["Widget.Device.onFilesFound"],
 				timeout:5*1000,
 				test:function(t){
 					wd.onFilesFound = function(files) {

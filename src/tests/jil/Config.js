@@ -11,6 +11,7 @@
 			{
 				id:100,
 				name:"vibrationSetting - Is 'ON' or 'OFF'?",
+				requiredObjects:["Widget.Device.DeviceStateInfo.Config.vibrationSetting"],
 				test:function(t){
 					var val = wddc.vibrationSetting;
 					t.assertTrue(val=="ON" || val=="OFF", "Value should be 'ON' or 'OFF'.");
@@ -19,6 +20,7 @@
 			},{
 				id:200,
 				name:"vibrationSetting - Verify 'ON'?",
+				requiredObjects:["Widget.Device.DeviceStateInfo.Config.vibrationSetting"],
 				instructions:[
 					'Make sure that your phone has turned ON the vibrate mode.',
 					"Press 'GO'."
@@ -31,6 +33,7 @@
 			},{
 				id:300,
 				name:"vibrationSetting - Verify 'OFF'?",
+				requiredObjects:["Widget.Device.DeviceStateInfo.Config.vibrationSetting"],
 				instructions:[
 					'Make sure that your phone has turned OFF the vibrate mode.',
 					"Press 'GO'."
