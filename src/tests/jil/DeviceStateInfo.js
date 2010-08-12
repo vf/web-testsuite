@@ -115,6 +115,7 @@
 			//},{
 			//	id:900,
 			//	name:"onScreenChangeDimensions - does it fire at all?",
+			//	mustSupportApis:["Widget.Device.DeviceStateInfo.onScreenChangeDimensions"],
 			//	instructions:[
 			//		"Click 'GO'.",
 			//		"Change the orientation of the phone (landscape/portrait)!"
@@ -131,6 +132,7 @@
 			},{
 				id:1000,
 				name:"onScreenChangeDimensions - do width+height change?",
+				mustSupportApis:["Widget.Device.DeviceStateInfo.onScreenChangeDimensions"],
 				instructions:[
 					"Click 'GO'",
 					"Switch the widget to mini/floating mode, to change it's dimensions.",
