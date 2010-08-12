@@ -273,7 +273,7 @@ button[disabled=disabled] {
 }
 
 	.manualTest p {
-		font-size: 0.8em;
+		font-size: 1em;
 		padding: 0.4em 5px;
 		margin: 0.2em;
 	}
