@@ -7,6 +7,44 @@
 		return "x=" + x + " y=" + y + " z=" + z;
 	}
 	
+	function waitForInitialPosition(callback){
+		// summary:
+		//		This method will give hints to the user how to move the phone
+		//		to get it into the starting position, from where all tests start.
+		var initValues = { // The ranges of values to expect for the initial position, this is as if the phone was laying on a table.
+			x:[-0.8, 0.8],
+			y:[-0.8, 0.8],
+			z:[-10.5, -9]
+		};
+		var initInterval = setInterval(function(){
+			wdda = Widget.Device.DeviceStateInfo.AccelerometerInfo;
+			var vals = {x:wdda.xAxis, y:wdda.yAxis, z:wdda.zAxis};
+			var xOk = [vals.x > initValues.x[0], vals.x < initValues.x[1]];
+			var yOk = [vals.y > initValues.y[0], vals.y < initValues.y[1]];
+			var zOk = [vals.z > initValues.z[0], vals.z < initValues.z[1]];
+			if (xOk[0] && xOk[1] &&
+				yOk[0] && yOk[1] &&
+				zOk[0] && zOk[1]){
+				clearInterval(initInterval);
+				dohx.showInfo("Initial position - OK<br/>Follow steps listed above.");
+				setTimeout(callback, 400)
+			} else {
+				var msgs = ["Initial position..."];
+				if (!xOk[0]) msgs.push("Tilt the phone a bit to the LEFT &lt;=.");
+				if (!xOk[1]) msgs.push("Tilt the phone a bit to the RIGHT =&gt;.");
+				if (!yOk[0] || !yOk[1]){
+					msgs.push("Move the phone FACING UPWARDS.");
+//msgs.push(initValues.y+" ... "+vals.y);
+				}
+				if (!zOk[0] || !zOk[1]){
+					msgs.push("Let the phone's display FACE UPWARDS.");
+//msgs.push(initValues.z+" ... "+vals.z);
+				}
+				dohx.showInfo(msgs.join("<br />"));
+			}
+		}, 100);
+	}
+	
 	function checkForExpectedRange(t, axis, minValue, maxValue){
 		// summary:
 		// 		Check continuously if the value is in the given range.
@@ -14,14 +52,21 @@
 		// axis: "x", "y" or "z"
 		// minValue: The minimum value (e.g. 8 or -9.82)
 		// maxValue: The max value, e.g. (9.82 or 8)
+		if (minValue>maxValue){
+			var tmp = minValue;
+			minValue = maxValue;
+			maxValue = tmp;
+		}
 		var ret = setInterval(function(){
-			dohx.showInfo(axis+" value is:", wdda[axis+"Axis"], "Expect: "+minValue+".."+maxValue);
-			if (wdda[axis+"Axis"] > minValue && wdda[axis+"Axis"] < maxValue){
-				t.success(axis + " value was "+ wdda[axis+"Axis"] + " expected range "+minValue+".."+maxValue);
+			wdda = Widget.Device.DeviceStateInfo.AccelerometerInfo;
+			var vals = {x:wdda.xAxis, y:wdda.yAxis, z:wdda.zAxis}; // We HAVE TO read xAxis to "trigger" the setting of all acceleromter values.
+			dohx.showInfo("Expecting range " + minValue + " ... " + maxValue + "<br/>actual value: " + vals[axis]);
+			if (vals[axis] > minValue && vals[axis] < maxValue){
+				t.success(axis + " value was "+ vals[axis] + " expected range "+minValue+".."+maxValue);
 			}
 		}, 100);
 		return ret;
-	}
+	};
   
 	dohx.add({name:"AccelerometerInfo",
 		mqcExecutionOrderBaseOffset:0, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
@@ -58,16 +103,19 @@
 				name: "Verify the values for x, z and y are different.",
 				instructions:[
 					"Click 'GO'!",
+					"Move the phone to the initial position.",
 					"Move the phone while the test is running, to generate different values."
 				],
 				test: function(t) {
-					setTimeout(function(){
-						var x = wdda.xAxis;
-						var y = wdda.yAxis;
-						var z = wdda.zAxis;
-						t.assertTrue(x!=z);
-						t.result = valuesToString(x, y, z);
-					}, 1000);
+					waitForInitialPosition(function(){
+						setTimeout(function(){
+							var x = wdda.xAxis;
+							var y = wdda.yAxis;
+							var z = wdda.zAxis;
+							t.assertTrue(x!=z);
+							t.result = valuesToString(x, y, z);
+						}, 1000);
+					});
 				}
 			},
 			
@@ -77,14 +125,15 @@
 				id: 400,
 				name: "Tilt RIGHT, xAxis.",
 				instructions: [
-					"Hold the phone facing upwards.",
 					"Click 'Go'",
+					"Move the phone to the initial position.",
 					"Within 10 seconds, tilt phone 90 degrees to the RIGHT.",
-					"Return to normal position.",
 				],
 				timeout:11000,
 				test: function(t) {
-					interval = checkForExpectedRange(t, "x", -9.82, -8);
+					waitForInitialPosition(function(){
+						interval = checkForExpectedRange(t, "x", -9.82, -8);
+					});
 				},
 				tearDown:function(){
 					clearInterval(interval);
@@ -94,14 +143,15 @@
 				id: 500,
 				name: "Tilt LEFT, xAxis.",
 				instructions: [
-					"Hold the phone facing upwards.",
 					"Click 'Go'",
+					"Move the phone to the initial position.",
 					"Within 10 seconds, tilt phone 90 degrees to the LEFT.",
-					"Return to normal position."
 				],
 				timeout:11000,
 				test: function(t) {
-					interval = checkForExpectedRange(t, "x", 8, 9.82);
+					waitForInitialPosition(function(){
+						interval = checkForExpectedRange(t, "x", 8, 9.82);
+					});
 				},
 				tearDown:function(){
 					clearInterval(interval);
@@ -117,14 +167,15 @@
 				id: 600,
 				name: "Tilt FORWARD, zAxis.",
 				instructions: [
-					"Hold the phone facing upwards.",
 					"Click 'Go'",
+					"Move the phone to the initial position.",
 					"Within 10 seconds, tilt phone 90 degrees FORWARD.",
-					"Return to normal position afterwards."
 				],
 				timeout:11000,
 				test: function(t) {
-					interval = checkForExpectedRange(t, "z", -1, 1);
+					waitForInitialPosition(function(){
+						interval = checkForExpectedRange(t, "z", -1, 1);
+					});
 				},
 				tearDown:function(){
 					clearInterval(interval);
@@ -134,14 +185,15 @@
 				id: 700,
 				name: "Tilt BACKWARD, zAxis.",
 				instructions: [
-					"Hold the phone facing upwards.",
 					"Click 'Go'",
+					"Move the phone to the initial position.",
 					"Within 10 seconds, tilt phone 90 degrees BACKWARDS.",
-					"Return to normal position afterwards."
 				],
 				timeout:11000,
 				test: function(t) {
-					interval = checkForExpectedRange(t, "z", -1, 1);
+					waitForInitialPosition(function(){
+						interval = checkForExpectedRange(t, "z", -1, 1);
+					});
 				},
 				tearDown:function(){
 					clearInterval(interval);
@@ -151,14 +203,15 @@
 				id: 800,
 				name: "Tilt UPSIDE DOWN, zAxis.",
 				instructions: [
-					"Hold the phone facing upwards.",
 					"Click 'Go'",
+					"Move the phone to the initial position.",
 					"Within 10 seconds, hold the phone facing downwards.",
-					"Return to normal position afterwards."
 				],
 				timeout:11000,
 				test: function(t) {
-					interval = checkForExpectedRange(t, "z", -9.82, -8);
+					waitForInitialPosition(function(){
+						interval = checkForExpectedRange(t, "z", -9.82, -8);
+					});
 				},
 				tearDown:function(){
 					clearInterval(interval);
@@ -173,14 +226,15 @@
 				id: 900,
 				name: "Facing me, yAxis.",
 				instructions: [
-					"Hold the phone facing upwards.",
 					"Click 'Go'",
+					"Move the phone to the initial position.",
 					"Within 10 seconds, hold the phone facing towards you.",
-					"Return to normal position afterwards."
 				],
 				timeout:11000,
 				test: function(t) {
-					interval = checkForExpectedRange(t, "y", 8, 9.82);
+					waitForInitialPosition(function(){
+						interval = checkForExpectedRange(t, "y", -8, -9.82);
+					});
 				},
 				tearDown:function(){
 					clearInterval(interval);
@@ -190,14 +244,15 @@
 				id: 1000,
 				name: "Facing me upside down, yAxis.",
 				instructions: [
-					"Hold the phone facing upwards.",
 					"Click 'Go'",
+					"Move the phone to the initial position.",
 					"Within 10 seconds, hold the phone facing towards you but upside down.",
-					"Return to normal position afterwards."
 				],
 				timeout:11000,
 				test: function(t) {
-					interval = checkForExpectedRange(t, "y", -9.82, -8);
+					waitForInitialPosition(function(){
+						interval = checkForExpectedRange(t, "y", 9.82, 8);
+					});
 				},
 				tearDown:function(){
 					clearInterval(interval);
