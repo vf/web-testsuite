@@ -1213,30 +1213,6 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 	
 	
 	
-	function isApiSupported(apiString){
-		// summary:
-		// 		Return true/false if the given API is supported on the current device.
-		// apiString: String
-		// 		Like "Widget.Multimedia.Camera.captureImage" or any other API string.
-		var apis = config.unsupportedApis;
-		if (apis.indexOf(apiString)!=-1){
-			return false;
-		}
-		for (var i=0, l=apis.length; i<l; i++){
-			var api = apis[i];
-			var apiLength = api.length;
-			// Filter out unsupportedApis listed like so "Widget.Messag*"
-			if (api[apiLength-1]=="*"){
-				if (apiString.indexOf(api.substr(0, apiLength-2))!=-1){
-					return false;
-				}
-			} else if (apiString.indexOf(api)!=-1){ // Return false if apiString starts with api
-				return false;
-			}
-		}
-		return true;
-	}
-	
 	//
 	// Generate tests for adding them.
 	//
@@ -1255,7 +1231,7 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		if (apiString.indexOf("Widget")!=0){
 			apiString = "Widget." + apiString;
 		}
-		if (!isApiSupported(apiString)){
+		if (!dohx.isApiSupported(apiString)){
 			continue;
 		}
 		
