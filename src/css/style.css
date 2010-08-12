@@ -3,34 +3,15 @@
  */
 body, html {
 	width: 100%;
+	height: 100%;
 	margin: 0;
 	padding: 0;
-	font-size: 15px;
-	font-family: Helvetica;
 	background-color: lightgrey;
 }
-
-/*
-	166dpi - Nokia E52-1
-	232dpi - Nokia 5800 XpressMusic
-	265dpi - Samsung
-*/
-@media all and (min-resolution: 150dpi) {
-	body, html {
-		font-size: 12px;
-	}
+body, html, button {
+	font-size: 2mm;
+	font-family: Helvetica;
 }
-@media all and (min-resolution: 200dpi) {
-	body, html {
-		font-size: 20px;
-	}
-}
-@media all and (min-resolution: 250dpi) {
-	body, html {
-		font-size: 26px;
-	}
-}
-
 
 
 /**
@@ -117,7 +98,7 @@ button[disabled=disabled] {
 
 	.content .row.groupHeader {
 		font-weight: bold;
-		font-size: 1em;
+		/*font-size: 1em;*/
 		border-bottom: 1px solid black;
 		margin: 0;
 		padding: 5px;
