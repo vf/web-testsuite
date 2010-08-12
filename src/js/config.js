@@ -298,7 +298,18 @@ var config = {
 						editFolder: false,
 						multipleEmailAccounts: false
 					}
-				}
+				},
+				unsupportedApis:[
+					"Widget.Device.RadioInfo.radioSignalSource",
+					"Widget.Device.RadioInfo.radioSignalStrengthPercent",
+					"Widget.Device.RadioInfo.onSignalSourceChange",
+					"Widget.Device.DataNetworkInfo.onNetworkConnectionChanged",
+					"Widget.Device.DataNetworkInfo.getNetworkConnectionName",
+					"Widget.Device.DataNetworkInfo.networkConnectionType",
+					"Widget.Device.clipboardString",
+					"Widget.Device.copyFile",
+					"Widget.Device.deleteFile",
+				],
 			};
 			return ret;
 		},
