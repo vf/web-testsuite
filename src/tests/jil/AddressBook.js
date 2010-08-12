@@ -12,6 +12,9 @@
 	function _getAddressInfo(info){
 // TODO just here because iterating over the props doesnt work, using toJson()
 		var ret = [];
+		if (!info || typeof info!="object"){
+			throw new Error("Expected object, got: '" + info + "' (type: " + (typeof info) +")");
+		}
 		for (var i=0, l=addressProperties.length; i<l; i++){
 			var p = addressProperties[i];
 			ret.push(p+": "+util.toJson(info[p]));
@@ -199,7 +202,7 @@
 			{
 				id:1100,
 				name:"createAddressBookGroup - verify group is added.",
-				requiredObjects:["Widget.PIM.createAddressBookGroup"],
+				requiredObjects:["Widget.PIM.getAvailableAddressGroupNames", "Widget.PIM.createAddressBookGroup"],
 				test:function(t){
 					var numItems = pim.getAvailableAddressGroupNames().length;
 					_testGroupName = "TestGroup-" + new Date().getTime(); // Prevent nameclashes
@@ -228,7 +231,7 @@
 			{
 				id:1300,
 				name:"deleteAddressBookGroup",
-				requiredObjects:["Widget.PIM.createAddressBookGroup"],
+				requiredObjects:["Widget.PIM.getAvailableAddressGroupNames", "Widget.PIM.createAddressBookGroup"],
 				test:function(t){
 					var numItems = pim.getAvailableAddressGroupNames().length;
 					pim.deleteAddressBookGroup(_testGroupName);
