@@ -1,27 +1,29 @@
 (function(){
 	
 	var wdda = util.isObject("Widget.Device.DeviceStateInfo.AccelerometerInfo") ? Widget.Device.DeviceStateInfo.AccelerometerInfo : {};
-	var interval = null;
+	var intervals = [];
 	
 	function valuesToString(x, y, z){
 		return "x=" + x + " y=" + y + " z=" + z;
 	}
+
+	// The ranges of values to expect for the initial position, this is as if the phone was laying on a table.
+	var initialPosition = {
+		x:[-0.8, 0.8],
+		y:[-0.8, 0.8],
+		z:[-10.5, -9]
+	};
 	
 	function waitForInitialPosition(callback){
 		// summary:
 		//		This method will give hints to the user how to move the phone
 		//		to get it into the starting position, from where all tests start.
-		var initValues = { // The ranges of values to expect for the initial position, this is as if the phone was laying on a table.
-			x:[-0.8, 0.8],
-			y:[-0.8, 0.8],
-			z:[-10.5, -9]
-		};
 		var initInterval = setInterval(function(){
 			wdda = Widget.Device.DeviceStateInfo.AccelerometerInfo;
 			var vals = {x:wdda.xAxis, y:wdda.yAxis, z:wdda.zAxis};
-			var xOk = [vals.x > initValues.x[0], vals.x < initValues.x[1]];
-			var yOk = [vals.y > initValues.y[0], vals.y < initValues.y[1]];
-			var zOk = [vals.z > initValues.z[0], vals.z < initValues.z[1]];
+			var xOk = [vals.x > initialPosition.x[0], vals.x < initialPosition.x[1]];
+			var yOk = [vals.y > initialPosition.y[0], vals.y < initialPosition.y[1]];
+			var zOk = [vals.z > initialPosition.z[0], vals.z < initialPosition.z[1]];
 			if (xOk[0] && xOk[1] &&
 				yOk[0] && yOk[1] &&
 				zOk[0] && zOk[1]){
@@ -34,15 +36,16 @@
 				if (!xOk[1]) msgs.push("Tilt the phone a bit to the RIGHT =&gt;.");
 				if (!yOk[0] || !yOk[1]){
 					msgs.push("Move the phone FACING UPWARDS.");
-//msgs.push(initValues.y+" ... "+vals.y);
+//msgs.push(initialPosition.y+" ... "+vals.y);
 				}
 				if (!zOk[0] || !zOk[1]){
 					msgs.push("Let the phone's display FACE UPWARDS.");
-//msgs.push(initValues.z+" ... "+vals.z);
+//msgs.push(initialPosition.z+" ... "+vals.z);
 				}
 				dohx.showInfo(msgs.join("<br />"));
 			}
 		}, 100);
+		intervals.push(initInterval);
 	}
 	
 	function checkForExpectedRange(t, axis, minValue, maxValue){
@@ -65,9 +68,15 @@
 				t.success(axis + " value was "+ vals[axis] + " expected range "+minValue+".."+maxValue);
 			}
 		}, 100);
-		return ret;
+		intervals.push(ret);
 	};
   
+	function clearIntervals(){
+		for (var i=0, l=intervals.length; i<l; i++){
+			clearInterval(intervals[i]);
+		}
+	};
+
 	dohx.add({name:"AccelerometerInfo",
 		mqcExecutionOrderBaseOffset:0, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:["Widget.Device.DeviceStateInfo.AccelerometerInfo"],
@@ -103,19 +112,41 @@
 				name: "Verify the values for x, z and y are different.",
 				instructions:[
 					"Click 'GO'!",
-					"Move the phone to the initial position.",
 					"Move the phone while the test is running, to generate different values."
 				],
 				test: function(t) {
-					waitForInitialPosition(function(){
-						setTimeout(function(){
-							var x = wdda.xAxis;
-							var y = wdda.yAxis;
-							var z = wdda.zAxis;
-							t.assertTrue(x!=z);
-							t.result = valuesToString(x, y, z);
-						}, 1000);
-					});
+					setTimeout(function(){
+						var x = wdda.xAxis;
+						var y = wdda.yAxis;
+						var z = wdda.zAxis;
+						t.assertTrue(x!=z);
+						t.result = valuesToString(x, y, z);
+					}, 1000);
+				}
+			},
+			
+			//
+			//
+			//
+			{
+				id: 320,
+				name: "MUST SUCCEED. Initial position test - flat on the table.",
+				instructions:[
+					"Place the phone flat on the table, display facing upwards.",
+					"Click 'GO'!"
+				],
+				test: function(t) {
+					var vals = {x:wdda.xAxis, y:wdda.yAxis, z:wdda.zAxis};
+					var xOk = vals.x > initialPosition.x[0] && vals.x < initialPosition.x[1];
+					var yOk = vals.y > initialPosition.y[0] && vals.y < initialPosition.y[1];
+					var zOk = vals.z > initialPosition.z[0] && vals.z < initialPosition.z[1];
+					var msg = [];
+					if (!xOk || !yOk || !zOk) msg.push("Successive tests might not be executable, make this test work first!");
+					if (!xOk) msg.push("Expected x value to be in the range " + initialPosition.x[0] + ".." + initialPosition.x[1] + ", value is: " + vals.x);
+					if (!yOk) msg.push("Expected y value to be in the range " + initialPosition.y[0] + ".." + initialPosition.y[1] + ", value is: " + vals.y);
+					if (!zOk) msg.push("Expected z value to be in the range " + initialPosition.z[0] + ".." + initialPosition.z[1] + ", value is: " + vals.z);
+					t.assertTrue(xOk && yOk && zOk, msg.join("<br/>"));
+					return vals; // In the success case show the values.
 				}
 			},
 			
@@ -130,14 +161,12 @@
 					"Within 10 seconds, tilt phone 90 degrees to the RIGHT.",
 				],
 				timeout:11000,
-				test: function(t) {
+				test: function(t){
 					waitForInitialPosition(function(){
-						interval = checkForExpectedRange(t, "x", -9.82, -8);
+						checkForExpectedRange(t, "x", -9.82, -8);
 					});
 				},
-				tearDown:function(){
-					clearInterval(interval);
-				}
+				tearDown:clearIntervals
 			},
 			{
 				id: 500,
@@ -150,12 +179,10 @@
 				timeout:11000,
 				test: function(t) {
 					waitForInitialPosition(function(){
-						interval = checkForExpectedRange(t, "x", 8, 9.82);
+						checkForExpectedRange(t, "x", 8, 9.82);
 					});
 				},
-				tearDown:function(){
-					clearInterval(interval);
-				}
+				tearDown:clearIntervals
 			},
 			//
 			//	z axis
@@ -174,12 +201,10 @@
 				timeout:11000,
 				test: function(t) {
 					waitForInitialPosition(function(){
-						interval = checkForExpectedRange(t, "z", -1, 1);
+						checkForExpectedRange(t, "z", -1, 1);
 					});
 				},
-				tearDown:function(){
-					clearInterval(interval);
-				}
+				tearDown:clearIntervals
 			},
 			{
 				id: 700,
@@ -192,12 +217,10 @@
 				timeout:11000,
 				test: function(t) {
 					waitForInitialPosition(function(){
-						interval = checkForExpectedRange(t, "z", -1, 1);
+						checkForExpectedRange(t, "z", -1, 1);
 					});
 				},
-				tearDown:function(){
-					clearInterval(interval);
-				}
+				tearDown:clearIntervals
 			},
 			{
 				id: 800,
@@ -210,12 +233,10 @@
 				timeout:11000,
 				test: function(t) {
 					waitForInitialPosition(function(){
-						interval = checkForExpectedRange(t, "z", -9.82, -8);
+						checkForExpectedRange(t, "z", -9.82, -8);
 					});
 				},
-				tearDown:function(){
-					clearInterval(interval);
-				}
+				tearDown:clearIntervals
 			},
 			//
 			//	y axis
@@ -233,12 +254,10 @@
 				timeout:11000,
 				test: function(t) {
 					waitForInitialPosition(function(){
-						interval = checkForExpectedRange(t, "y", -8, -9.82);
+						checkForExpectedRange(t, "y", -8, -9.82);
 					});
 				},
-				tearDown:function(){
-					clearInterval(interval);
-				}
+				tearDown:clearIntervals
 			},
 			{
 				id: 1000,
@@ -251,12 +270,10 @@
 				timeout:11000,
 				test: function(t) {
 					waitForInitialPosition(function(){
-						interval = checkForExpectedRange(t, "y", 9.82, 8);
+						checkForExpectedRange(t, "y", 9.82, 8);
 					});
 				},
-				tearDown:function(){
-					clearInterval(interval);
-				}
+				tearDown:clearIntervals
 			}
 //*/
 		]  
