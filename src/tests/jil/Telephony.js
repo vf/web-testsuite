@@ -1,14 +1,14 @@
 (function(){
-	// Check the config stuff we need for the tests.
-	if (!util.isConfigured(["validPhoneNumber"])){
-		return;
-	}
 	
 	var wt = util.isObject("Widget.Telephony") ? Widget.Telephony : {};
 	var wtcType = util.isObject("Widget.Telephony.CallRecordTypes") ? Widget.Telephony.CallRecordTypes : {};
 	
 	// Data used in the widgets.
 	var _callRecords = {};
+	
+	var _testRecipients = {
+		phoneNumber:undefined
+	};
 	
 	dohx.add({name:"Telephony - Methods",
 		mqcExecutionOrderBaseOffset:240000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
@@ -24,6 +24,18 @@
 					"Make sure you have at least 2 calls in your call records for RECEIVED calls.",
 				],
 				test:function(t){
+					var prefix = "Telephony.testRecipient.";
+					var getPref = function(msg, key, defaultValue){
+						var val = Widget.preferenceForKey(prefix + key);
+						var ret = "";
+						while(!ret.replace(" ", "")){ // Make sure we really get an input.
+							ret = prompt(msg, val || (defaultValue || ""));
+						}
+						Widget.setPreferenceForKey(ret, prefix + key);
+						return ret;
+					}
+					
+					_testRecipients.phoneNumber = getPref("Please enter a phone number to call for testing!", "phoneNumber");
 					t.success("Preconditions met, user confirmed.");
 				}
 			},
@@ -370,9 +382,9 @@
 					"Click 'GO'.",
 					"A phone call should be started."
 				],
-				expectedResult:"Did a phone call to the number "+ config.validPhoneNumber +" get initiated?",
+				expectedResult:"Did a phone call to the number "+ _testRecipients.phoneNumber +" get initiated?",
 				test:function(){
-					wt.initiateVoiceCall(config.validPhoneNumber);
+					wt.initiateVoiceCall(_testRecipients.phoneNumber);
 				}
 			},
 			//
@@ -539,7 +551,7 @@
 					wt.onCallEvent = function(recType, phoneNumber){
 						t.success("onCallEvent fired");
 					}
-					wt.initiateVoiceCall(config.validPhoneNumber);
+					wt.initiateVoiceCall(_testRecipients.phoneNumber);
 				},
 				tearDown:function(){
 					delete wt.onCallEvent;

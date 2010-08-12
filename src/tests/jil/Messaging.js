@@ -44,7 +44,10 @@
 	
 	dohx.add({name:"Messaging",
 		mqcExecutionOrderBaseOffset:200000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
-		requiredObjects:["Widget.Messaging"],
+		requiredObjects:[
+			"Widget.Messaging",
+			"Widget.Messaging.createMessage"
+		],
 		tests:[
 			//
 			// Preconditions
@@ -414,6 +417,7 @@
 				// Lazy eval the test name, since we dont know the content of _testRecipients.* when adding the tests.
 				name: {toString:function(){return "onMessageSendingFailure - Test SMS to '" + _testRecipients.sms + "'."}},
 				requiredObjects: ["Widget.Messaging.createMessage", "Widget.Messaging.sendMessage", "Widget.Messaging.MessageTypes.SMSMessage"],
+				mustSupportApis:["Widget.MessageTypes.onMessageSendingFailure"],
 				instructions:[
 					"Minimize this application, to mini mode.",
 					"Turn off all network connections.",
@@ -437,6 +441,7 @@
 				// Lazy eval the test name, since we dont know the content of _testRecipients.* when adding the tests.
 				name: {toString:function(){return "onMessageSendingFailure - Test MMS to '" + _testRecipients.mms + "'."}},
 				requiredObjects: ["Widget.Messaging.createMessage", "Widget.Messaging.sendMessage", "Widget.Messaging.MessageTypes.MMSMessage"],
+				mustSupportApis:["Widget.MessageTypes.onMessageSendingFailure"],
 				instructions:[
 					"Minimize this application, to mini mode.",
 					"Turn off all network connections.",
@@ -460,6 +465,7 @@
 				// Lazy eval the test name, since we dont know the content of _testRecipients.* when adding the tests.
 				name: {toString:function(){return "onMessageSendingFailure - Test Email to '" + _testRecipients.email + "'."}},
 				requiredObjects: ["Widget.Messaging.createMessage", "Widget.Messaging.sendMessage", "Widget.Messaging.MessageTypes.EmailMessage"],
+				mustSupportApis:["Widget.MessageTypes.onMessageSendingFailure"],
 				instructions:[
 					"Minimize this application, to mini mode.",
 					"Turn off all network connections.",

@@ -57,6 +57,7 @@
 					{
 						id:count++ * 100,
 						name: "getMessageQuantities - '" + testCase.messageType + "' in '" + testCase.folderType + "'.",
+						requiredObjects:["Widget.MessageQuantities.getMessageQuantities"],
 						instructions:[
 							"Minimize the widget and look up the according quantities.",
 							"Click 'GO'."
@@ -98,6 +99,7 @@
 					{
 						id:testCase.id,
 						name: "getMessageQuantities - '" + testCase.messageType + "' in '" + testCase.folderType + "'.",
+						requiredObjects:["Widget.MessageQuantities.getMessageQuantities"],
 						instructions:[
 							"Minimize the widget and look up the according quantities.",
 							"Click 'GO'."
