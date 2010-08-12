@@ -17,6 +17,8 @@
 			{
 				id:100,
 				name:"AddressBookItem get/setAttributeValue() - Verify it's callable and sets 'fullName' property correct.",
+				requiredObjects:["Widget.PIM.AddressBookItem"],
+				mustSupportApis:["Widget.PIM.AddressBookItem.getAttributeValue", "Widget.PIM.AddressBookItem.setAttributeValue"],
 				test:function(t){
 					var item = new pim.AddressBookItem();
 					item.setAttributeValue("fullName", "a*");
@@ -26,6 +28,8 @@
 			{
 				id:200,
 				name:"getAttributeValue() - Verify returns undefined for non-assigned attribute.",
+				requiredObjects:["Widget.PIM.AddressBookItem"],
+				mustSupportApis:["Widget.PIM.AddressBookItem.getAttributeValue"],
 				test:function(t){
 					var item = new pim.AddressBookItem();
 					var ret = item.getAttributeValue("foobars_brother");
@@ -40,6 +44,8 @@
 			{
 				id:300,
 				name:"getAvailableAttributes() - Verify it's an array.",
+				requiredObjects:["Widget.PIM.AddressBookItem"],
+				mustSupportApis:["Widget.PIM.AddressBookItem.getAvailableAttributes"],
 				test:function(t){
 					var item = new pim.AddressBookItem();
 					t.assertTrue(doh.util.isArray(item.getAvailableAttributes()));
@@ -48,6 +54,8 @@
 			{
 				id:400,
 				name:"getAvailableAttributes() - Verify content.",
+				requiredObjects:["Widget.PIM.AddressBookItem"],
+				mustSupportApis:["Widget.PIM.AddressBookItem.getAvailableAttributes"],
 				// The spec says (pg 145):
 				// 		"A complete list of possible attributes for 
 				//		the contact is returned, regardless of whether such attributes have values assigned for  
@@ -65,6 +73,8 @@
 			{
 				id:500,
 				name:"getAddressGroupNames() - Verify content.",
+				requiredObjects:["Widget.PIM.getAddressBookItem"],
+				mustSupportApis:["Widget.PIM.AddressBookItem.getAddressGroupNames"],
 				instructions:[
 					"Make sure an address book item with the ID " + util.toJson(config.validAddressBookItemId) + " exists.",
 					"Add this contact at least into one group.",
