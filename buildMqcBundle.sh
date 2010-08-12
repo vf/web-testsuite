@@ -18,6 +18,7 @@ rm -Rf tmp-mqcbuild 2> /dev/null
 mkdir tmp-mqcbuild
 
 cp dist/test* tmp-mqcbuild
+cp -R dist/developer-signed tmp-mqcbuild
 cp ReleaseNotes.txt tmp-mqcbuild
 cp -R src/test-audio tmp-mqcbuild/
 cp -R src/test-video tmp-mqcbuild/
