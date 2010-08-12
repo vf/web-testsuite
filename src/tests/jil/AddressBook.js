@@ -39,7 +39,7 @@
 				}
 			},
 			//
-			//	The real stuff.
+			//	getAddressBookItem
 			//
 			{
 				id:100,
@@ -67,6 +67,7 @@
 			{
 				id:300,
 				name:"getAddressBookItem - Verify returned 'AddressBookItem' object.",
+// fails if e.g. one value is not given, then the property is missing.... what does the spec say????? not found yet
 				requiredObjects:["Widget.PIM.getAddressBookItem"],
 				test:function(t){
 					var item = pim.getAddressBookItem(config.validAddressBookItemId)
