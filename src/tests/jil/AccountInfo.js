@@ -12,6 +12,7 @@
 			{
 				id: 100,
 				name: "Check that phoneMSISDN is not empty!",
+				requiredObjects:["Widget.Device.AccountInfo.phoneMSISDN"],
 				test: function(t) {
 					var msisdn = wda.phoneMSISDN;
 					t.assertTrue(!!msisdn);
@@ -21,6 +22,7 @@
 			{
 				id: 200,
 				name: "Check value of phoneMSISDN.",
+				requiredObjects:["Widget.Device.AccountInfo.phoneMSISDN"],
 				instructions:[
 					"Try to find out your Mobile Directory Number (MDN) and not the Mobile Identification Number (MIN)",
 					"Click 'GO'."
@@ -37,6 +39,7 @@
 			{
 				id: 300,
 				name: "Check that phoneOperatorName is not empty!",
+				requiredObjects:["Widget.Device.AccountInfo.phoneOperatorName"],
 				test: function(t) {
 					t.assertTrue(!!wda.phoneOperatorName);
 					return wda.phoneOperatorName;
@@ -45,6 +48,7 @@
 			{
 				id: 400,
 				name: "phoneOperatorName",
+				requiredObjects:["Widget.Device.AccountInfo.phoneOperatorName"],
 				instructions:[
 					"Make sure you know the operator's name of this phone (e.g. Vodafone UK).",
 					"Click 'GO'."
@@ -60,6 +64,7 @@
 			{
 				id: 500,
 				name: "Check that phoneUserUniqueId is not empty!",
+				requiredObjects:["Widget.Device.AccountInfo.phoneUserUniqueId"],
 				test: function(t) {
 					t.assertTrue(!!wda.phoneUserUniqueId);
 					return wda.phoneUserUniqueId;
