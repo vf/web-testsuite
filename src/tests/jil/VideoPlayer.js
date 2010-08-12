@@ -120,7 +120,7 @@
 				test:function(t){
 					t.success("Preconditions met, user confirmed.");
 				}
-			}
+			},
 			//
 			//	Protocols. Spec says: http, https, file, rtsp and widget context (=none of the listed prefixes) are supported.
 			//
