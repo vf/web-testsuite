@@ -54,7 +54,8 @@ dohx._testObject = {
 	
 	getUnsupportedApis:function(){
 		var ret = [];
-		for (var i=0, o; o=this.requiredObjects[i]; i++){
+		var checkApis = this.requiredObjects.concat(this.mustSupportApis || []);
+		for (var i=0, o; o=checkApis[i]; i++){
 			if (!dohx.isApiSupported(o)){
 				ret.push(o);
 			}
