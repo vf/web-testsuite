@@ -95,6 +95,7 @@
 //			},{
 				id:900,
 				name:"vibrate 1s",
+				requiredObjects:["Widget.Device.vibrate"],
 				instructions:"Click 'GO', then the phone should vibrate for 1s.",
 				expectedResult:"Did the phone vibrate for 1s?",
 				test:function(t){
@@ -103,6 +104,7 @@
 			},{
 				id:1000,
 				name:"vibrate 10s",
+				requiredObjects:["Widget.Device.vibrate"],
 				instructions:"Click 'GO', then the phone should vibrate for 10s.",
 				expectedResult:"Did the phone vibrate for 10s?",
 				test:function(t){
