@@ -52,6 +52,16 @@ dohx._testObject = {
 		return ret;
 	},
 	
+	getUnsupportedApis:function(){
+		var ret = [];
+		for (var i=0, o; o=this.requiredObjects[i]; i++){
+			if (!dohx.isApiSupported(o)){
+				ret.push(o);
+			}
+		}
+		return ret;
+	},
+	
 	_runTest:function(t){
 		var missing = this.getMissingRequiredObjects();
 		if (missing.length){
@@ -148,7 +158,9 @@ doh._runNextTest = function(){
 			return;
 		}
 		var c = this._current;
-		if (c.test.addIf===false){
+		
+		var unsupportedApis = c.test.getUnsupportedApis();
+		if (c.test.addIf===false || unsupportedApis.length){
 			// Pass in the following structure, which is actually created inside
 			// doh, but we don't pass the test to doh.
 			var test = {};
@@ -156,9 +168,13 @@ doh._runNextTest = function(){
 			test.group = c.group;
 // TODO I dont know if this is proper in this place.
 			doh._numNotApplicable++;
-			ui.notApplicable(test);
+			if (unsupportedApis.length){
+				ui.unsupportedApi(test, unsupportedApis);
+			} else {
+				ui.notApplicable(test);
+			}
 		}
-	}while(c.test.addIf===false);
+	}while(c.test.addIf===false || unsupportedApis.length);
 	var missingReqObj = c.test.getMissingRequiredObjects();
 	// If there are requiredObjects that don't exist don't even show the dialog.
 	if ((c.test.expectedResult || c.test.instructions) && missingReqObj.length==0){
@@ -227,4 +243,28 @@ doh.assert.assertJilException = function(e, excType){
 	var msg = !isInstanceof ? "Exception not instance of Widget.Exception" :
 				(!isExcTypeOk ? "Exception.type is not the expected '" + excType + "' but was '"+ e.type +"'": "");
 	doh.assert.assertTrue(isInstanceof && isExcTypeOk, msg);
+}
+
+dohx.isApiSupported = function(apiString){
+	// summary:
+	// 		Return true/false if the given API is supported on the current device.
+	// apiString: String
+	// 		Like "Widget.Multimedia.Camera.captureImage" or any other API string.
+	var apis = config.unsupportedApis;
+	if (apis.indexOf(apiString)!=-1){
+		return false;
+	}
+	for (var i=0, l=apis.length; i<l; i++){
+		var api = apis[i];
+		var apiLength = api.length;
+		// Filter out unsupportedApis listed like so "Widget.Messag*"
+		if (api[apiLength-1]=="*"){
+			if (apiString.indexOf(api.substr(0, apiLength-2))!=-1){
+				return false;
+			}
+		} else if (apiString.indexOf(api)!=-1){ // Return false if apiString starts with api
+			return false;
+		}
+	}
+	return true;
 }

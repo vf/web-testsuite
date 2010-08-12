@@ -30,6 +30,13 @@ var ui = {};
 					'<div class="details">Test not applicable.</div>'+
 				'</div>'
 			,
+			UNSUPPORTED_API:
+				'<div class="row notApplicable ${oddClass}">'+
+					'<div class="id">${id}</div>'+
+					'${name}'+
+					'<div class="details">API(s) not supported (${apis}).</div>'+
+				'</div>'
+			,
 			REPORT:
 				'<div class="row report">'+
 					'<h1>Test Summary</h1>'+
@@ -71,6 +78,11 @@ var ui = {};
 		
 		notApplicable:function(test){
 			n.innerHTML += this._render({name:test.name, id:util.getTestId(test)}, this._templates.NOT_APPLICABLE);
+		},
+		
+		unsupportedApi:function(test, apis){
+			n.innerHTML += this._render({name:test.name, id:util.getTestId(test), apis:apis.join(", ")},
+										this._templates.UNSUPPORTED_API);
 		},
 		
 		success:function(test){
