@@ -1,3 +1,8 @@
+Version 1.7
+============
+* all widgets are JIL signed
+* left out a couple of widgets, which are not implemented in the current Opera WRT (like VideoPlayer) to reduce bundle size and noise
+
 Version 1.6
 ============
 * rebuilt all tests to make use of all new features
