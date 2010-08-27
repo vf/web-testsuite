@@ -13,7 +13,7 @@
     </taskdef>
 
 	<!-- set some directories -->
-	<property name="dist" location="dist"/>
+	<property name="dist" location="dist/unsigned"/>
 	<property name="src" location="src"/>
 	<property name="test-src" location="${src}/tests" />
 	<property name="util-src" location="${src}/util" />
