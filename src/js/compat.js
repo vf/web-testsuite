@@ -2,6 +2,9 @@
 //	This file contains compatibility layer.
 //
 
+var Widget = {};
+var widget = {};
+
 (function(){
 	var __prefStore = {};
 	if (window["opera"]){
@@ -33,154 +36,161 @@
 		}
 	}
 	
-	if (navigator.product=="Gecko"){
-		Widget = {
-			
-			// Methods.
-			setPreferenceForKey:function(value, key){
-				__prefStore[key] = value;
-			},
-			openURL:function(){},
-			preferenceForKey:function(key){
-				return __prefStore[key];
-			},
-			
-			// Objects.
-			Device:{
-				// Properties.
-				widgetEngineName:"Browser",
-				//widgetEngineProvider:"Firefox :-)",
-				widgetEngineVersion:"GOLD",
-				// Methods.
-				vibrate:function(secs){
-					console.log("vibrating "+secs+" seconds");
-				},
-				// Objects
-				DeviceInfo:{
-					ownerInfo:"me",
-					phoneColorDepthDefault:1,
-					phoneFirmware:"boot",
-					phoneManufacturer:"me",
-					phoneModel:"new",
-					phoneOS:"BeOS",
-					phoneScreenHeightDefault:1,
-					phoneScreenWidthDefault:1,
-					phoneSoftware:"DOS",
-					totalMemory:1
-				},
-				DeviceStateInfo:{
-					audioPath:"C:/music",
-					availableMemory:1,
-					backLightOn:false,
-					// Methods
-					requestPositionInfo:function(method){
-						// Simulate onPositionRetrieved callback, which returns proper data.
-						setTimeout(doh.util.hitch(this, function(){
-							if (this.onPositionRetrieved){
-								this.onPositionRetrieved(new Widget.Device.PositionInfo(), method);
-							}
-						}), 100);
-					},
-					// Objects
-					Config:{
-						vibrationSetting:'OFF'
-					},
-					AccelerometerInfo:{
-					  // probably most common position for holding a mobile-phone
-					  xAxis: 0,
-					  yAxis: -0.5,
-					  zAxis: 0.5
-					}
-				},
-				PositionInfo:function(){
-					this.latitude = 52.522311;
-					this.longitude = 13.4141;
-				},
-				PowerInfo:{
-					isCharging:true,
-					percentRemaining:42
-				},
-				RadioInfo:{
-					isRadioEnabled:true,
-					isRoaming:true,
-					radioSignalSource:"towa",
-					radioSignalStrengthPercent:100,
-					RadioSignalSourceTypes:{
-						"CDMA":"CDMA",
-						"GSM":"GSM",
-						"LTE":"LTE",
-						"TDSCDMA":"TDSCDMA",
-						"WCDMA":"WCDMA"
-					}
+	Widget = {
+		
+		// Methods.
+		setPreferenceForKey:function(value, key){
+			__prefStore[key] = value;
+		},
+		openURL:function(){},
+		preferenceForKey:function(key){
+			return __prefStore[key];
+		}
+	};
+	widget.setPreferenceForKey = Widget.setPreferenceForKey;
+	widget.preferenceForKey = Widget.preferenceForKey;
+	widget.openURL = Widget.openURL;
+	widget.showNotification = function(headline, text, callback){
+		alert(headline+"\n==========\n\n"+text);
+		if (callback) callback();
+	};
+		
+	Widget.Device = {
+		// Properties.
+		widgetEngineName:"Browser",
+		//widgetEngineProvider:"Firefox :-)",
+		widgetEngineVersion:"GOLD",
+		// Methods.
+		vibrate:function(secs){
+			console.log("vibrating "+secs+" seconds");
+		}
+	};
+	
+	Widget.DeviceInfo = {
+		ownerInfo:"me",
+		phoneColorDepthDefault:1,
+		phoneFirmware:"boot",
+		phoneManufacturer:"me",
+		phoneModel:"new",
+		phoneOS:"BeOS",
+		phoneScreenHeightDefault:1,
+		phoneScreenWidthDefault:1,
+		phoneSoftware:"DOS",
+		totalMemory:1
+	};
+	
+	Widget.DeviceStateInfo = {
+		audioPath:"C:/music",
+		availableMemory:1,
+		backLightOn:false,
+		// Methods
+		requestPositionInfo:function(method){
+			// Simulate onPositionRetrieved callback, which returns proper data.
+			setTimeout(doh.util.hitch(this, function(){
+				if (this.onPositionRetrieved){
+					this.onPositionRetrieved(new Widget.Device.PositionInfo(), method);
 				}
-			},
-			
-			Exception: function(params){
-				doh.util.mixin(this, params);
-			},
-			ExceptionTypes:{
-				INVALID_PARAMETER:"INVALID_PARAMETER",
-				UNSUPPORTED:"UNSUPPORTED",
-				SECURITY:"SECURITY"
-			},
-				
-			PIM:{
-				addCalendarItem:function(){},
-				findAddressBookItems:function(address, startIndex, endIndex){
-					if (!util.isNumber(startIndex) || startIndex<0 || !util.isNumber(endIndex) || endIndex<0){
-						throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
-					}
-					setTimeout(doh.util.hitch(this, function(){
-						if (this.onAddressBookItemsFound){
-							this.onAddressBookItemsFound([new Widget.PIM.AddressBookItem()]);
-						}
-					}), 400);
-				},
-				findCalendarItems:function(){
-					setTimeout(doh.util.hitch(this, function(){
-						if (this.onCalendarItemsFound){
-							this.onCalendarItemsFound([new Widget.PIM.CalendarItem()]);
-						}
-					}), 400);
-				},
-				getAddressBookItem:function(){
-					return new Widget.PIM.AddressBookItem();
-				},
-				getCalendarItem:function(){
-					return new Widget.PIM.CalendarItem();
-				},
-				getAddressBookItemsCount:function(){ return 106 },
-				
-				// Objects
-				AddressBookItem:function(){
-					this.fullName = "Foo Bar";
-					this.company = "uxebu";
-					this.email = "a@b";
-				},
-				CalendarItem:function(){},
-				EventRecurrenceTypes:{
-					DAILY:"DAILY",
-					EVERY_WEEKDAY:"EVERY_WEEKDAY",
-					MONTHLY_ON_DAY:"MONTHLY_ON_DAY",
-					MONTHLY_ON_DAY_COUNT:"MONTHLY_ON_DAY_COUNT",
-					NOT_REPEAT:"NOT_REPEAT",
-					WEEKLY_ON_DAY:"WEEKLY_ON_DAY",
-					YEARLY:"YEARLY"
-				}
-			},
-			
-			WidgetManager:{
-				checkWidgetInstallationStatus:function(){}
+			}), 100);
+		},
+		// Objects
+		Config:{
+			vibrationSetting:'OFF'
+		},
+		AccelerometerInfo:{
+		  // probably most common position for holding a mobile-phone
+		  xAxis: 0,
+		  yAxis: -0.5,
+		  zAxis: 0.5
+		}
+	};
+	
+	Widget.PositionInfo = function(){
+		this.latitude = 52.522311;
+		this.longitude = 13.4141;
+	};
+	
+	Widget.PowerInfo = {
+		isCharging:true,
+		percentRemaining:42
+	};
+	Widget.RadioInfo = {
+		isRadioEnabled:true,
+		isRoaming:true,
+		radioSignalSource:"towa",
+		radioSignalStrengthPercent:100,
+		RadioSignalSourceTypes:{
+			"CDMA":"CDMA",
+			"GSM":"GSM",
+			"LTE":"LTE",
+			"TDSCDMA":"TDSCDMA",
+			"WCDMA":"WCDMA"
+		}
+	};
+		
+	Widget.Exception = function(params){
+		doh.util.mixin(this, params);
+	};
+	Widget.ExceptionTypes = {
+		INVALID_PARAMETER:"INVALID_PARAMETER",
+		UNSUPPORTED:"UNSUPPORTED",
+		SECURITY:"SECURITY"
+	};
+	Widget.PIM = {
+		addCalendarItem:function(){},
+		findAddressBookItems:function(address, startIndex, endIndex){
+			if (!util.isNumber(startIndex) || startIndex<0 || !util.isNumber(endIndex) || endIndex<0){
+				throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
 			}
-		};
-		Widget.PIM.AddressBookItem.prototype = {
-			setAttributeValue:function(){},
-			getAttributeValue:function(){},
-			getAddressGroupNames:function(){},
-			update:function(){}
-		};
-		Widget.PIM.CalendarItem.prototype.update = function(){}
-	}
+			setTimeout(doh.util.hitch(this, function(){
+				if (this.onAddressBookItemsFound){
+					this.onAddressBookItemsFound([new Widget.PIM.AddressBookItem()]);
+				}
+			}), 400);
+		},
+		findCalendarItems:function(){
+			setTimeout(doh.util.hitch(this, function(){
+				if (this.onCalendarItemsFound){
+					this.onCalendarItemsFound([new Widget.PIM.CalendarItem()]);
+				}
+			}), 400);
+		},
+		getAddressBookItem:function(){
+			return new Widget.PIM.AddressBookItem();
+		},
+		getCalendarItem:function(){
+			return new Widget.PIM.CalendarItem();
+		},
+		getAddressBookItemsCount:function(){ return 106 },
+		
+		// Objects
+		AddressBookItem:function(){
+			this.fullName = "Foo Bar";
+			this.company = "uxebu";
+			this.email = "a@b";
+		},
+		CalendarItem:function(){},
+		EventRecurrenceTypes:{
+			DAILY:"DAILY",
+			EVERY_WEEKDAY:"EVERY_WEEKDAY",
+			MONTHLY_ON_DAY:"MONTHLY_ON_DAY",
+			MONTHLY_ON_DAY_COUNT:"MONTHLY_ON_DAY_COUNT",
+			NOT_REPEAT:"NOT_REPEAT",
+			WEEKLY_ON_DAY:"WEEKLY_ON_DAY",
+			YEARLY:"YEARLY"
+		}
+	};
+		
+	Widget.WidgetManager = {
+		checkWidgetInstallationStatus:function(){}
+	};
+	
+	Widget.PIM.AddressBookItem.prototype = {
+		setAttributeValue:function(){},
+		getAttributeValue:function(){},
+		getAddressGroupNames:function(){},
+		update:function(){}
+	};
+	Widget.PIM.CalendarItem.prototype.update = function(){}
 })();
 
 

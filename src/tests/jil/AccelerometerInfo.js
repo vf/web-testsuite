@@ -11,7 +11,7 @@
 	var initialPosition = {
 		x:[-0.8, 0.8],
 		y:[-0.8, 0.8],
-		z:[-10.5, -9]
+		z:[9, 10.5]
 	};
 	
 	function waitForInitialPosition(callback){
@@ -233,7 +233,7 @@
 				timeout:11000,
 				test: function(t) {
 					waitForInitialPosition(function(){
-						checkForExpectedRange(t, "z", -9.82, -8);
+						checkForExpectedRange(t, "z", 8, 9.82);
 					});
 				},
 				tearDown:clearIntervals

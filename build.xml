@@ -51,6 +51,12 @@
 		<replace dir="${tmp}" token="$versionsuffix" value="${widget.version.suffix}">
 			<include name="**/*.tpl"/>
 		</replace>
+		<!-- Replace "widgetName" with a useable widget name, like e.g. "AcceleromterInfo (jil/test)" -->
+		<property name="_widgetName" value="${test.filename}" />
+		<propertyregex override="true" property="_widgetName" input="${_widgetName}" regexp="^.*-" replace="" global="true"/>
+		<replace dir="${tmp}" token="$widgetName" value="${_widgetName}">
+			<include name="**/*.tpl"/>
+		</replace>
 	
 		<!-- "rename" template files -->
 		<move file="${tmp}/index.html.tpl" tofile="${tmp}/index.html"/>

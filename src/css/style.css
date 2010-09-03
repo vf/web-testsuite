@@ -89,7 +89,8 @@ button[disabled=disabled] {
 		padding: 0.25em 0.25em 0.25em 0.25em;
 		position: relative;
 		border-bottom: 1px solid #666;
-		overflow: hidden; /* If content doesnt wrap dont let it flow out of the box, as e.g. window.addEventListener would */
+		/* If content doesnt wrap dont let it flow out of the box, as e.g. window.addEventListener would */
+		/*overflow: hidden; let the content flow out, so we can read it if it is tooo long, its ugly but importnatn e.g. for the errors */
 	}
 	
 	.content .row .id {

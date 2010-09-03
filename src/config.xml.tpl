@@ -4,7 +4,7 @@
 	width="800" height="600">
 	<width>800</width>
 	<height>1000</height>
-	<name>$test</name>
+	<name>$widgetName ($test)</name>
 	<icon src="img/icon.png"/>
 	<jil:maximum_display_mode height="800" width="600"/>
 	<author href="http://vodafone.com" email="wk@uxebu.com">Wolfram Kriesing</author>

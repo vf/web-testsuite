@@ -261,6 +261,47 @@ var config = {
 			return ret;
 		},
 		//
+		//	Nokia Symbian 3
+		//
+		"regexp:.*Symbian\\/3.*":function(){
+			var ret = {
+				unsupportedApis:[
+					"Widget.Device.RadioInfo.onSignalSourceChange",
+					"Widget.Device.setRingtone",
+					"Widget.AccountInfo*",
+					"Widget.AccountInfo.phoneUserUniqueId",
+					"Widget.AccountInfo.phoneOperatorName",
+					"Widget.AccountInfo.userSubscriptionType", 
+					"Widget.AccountInfo.userAccountBalance",
+					"Widget.Device.widgetEngineName",
+					"Widget.Device.widgetEngineProvider",
+					"Widget.Device.widgetEngineVersion",
+					"Widget.Device.DeviceInfo.phoneColorDepthDefault",
+					"Widget.Device.DeviceStateInfo.audioPath",
+					"Widget.Device.PositionInfo.cellId",
+					"Widget.Device.File.fullName",
+					"Widget.Multimedia.isVideoPlaying",
+					"Widget.Multimedia.VideoPlayer.*",
+					"Widget.PIM.exportAsVCard",
+					"Widget.PIM.onCalendarItemAlert",
+					"Widget.PIM.CalendarItem.alarmed",
+					"Widget.onRestore",
+					"Widget.Messaging.Message.callbackNumber",
+					"Widget.Messaging.Message.saveAttachment",
+					"Widget.Messaging.MessageQuantities*",
+					"Widget.Messaging.copyMessageToFolder",
+					"Widget.Messaging.createFolder",
+					"Widget.Messaging.deleteAllMessages",
+					"Widget.Messaging.deleteEmailAccount",
+					"Widget.Messaging.deleteFolder",
+					"Widget.Messaging.getFolderNames",
+					"Widget.Messaging.getMessageQuantities",
+					"Widget.Config.setDefaultRingtone",
+				]
+			};
+			return ret;
+		},
+		//
 		//	PC, Opera Widget Runtime
 		//
 		"regexp:Opera\\/9\\.64(.*)Presto\\/2\\.1\\.1":function(){
