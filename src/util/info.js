@@ -11,6 +11,8 @@
 		"window.outerHeight",
 		"window.outerWidth",
 
+		"navigator.userAgent",
+
 		"Widget.Device.widgetEngineProvider",
 		"Widget.Device.widgetEngineVersion",
 		"Widget.Device.widgetEngineName",
