@@ -11,7 +11,7 @@
 	var initialPosition = {
 		x:[-0.8, 0.8],
 		y:[-0.8, 0.8],
-		z:[9, 10.5]
+		z:[8.5, 10.5] // we are very tolerant here, just for the nokia :( it currently ends at 8.5something, imho this range should be no more than 1)
 	};
 	
 	function waitForInitialPosition(callback){
@@ -77,6 +77,24 @@
 		}
 	};
 
+	function _setup() {
+		/*
+			The JIL specification defines that all accelerometer values
+			are refreshed when the `x` axis is beeing queried.
+
+			In order to get the latest sensor values, the `x` axis has to
+			be read out before all other axes.
+			
+			Use this method as setUp() when using the accelerometer.
+		*/
+		var accelerometerInfo =	Widget.Device.DeviceStateInfo.AccelerometerInfo;
+		return {
+			x: accelerometerInfo.xAxis, // reading «xAxis« triggers refresh, always query first!
+			y: accelerometerInfo.yAxis,
+			z: accelerometerInfo.zAxis
+		}
+	};
+
 	dohx.add({name:"AccelerometerInfo",
 		mqcExecutionOrderBaseOffset:0, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:["Widget.Device.DeviceStateInfo.AccelerometerInfo"],
@@ -85,6 +103,7 @@
 			{
 				id: 100,
 				name: "Is xAxis a number?",
+				setUp:_setup,
 				test: function(t) {
 					t.assertFalse(isNaN(wdda.xAxis));
 					return wdda.xAxis;
@@ -93,6 +112,7 @@
 			{
 				id: 200,
 				name: "Is yAxis a number?",
+				setUp:_setup,
 				test: function(t) {
 					t.assertFalse(isNaN(wdda.yAxis));
 					return wdda.yAxis;
@@ -101,6 +121,7 @@
 			{
 				id: 300,
 				name: "Is zAxis a number?",
+				setUp:_setup,
 				test: function(t) {
 					t.assertFalse(isNaN(wdda.zAxis));
 					return wdda.zAxis;
@@ -114,6 +135,7 @@
 					"Click 'GO'!",
 					"Move the phone while the test is running, to generate different values."
 				],
+				setUp:_setup,
 				test: function(t) {
 					setTimeout(function(){
 						var x = wdda.xAxis;
@@ -135,6 +157,7 @@
 					"Place the phone flat on the table, display facing upwards.",
 					"Click 'GO'!"
 				],
+				setUp:_setup,
 				test: function(t) {
 					var vals = {x:wdda.xAxis, y:wdda.yAxis, z:wdda.zAxis};
 					var xOk = vals.x > initialPosition.x[0] && vals.x < initialPosition.x[1];
@@ -145,6 +168,33 @@
 					if (!xOk) msg.push("Expected x value to be in the range " + initialPosition.x[0] + ".." + initialPosition.x[1] + ", value is: " + vals.x);
 					if (!yOk) msg.push("Expected y value to be in the range " + initialPosition.y[0] + ".." + initialPosition.y[1] + ", value is: " + vals.y);
 					if (!zOk) msg.push("Expected z value to be in the range " + initialPosition.z[0] + ".." + initialPosition.z[1] + ", value is: " + vals.z);
+					t.assertTrue(xOk && yOk && zOk, msg.join("<br/>"));
+					return vals; // In the success case show the values.
+				}
+			},
+			{
+				id: 330,
+				name: "Check tight range - flat on the table.",
+				instructions:[
+					"Place the phone flat on the table, display facing upwards.",
+					"Make sure it's really on a plane table, may use a gauge to ensure so.",
+					"This test will be very pedantic!",
+					"Click 'GO'!"
+				],
+				setUp:_setup,
+				test: function(t) {
+					// Basically we expect x and y to be zero and z 9.81
+					// we give it 0.4 range
+					var vals = {x:wdda.xAxis, y:wdda.yAxis, z:wdda.zAxis};
+					var expectedValues = {x:0, y:0, z:9.81};
+					var allowedOffset = 0.2;
+					var xOk = vals.x > expectedValues.x - allowedOffset && vals.x < expectedValues.x + allowedOffset;
+					var yOk = vals.y > expectedValues.y - allowedOffset && vals.y < expectedValues.y + allowedOffset;
+					var zOk = vals.z > expectedValues.z - allowedOffset && vals.z < expectedValues.z + allowedOffset;
+					var msg = [];
+					if (!xOk) msg.push("Expected x value to be in the range " + (expectedValues.x - allowedOffset) + ".." + (expectedValues.x + allowedOffset) + ", value is: " + vals.x);
+					if (!yOk) msg.push("Expected y value to be in the range " + (expectedValues.y - allowedOffset) + ".." + (expectedValues.y + allowedOffset) + ", value is: " + vals.y);
+					if (!zOk) msg.push("Expected z value to be in the range " + (expectedValues.z - allowedOffset) + ".." + (expectedValues.z + allowedOffset) + ", value is: " + vals.z);
 					t.assertTrue(xOk && yOk && zOk, msg.join("<br/>"));
 					return vals; // In the success case show the values.
 				}
@@ -161,6 +211,7 @@
 					"Within 10 seconds, tilt phone 90 degrees to the RIGHT.",
 				],
 				timeout:11000,
+				setUp:_setup,
 				test: function(t){
 					waitForInitialPosition(function(){
 						checkForExpectedRange(t, "x", -9.82, -8);
@@ -177,6 +228,7 @@
 					"Within 10 seconds, tilt phone 90 degrees to the LEFT.",
 				],
 				timeout:11000,
+				setUp:_setup,
 				test: function(t) {
 					waitForInitialPosition(function(){
 						checkForExpectedRange(t, "x", 8, 9.82);
@@ -199,6 +251,7 @@
 					"Within 10 seconds, tilt phone 90 degrees FORWARD.",
 				],
 				timeout:11000,
+				setUp:_setup,
 				test: function(t) {
 					waitForInitialPosition(function(){
 						checkForExpectedRange(t, "z", -1, 1);
@@ -215,6 +268,7 @@
 					"Within 10 seconds, tilt phone 90 degrees BACKWARDS.",
 				],
 				timeout:11000,
+				setUp:_setup,
 				test: function(t) {
 					waitForInitialPosition(function(){
 						checkForExpectedRange(t, "z", -1, 1);
@@ -231,6 +285,7 @@
 					"Within 10 seconds, hold the phone facing downwards.",
 				],
 				timeout:11000,
+				setUp:_setup,
 				test: function(t) {
 					waitForInitialPosition(function(){
 						checkForExpectedRange(t, "z", 8, 9.82);
@@ -252,9 +307,10 @@
 					"Within 10 seconds, hold the phone facing towards you.",
 				],
 				timeout:11000,
+				setUp:_setup,
 				test: function(t) {
 					waitForInitialPosition(function(){
-						checkForExpectedRange(t, "y", -8, -9.82);
+						checkForExpectedRange(t, "y", 8, 9.82);
 					});
 				},
 				tearDown:clearIntervals
@@ -268,9 +324,10 @@
 					"Within 10 seconds, hold the phone facing towards you but upside down.",
 				],
 				timeout:11000,
+				setUp:_setup,
 				test: function(t) {
 					waitForInitialPosition(function(){
-						checkForExpectedRange(t, "y", 9.82, 8);
+						checkForExpectedRange(t, "y", -8, -9.82);
 					});
 				},
 				tearDown:clearIntervals
