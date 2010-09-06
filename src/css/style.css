@@ -7,12 +7,32 @@ body, html {
 	margin: 0;
 	padding: 0;
 	background-color: lightgrey;
+	font-size: 15px;
 }
 body, html, button {
-	font-size: 2mm;
 	font-family: Helvetica;
 }
 
+/*
+    166dpi - Nokia E52-1
+    232dpi - Nokia 5800 XpressMusic
+    265dpi - Samsung H1
+*/
+@media all and (min-resolution: 150dpi) {
+    body, html, button {
+        font-size: 12px;
+    }
+}
+@media all and (min-resolution: 200dpi) {
+    body, html, button {
+        font-size: 20px;
+    }
+}
+@media all and (min-resolution: 250dpi) {
+    body, html, button {
+        font-size: 26px;
+    }
+}
 
 /**
  * General classes
