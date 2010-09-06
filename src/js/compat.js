@@ -79,7 +79,7 @@ var widget = {};
 		totalMemory:1
 	};
 	
-	Widget.DeviceStateInfo = {
+	Widget.Device.DeviceStateInfo = {
 		audioPath:"C:/music",
 		availableMemory:1,
 		backLightOn:false,
