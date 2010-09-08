@@ -6,7 +6,7 @@ doh.ui = {
 		// summary: This is called when run() was called the first time.
 		//console.log(doh._numTests + " tests registered, in " + doh._groups.length + " groups");
 		//console.log("--------");
-		util.query(".notCustomConfigured")[0].style.display = config.isCustomConfiguration ? "none" : "inline";
+		util.query(".notCustomConfigured")[0].style.display = config._meta.isCustomConfiguration ? "none" : "inline";
 	},
 
 	groupStarted:function(group){

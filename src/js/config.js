@@ -1,5 +1,9 @@
 var config = {
-	isCustomConfiguration:false
+	_meta:{
+		isCustomConfiguration:false,
+		appliedConfigName:"",
+		name:"" // A nice readable name which we can also show in a string like "Configured for XXXX".
+	}
 };
 
 (function(){
@@ -23,6 +27,10 @@ var config = {
 	//}
 
 	var defaults = {
+		_meta:{
+			name:"default"
+		},
+		
 		// summary: This configuration defines the features of the phone.
 		// description: It maybe used to determine if a test is viable
 		// 		and shall be added or not. E.g. if a phone has a certain hardware
@@ -161,6 +169,7 @@ var config = {
 			var widgetPath = readableFile.replace(/\/js\/config\.js$/, "").replace(/\/+$/, "")+"/";
 			
 			var ret = {
+				_meta:{name:"VF 360 (H1/M1)"},
 				canDoMultitasking:false
 				// Add the device's configuration, different from the default here!
 			};
@@ -171,6 +180,7 @@ var config = {
 		//
 		"regexp:^WidgetManager;\\sSAMSUNG-GT-I\\d{4}-Vodafone;AppleWebKit.*":function(){
 			var ret = {
+				_meta:{name:"VF 360 (H2)"},
 				// AGPS==GPS so set the timeout to the same on the H2
 				geolocation:{
 					timeouts: {
@@ -195,6 +205,7 @@ var config = {
 		//
 		"regexp:^WidgetManager;.*\\(Android.*Opera.*Widgets.*":function(){
 			var ret = {
+				_meta:{name:"Android Opera WRT"},
 				fileSystem:{
 					readablePath:"/sdcard",
 					readableFile:"/sdcard/test-audio/mp3/loop.mp3",
@@ -265,6 +276,8 @@ var config = {
 		//
 		"regexp:.*Symbian\\/3.*":function(){
 			var ret = {
+				_meta:{name:"Symbian3 WRT"},
+				geolocation:{supportsCellId:false},
 				unsupportedApis:[
 					"Widget.Device.RadioInfo.onSignalSourceChange",
 					"Widget.Device.setRingtone",
@@ -306,6 +319,7 @@ var config = {
 		//
 		"regexp:Opera\\/9\\.64(.*)Presto\\/2\\.1\\.1":function(){
 			var ret = {
+				_meta:{name:"Opera 9.64"},
 				hasClipboard:true,
 				hasClamshell:false
 			};
@@ -324,6 +338,7 @@ var config = {
 // using only "AppleWebkit" here would also be found on the H2
 		//"regexp:(.*AppleWebKit.*)|(Mozilla.*Gecko\/\\d+\\sFirefox.*)":function(){
 			var ret = {
+				_meta:{name:"Firefox"},
 				hasClipboard:true,
 				hasClamshell:false,
 				geolocation:{
@@ -370,6 +385,7 @@ var config = {
 		"regexp:^WidgetManager;\\sNokia\\s(N)?\\d+;\\sOpera.*":function(){
 			var widgetPath = (""+window.location).replace("widget://localhost/", "").replace(/index.html$/, "");
 			var ret = {
+				_meta:{name:"Nokia Opera WRT"},
 				hasClipboard:true,
 				hasClamshell:false
 			};
@@ -378,6 +394,7 @@ var config = {
 		"WidgetManager; NOKIA E52-1; Opera/9.5 (S60; Symbian OS; U; de; Opera Mobile/1109)":function(){
 			var widgetPath = (""+window.location).replace("widget://localhost/", "").replace(/index.html$/, "");
 			var ret = {
+				_meta:{name:"Nokia Opera WRT"},
 				hasClipboard:true,
 				hasClamshell:false
 			};
@@ -402,17 +419,19 @@ var config = {
 		if (key.indexOf("regexp:")===0){
 			if (ua.match(new RegExp(key.substr(7)))){
 				configToMixin = c();
+				configToMixin._meta.appliedConfigName = c;
 				break;
 			}
 		} else if(key===ua){
 			configToMixin = c();
+			configToMixin._meta.appliedConfigName = c;
 			break;
 		}
 	}
 	if (configToMixin===null){
 		configToMixin = doh.util.mixin({}, defaults);
 	} else {
-		configToMixin.isCustomConfiguration = true;
+		configToMixin._meta.isCustomConfiguration = true;
 	}
 	
 	// config is still empty at this point, just contains key "isCustomConfiguration".
