@@ -164,11 +164,14 @@ var widget = {};
 		
 		// Objects
 		AddressBookItem:function(){
+			this.addressBookItemId = 1;
 			this.fullName = "Foo Bar";
 			this.company = "uxebu";
 			this.email = "a@b";
 		},
-		CalendarItem:function(){},
+		CalendarItem:function(){
+			this.calendarItemId = 1;
+		},
 		EventRecurrenceTypes:{
 			DAILY:"DAILY",
 			EVERY_WEEKDAY:"EVERY_WEEKDAY",
