@@ -107,7 +107,7 @@ doh.util.mixin(dohx._manualTestObject, {
 // TODO the real assertObject gets created in doh._runTest() so we have no way of passing it in as a parameter
 // here, this should be made possible imho, so one could also call t.failure() even though an expectedResult is given.
 // Couldnt figure out how to do that yet :( way to tricky it seems.
-				t.test(); // Passing in "t" is wrong, "t" is the test not the assert object.
+				t.test({}); // Passing in "t" is wrong, "t" is the test not the assert object. Passing in an empty object, so t.result usage wont fail ... no final solution though!!!!!
 			}catch(e){
 				// If the test call itself fails make the test fail too, so we dont "swallow" error messages.
 				doh._current.test._actualTestFunction = t.test;
