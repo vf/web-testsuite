@@ -36,7 +36,7 @@ var config = {
 		// 		and shall be added or not. E.g. if a phone has a certain hardware
 		// 		feature or not, like a clamshell.
 		hasAccelerometer:true,
-		hasClipboard:false,
+		hasClipboard:true,
 		hasClamshell:false,
 		hasKeypadLight:false,
 		
@@ -170,6 +170,7 @@ var config = {
 			
 			var ret = {
 				_meta:{name:"VF 360 (H1/M1)"},
+				hasClipboard:false,
 				canDoMultitasking:false
 				// Add the device's configuration, different from the default here!
 			};
@@ -181,6 +182,7 @@ var config = {
 		"regexp:^WidgetManager;\\sSAMSUNG-GT-I\\d{4}-Vodafone;AppleWebKit.*":function(){
 			var ret = {
 				_meta:{name:"VF 360 (H2)"},
+				hasClipboard:false,
 				// AGPS==GPS so set the timeout to the same on the H2
 				geolocation:{
 					timeouts: {
@@ -320,7 +322,6 @@ var config = {
 		"regexp:Opera\\/9\\.64(.*)Presto\\/2\\.1\\.1":function(){
 			var ret = {
 				_meta:{name:"Opera 9.64"},
-				hasClipboard:true,
 				hasClamshell:false
 			};
 			return ret;
@@ -339,7 +340,6 @@ var config = {
 		//"regexp:(.*AppleWebKit.*)|(Mozilla.*Gecko\/\\d+\\sFirefox.*)":function(){
 			var ret = {
 				_meta:{name:"Firefox"},
-				hasClipboard:true,
 				hasClamshell:false,
 				geolocation:{
 					timeouts: {
@@ -386,7 +386,6 @@ var config = {
 			var widgetPath = (""+window.location).replace("widget://localhost/", "").replace(/index.html$/, "");
 			var ret = {
 				_meta:{name:"Nokia Opera WRT"},
-				hasClipboard:true,
 				hasClamshell:false
 			};
 			return ret;
@@ -395,7 +394,6 @@ var config = {
 			var widgetPath = (""+window.location).replace("widget://localhost/", "").replace(/index.html$/, "");
 			var ret = {
 				_meta:{name:"Nokia Opera WRT"},
-				hasClipboard:true,
 				hasClamshell:false
 			};
 			return ret;
