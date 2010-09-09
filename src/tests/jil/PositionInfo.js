@@ -30,7 +30,7 @@
 					"Click 'GO' to start testing."
 				],
 				test:function(t){
-					t.success("Preconditions met, user confirmed.");
+					t.success("Preconditions met, user confirmed. (fastest method=" + _fastestMethod + ")");
 				}
 			},
 			{
@@ -123,7 +123,7 @@
 						var latLng = posInfo.latitude + "," + posInfo.longitude;
 						var url = "http://maps.google.com/staticmap?center="+latLng+"&zoom=16&size=500x500&maptype=mobile\&markers="+latLng;
 						dohx.showInfo('lat, lng:'+ latLng +'<br /><img src="'+url+'" />');
-						t.result = showPosInfo(posInfo);
+						//t.result = showPosInfo(posInfo); we have an expectedResult this wont show anything
 					};
 					wdd.requestPositionInfo(method);
 				},
