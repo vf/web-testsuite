@@ -66,15 +66,15 @@ var widget = {};
 		}
 	};
 	
-	Widget.DeviceInfo = {
+	Widget.Device.DeviceInfo = {
 		ownerInfo:"me",
-		phoneColorDepthDefault:1,
+		phoneColorDepthDefault:123456,
 		phoneFirmware:"boot",
 		phoneManufacturer:"me",
 		phoneModel:"new",
 		phoneOS:"BeOS",
-		phoneScreenHeightDefault:1,
-		phoneScreenWidthDefault:1,
+		phoneScreenHeightDefault:874,
+		phoneScreenWidthDefault:1440,
 		phoneSoftware:"DOS",
 		totalMemory:1
 	};
@@ -104,7 +104,7 @@ var widget = {};
 		}
 	};
 	
-	Widget.PositionInfo = function(){
+	Widget.Device.PositionInfo = function(){
 		this.latitude = 52.522311;
 		this.longitude = 13.4141;
 	};
