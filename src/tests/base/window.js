@@ -22,10 +22,18 @@
 				}
 			},
 			{
+				id: 210,
+				name:"alert - long text",
+				requiredObjects:["window.alert"],
+				expectedResult:"Did you see an alert pop up, with a long message which was still completely readable (e.g. properly wrapped and not cut off)?",
+				test:function(t){
+					window.alert("Hello, have a nice day! A really nice day! Hello, have a nice day! A two really nice days :) !");
+				}
+			},
+			{
 				id: 300,
 				name:"confirm - positive",
 				requiredObjects:["window.confirm"],
-				timeout:2 * 60 *1000,
 				test:function(t){
 					t.assertTrue(window.confirm("Please click 'OK'."));
 				}
@@ -34,16 +42,22 @@
 				id: 400,
 				name:"confirm - negative",
 				requiredObjects:["window.confirm"],
-				timeout:2 * 60 *1000,
 				test:function(t){
 					t.assertFalse(window.confirm("Please click 'Cancel'."));
+				}
+			},
+			{
+				id: 410,
+				name:"confirm - long text",
+				requiredObjects:["window.confirm"],
+				test:function(t){
+					t.assertTrue(window.confirm("Is this readable? Multiple times? Is this readable? Multiple times? Is this readable? Multiple times?"));
 				}
 			},
 			{
 				id: 500,
 				name:"prompt - type in 'yes'",
 				requiredObjects:["window.prompt"],
-				timeout:2 * 60 *1000,
 				test:function(t){
 					t.assertEqual("yes", window.prompt("Please enter 'yes' in the box below."));
 				}
@@ -52,16 +66,39 @@
 				id: 600,
 				name:"prompt - click 'OK'",
 				requiredObjects:["window.prompt"],
-				timeout:2 * 60 *1000,
 				test:function(t){
 					t.assertEqual("", window.prompt("Please type nothing, just press 'OK'."));
+				}
+			},
+			{
+				id: 610,
+				// On the Nokia N8 long text was just floating out of the visible area, no wrapping took place.
+				name:"prompt - long text",
+				requiredObjects:["window.prompt"],
+				expectedResult:"Was the text in the pop up completely readable?",
+				test:function(t){
+					window.prompt("This is a really long text, that should be well readable and wrapped in a nice way! Click any button.")
+				}
+			},
+			{
+				id: 620,
+				// On the N8 multiple prompts in a row made the keyboard not appear anymore.
+				name:"prompt - multiple prompts",
+				requiredObjects:["window.prompt"],
+				test:function(t){
+					for (var i=1; i<5; i++){
+						if (i!=window.prompt("Prompt " + i + ", please type the digit '" + i + "'.")){
+							t.failure("No text received in prompt " + i + ".");
+							return;
+						}
+					}
+					t.success("Four prompts in a row appeared and did contain text.");
 				}
 			},
 			{
 				id: 700,
 				name:"prompt - click 'Cancel'",
 				requiredObjects:["window.prompt"],
-				timeout:2 * 60 *1000,
 				test:function(t){
 					t.assertEqual(null, window.prompt("Please type nothing, just press 'Cancel'."));
 				}
@@ -70,7 +107,6 @@
 				id: 800,
 				name:"prompt - Hide virtual keyboard and re-open.",
 				requiredObjects:["window.prompt"],
-				timeout:2 * 60 *1000,
 				test:function(t){
 					var instructions = [
 						"Type 'file.wav' (may have to scroll this popup).",
