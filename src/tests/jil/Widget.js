@@ -76,6 +76,7 @@
 			},{
 				id:600,
 				name:"onFocus - Verify that callback is executed.",
+				mustSupportApis:["Widget.onFocus"],
 addIf:false, // disabled for now ... implement properly doesnt work on H2
 				//addIf:config.canDoMultitasking,
 				instructions:[
@@ -96,6 +97,7 @@ t.failure("TODO test not properly implemented imho");
 			},{
 				id:700,
 				name:"onMaximize - Verify that callback is executed.",
+				mustSupportApis:["Widget.onMaximize"],
 				instructions:[
 					"Click 'GO'.",
 					"Minimize this application, to mini mode.",
@@ -113,6 +115,7 @@ t.failure("TODO test not properly implemented imho");
 			},{
 				id:800,
 				name:"onRestore - Verify that callback is executed.",
+				mustSupportApis:["Widget.onRestore"],
 				addIf:config.canDoMultitasking,
 				timeout: 10 * 1000,
 				instructions:[
@@ -131,6 +134,7 @@ t.failure("TODO test not properly implemented imho");
 			},{
 				id:900,
 				name:"onWakeup - Verify that callback is executed.",
+				mustSupportApis:["Widget.onWakeup"],
 				addIf:config.canDoMultitasking,
 				instructions:[
 					"Click 'GO'.",

@@ -128,7 +128,7 @@
 				name:"phoneScreenHeightDefault - verify",
 				requiredObjects:["Widget.Device.DeviceInfo.phoneFirmware"],
 				test:function(t){
-					t.assertEqual(wdd.phoneScreenHeightDefault, window.screen.availHeight);
+					t.assertEqual(wdd.phoneScreenHeightDefault, window.screen.height);
 				}
 			},
 			{
@@ -146,7 +146,7 @@
 				name:"phoneScreenHeightDefault",
 				requiredObjects:["Widget.Device.DeviceInfo.phoneScreenHeightDefault"],
 				test:function(t){
-					t.assertEqual(wdd.phoneScreenWidthDefault, window.screen.availWidth);
+					t.assertEqual(wdd.phoneScreenWidthDefault, window.screen.width);
 				}
 			},
 			{
