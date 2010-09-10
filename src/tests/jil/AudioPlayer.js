@@ -431,14 +431,16 @@
 	dohx.add({name:"Multimedia misc",
 		mqcExecutionOrderBaseOffset:80000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:[
-			"Widget.Multimedia.AudioPlayer.open",
-			"Widget.Multimedia.AudioPlayer.play",
-			"Widget.Multimedia.AudioPlayer.stop"
+			"Widget.Multimedia"
 		],
 		tests:[
 			{
 				id:100,
 				name:"Check if Widget.MultiMedia.stopAll() stops audio playing.",
+				requiredObjects:[
+					"Widget.Multimedia.AudioPlayer.open", "Widget.Multimedia.AudioPlayer.play", "Widget.Multimedia.AudioPlayer.stop",
+					"Widget.Multimedia.stopAll"
+				],
 				instructions:"Click 'GO' to play audio.",
 				expectedResult:"Did it stop after about 2sec?",
 				test:function(t){
@@ -458,6 +460,7 @@
 			{
 				id:200,
 				name:"Verify the volume value.",
+				requiredObjects:["Widget.Multimedia.getVolume"],
 				instructions:[
 					"Change the volume of the phone to very loud!",
 					"Click 'GO'."
@@ -470,6 +473,7 @@
 			{
 				id:300,
 				name:"Verify a different(!) volume value again.",
+				requiredObjects:["Widget.Multimedia.getVolume"],
 				instructions:[
 					"Change the volumne of the phone to very low!",
 					"Click 'GO'."
@@ -482,6 +486,7 @@
 			{
 				id:400,
 				name:"Verify the volume value, 100% (10).",
+				requiredObjects:["Widget.Multimedia.getVolume"],
 				instructions:[
 					"Change the volume of the phone to the loudest possible!",
 					"Click 'GO'."
@@ -493,6 +498,7 @@
 			{
 				id:500,
 				name:"Verify the volume value, 0.",
+				requiredObjects:["Widget.Multimedia.getVolume"],
 				instructions:[
 					"Change the volume of the phone to the lowest possible value!",
 					"Click 'GO'."
@@ -504,6 +510,9 @@
 			{
 				id:600,
 				name:"Change volume while song is playing", // Seems not to be working in latest firmware.
+				requiredObjects:[
+					"Widget.Multimedia.AudioPlayer.open", "Widget.Multimedia.AudioPlayer.play", "Widget.Multimedia.AudioPlayer.stop"
+				],
 				instructions:[
 					"Change the volume up, to as loud as possible.",
 					"Click 'GO'!",
