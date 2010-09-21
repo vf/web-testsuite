@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:jil="http://www.jil.org/ns/widgets1.2"
 	id="http://jil.org/wid/cc4b75128e6bc033fb7f40e7a8818a7c5311dff8c8b6a8b69f0376214ae8d0b1/$testfilename" version="0.2$versionsuffix"
-	width="800" height="600">
+	width="800" height="600" viewmodes="all">
 	<width>800</width>
 	<height>1000</height>
 	<name>$widgetName ($test)</name>
@@ -10,7 +10,9 @@
 	<author href="http://vodafone.com" email="wk@uxebu.com">Wolfram Kriesing</author>
 	<description>This widget tests the following: $test</description>
 
-
+	<!-- Just for the Nokia it has to be before AudioPlayer *cough* -->
+	<feature name="http://jil.org/jil/api/1.1/multimedia" required="false"/>
+	
 	<feature name="http://jil.org/jil/api/1.1/accelerometerinfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/account" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/accountinfo" required="false"/>
@@ -28,7 +30,6 @@
 	<feature name="http://jil.org/jil/api/1.1/messaging" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/messagequantities" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/messagetypes" required="false"/>
-	<feature name="http://jil.org/jil/api/1.1/multimedia" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/powerinfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/positioninfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/widget" required="false"/>
