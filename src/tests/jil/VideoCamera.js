@@ -18,7 +18,7 @@
 	};
 	
 	var _timeout = 20 * 1000;
-	dohx.add({name:"Camera",
+	dohx.add({name:"VideoCamera",
 		mqcExecutionOrderBaseOffset:290000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:["Widget.Multimedia.Camera"],
 		tests:[
