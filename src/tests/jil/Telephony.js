@@ -57,7 +57,7 @@
 					wt.findCallRecords(searchFor, 0, 10);
 				},
 				tearDown:function(){
-					delete wt.onCallRecordsFound;
+					wt.onCallRecordsFound = null;
 				}
 			},
 			{
@@ -73,7 +73,7 @@
 					wt.findCallRecords(searchFor, 0, 10);
 				},
 				tearDown:function(){
-					delete wt.onCallRecordsFound;
+					wt.onCallRecordsFound = null;
 				}
 			},
 			{
@@ -150,7 +150,7 @@
 					wt.findCallRecords(searchFor, 0, 10);
 				},
 				tearDown:function(){
-					delete wt.onCallRecordsFound;
+					wt.onCallRecordsFound = null;
 				}
 			},
 			{
@@ -174,7 +174,7 @@
 					wt.findCallRecords(searchFor, 0, 10);
 				},
 				tearDown:function(){
-					delete wt.onCallRecordsFound;
+					wt.onCallRecordsFound = null;
 				}
 			},
 			{
@@ -198,7 +198,7 @@
 					wt.findCallRecords(searchFor, 0, 10);
 				},
 				tearDown:function(){
-					delete wt.onCallRecordsFound;
+					wt.onCallRecordsFound = null;
 				}
 			},
 // TODO search in date ranges
@@ -405,7 +405,7 @@
 					} 
 				},
 				tearDown:function(){
-					delete wt.onCallEvent;
+					wt.onCallEvent = null;
 				}
 			},
 			{
@@ -426,7 +426,7 @@
 					} 
 				},
 				tearDown:function(){
-					delete wt.onCallEvent;
+					wt.onCallEvent = null;
 				}
 			},
 			{
@@ -447,7 +447,7 @@
 					} 
 				},
 				tearDown:function(){
-					delete wt.onCallEvent;
+					wt.onCallEvent = null;
 				}
 			},
 			{
@@ -489,7 +489,7 @@
 					} 
 				},
 				tearDown:function(){
-					delete wt.onCallEvent;
+					wt.onCallEvent = null;
 				}
 			},
 			{
@@ -511,7 +511,7 @@
 					} 
 				},
 				tearDown:function(){
-					delete wt.onCallEvent;
+					wt.onCallEvent = null;
 				}
 			},
 			{
@@ -554,7 +554,7 @@
 					wt.initiateVoiceCall(_testRecipients.phoneNumber);
 				},
 				tearDown:function(){
-					delete wt.onCallEvent;
+					wt.onCallEvent = null;
 				}
 			},
 			//

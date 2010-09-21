@@ -49,7 +49,7 @@
 					wdd.requestPositionInfo(_fastestMethod);
 				},
 				tearDown:function(){
-					delete wdd.onPositionRetrieved;
+					wdd.onPositionRetrieved = null;
 				}
 			},
 			{
@@ -67,7 +67,7 @@
 					wdd.requestPositionInfo("cellid");
 				},
 				tearDown:function(){
-					delete wdd.onPositionRetrieved;
+					wdd.onPositionRetrieved = null;
 				}
 			},
 			{
@@ -85,7 +85,7 @@
 					wdd.requestPositionInfo("gps");
 				},
 				tearDown:function(){
-					delete wdd.onPositionRetrieved;
+					wdd.onPositionRetrieved = null;
 				}
 			},
 			{
@@ -103,7 +103,7 @@
 					wdd.requestPositionInfo("agps");
 				},
 				tearDown:function(){
-					delete wdd.onPositionRetrieved;
+					wdd.onPositionRetrieved = null;
 				}
 			},
 			{
@@ -128,7 +128,7 @@
 					wdd.requestPositionInfo(method);
 				},
 				tearDown:function(){
-					delete wdd.onPositionRetrieved;
+					wdd.onPositionRetrieved = null;
 				}
 			},{
 				id:600,
@@ -146,7 +146,7 @@
 					wdd.requestPositionInfo(_fastestMethod);
 				},
 				tearDown:function(){
-					delete wdd.onPositionRetrieved;
+					wdd.onPositionRetrieved = null;
 				}
 //			},{
 //				id:700,
