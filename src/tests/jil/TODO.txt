@@ -2,6 +2,12 @@ TODO
 
 * make config.xml ONLY contain the feature URLs that the test needs,
   add a first test that verifies that all methods can be accessed and dont throw security exceptions (opera currently also requires widget and device for PositionInfo functioanlity)
+* start a lot of widgets to see that the runtime can stand this
+* write tests for resetting callback using
+     delete callback;
+  AND
+     callback = null;
+
 
 Device
 * setRingtone
@@ -33,6 +39,8 @@ File
 * test delete dirs with files and without files in them ...
 * test dirs that contain dirs too (spec only says "If a directory is given as the target, and it contains any files, the folder will  
 not be deleted until it does not contain any files.") talks only abot file :)
+* test with non-empty path, test with a dir in a dir
+
 
 Application
 * test start widgets using launchApplication() using the widget:// URL
