@@ -86,9 +86,10 @@
 					};
 				},
 				tearDown:function(){
-					delete wdd.onFlipEvent;
+					wdd.onFlipEvent = null;
 				}
-			},{
+			},
+			{
 				id:800,
 				addIf:config.hasClamshell,
 				name:"onFlipEvent open",
@@ -110,26 +111,28 @@
 					};
 				},
 				tearDown:function(){
-					delete wdd.onFlipEvent;
+					wdd.onFlipEvent = null;
 				}
-			//},{
-			//	id:900,
-			//	name:"onScreenChangeDimensions - does it fire at all?",
-			//	mustSupportApis:["Widget.Device.DeviceStateInfo.onScreenChangeDimensions"],
-			//	instructions:[
-			//		"Click 'GO'.",
-			//		"Change the orientation of the phone (landscape/portrait)!"
-			//	],
-			//	timeout:10 * 1000,
-			//	test:function(t){
-			//		//wdd.onScreenChangeDimensions = function(){
-			//		//	//t.success("event fired");
-			//		//}
-			//	},
-			//	tearDown:function(){
-			//		delete wdd.onScreenChangeDimensions;
-			//	}
-			},{
+			},
+			{
+				id:900,
+				name:"onScreenChangeDimensions - does it fire at all?",
+				mustSupportApis:["Widget.Device.DeviceStateInfo.onScreenChangeDimensions"],
+				instructions:[
+					"Click 'GO'.",
+					"Change the orientation of the phone (landscape/portrait)!"
+				],
+				timeout:10 * 1000,
+				test:function(t){
+					wdd.onScreenChangeDimensions = function(){
+						t.success("event fired");
+					}
+				},
+				tearDown:function(){
+					wdd.onScreenChangeDimensions = null;
+				}
+			},
+			{
 				id:1000,
 				name:"onScreenChangeDimensions - do width+height change?",
 				mustSupportApis:["Widget.Device.DeviceStateInfo.onScreenChangeDimensions"],
@@ -149,7 +152,7 @@
 					}
 				},
 				tearDown:function(){
-					delete wdd.onScreenChangeDimensions;
+					wdd.onScreenChangeDimensions = null;
 				}
 			}
 		]
