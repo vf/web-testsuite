@@ -111,12 +111,30 @@
 			//
 			{
 				id:600,
-				name:"findAddressBookItems - Verify it returns an array.",
+				name:"findAddressBookItems - Search for fullName=*, verify it returns an array.",
 				requiredObjects:["Widget.PIM.findAddressBookItems"],
 				timeout: 10 * 1000,
 				test:function(t){
 					var addr = new pim.AddressBookItem();
 					addr.setAttributeValue("fullName", "*");
+					Widget.PIM.onAddressBookItemsFound = function(items){
+						t.assertTrue(util.isArray(items), "Return value is not an array.");
+						t.result = items.length + " items found. " + util.toJson(items.slice(0, 5));
+					}
+					pim.findAddressBookItems(addr, 0, 10);
+				},
+				tearDown:function(){
+					delete pim.onAddressBookItemsFound;
+				}
+			},
+			{
+				id:610,
+				name:"findAddressBookItems - Search for fullName=null, verify it returns an array.",
+				requiredObjects:["Widget.PIM.findAddressBookItems"],
+				timeout: 10 * 1000,
+				test:function(t){
+					var addr = new pim.AddressBookItem();
+					addr.setAttributeValue("fullName", null);
 					Widget.PIM.onAddressBookItemsFound = function(items){
 						t.assertTrue(util.isArray(items), "Return value is not an array.");
 						t.result = items.length + " items found. " + util.toJson(items.slice(0, 5));
@@ -139,6 +157,28 @@
 				test:function(t){
 					var addr = new pim.AddressBookItem();
 					addr.setAttributeValue("fullName", "ab*");
+					Widget.PIM.onAddressBookItemsFound = function(items){
+						t.assertTrue(items.length > 0);
+						t.result = items.length ? _getAddressInfo(items[0]) : "No items found.";
+					}
+					pim.findAddressBookItems(addr, 0, 10);
+				},
+				tearDown:function(){
+					delete pim.onAddressBookItemsFound;
+				}
+			},
+			{
+				id:710,
+				name:"findAddressBookItems - Search for 'ab'.",
+				requiredObjects:["Widget.PIM.findAddressBookItems"],
+				instructions:[
+					"Make sure a contact who's name IS 'ab' is in your addressbook.",
+					"Click 'GO'."
+				],
+				timeout: 10 * 1000,
+				test:function(t){
+					var addr = new pim.AddressBookItem();
+					addr.setAttributeValue("fullName", "ab");
 					Widget.PIM.onAddressBookItemsFound = function(items){
 						t.assertTrue(items.length > 0);
 						t.result = items.length ? _getAddressInfo(items[0]) : "No items found.";
