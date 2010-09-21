@@ -381,6 +381,7 @@ Widget.Device.findFiles = function(){
 		}
 	}, 10);
 };
+Widget.Device.getFileSystemRoots = function(){return []};
 
 //
 //	Telephony
