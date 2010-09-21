@@ -177,7 +177,7 @@
 				name: "Check tight range - flat on the table.",
 				instructions:[
 					"Place the phone flat on the table, display facing upwards.",
-					"Make sure it's really on a plane table, may use a gauge to ensure so.",
+					"Make sure it's really on a flat table, may use a gauge to ensure so.",
 					"This test will be very pedantic!",
 					"Click 'GO'!"
 				],
