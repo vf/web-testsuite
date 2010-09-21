@@ -72,7 +72,7 @@ addIf:false,
 					var ret = pim.findCalendarItems(item, 0, 10);
 				},
 				tearDown:function(){
-					delete pim.onCalendarItemsFound;
+					pim.onCalendarItemsFound = null;
 				}
 			},{
 				id:400,
@@ -96,7 +96,7 @@ addIf:false,
 					var ret = pim.findCalendarItems(item, 0, 10);
 				},
 				tearDown:function(){
-					delete pim.onCalendarItemsFound;
+					pim.onCalendarItemsFound = null;
 				}
 			},{
 				id:500,
@@ -117,7 +117,7 @@ addIf:false,
 					var ret = pim.findCalendarItems(item, 0, 10);
 				},
 				tearDown:function(){
-					delete pim.onCalendarItemsFound;
+					pim.onCalendarItemsFound = null;
 				}
 			},{
 				id:600,
@@ -137,7 +137,7 @@ addIf:false,
 					var ret = pim.findCalendarItems(item, 0, 10);
 				},
 				tearDown:function(){
-					delete pim.onCalendarItemsFound;
+					pim.onCalendarItemsFound = null;
 				}
 			},{
 				id:700,
@@ -167,7 +167,7 @@ addIf:false,
 					var ret = pim.findCalendarItems(item, 0, 10);
 				},
 				tearDown:function(){
-					delete pim.onCalendarItemsFound;
+					pim.onCalendarItemsFound = null;
 				}
 			},{
 				id:800,
@@ -278,7 +278,7 @@ addIf:false,
 							var ret = pim.findCalendarItems(item, 0, 10);
 						},
 						tearDown:function(){
-							delete pim.onCalendarItemsFound;
+							pim.onCalendarItemsFound = null;
 						}
 					}
 				]
