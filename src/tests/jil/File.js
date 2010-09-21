@@ -58,17 +58,43 @@
 				requiredObjects:["Widget.Device.copyFile"],
 				instructions:"Make sure the file '" + cfs.readableFile + "' exists.",
 				test:function(t){
-					var ret = wd.copyFile(cfs.readableFile, _destFile+"-copy");
-					t.assertTrue(ret);
-					return ret;
+					wd.copyFile(cfs.readableFile, _destFile+"-copy");
+					t.success("No exception thrown, means success.");
 				}
-			},{
+			},
+			{
 				id:200,
 				name:"[2] copyFile - Verify that copied file exists.",
+				requiredObjects:["Widget.Device.getFile"],
 				test:function(t){
 					var ret = wd.getFile(_destFile+"-copy");
 					t.assertNotEqual(null, ret);
 					return ret;
+				}
+			},
+			{
+				id:210,
+				name:"copyFile - Copy a directory.",
+				requiredObjects:["Widget.Device.copyFile", "Widget.Device.getFile"], 
+				test:function(t){
+					wd.copyFile(testPath, testPath + "-copyDirectory");
+					var ret = wd.getFile(testPath + "-copyDirectory");
+					t.assertTrue(ret && ret.isDirectory, "Copied directory not found.");
+					return ret;
+				}
+			},
+			{
+				id:220,
+				name:"copyFile - Copy a directory again (destination exists), should throw INVALID_PARAMETER.",
+				requiredObjects:["Widget.Device.copyFile"], 
+				test:function(t){
+					try{
+						wd.copyFile(testPath, testPath + "-copyDirectory");
+						t.failure("Expected INVALID_PARAMETER exception.");
+					}catch(e){
+						t.assertJilException(e, w.ExceptionTypes.INVALID_PARAMETER);
+						return e;
+					}
 				}
 			},
 			//
@@ -121,20 +147,18 @@
 			//
 			{
 				id:510,
-				name:"[1] deleteFile(path) - Verify that it returns true.",
-				requiredObjects:["Widget.Device.copyFile", "Widget.Device.deleteFile"],
+				name:"[1] deleteFile - Apply it on a path.",
+				requiredObjects:["Widget.Device.deleteFile"],
 				instructions:"Make sure an empty directory '" + testPath + "' exists.",
 				test:function(t){
-					var destPath = testPath+"-delete";
-					wd.copyFile(testPath, destPath);
-					var ret = wd.deleteFile(destPath);
-					t.assertTrue(ret, "Method deleteFile() didn't return true (for success).");
-					return ret;
+					var ret = wd.deleteFile(testPath + "-copyDirectory");
+					t.success("No exception thrown, means success.");
 				}
 			},
 			{
 				id:520,
 				name:"[2] deleteFile(path) - Verify that path doens't exist anymore.",
+				requiredObjects:["Widget.Device.getFile"],
 				test:function(t){
 					try {
 						var ret = wd.getFile(testPath+"-delete");
@@ -161,7 +185,6 @@
 					return ret;
 				}
 			},
-// TODO: test with non-empty path, test with a dir in a dir
 			
 			//
 			//	onFilesFound
@@ -336,13 +359,23 @@
 				test:function(t){
 					var f = wd.getFile(cfs.readableFile);
 					// Check all the types, using whatever method fits best :).
-					var failed = !(f.createDate instanceof Date) ? "createDate" :
-								""+f.fileName!=f.fileName ? "fileName" :
-								""+f.filePath!=f.filePath ? "filePath" :
-								isNaN(f.fileSize) ? "fileSize" :
-								!!(f.isDirectory)!=f.isDirectory ? "isDirectory" :
-								!(f.lastModifyDate instanceof Date) ? "lastModifyDate" : true;
-					t.assertTrue(failed, "Type of '"+failed+"' not according to spec. (typeof "+failed+" was '"+(typeof f[failed])+"')");
+					var testFor = {
+						"createDate":function(){ return f.createDate instanceof Date }, // Is it a date?
+						"fileName":function(){ return (""+f.fileName)==f.fileName }, // Is it a string?
+						"filePath":function(){ return (""+f.filePath)==f.filePath }, // Is it a string?
+						"fileSize":function(){ return !isNaN(f.fileSize) }, // Is it a number?
+						"isDirectory":function(){ return (!!(f.isDirectory))==f.isDirectory }, // Is it a boolean?
+						"lastModifyDate":function(){ return f.lastModifyDate instanceof Date } // Is it a date?
+					};
+					var failed = [];
+					for (var testProp in testFor){
+						if (typeof f[testProp]=="undefined"){
+							failed.push(testProp + " is undefined");
+						} else if (!testFor[testProp]()){
+							failed.push("Wrong type '" + testProp + "' is of type: '"+ (typeof f[testProp]) +"'.\n");
+						}
+					}
+					t.assertTrue(failed.length==0, "Errors found: " + failed.join(", "));
 				}
 			},
 			{
