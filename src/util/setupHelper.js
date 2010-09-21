@@ -33,10 +33,10 @@
 			//
 			{
 				id:100,
-				name:"config.validAddressBookItemId",
+				name:"config.validAddressBookItemId - possible value",
 				test:function(t){
 					var addr = new pim.AddressBookItem();
-					addr.setAttributeValue("fullName", "*");
+					addr.setAttributeValue("fullName", null);
 					Widget.PIM.onAddressBookItemsFound = function(items){
 						if (items.length==0){
 							t.failure("No items found :(");
@@ -52,15 +52,23 @@
 					pim.findAddressBookItems(addr, 0, 1);
 				},
 				tearDown:function(){
-					delete pim.onAddressBookItemsFound;
+					pim.onAddressBookItemsFound = null;
+				}
+			},
+			{
+				id:110,
+				name:"config.validAddressBookItemId - current value",
+				test:function(t){
+					var val = config.validAddressBookItemId;
+					t[val ? "success" : "failure"](val);
 				}
 			},
 			{
 				id:200,
-				name:"config.validCalendarItemId",
+				name:"config.validCalendarItemId - possible value",
 				test:function(t){
 					var item = new pim.CalendarItem();
-					item.eventName = "*";
+					item.eventName = null;
 					Widget.PIM.onCalendarItemsFound = function(items){
 						if (items.length==0){
 							t.failure("No items found :(");
@@ -76,7 +84,15 @@
 					pim.findCalendarItems(item, 0, 1);
 				},
 				tearDown:function(){
-					delete pim.onAddressBookItemsFound;
+					pim.onCalendarItemsFound = null;
+				}
+			},
+			{
+				id:210,
+				name:"config.validCalendarItemId - current value",
+				test:function(t){
+					var val = config.validCalendarItemId;
+					t[val ? "success" : "failure"](val);
 				}
 			},
 //*/
