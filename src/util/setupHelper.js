@@ -64,6 +64,14 @@
 				}
 			},
 			{
+				id:120,
+				name:"config.validAddressBookItemId - Item is an instance of AddressBookItem?",
+				test:function(t){
+					var item = Widget.PIM.getAddressBookItem(config.validAddressBookItemId);
+					t.assertTrue(item instanceof Widget.PIM.AddressBookItem);
+				}
+			},
+			{
 				id:200,
 				name:"config.validCalendarItemId - possible value",
 				test:function(t){
@@ -93,6 +101,14 @@
 				test:function(t){
 					var val = config.validCalendarItemId;
 					t[val ? "success" : "failure"](val);
+				}
+			},
+			{
+				id:220,
+				name:"config.validCalendarItemId - Item is an instance of CalendarItem?",
+				test:function(t){
+					var item = Widget.PIM.getCalendarItem(config.validCalendarItemId);
+					t.assertTrue(item instanceof Widget.PIM.CalendarItem);
 				}
 			},
 //*/
