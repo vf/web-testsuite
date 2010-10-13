@@ -165,7 +165,7 @@ var widget = {};
 		// Objects
 		AddressBookItem:function(){
 			this.addressBookItemId = 1;
-			this.fullName = "Foo Bar";
+			this.fullName = "abc";
 			this.company = "uxebu";
 			this.email = "a@b";
 		},
