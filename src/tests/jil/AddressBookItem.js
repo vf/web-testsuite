@@ -31,7 +31,7 @@
 				requiredObjects:["Widget.PIM.AddressBookItem"],
 				mustSupportApis:["Widget.PIM.AddressBookItem.getAttributeValue"],
 				test:function(t){
-					var item = new pim.AddressBookItem();
+					var item = pim.getAddressBookItem(config.validAddressBookItemId);
 					var ret = item.getAttributeValue("foobars_brother");
 					// Spec 1.2.1 says:
 					// This should be undefined if the 
@@ -47,7 +47,7 @@
 				requiredObjects:["Widget.PIM.AddressBookItem"],
 				mustSupportApis:["Widget.PIM.AddressBookItem.getAvailableAttributes"],
 				test:function(t){
-					var item = new pim.AddressBookItem();
+					var item = pim.getAddressBookItem(config.validAddressBookItemId);
 					t.assertTrue(doh.util.isArray(item.getAvailableAttributes()));
 				}
 			},
@@ -66,7 +66,7 @@
 				],
 				expectedResult:"Are those all possible attributes?",
 				test:function(t){
-					var item = new pim.AddressBookItem();
+					var item = pim.getAddressBookItem(config.validAddressBookItemId);
 					dohx.showInfo("Reported attributes are: ", item.getAvailableAttributes().join(", "));
 				}
 			},
