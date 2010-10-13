@@ -260,6 +260,36 @@
 					audioObj.cleanUp();
 				}
 			},
+			{
+				id:500,
+				name:"streaming MP3 (mp3 128k)",
+				instructions:"Click 'GO' to play audio.",
+				expectedResult:"Did you hear any playback?",
+				timeout:10*1000,
+				test:function(t){
+					audioObj = new myAudio("http://api.jamendo.com/get2/stream/track/redirect/?id=106471&streamencoding=mp31",{
+						autoPlay:true
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:600,
+				name:"streaming OGG (ogg vorbis q4)",
+				instructions:"Click 'GO' to play audio.",
+				expectedResult:"Did you hear any playback?",
+				timeout:10*1000,
+				test:function(t){
+					audioObj = new myAudio("http://api.jamendo.com/get2/stream/track/redirect/?id=106471&streamencoding=ogg2",{
+						autoPlay:true
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
 		]
 	});
 	
