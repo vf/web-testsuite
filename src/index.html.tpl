@@ -72,15 +72,23 @@
 				dbgNode.innerHTML += Array.prototype.slice.call(arguments, 0).join(", ")+" ";
 			}};
 		}
-	</script>
-	<script src='$test.js' type='text/javascript'></script>
-	<script type="text/javascript">
-		util.query(".statusBar .numTests")[0].innerHTML = doh._numTests;
-		try{
-			doh.run();
-		}catch(e){
-			util.query(".content")[0].innerHTML += e;
-		}
+		configHelper.onConfigured = function(){
+			var node = document.createElement("script");
+			node.type = "text/javascript";
+			node.src = "$test.js";
+			document.body.appendChild(node);
+			// Add the timeout, just so the appended file above gets the time to load and run ... unfortunately not really bullet-proof
+			// but we are "only" doing that so the number of tests are shown properly.
+			setTimeout(function(){
+				util.query(".statusBar .numTests")[0].innerHTML = doh._numTests;
+				try{
+					doh.run();
+				}catch(e){
+					util.query(".content")[0].innerHTML += e;
+				}
+			}, 100);
+		};
+		configHelper.finishConfiguration();
 	</script>
 </body>
 </html>
