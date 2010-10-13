@@ -1,8 +1,26 @@
-var config = {
-	_meta:{
-		isCustomConfiguration:false,
-		appliedConfigName:"",
-		name:"" // A nice readable name which we can also show in a string like "Configured for XXXX".
+var config = {};
+
+var configHelper = {
+	_numAsynchConfigsDone:0,
+	// This function better be overwritten to start everything that
+	// shall be done after configuration is done.
+	// The configuration has to be asynch since there are some methods
+	// that are asynch for setting up the environment.
+	onConfigured: function(){
+		alert("You must override 'configHelper.onConfigured'!")
+	},
+	
+	asynchConfigDone:function(){
+		this._numAsynchConfigsDone++;
+		this.finishConfiguration();
+	},
+	
+	finishConfiguration:function(){
+		if (this._numAsynchConfigsDone == config._meta.numAsynchConfigs){
+			setTimeout(function(){
+				configHelper.onConfigured();
+			}, 100);
+		}
 	}
 };
 
@@ -28,7 +46,10 @@ var config = {
 
 	var defaults = {
 		_meta:{
-			name:"default"
+			isCustomConfiguration:false,
+			appliedConfigName:"",
+			name:"default", // A nice readable name which we can also show in a string like "Configured for XXXX".
+			numAsynchConfigs:0 // This is actually only needed while configuring, onConfigured is fired when all asynch config callbacks have returned.
 		},
 		
 		// summary: This configuration defines the features of the phone.
@@ -278,7 +299,7 @@ var config = {
 		//
 		"regexp:.*Symbian\\/3.*":function(){
 			var ret = {
-				_meta:{name:"Symbian3 WRT"},
+				_meta:{name:"Symbian3 WRT", numAsynchConfigs:0},
 				geolocation:{supportsCellId:false},
 				unsupportedApis:[
 					"Widget.Device.RadioInfo.onSignalSourceChange",
@@ -314,6 +335,34 @@ var config = {
 					"Widget.Config.setDefaultRingtone",
 				]
 			};
+			// Get the first calendarItemId found.
+			ret._meta.numAsynchConfigs++; // We have an asynch config parameter here, "register" it.
+			var pim = Widget.PIM;
+			pim.onCalendarItemsFound = function(items){
+				if (items.length>0){
+					config.validCalendarItemId = items[0].calendarItemId;
+				}
+				setTimeout(function(){ pim.onCalendarItemsFound = null; }, 1);
+				configHelper.asynchConfigDone();
+			}
+			var item = new pim.CalendarItem();
+			item.eventName = "*";
+			pim.findCalendarItems(item, 0, 1);
+			
+			// Get the first addressbook item
+			ret._meta.numAsynchConfigs++; // We have an asynch config parameter here, "register" it.
+			var addr = new pim.AddressBookItem();
+			addr.setAttributeValue("fullName", null);
+			Widget.PIM.onAddressBookItemsFound = function(items){
+				if (items.length>0){
+					config.validAddressBookItemId = items[0].addressBookItemId;
+				}
+				setTimeout(function(){ pim.onAddressBookItemsFound = null; }, 1);
+				configHelper.asynchConfigDone();
+			}
+			pim.findAddressBookItems(addr, 0, 1);
+
+			
 			return ret;
 		},
 		//
@@ -339,7 +388,7 @@ var config = {
 // using only "AppleWebkit" here would also be found on the H2
 		//"regexp:(.*AppleWebKit.*)|(Mozilla.*Gecko\/\\d+\\sFirefox.*)":function(){
 			var ret = {
-				_meta:{name:"Firefox"},
+				_meta:{name:"Firefox", numAsynchConfigs:0},
 				hasClamshell:false,
 				geolocation:{
 					timeouts: {
@@ -368,6 +417,18 @@ var config = {
 					"Widget.Device.deleteFile",
 				],
 			};
+			
+			// Testing the asynch config stuff.
+			ret._meta.numAsynchConfigs++;
+			setTimeout(function(){
+				config.validAddressBookItemId = "47";
+				configHelper.asynchConfigDone();
+			}, 300);
+			ret._meta.numAsynchConfigs++;
+			setTimeout(function(){
+				configHelper.asynchConfigDone();
+			}, 500);
+			
 			return ret;
 		},
 		//
