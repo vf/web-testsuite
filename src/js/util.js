@@ -8,7 +8,7 @@ var util = new (doh.util.extend(function(){},{
 		var props = [], missing = [];
 		for (var i=0, prop, l=expected.length; i<l; i++){
 			prop = expected[i];
-			if (typeof obj[prop]=="undefined"){
+			if (!obj.hasOwnProperty(prop)){
 				missing.push(prop);
 			} else {
 				props.push(prop + ": " + obj[prop]);
