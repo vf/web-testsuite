@@ -1,3 +1,17 @@
+Version 1.7.2
+=============
+* a lot of fixes and enhancements triggered by the Nokia N8 WRT
+* added openURL tests (crashed on Android)
+* made config asynch
+* made Accelerometer tests way more accurat
+* added configuration for not implemented features, which will render tests as "not applicable" instead of failed
+* enhanced setupHelper by a lot
+* added a lot of alert, confirm and prompt test cases
+* more accurate AddressBook tests, due to very fine bug in N8
+* enhanced File tests
+* use "callback=null" instead of "delete callback", due to N8 limitations (wrong imho)
+* added streaming audio tests
+
 Version 1.7
 ============
 * all widgets are JIL signed
