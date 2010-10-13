@@ -15,11 +15,16 @@
 		if (!info || typeof info!="object"){
 			throw new Error("Expected object, got: '" + info + "' (type: " + (typeof info) +")");
 		}
+		var missing = [];
 		for (var i=0, l=addressProperties.length; i<l; i++){
 			var p = addressProperties[i];
-			ret.push(p+": "+util.toJson(info[p]));
+			if (info.hasOwnProperty(p)){
+				ret.push(p + ": " + util.toJson(info[p]));
+			} else {
+				missing.push(p);
+			}
 		}
-		return ret.join(", ");
+		return ret.join(", ") + (missing.length>0 ? (". Missing properties: "+missing.join(", ")) : "");
 	}
 	
 	dohx.add({name:"AddressBook",
@@ -34,7 +39,7 @@
 				name:"Verify Preconditions",
 				instructions:[
 					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
-					"The very first contact added on an H2 will have the ID=1.",
+					"At least one contact must exist and the ID must be known (currently found '" + config.validAddressBookItemId + "').",
 					"Click 'GO' to start testing."
 				],
 				test:function(t){
@@ -180,8 +185,11 @@
 					var addr = new pim.AddressBookItem();
 					addr.setAttributeValue("fullName", "ab");
 					Widget.PIM.onAddressBookItemsFound = function(items){
-						t.assertTrue(items.length > 0);
-						t.result = items.length ? _getAddressInfo(items[0]) : "No items found.";
+						if (items.length==0){
+							t.failure("No items found.");
+						} else {
+							t.assertEqual("ab", items[0].fullName);
+						}
 					}
 					pim.findAddressBookItems(addr, 0, 10);
 				},
