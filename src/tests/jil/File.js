@@ -66,6 +66,7 @@
 				id:200,
 				name:"[2] copyFile - Verify that copied file exists.",
 				requiredObjects:["Widget.Device.getFile"],
+				mustSupportApis:["Widget.Device.copyFile"], // Depends on the above test, if the copy there is not supported this test is useless.
 				test:function(t){
 					var ret = wd.getFile(_destFile+"-copy");
 					t.assertNotEqual(null, ret);
@@ -116,6 +117,7 @@
 			{
 				id:400,
 				name:"[2] deleteFile - Verify that file doens't exist anymore.",
+				mustSupportApis:["Widget.Device.deleteFile"], // Depends on the test before
 				test:function(t){
 					try {
 						var ret = wd.getFile(_destFile+"-delete");
@@ -159,6 +161,7 @@
 				id:520,
 				name:"[2] deleteFile(path) - Verify that path doens't exist anymore.",
 				requiredObjects:["Widget.Device.getFile"],
+				mustSupportApis:["Widget.Device.deleteFile"], // Depends on the test before
 				test:function(t){
 					try {
 						var ret = wd.getFile(testPath+"-delete");
