@@ -57,6 +57,7 @@
 			{
 				id: 500,
 				name:"prompt - type in 'yes'",
+				timeout:2*60*1000,
 				requiredObjects:["window.prompt"],
 				test:function(t){
 					t.assertEqual("yes", window.prompt("Please enter 'yes' in the box below."));
@@ -84,6 +85,7 @@
 				id: 620,
 				// On the N8 multiple prompts in a row made the keyboard not appear anymore.
 				name:"prompt - multiple prompts",
+				timeout:2*60*1000,
 				requiredObjects:["window.prompt"],
 				test:function(t){
 					for (var i=1; i<5; i++){
@@ -106,6 +108,7 @@
 			{
 				id: 800,
 				name:"prompt - Hide virtual keyboard and re-open.",
+				timeout:2*60*1000,
 				requiredObjects:["window.prompt"],
 				test:function(t){
 					var instructions = [
