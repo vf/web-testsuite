@@ -51,6 +51,7 @@
 			// Since we are not calling it asynchronously.
 			var oldState = this.state;
 			this.state = newState;
+			if (options.onStateChange) options.onStateChange(oldState, newState);
 			for (var i=0, l=fsm.length, t; i<l; i++){
 				t = fsm[i];
 				if (t[0]==oldState && t[1]==newState){
@@ -263,12 +264,18 @@
 			{
 				id:500,
 				name:"streaming MP3 (mp3 128k)",
-				instructions:"Click 'GO' to play audio.",
+				instructions:[
+					"Click 'GO' to play audio.",
+					"Please be patient, it might take a while, depending on your network, etc."
+				],
 				expectedResult:"Did you hear any playback?",
-				timeout:10*1000,
 				test:function(t){
+					dohx.showInfo("Loading...");
 					audioObj = new myAudio("http://stream10.jamendo.com/stream/106471/mp31/03%20-%20PILL%20-%20Fearless.mp3",{
-						autoPlay:true
+						autoPlay:true,
+						onStateChange:function(oldState, newState){
+							dohx.showInfo("Audio file state: " + oldState + " =&gt; " + newState);
+						}
 					});
 				},
 				tearDown:function(){
@@ -278,12 +285,18 @@
 			{
 				id:510,
 				name:"redirected streaming MP3 (mp3 128k)",
-				instructions:"Click 'GO' to play audio.",
+				instructions:[
+					"Click 'GO' to play audio.",
+					"Please be patient, it might take a while, depending on your network, etc."
+				],
 				expectedResult:"Did you hear any playback?",
-				timeout:10*1000,
 				test:function(t){
+					dohx.showInfo("Loading...");
 					audioObj = new myAudio("http://api.jamendo.com/get2/stream/track/redirect/?id=106471&streamencoding=mp31",{
-						autoPlay:true
+						autoPlay:true,
+						onStateChange:function(oldState, newState){
+							dohx.showInfo("Audio file state: " + oldState + " =&gt; " + newState);
+						}
 					});
 				},
 				tearDown:function(){
@@ -293,12 +306,18 @@
 			{
 				id:600,
 				name:"streaming OGG (ogg vorbis q4)",
-				instructions:"Click 'GO' to play audio.",
+				instructions:[
+					"Click 'GO' to play audio.",
+					"Please be patient, it might take a while, depending on your network, etc."
+				],
 				expectedResult:"Did you hear any playback?",
-				timeout:10*1000,
 				test:function(t){
+					dohx.showInfo("Loading...");
 					audioObj = new myAudio("http://stream101.jamendo.com/stream/106471/ogg2/03%20-%20PILL%20-%20Fearless.ogg",{
-						autoPlay:true
+						autoPlay:true,
+						onStateChange:function(oldState, newState){
+							dohx.showInfo("Audio file state: " + oldState + " =&gt; " + newState);
+						}
 					});
 				},
 				tearDown:function(){
@@ -308,12 +327,18 @@
 			{
 				id:610,
 				name:"redirected streaming OGG (ogg vorbis q4)",
-				instructions:"Click 'GO' to play audio.",
+				instructions:[
+					"Click 'GO' to play audio.",
+					"Please be patient, it might take a while, depending on your network, etc."
+				],
 				expectedResult:"Did you hear any playback?",
-				timeout:10*1000,
 				test:function(t){
+					dohx.showInfo("Loading...");
 					audioObj = new myAudio("http://api.jamendo.com/get2/stream/track/redirect/?id=106471&streamencoding=ogg2",{
-						autoPlay:true
+						autoPlay:true,
+						onStateChange:function(oldState, newState){
+							dohx.showInfo("Audio file state: " + oldState + " =&gt; " + newState);
+						}
 					});
 				},
 				tearDown:function(){
