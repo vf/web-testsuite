@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html id="root">
+<head>
+	<title>JIL API Tests - CSV Generator</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<style>
+		.tab {
+			border: 1px solid black;
+			background-color: #EEE;
+			margin-top: 0;
+		}
+		
+		.tabNavi a {
+			text-decoration: none;
+			top: 1px;
+			padding: 3px;
+			border: 1px solid black;
+			border-bottom: 0;
+			color: black;
+		}
+		
+		.tabLink0, .tab0 {
+			background-color: #FEE;
+		}
+		.tabLink1, .tab1 {
+			background-color: #EFE;
+		}
+		.tabLink2, .tab2 {
+			background-color: #EEF;
+		}
+	</style>
+</head>
+<body>
+	The following describes the steps for issuing a new MQC Import. Since an MQC import must only contain the new rows
+	that will get imported into the MQC, a couple of things must be done to ensure this:
+	<ol>
+		<li>Save the contents of the first tab into "mqc-tests-diff.csv"</li>
+		<li>Save the contents of the second tab into "mqc-tests-all.js"</li>
+		<li>Save the contents of tab three into "mqc-tests-all.csv"</li>
+	</ol>
+	<div class="tabNavi">
+		<a href="javascript://" onclick="selectTab(0)" class="tabLink0">Step 1, Diff CSV</a>
+		<a href="javascript://" onclick="selectTab(1)" class="tabLink1">Step 2, All IDs (JSON)</a>
+		<a href="javascript://" onclick="selectTab(2)" class="tabLink2">Step 3, Complete CSV</a>
+	</div>
+	<pre class="tab tab0" id="diffCsvNode"></pre>
+	<pre class="tab tab1" id="allIdsJsNode"></pre>
+	<pre class="tab tab2" id="allCsvNode">ick bin tab 2</pre>
+	<script type="text/javascript" src="js/doh2/doh.js"></script>
+	<script type="text/javascript" src="js/doh2/config.js"></script>
+	<script type="text/javascript" src="js/doh2/util.js"></script>
+	
+	<script type="text/javascript" src="js/util.js"></script>
+	
+	<script type="text/javascript" src="js/doh2/deferred.js"></script>
+	<script type="text/javascript" src="js/doh2/assert.js"></script>
+	<script type="text/javascript" src="js/dohx.js"></script>
+	<script type="text/javascript" src="js/config.js"></script>
+	<script type="text/javascript">
+	
+		function selectTab(id){
+			for (var i=0, l=util.query(".tab").length; i<l; i++){
+				util.style('.tab' + i , {display:i==id ? "block" : "none"});
+			}
+		}
+		selectTab(0);
+	
+		if (!new Error().stack){
+			throw Error("new Error().stack doesnt work, we need it for determining the file name.");
+		}
+		dohx_isApiSupported = dohx.isApiSupported;
+		dohx = {
+			// Copy functions from original dohx, to make add() work (needed e.g. for policy tests).
+			isApiSupported:dohx_isApiSupported,
+			// The data are sorted in the order the tests are added.
+			_csvData:[],
+			_csvDiffData:[],
+			_allTestIds:[], // Store all the unique test IDs in here, those are actually the values we store in the field "execution order".
+			add:function(obj){
+				if (obj.name.indexOf("__preconditions__")!=-1){
+					return;
+				}
+				var tests = obj.tests, data;
+				for (var i=0, l=tests.length, t; i<l; i++){
+					t = tests[i];
+					var instructions = t.instructions || "";
+					if (util.isArray(instructions)){
+						// If it is an array, prefix every line with an increasing number.
+						instructions = [];
+						for (var j=0, l1=t.instructions.length; j<l1; j++){
+							instructions.push((j+1) +") " + t.instructions[j]);
+						}
+						instructions = instructions.join("\n");
+					}
+					// Find out the filename, this is very Firefoxy.
+					// And use the last JS file found, which is the one that was loaded, the widget file.
+					var wgtName = new Error().stack.match(/[a-zA-Z0-9]+\.js/g).pop();
+					wgtName = wgtName.substr(0, wgtName.length-3); // Remove the trailing ".js".
+					var subject = "TC Now+ Vertical\\WidgetRuntime\\JIL\\" + wgtName;
+					var executionOrder = obj.mqcExecutionOrderBaseOffset + t.id;
+					if (!util.isNumber(executionOrder)){
+						alert("Error, executionOrder ID missing in '" + wgtName + "' test name '" + t.name + "'");
+						throw Error("Error, executionOrder ID missing.");
+					}
+					data = [
+						(""+t.name).replace(/[^0-9a-zA-Z]/g, " "), // Test Name
+						subject, // Subject
+						util.getTestId(t, obj.name), // Test ID
+						"vg_phennes", // TC Coordinator
+						"manual", // Type
+						"APP_Widget_Manager", // Test Area
+						"Active", // Status
+						"Global", // Test Type
+						"Vodafone Global", // Primary OpCo
+						"", // Alternative OpCo’s
+						"vg_phennes", // TC Owner
+						"", // Suggested Severity
+						"", // OpCo Network specific
+						"No", // Country Specific Settings
+						"", // Bearer Specific
+						"FU", // Coverage
+						"None", // Physical Resource
+						t.name, // Description
+						t.instructions ? (t.expectedResult ? 1 : 0.5) : 0.1, // Est. Effort (min.)
+						"", // Creation Date
+						wgtName, // Grouping Area
+						"STEP1", // Step Name (Design steps)
+						instructions || "Follow the instructions on the screen.", // Description (Design steps)
+						t.expectedResult || "See green colored line on the device screen.", // Expected (Design steps)
+						executionOrder, // Execution Order
+						"", // Template
+						"None", // Certificate
+						"Not Replicated" // Replicate
+					];
+					this._csvData.push(data);
+					if (this.alreadyImportedTestIds.indexOf(executionOrder)==-1) this._csvDiffData.push(data);
+					this._allTestIds.push(executionOrder);
+				}
+			},
+			createCsv:function(){
+				return this._createCsv(this._csvData);
+			},
+			createCsvDiff:function(){
+				return this._createCsv(this._csvDiffData);
+			},
+			_createCsv:function(data){
+				var lines = [];
+				if (data.length > 0){
+					var headers = [
+						"Test Name", "Subject", "Test ID", "TC Coordinator",
+						"Type", "Test Area", "Status", "Test Type", "Primary OpCo",
+						"Alternative OpCo’s", "TC Owner", "Suggested Severity",
+						"OpCo Network specific", "Country Specific Settings",
+						"Bearer Specific", "Coverage", "Physical Resource",
+						"Description", "Est. Effort (min.)", "Creation Date",
+						"Grouping Area", "Step Name (Design steps)",
+						"Description (Design steps)", "Expected (Design steps)",
+						"Execution Order", "Template", "Certificate", "Replicate"
+					];
+					var line = [];
+					for (var i=0, l=headers.length; i<l; i++){
+						line.push(this._renderItem(headers[i]));
+					}
+					lines.push(line.join(","));
+					for (var i=0, l=data.length, d, line; i<l; i++){
+						d = data[i];
+						line = [];
+						for (var j=0, l1=d.length; j<l1; j++){
+							line.push(this._renderItem(d[j]));
+						}
+						lines.push(line.join(","));
+					}
+				}
+				return lines.join("\n");
+			},
+			createAllIdsJs:function(){
+				return util.toJson(this._allTestIds);
+			},
+			_renderItem:function(item){
+				item = "" + item; // Make sure its a string! So we can do indexOf().
+				if (item.indexOf('"')>-1){
+					item = item.replace(/"/g, '""');
+				}
+				if (item.indexOf(" ")>-1 || item.indexOf('"')>-1 || item.indexOf(",")>-1){
+					item = '"' + item + '"';
+				}
+				return item;
+			}
+		};
+	</script>
+	<script type="text/javascript" src="../mqc-tests-all.js"></script>
+	<script type="text/javascript" src="js/compat.js"></script>
+	<script type="text/javascript">
+		//
+		//	Override the dohx.add() temporarily to add the prefix "JIL " to the test sets.
+		//
+		var oldFnc = doh.util.hitch(dohx, "add");
+		dohx.add = function(obj){
+			obj.name = "JIL " + obj.name;
+			oldFnc(obj);
+		}
+		
+		function loadTestFile(url){
+			var node = document.createElement("script");
+			node.type = "text/javascript";
+			node.src = url;
+			document.body.appendChild(node);
+		}
+
+		configHelper.onConfigured = function(){
+			loadTestFile("tests/base/metrics.js");
+			loadTestFile("tests/base/window.js");
+			loadTestFile("tests/base/widget.js");
+			
+			loadTestFile("tests/jil/security/policy.js");
+			
+			loadTestFile("tests/jil/AccelerometerInfo.js");
+			loadTestFile("tests/jil/AccountInfo.js");
+			loadTestFile("tests/jil/AddressBook.js");
+			loadTestFile("tests/jil/AddressBookItem.js");
+			loadTestFile("tests/jil/Application.js");
+			loadTestFile("tests/jil/AudioPlayer.js");
+			loadTestFile("tests/jil/Basics.js");
+			loadTestFile("tests/jil/Calendar.js");
+			loadTestFile("tests/jil/Camera.js");
+			loadTestFile("tests/jil/Config.js");
+			loadTestFile("tests/jil/DataNetworkInfo.js");
+			loadTestFile("tests/jil/Device.js");
+			loadTestFile("tests/jil/DeviceInfo.js");
+			loadTestFile("tests/jil/DeviceStateInfo.js");
+			loadTestFile("tests/jil/File.js");
+			loadTestFile("tests/jil/MessagingQuantities.js");
+			loadTestFile("tests/jil/Messaging.js");
+			loadTestFile("tests/jil/MessagingEmailAccount.js");
+			loadTestFile("tests/jil/MessagingFolder.js");
+			loadTestFile("tests/jil/PositionInfo.js");
+			loadTestFile("tests/jil/PowerInfo.js");
+			loadTestFile("tests/jil/RadioInfo.js");
+			loadTestFile("tests/jil/Telephony.js");
+			loadTestFile("tests/jil/VideoCamera.js");
+			loadTestFile("tests/jil/VideoPlayer.js");
+			loadTestFile("tests/jil/Widget.js");
+			
+			loadTestFile("tests/performance/jil/AddressBook.js");
+			
+			setTimeout(function(){
+				document.getElementById("allCsvNode").innerHTML = dohx.createCsv();
+				document.getElementById("diffCsvNode").innerHTML = dohx.createCsvDiff() || "NO NEW DATA SETS";
+				document.getElementById("allIdsJsNode").innerHTML = 'dohx.alreadyImportedTestIds = ' + dohx.createAllIdsJs();
+			} ,100);
+		};
+	</script>
+	<!--<script type="text/javascript" src="tests/jil/PIM.js"></script>-->
+	<!--<script type="text/javascript" src="tests/jil/VideoPlayer.js"></script>-->
+	<!--<script type="text/javascript" src="tests/jil/WidgetManager.js"></script>-->
+
+
+
+</body>
+</html>
