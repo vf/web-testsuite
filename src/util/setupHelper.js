@@ -33,10 +33,34 @@
 			//
 			{
 				id:100,
-				name:"config.validAddressBookItemId - possible value",
+				name:"config.validAddressBookItemId - possible value (fullName=null)",
 				test:function(t){
 					var addr = new pim.AddressBookItem();
 					addr.setAttributeValue("fullName", null);
+					Widget.PIM.onAddressBookItemsFound = function(items){
+						if (items.length==0){
+							t.failure("No items found :(");
+						} else {
+							var ids = [];
+							for (var i=0; i<items.length; i++){
+								ids.push(items[i].addressBookItemId);
+								if (i>10) break; // 10 at most
+							}
+							t.success("Some valid IDs: "+ ids.join(", "));
+						}
+					}
+					pim.findAddressBookItems(addr, 0, 1);
+				},
+				tearDown:function(){
+					pim.onAddressBookItemsFound = null;
+				}
+			},
+			{
+				id:105,
+				name:"config.validAddressBookItemId - possible value (fullName=*)",
+				test:function(t){
+					var addr = new pim.AddressBookItem();
+					addr.setAttributeValue("fullName", "*");
 					Widget.PIM.onAddressBookItemsFound = function(items){
 						if (items.length==0){
 							t.failure("No items found :(");
@@ -73,10 +97,34 @@
 			},
 			{
 				id:200,
-				name:"config.validCalendarItemId - possible value",
+				name:"config.validCalendarItemId - possible value (eventName=null)",
 				test:function(t){
 					var item = new pim.CalendarItem();
 					item.eventName = null;
+					Widget.PIM.onCalendarItemsFound = function(items){
+						if (items.length==0){
+							t.failure("No items found :(");
+						} else {
+							var ids = [];
+							for (var i=0; i<items.length; i++){
+								ids.push(items[i].calendarItemId);
+								if (i>10) break; // 10 at most
+							}
+							t.success("Some valid IDs: "+ ids.join(", "));
+						}
+					}
+					pim.findCalendarItems(item, 0, 1);
+				},
+				tearDown:function(){
+					pim.onCalendarItemsFound = null;
+				}
+			},
+			{
+				id:205,
+				name:"config.validCalendarItemId - possible value (eventName=*)",
+				test:function(t){
+					var item = new pim.CalendarItem();
+					item.eventName = "*";
 					Widget.PIM.onCalendarItemsFound = function(items){
 						if (items.length==0){
 							t.failure("No items found :(");
