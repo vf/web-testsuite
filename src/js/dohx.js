@@ -144,14 +144,17 @@ doh.util.mixin(dohx._manualTestObject, {
 		doh._runTest();
 	}
 });
+
 // We are connecting on the actual dohx._manualTestObject object itself, which
 // means each of the function CANT access the current test through "this", but
 // must use "doh._current.test" to access the current test!
 // We could of course connect each time for each test, that would just mean we
 // would also have to clean up, too much hazzle imho. This way it's just scope mangling :-).
-util.connect(".manualTest .whatToDo .goButton", "onclick", doh.util.hitch(dohx._manualTestObject, "_goClicked"));
-util.connect(".manualTest .result .yesButton", "onclick", doh.util.hitch(dohx._manualTestObject, "_successfulTestFunction"));
-util.connect(".manualTest .result .noButton", "onclick", doh.util.hitch(dohx._manualTestObject, "_failTestFunction"));
+if (util.query(".manualTest").length){ // Add this IF so we can use this file also in csv.html and wont get an error when trying to connect those nodes, since they are not needed there.
+	util.connect(".manualTest .whatToDo .goButton", "onclick", doh.util.hitch(dohx._manualTestObject, "_goClicked"));
+	util.connect(".manualTest .result .yesButton", "onclick", doh.util.hitch(dohx._manualTestObject, "_successfulTestFunction"));
+	util.connect(".manualTest .result .noButton", "onclick", doh.util.hitch(dohx._manualTestObject, "_failTestFunction"));
+}
 
 doh._runNextTest = function(){
 	do{
