@@ -23,6 +23,7 @@
 			{
 				id:100,
 				name:"clipboardString - Does it return the copied stirng?",
+				requiredObjects:["Widget.Device.clipboardString"],
 				addIf:config.hasClipboard,
 				instructions:"Copy 'THIS HERE' into the clipboard (without the apostrophes) using the phone's copy-functionality, then press 'GO'.",
 				test:function(t){
