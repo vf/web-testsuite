@@ -59,7 +59,8 @@
 				],
 				test:function(t){
 					var item = pim.getAddressBookItem(config.validAddressBookItemId);
-					t.assertTrue(item instanceof pim.AddressBookItem);
+					//t.assertTrue(item instanceof pim.AddressBookItem); actually i would like much more to test it like this ...
+					t.assertEqual(item.addressBookItemId, config.validAddressBookItemId);
 					return _getAddressInfo(item);
 				}
 			},
@@ -188,7 +189,37 @@
 						if (items.length==0){
 							t.failure("No items found.");
 						} else {
-							t.assertEqual("ab", items[0].fullName);
+							t.assertEqual("ab", items[0].fullName.toLowerCase());
+						}
+					}
+					pim.findAddressBookItems(addr, 0, 10);
+				},
+				tearDown:function(){
+					delete pim.onAddressBookItemsFound;
+				}
+			},
+			{
+				id:720,
+				name:"findAddressBookItems - case-insensitive search for 'ab'=='AB'.",
+				requiredObjects:["Widget.PIM.findAddressBookItems"],
+				instructions:[
+					"Make sure a contact who's name IS 'ab' is in your addressbook.",
+					"Click 'GO'."
+				],
+				timeout: 10 * 1000,
+				test:function(t){
+					var addr = new pim.AddressBookItem();
+					addr.setAttributeValue("fullName", "ab");
+					Widget.PIM.onAddressBookItemsFound = function(items){
+						if (items.length==0){
+							t.failure("No items found.");
+						} else {
+							var addr = new pim.AddressBookItem();
+							addr.setAttributeValue("fullName", "AB");
+							Widget.PIM.onAddressBookItemsFound = function(itemsUpper){
+								t.assertEqual(items.length, itemsUpper.length);
+							}
+							pim.findAddressBookItems(addr, 0, 10);
 						}
 					}
 					pim.findAddressBookItems(addr, 0, 10);
