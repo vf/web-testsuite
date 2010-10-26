@@ -17,6 +17,23 @@
 	//var testGroupName = "Operator signed tests";
 	var runTestWithPermissionLevel = permissionLevels.DEVELOPER_SIGNED;
 	var testGroupName = "Developer signed tests";
+	
+	// Give a regexp that will be used to filter test names that will be
+	// executed. This is handy for packaging just a couple of the tests,
+	// to have just a small handier test widget.
+	var executeOnly = /accelerometer|account/i;
+	//var executeOnly = /addressbook/i;
+	//var executeOnly = /calendar/i;
+	//var executeOnly = /application/i;
+	//var executeOnly = /video|audio|multimedia/i;
+	//var executeOnly = /telephony/i;
+	//var executeOnly = /file/i;
+	//var executeOnly = /deviceinfo/i;
+	//var executeOnly = /devicestateinfo/i;
+	
+	// Find all Widget.methods() (everything that starts with a lower case letter after "Widget." and has no more dots afterwards.)
+	//var executeOnly = /^Widget.[a-z][^.]+$/;
+	
 	//
 	//	Configure END
 	//
@@ -1232,6 +1249,10 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 			apiString = "Widget." + apiString;
 		}
 		if (!dohx.isApiSupported(apiString)){
+			continue;
+		}
+		// Add only the tests to the test set that match the "executeOnly" expression.
+		if (!apiString.match(executeOnly)){
 			continue;
 		}
 		
