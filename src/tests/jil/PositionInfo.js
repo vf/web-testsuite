@@ -4,13 +4,13 @@
 	var positionProperties = ["accuracy", "altitude", "altitudeAccuracy", "cellID", "latitude", "longitude", "timeStamp"];
 	var locationTimeouts = config.geolocation.timeouts;
 	
-	function showPosInfo(posInfo){
+	function showPosInfo(posInfo, startTime){
 		var ret = [];
 		for (var i=0, l=positionProperties.length; i<l; i++){
 			var p = positionProperties[i];
 			ret.push(p+": "+util.toJson(posInfo[p]));
 		}
-		return ret.join(", ");
+		return ret.join(", ")  + (startTime?"<br/>(took "+ (+new Date() - startTime)/1000 +"seconds)":"");
 	}
 	
 	var _fastestMethod = config.geolocation.supportsCellId ? "cellid" : (config.geolocation.supportsAgps ? "agps" : "gps");
@@ -42,9 +42,9 @@
 //fails now, didnt in v1.2
 				timeout:locationTimeouts.gps,
 				test:function(t){
+					var startTime = + new Date();
 					wdd.onPositionRetrieved = function(posInfo, method){
-						t.success("Callback fired.");
-						t.result = showPosInfo(posInfo);
+						t.success(showPosInfo(posInfo, startTime));
 					};
 					wdd.requestPositionInfo(_fastestMethod);
 				},
@@ -60,9 +60,10 @@
 				instructions:"Click 'GO' to get position!",
 				timeout:locationTimeouts.cellId,
 				test:function(t){
+					var startTime = + new Date();
 					wdd.onPositionRetrieved = function(posInfo, method){
 						t.assertTrue(posInfo instanceof wd.PositionInfo);
-						t.result = showPosInfo(posInfo);
+						t.result = showPosInfo(posInfo, startTime);
 					};
 					wdd.requestPositionInfo("cellid");
 				},
@@ -70,7 +71,7 @@
 					wdd.onPositionRetrieved = null;
 				}
 			},
-			{
+/*			{
 				id:300,
 				name:"requestPositionInfo('gps') - Verify return value is of type 'PositionInfo'.",
 				addIf:config.geolocation.supportsGps,
@@ -78,9 +79,10 @@
 				instructions:"Click 'GO' to get position!",
 				timeout:locationTimeouts.gps,
 				test:function(t){
+					var startTime = + new Date();
 					wdd.onPositionRetrieved = function(posInfo, method){
 						t.assertTrue(posInfo instanceof wd.PositionInfo);
-						t.result = showPosInfo(posInfo);
+						t.result = showPosInfo(posInfo, startTime);
 					};
 					wdd.requestPositionInfo("gps");
 				},
@@ -158,6 +160,7 @@
 //throw new Error("TODO to implement");
 //				}
 			}
+//*/
 		]
 	});
 })();
