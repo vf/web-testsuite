@@ -107,6 +107,10 @@
 				expectedResult:"Are those groups correct?",
 				test:function(t){
 					var item = pim.getAddressBookItem(config.validAddressBookItemId);
+					if (typeof item.getAddressGroupNames!="function"){
+						// We have "expectedResult" up there, this prevents from getting the proper t object in here :(, so we throw an error.
+						throw new Error("item.getAddressGroupNames() is not implemented.");
+					}
 					dohx.showInfo("Reported group names for this contact are: ", item.getAddressGroupNames().join(", "));
 				}
 			}
