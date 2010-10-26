@@ -9,9 +9,11 @@
 
 	// The ranges of values to expect for the initial position, this is as if the phone was laying on a table.
 	var initialPosition = {
+		// Make sure the values are sorted!!!
+		// small, big
 		x:[-0.8, 0.8],
 		y:[-0.8, 0.8],
-		z:[8.5, 10.5] // we are very tolerant here, just for the nokia :( it currently ends at 8.5something, imho this range should be no more than 1)
+		z:[-10.5, -8.5] // we are very tolerant here, just for the nokia :( it currently ends at 8.5something, imho this range should be no more than 1) but we have test case 330 therefore
 	};
 	
 	function waitForInitialPosition(callback){
@@ -214,7 +216,7 @@
 				setUp:_setup,
 				test: function(t){
 					waitForInitialPosition(function(){
-						checkForExpectedRange(t, "x", -9.82, -8);
+						checkForExpectedRange(t, "x", 9.82, 8);
 					});
 				},
 				tearDown:clearIntervals
@@ -231,7 +233,7 @@
 				setUp:_setup,
 				test: function(t) {
 					waitForInitialPosition(function(){
-						checkForExpectedRange(t, "x", 8, 9.82);
+						checkForExpectedRange(t, "x", -8, -9.82);
 					});
 				},
 				tearDown:clearIntervals
@@ -310,7 +312,7 @@
 				setUp:_setup,
 				test: function(t) {
 					waitForInitialPosition(function(){
-						checkForExpectedRange(t, "y", 8, 9.82);
+						checkForExpectedRange(t, "y", -8, -9.82);
 					});
 				},
 				tearDown:clearIntervals
@@ -327,7 +329,7 @@
 				setUp:_setup,
 				test: function(t) {
 					waitForInitialPosition(function(){
-						checkForExpectedRange(t, "y", -8, -9.82);
+						checkForExpectedRange(t, "y", 8, 9.82);
 					});
 				},
 				tearDown:clearIntervals
