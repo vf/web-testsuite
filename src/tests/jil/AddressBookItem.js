@@ -4,6 +4,7 @@
 		return;
 	}
 	
+	var w = util.isObject("Widget") ? Widget : {};
 	var pim = util.isObject("Widget.PIM") ? Widget.PIM : {};
 	var addressProperties = ["address", "addressBookItemId", "company", "eMail", "fullName", "homePhone", "mobilePhone", "title", "workPhone"];
 	
@@ -29,16 +30,39 @@
 				id:200,
 				name:"getAttributeValue() - Verify returns undefined for non-assigned attribute.",
 				requiredObjects:["Widget.PIM.AddressBookItem"],
+				instructions:[
+					"Make sure that the 'title' for addressbook item with ID '" + config.validAddressBookItemId + "'.",
+					"Click 'GO'."
+				],
 				mustSupportApis:["Widget.PIM.AddressBookItem.getAttributeValue"],
 				test:function(t){
 					var item = pim.getAddressBookItem(config.validAddressBookItemId);
-					var ret = item.getAttributeValue("foobars_brother");
+					var ret = item.getAttributeValue("title");
 					// Spec 1.2.1 says:
 					// This should be undefined if the 
 					// addressBookItem has no value assigned for the attribute. Note, however, that 
 					// under some implementations a null or empty string ("") value may also be 
 					// returned for unassigned attribute values. 
 					t.assertTrue(typeof ret=="undefined" || ret===null || ret==="");
+				}
+			},
+			{
+				id:250,
+				name:"getAttributeValue() - Throw INVALID_PARAMETER for not existing attribute.",
+				requiredObjects:["Widget.PIM.AddressBookItem"],
+				mustSupportApis:["Widget.PIM.AddressBookItem.getAttributeValue"],
+				test:function(t){
+					var item = pim.getAddressBookItem(config.validAddressBookItemId);
+					try{
+						var ret = item.getAttributeValue("foobars_brother");
+					}catch(e){
+						// Spec 1.2.1 says:
+						// This should be undefined if the 
+						// addressBookItem has no value assigned for the attribute. Note, however, that 
+						// under some implementations a null or empty string ("") value may also be 
+						// returned for unassigned attribute values. 
+						t.assertJilException(e, w.ExceptionTypes.INVALID_PARAMETER);
+					}
 				}
 			},
 			{
