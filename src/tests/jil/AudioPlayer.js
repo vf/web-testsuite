@@ -3,7 +3,7 @@
 	var wm = util.isObject("Widget.Multimedia") ? Widget.Multimedia : {};
 	var wma = util.isObject("Widget.Multimedia.AudioPlayer") ? Widget.Multimedia.AudioPlayer : {};
 	var cf = config.fileSystem;
-	var audioFiles = cf.playableAudioFiles.inWidget;
+	var inWidgetAudioFiles = cf.playableAudioFiles.inWidget;
 	var onDeviceAudioFiles = cf.playableAudioFiles.onDevice;
 	
 	// This is a mini object, to wrap audio functionality and make it better useable inside the
@@ -111,10 +111,27 @@
 			//
 			{
 				id:100,
-				name:"Multimedia.isAudioPlaying true",
+				name:"Multimedia.isAudioPlaying true (in widget file)",
 				timeout:10 * 1000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.loopWav, {
+					audioObj = new myAudio(inWidgetAudioFiles.loopWav, {
+						autoPlay:true,
+						onPlay:function(){
+							t.assertTrue(wm.isAudioPlaying);
+							wma.stop();
+						}
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:150,
+				name:"Multimedia.isAudioPlaying true (on device file)",
+				timeout:10 * 1000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.loopWav, {
 						autoPlay:true,
 						onPlay:function(){
 							t.assertTrue(wm.isAudioPlaying);
@@ -136,10 +153,28 @@
 			},
 			{
 				id:300,
-				name:"isAudioPlaying true after a while",
+				name:"isAudioPlaying true after a while (in widget file)",
 				timeout: 10*1000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.songMp3,{
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3,{
+						autoPlay:true,
+						onPlay:function(){
+							setTimeout(function(){ // Let the audio play for a second, that's just more real.
+								t.assertTrue(wm.isAudioPlaying);
+							}, 1000);
+						}
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:350,
+				name:"isAudioPlaying true after a while (on device file)",
+				timeout: 10*1000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.songMp3,{
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){ // Let the audio play for a second, that's just more real.
@@ -154,10 +189,29 @@
 			},
 			{
 				id:400,
-				name:"isAudioPlaying false when paused",
+				name:"isAudioPlaying false when paused (in widget file)",
 				timeout: 10*1000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.songMp3,{
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3,{
+						autoPlay:true,
+						onPlay:function(){
+							setTimeout(function(){ // Let the audio play for a second, that's just more real.
+								wma.pause();
+								t.assertFalse(wm.isAudioPlaying);
+							}, 1000);
+						}
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:450,
+				name:"isAudioPlaying false when paused (on device file)",
+				timeout: 10*1000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.songMp3,{
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){ // Let the audio play for a second, that's just more real.
@@ -184,12 +238,32 @@
 		tests:[
 			{
 				id:100,
-				name:"mp3, song",
+				name:"mp3, song (in widget file)",
 				instructions:"Click 'GO' to play audio.",
 				expectedResult:"Did you hear any playback?",
 				timeout:2000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.songMp3,{
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3,{
+						autoPlay:true,
+						onPlay:function(){
+							setTimeout(function(){
+								wma.stop();
+							}, 1000);
+						}
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:150,
+				name:"mp3, song (on device file)",
+				instructions:"Click 'GO' to play audio.",
+				expectedResult:"Did you hear any playback?",
+				timeout:2000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.songMp3,{
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){
@@ -204,12 +278,32 @@
 			},
 			{
 				id:200,
-				name:"mp3, loop (very small file)",
+				name:"mp3, loop, very small file (in widget file)",
 				instructions:"Click 'GO' to play audio.",
 				expectedResult:"Did you hear any playback?",
 				timeout:2000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.loopMp3,{
+					audioObj = new myAudio(inWidgetAudioFiles.loopMp3,{
+						autoPlay:true,
+						onPlay:function(){
+							setTimeout(function(){
+								wma.stop();
+							}, 1000);
+						}
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:250,
+				name:"mp3, loop, very small file (on device file)",
+				instructions:"Click 'GO' to play audio.",
+				expectedResult:"Did you hear any playback?",
+				timeout:2000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.loopMp3,{
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){
@@ -224,12 +318,32 @@
 			},
 			{
 				id:300,
-				name:"wav, song",
+				name:"wav, song  (in widget file)",
 				instructions:"Click 'GO' to play audio.",
 				expectedResult:"Did you hear any playback?",
 				timeout:10*1000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.songWav,{
+					audioObj = new myAudio(inWidgetAudioFiles.songWav,{
+						autoPlay:true,
+						onPlay:function(){
+							setTimeout(function(){
+								wma.stop();
+							}, 1000);
+						}
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:350,
+				name:"wav, song  (on device file)",
+				instructions:"Click 'GO' to play audio.",
+				expectedResult:"Did you hear any playback?",
+				timeout:10*1000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.songWav,{
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){
@@ -244,12 +358,32 @@
 			},
 			{
 				id:400,
-				name:"wav, loop (very small file)",
+				name:"wav, loop, very small file (in widget file)",
 				instructions:"Click 'GO' to play audio.",
 				expectedResult:"Did you hear any playback?",
 				timeout:10*1000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.loopWav,{
+					audioObj = new myAudio(inWidgetAudioFiles.loopWav,{
+						autoPlay:true,
+						onPlay:function(){
+							setTimeout(function(){
+								wma.stop();
+							}, 1000);
+						}
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:450,
+				name:"wav, loop, very small file (on device file)",
+				instructions:"Click 'GO' to play audio.",
+				expectedResult:"Did you hear any playback?",
+				timeout:10*1000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.loopWav,{
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){
@@ -359,12 +493,32 @@
 		tests:[
 			{
 				id:100,
-				name:"open, play 1sec, stop",
+				name:"open, play 1sec, stop (in widget file)",
 				instructions:"Click 'GO' to play audio for a second.",
 				expectedResult:"Did you hear any playback?",
 				timeout:10*1000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.songMp3,{
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3,{
+						autoPlay:true,
+						onPlay:function(){
+							setTimeout(function(){
+								wma.stop();
+							}, 1000);
+						}
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:150,
+				name:"open, play 1sec, stop (on device file)",
+				instructions:"Click 'GO' to play audio for a second.",
+				expectedResult:"Did you hear any playback?",
+				timeout:10*1000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.songMp3,{
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){
@@ -379,12 +533,32 @@
 			},
 			{
 				id:200,
-				name:"pause",
+				name:"pause (in widget file)",
 				instructions:"Click 'GO' to play audio for a second.",
 				expectedResult:"Did the playback stop after about 1 second?",
 				timeout:10*1000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.songMp3,{
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3,{
+						autoPlay:true,
+						onPlay:function(){
+							setTimeout(function(){
+								wma.pause();
+							}, 1000);
+						}
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:250,
+				name:"pause (on device file)",
+				instructions:"Click 'GO' to play audio for a second.",
+				expectedResult:"Did the playback stop after about 1 second?",
+				timeout:10*1000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.songMp3,{
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){
@@ -399,12 +573,38 @@
 			},
 			{
 				id:300,
-				name:"pause and play again",
+				name:"pause and play again (in widget file)",
 				instructions:"Click 'GO' to play audio.",
 				expectedResult:"Did the audio stop and play again?",
 				timeout:10*1000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.songMp3,{
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3,{
+						autoPlay:true,
+						onPlay:function(){
+							setTimeout(function(){
+								wma.pause();
+								setTimeout(function(){
+									wma.resume();
+									setTimeout(function(){
+										wma.stop();
+									}, 500);
+								}, 500);
+							}, 500);
+						}
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:350,
+				name:"pause and play again (on device file)",
+				instructions:"Click 'GO' to play audio.",
+				expectedResult:"Did the audio stop and play again?",
+				timeout:10*1000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.songMp3,{
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){
@@ -425,12 +625,28 @@
 			},
 			{
 				id:400,
-				name:"play loop",
+				name:"play loop (in widget file)",
 				instructions:"Click 'GO' to play audio looping twice.",
 				expectedResult:"Did the audio play the same piece twice?",
 				timeout:10*1000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.loopMp3, {
+					audioObj = new myAudio(inWidgetAudioFiles.loopMp3, {
+						autoPlay: true,
+						repeatTimes: 2
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:450,
+				name:"play loop (on device file)",
+				instructions:"Click 'GO' to play audio looping twice.",
+				expectedResult:"Did the audio play the same piece twice?",
+				timeout:10*1000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.loopMp3, {
 						autoPlay: true,
 						repeatTimes: 2
 					});
@@ -441,12 +657,28 @@
 			},
 			{
 				id:500,
-				name:"play loop",
+				name:"play loop (in widget file)",
 				instructions:"Click 'GO' to play audio looping five times.",
 				expectedResult:"Did the audio play the same piece five times (5x)?",
 				timeout:10*1000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.loopMp3, {
+					audioObj = new myAudio(inWidgetAudioFiles.loopMp3, {
+						autoPlay: true,
+						repeatTimes: 5
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
+				id:550,
+				name:"play loop (on device file)",
+				instructions:"Click 'GO' to play audio looping five times.",
+				expectedResult:"Did the audio play the same piece five times (5x)?",
+				timeout:10*1000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.loopMp3, {
 						autoPlay: true,
 						repeatTimes: 5
 					});
@@ -457,12 +689,12 @@
 			},
 			{
 				id:600,
-				name:"play, resume",
+				name:"play, resume (in widget file)",
 				instructions:"Click 'GO' to play audio, pause and hear it continue.",
 				expectedResult:"Did it pause for about 2secs and continue from where it had stopped?",
 				timeout:10*1000,
 				test:function(t){
-					audioObj = new myAudio(audioFiles.songMp3, {
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3, {
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){
@@ -530,7 +762,7 @@
 				instructions:"Click 'GO' to play audio.",
 				expectedResult:"Did it stop after about 2sec?",
 				test:function(t){
-					audioObj = new myAudio(audioFiles.songMp3, {
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3, {
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){
@@ -607,7 +839,7 @@
 				],
 				expectedResult:"Had you been able to turn down the volume and back up?",
 				test:function(t){
-					audioObj = new myAudio(audioFiles.songMp3, {autoPlay:true, repeatTimes:5});
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3, {autoPlay:true, repeatTimes:5});
 				},
 				tearDown:function(){
 					audioObj.cleanUp();
