@@ -228,7 +228,8 @@ var configHelper = {
 		//
 		"regexp:^WidgetManager;.*\\(Android.*Opera.*Widgets.*":function(){
 			var ret = {
-				_meta:{name:"Android Opera WRT"},
+				_meta:{name:"Android Opera WRT", numAsynchConfigs:0},
+				validAddressBookItemId:1,
 				fileSystem:{
 					readablePath:"/sdcard",
 					readableFile:"/sdcard/test-audio/mp3/loop.mp3",
@@ -260,21 +261,26 @@ var configHelper = {
 					"Widget.Device.setRingtone",
 					"Widget.Device.vibrate",
 					"Widget.Device.PowerInfo",
+					"Widget.Device.DeviceInfo.ownerInfo",
 					"Widget.Device.DeviceInfo.totalMemory",
 					"Widget.Device.DeviceStateInfo.audioPath",
 					"Widget.Device.DeviceStateInfo.backLightOn",
 					"Widget.Device.DeviceStateInfo.keypadLightOn",
 					"Widget.Device.DeviceStateInfo.onScreenChangeDimensions",
 					"Widget.Device.DeviceStateInfo.Config",
+					"Widget.Device.DeviceStateInfo.processorUtilizationPercent",
 					"Widget.Device.PositionInfo.altitudeAccuracy",
 					"Widget.Device.PositionInfo.cellID",
 					"Widget.PIM.deleteAddressBookItem",
 					"Widget.Multimedia.isVideoPlaying",
 					"Widget.Multimedia.VideoPlayer.*",
 					"Widget.PIM.addCalendarItem",
+					"Widget.PIM.createAddressBookGroup",
+					"Widget.PIM.deleteAddressBookGroup",
 					"Widget.PIM.deleteCalendarItem",
 					"Widget.PIM.exportAsVCard",
 					"Widget.PIM.findCalendarItems",
+					"Widget.PIM.getAvailableAddressGroupNames",
 					"Widget.PIM.getCalendarItem",
 					"Widget.PIM.getCalendarItems",
 					"Widget.PIM.onCalendarItemAlert",
@@ -292,6 +298,44 @@ var configHelper = {
 					"Widget.Config"
 				]
 			};
+			
+			// Get the first calendarItemId found.
+			var pim = Widget.PIM;
+// No cal implemented on opera yet
+			//ret._meta.numAsynchConfigs++; // We have an asynch config parameter here, "register" it.
+			//pim.onCalendarItemsFound = function(items){
+			//	if (items.length>0){
+			//		config.validCalendarItemId = items[0].calendarItemId;
+			//	}
+			//	setTimeout(function(){ pim.onCalendarItemsFound = null; }, 1);
+			//	configHelper.asynchConfigDone();
+			//}
+			//var item = new pim.CalendarItem();
+			//item.eventName = "*";
+			//pim.findCalendarItems(item, 0, 1);
+			
+			// If the addressbook item with ID 0 doesnt exist search for it.
+			// Why? (Currently the Opera WRT crashes on findAddressBookItem) and mostly ID=1 exists.
+			// And since that is prefix for every widget, we would like it not to crash :).
+			try{
+				// Try to read the item, by spec it throws an exception if the ID is invalid.
+				pim.getAddressBookItem(ret.validAddressBookItemId);
+//alert("alright");
+			}catch(e){
+				// Get the first addressbook item
+				ret._meta.numAsynchConfigs++; // We have an asynch config parameter here, "register" it.
+				var addr = new pim.AddressBookItem();
+				addr.setAttributeValue("fullName", "*");
+				Widget.PIM.onAddressBookItemsFound = function(items){
+					if (items && items.length>0){
+						config.validAddressBookItemId = items[0].addressBookItemId;
+					}
+					setTimeout(function(){ pim.onAddressBookItemsFound = null; }, 1);
+					configHelper.asynchConfigDone();
+				}
+				pim.findAddressBookItems(addr, 0, 1);
+			}
+			
 			return ret;
 		},
 		//
@@ -415,6 +459,49 @@ var configHelper = {
 					"Widget.Device.clipboardString",
 					"Widget.Device.copyFile",
 					"Widget.Device.deleteFile",
+					"Widget.Device.findFiles",
+					"Widget.Device.getFileSystemRoots",
+					"Widget.Device.getFileSystemSize",
+					"Widget.Device.moveFile",
+					"Widget.Device.onFilesFound",
+					"Widget.Device.setRingtone",
+					"Widget.Device.vibrate",
+					"Widget.Device.PowerInfo",
+					"Widget.Device.DeviceInfo.ownerInfo",
+					"Widget.Device.DeviceInfo.totalMemory",
+					"Widget.Device.DeviceStateInfo.audioPath",
+					"Widget.Device.DeviceStateInfo.backLightOn",
+					"Widget.Device.DeviceStateInfo.keypadLightOn",
+					"Widget.Device.DeviceStateInfo.onScreenChangeDimensions",
+					"Widget.Device.DeviceStateInfo.Config",
+					"Widget.Device.DeviceStateInfo.processorUtilizationPercent",
+					"Widget.Device.PositionInfo.altitudeAccuracy",
+					"Widget.Device.PositionInfo.cellID",
+					"Widget.PIM.deleteAddressBookItem",
+					"Widget.Multimedia.isVideoPlaying",
+					"Widget.Multimedia.VideoPlayer.*",
+					"Widget.PIM.addCalendarItem",
+					"Widget.PIM.createAddressBookGroup",
+					"Widget.PIM.deleteAddressBookGroup",
+					"Widget.PIM.deleteCalendarItem",
+					"Widget.PIM.exportAsVCard",
+					"Widget.PIM.findCalendarItems",
+					"Widget.PIM.getAvailableAddressGroupNames",
+					"Widget.PIM.getCalendarItem",
+					"Widget.PIM.getCalendarItems",
+					"Widget.PIM.onCalendarItemAlert",
+					"Widget.PIM.onCalendarItemsFound",
+					"Widget.PIM.Calendar*",
+					"Widget.PIM.EventRecurrenceTypes",
+					"Widget.Device.AccountInfo.phoneMSISDN",
+					"Widget.Device.AccountInfo.userSubscriptionType",
+					"Widget.Device.AccountInfo.userAccountBalance",
+					"Widget.Telephony*",
+					"Widget.CallRecord*",
+					"Widget.Messag*", // includes Message, Messaging, etc.
+					"Widget.Attachment",
+					"Widget.Account",
+					"Widget.Config"
 				],
 			};
 			
@@ -472,6 +559,7 @@ var configHelper = {
 	//
 	var ua = window.navigator.userAgent;
 	var configToMixin = null;
+//ua = "WidgetManager; (Android Opera Widgets";
 //var ua = "WidgetManager; SAMSUNG-GT-I8320-Vodafone;AppleWebKit/528.5+(X11;U;Linux;en;i8329BUIH8)";
 	for (var key in configs){
 		var c = configs[key];
