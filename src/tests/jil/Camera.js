@@ -8,8 +8,12 @@
 	// like imgFile+"-wtf.jpg"
 	var imgFile = "/virtual/photos/test-camera-" + new Date().getTime();
 	
-	function _setUp(){
-		dohx.showInfo('<object id="_cameraWindow_" type="video-camera/3gp" width="320" height="240" />');
+	function _setUpDiv(){
+		dohx.showInfo('<div id="_cameraWindow_" type="video-camera/3gp" width="320" height="240"></div>');
+		wmc.setWindow(util.byId("_cameraWindow_"));
+	};
+	function _setUpObject(){
+		dohx.showInfo('<object id="_cameraWindow_" type="video-camera/3gp" width="320" height="240"></object>');
 		wmc.setWindow(util.byId("_cameraWindow_"));
 	};
 	function _setUpFullscreen(){
@@ -30,24 +34,21 @@
 			//
 			{
 				id:100,
-				name:"Callback 'onCameraCaptured' triggered?",
+				name:"onCameraCaptured - Callback 'onCameraCaptured' triggered?",
 				requiredObjects:["Widget.Multimedia.Camera.captureImage"],
 				timeout:10*1000, // User may has to confirm security dialog.
-				setUp:_setUp,
 				test:function(t){
 					wmc.onCameraCaptured = function(fileName){
 						t.success("OK, file saved at "+fileName+".");
 					}
 					wmc.captureImage(imgFile+"-callback.jpg", true);
-				},
-				tearDown:_tearDown
+				}
 			},
 			{
 				id:200,
-				name:"Creates a file?",
+				name:"captureImage - Creates a file?",
 				requiredObjects:["Widget.Multimedia.Camera.captureImage"],
 				timeout:30*1000, // User may has to confirm security dialog.
-				setUp:_setUp,
 				test:function(t){
 					wmc.onCameraCaptured = function(fileName){
 						try {
@@ -59,8 +60,21 @@
 						t.result = util.toJson(f);
 					}
 					wmc.captureImage(imgFile+"-creates-file.jpg", true);
-				},
-				tearDown:_tearDown
+				}
+			},
+			{
+				id:210,
+				name:"captureImage - Returns the filename passed as paramter?",
+				requiredObjects:["Widget.Multimedia.Camera.captureImage"],
+				timeout:30*1000, // User may has to confirm security dialog.
+				test:function(t){
+					var expectedFilename = imgFile+"-proper-filename.jpg";
+					wmc.onCameraCaptured = function(fileName){
+						t.assertEqual(expectedFilename, fileName);
+						t.result = fileName;
+					}
+					wmc.captureImage(expectedFilename, true);
+				}
 			},
 			{
 				id:300,
@@ -75,14 +89,27 @@ addIf:false,
 				id:400,
 				name:"Proper return value?",
 				requiredObjects:["Widget.Multimedia.Camera.captureImage"],
-				setUp:_setUp,
 				test:function(t){
 					var myFileName = imgFile+"-retval.jpg";
 					var ret = wmc.captureImage(myFileName, true);
-					t.assertEqual(ret, myFileName);
-					return "Returned expected filename: " + ret;
-				},
-				tearDown:_tearDown
+					// Wait for the onCameraCaptured or it will just confuse the next test.
+					wmc.onCameraCaptured = function(fileName){
+						t.assertEqual(myFileName, ret);
+					};
+				}
+			},
+			{
+				id:410,
+				name:"Proper return value (2)?",
+				requiredObjects:["Widget.Multimedia.Camera.captureImage"],
+				test:function(t){
+					var myFileName = imgFile+"-retval1.jpg";
+					var retVal = "";
+					wmc.onCameraCaptured = function(fileName){
+						t.assertEqual(myFileName, retVal);
+					};
+					retVal = wmc.captureImage(myFileName, true);
+				}
 			},
 			{
 				id:500,
@@ -100,7 +127,7 @@ addIf:false,
 					delete wmc.onCameraCaptured;
 				}
 			},
-			//
+/*			//
 			//	captureImage() lowRes
 			//
 // 1) verify resulting file name is the same as passed in
@@ -117,7 +144,7 @@ addIf:false,
 				],
 				expectedResult:"Did the gallery app show the picture you just took?",
 				timeout:10*1000, // User may has to confirm security dialog.
-				setUp:_setUp,
+				setUp:_setUpDiv,
 				test:function(t){
 					wmc.onCameraCaptured = function(fileName){
 						wd.launchApplication(wd.ApplicationTypes.PICTURES, fileName);
@@ -131,7 +158,7 @@ addIf:false,
 				name:"captureImage, lowRes - verify the stored file",
 				requiredObjects:["Widget.Multimedia.Camera.captureImage"],
 				timeout:10*1000, // User may has to confirm security dialog.
-				setUp:_setUp,
+				setUp:_setUpDiv,
 				test:function(t){
 					wmc.onCameraCaptured = function(fileName){
 						try {
@@ -154,7 +181,7 @@ addIf:false,
 				name:"captureImage, hiRes - verify the stored file",
 				requiredObjects:["Widget.Multimedia.Camera.captureImage"],
 				timeout:10*1000, // User may has to confirm security dialog.
-				setUp:_setUp,
+				setUp:_setUpDiv,
 				test:function(t){
 					wmc.onCameraCaptured = function(fileName){
 						try {
@@ -292,7 +319,7 @@ addIf:false, // I dont know right now how to add a div with: type:"video-camera/
 				name:"setWindow - Disassociate preview window: setWindow(null).",
 				requiredObjects:["Widget.Multimedia.Camera.setWindow"],
 				timeout:10*1000,
-				setUp:_setUp,
+				setUp:_setUpDiv,
 				expectedResult:"Did the preview window disappear after about 5 seconds?",
 				test:function(t){
 					setTimeout(function(){
