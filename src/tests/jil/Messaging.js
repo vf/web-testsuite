@@ -75,6 +75,9 @@
 					_testRecipients.sms = getPref("Please enter a phone number to send test SMS to!", "sms");
 					_testRecipients.mms = getPref("Please enter a phone number to send test MMS to!", "mms", _testRecipients.sms);
 					_testRecipients.email = getPref("Please enter an email address to send test Emails to!", "email");
+					//_testRecipients.sms = "01743004595";
+					//_testRecipients.mms = "01743004595";
+					//_testRecipients.email = "wk@uxebu.com";
 					t.success("Preconditions met, user confirmed.");
 				}
 			},
