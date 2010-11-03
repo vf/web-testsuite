@@ -714,6 +714,32 @@
 				}
 			},
 			{
+				id:650,
+				name:"play, resume (on device file)",
+				instructions:"Click 'GO' to play audio, pause and hear it continue.",
+				expectedResult:"Did it pause for about 2secs and continue from where it had stopped?",
+				timeout:10*1000,
+				test:function(t){
+					audioObj = new myAudio(onDeviceAudioFiles.songMp3, {
+						autoPlay:true,
+						onPlay:function(){
+							setTimeout(function(){
+								wma.pause();
+								setTimeout(function(){
+									wma.resume();
+									setTimeout(function(){
+										wma.stop();
+									}, 2000);
+								}, 2000);
+							}, 2000);
+						}
+					});
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+				}
+			},
+			{
 				id:700,
 				name:"play - Play MP3 file from device '" + onDeviceAudioFiles.songMp3 + "'.",
 				instructions:[
