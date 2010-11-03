@@ -22,15 +22,15 @@
 	// executed. This is handy for packaging just a couple of the tests,
 	// to have just a small handier test widget.
 	var executeOnly = /accelerometer|account/i;
-	//var executeOnly = /addressbook/i;
-	//var executeOnly = /calendar/i;
-	//var executeOnly = /application/i;
-	//var executeOnly = /video|audio|multimedia/i;
-	//var executeOnly = /telephony/i;
-	//var executeOnly = /file/i;
-	//var executeOnly = /deviceinfo/i;
-	//var executeOnly = /devicestateinfo/i;
-	
+	var executeOnly = /addressbook/i;
+	var executeOnly = /calendar/i;
+	var executeOnly = /application/i;
+	var executeOnly = /video|audio|multimedia/i;
+	var executeOnly = /telephony/i;
+	var executeOnly = /file/i;
+	var executeOnly = /deviceinfo/i;
+	var executeOnly = /devicestateinfo/i;
+	var executeOnly = /position/i;
 	// Find all Widget.methods() (everything that starts with a lower case letter after "Widget." and has no more dots afterwards.)
 	//var executeOnly = /^Widget.[a-z][^.]+$/;
 	
@@ -253,7 +253,6 @@
 		{
 			id: 318,
 			name:"AddressBookItem - new Widget.PIM.AddressBookItem",
-			permissions:[p.SESSION, p.BLANKET, p.ALLOWED],
 			test:function(){
 				tmp.newAddressBookItem = new Widget.PIM.AddressBookItem();
 			}
@@ -263,7 +262,6 @@
 			// unlinke test 314 which works on an existing item.
 			id: 320,
 			name:"AddressBookItem.setAttributeValue",
-			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
 			test:function(){
 				var uniqueString = new Date().getTime();
 				var _testFullName = "test Contact " + uniqueString;
@@ -1248,9 +1246,6 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		if (apiString.indexOf("Widget")!=0){
 			apiString = "Widget." + apiString;
 		}
-		if (!dohx.isApiSupported(apiString)){
-			continue;
-		}
 		// Add only the tests to the test set that match the "executeOnly" expression.
 		if (!apiString.match(executeOnly)){
 			continue;
@@ -1258,6 +1253,7 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 		
 		var tmp = doh.util.mixin({}, t); // Clone all props.
 		t.test = t.test || null;
+		tmp.mustSupportApis = [apiString]; // Let the test itself handle the API supported stuff.
 		// Generate the function "test" if it doesn't exist.
 		if (tmp.test==null){
 			if (t.propertyToTest){
