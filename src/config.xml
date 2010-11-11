@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:jil="http://www.jil.org/ns/widgets1.2"
-	id="http://jil.org/wid/cc4b75128e6bc033fb7f40e7a8818a7c5311dff8c8b6a8b69f0376214ae8d0b1/test-base-metrics" version="0.2.201010120352"
+	id="http://jil.org/wid/cc4b75128e6bc033fb7f40e7a8818a7c5311dff8c8b6a8b69f0376214ae8d0b1/test-jil-PositionInfo" version="0.2.201011050435"
 	width="800" height="600" viewmodes="all">
 	<width>800</width>
 	<height>1000</height>
-	<name>metrics (tests/base/metrics)</name>
+	<name>PositionInfo (tests/jil/PositionInfo)</name>
 	<icon src="img/icon.png"/>
 	<jil:maximum_display_mode height="800" width="600"/>
 	<author href="http://vodafone.com" email="wk@uxebu.com">Wolfram Kriesing</author>
-	<description>This widget tests the following: tests/base/metrics</description>
-
+	<description>This widget tests the following: tests/jil/PositionInfo</description>
+	
 	<!-- Just for the Nokia it has to be before AudioPlayer *cough* -->
 	<feature name="http://jil.org/jil/api/1.1/multimedia" required="false"/>
-	
+	    
 	<feature name="http://jil.org/jil/api/1.1/accelerometerinfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/account" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/accountinfo" required="false"/>
@@ -33,7 +33,7 @@
 	<feature name="http://jil.org/jil/api/1.1/powerinfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/positioninfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1/widget" required="false"/>
-
+	
 	<feature name="http://jil.org/jil/api/1.1.1/datanetworkinfo" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.1/file" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.1/radioinfo" required="false"/>
@@ -41,18 +41,18 @@
 	<feature name="http://jil.org/jil/api/1.1.1/telephony" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.1/callrecordtypes" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.1/widgetmanager" required="false"/>
-
+	
 	<feature name="http://jil.org/jil/api/1.1.2/camera" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.2/videoplayer" required="false"/>
-
+	
 	<feature name="http://jil.org/jil/api/1.1.4/messagefoldertypes" required="false"/>
-
+	
 	<feature name="http://jil.org/jil/api/1.1.5/applicationtypes" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.5/exception" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.5/exceptiontypes" required="false"/>
 	<feature name="http://jil.org/jil/api/1.1.5/radiosignalsourcetypes" required="false"/>
-
+ 
 	<access network="true" localfs="true"/> <!-- until JIL 1.1 this was enough -->
 	<jil:access network="true" localfs="true" remote_scripts="true"/> <!-- this is needed for JIL1.2 -->
-	<!--<update href="http://www.jil.org/widgets/" period="1"/>	-->
-</widget>
+	<!--<update href="http://www.jil.org/widgets/" period="1"/>    -->
+ </widget>

@@ -77,7 +77,7 @@
 		configHelper.onConfigured = function(){
 			var node = document.createElement("script");
 			node.type = "text/javascript";
-			node.src = "$test.js?"+(+new Date());
+			node.src = "$test.js?nocache="+(+new Date());
 			document.body.appendChild(node);
 			// Add the timeout, just so the appended file above gets the time to load and run ... unfortunately not really bullet-proof
 			// but we are "only" doing that so the number of tests are shown properly.
@@ -90,7 +90,9 @@
 				}
 			}, 100);
 		};
-		configHelper.finishConfiguration();
+		if (config._meta.numAsynchConfigs==0){
+			configHelper.finishConfiguration();
+		}
 	</script>
 </body>
 </html>
