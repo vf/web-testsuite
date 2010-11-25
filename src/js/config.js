@@ -275,6 +275,7 @@ var configHelper = {
 					"Widget.Multimedia.isVideoPlaying",
 					"Widget.Multimedia.VideoPlayer.*",
 					"Widget.Multimedia.Camera.setWindow",
+					"Widget.PIM.AddressBookItem.getAddressGroupNames",
 					"Widget.PIM.addCalendarItem",
 					"Widget.PIM.createAddressBookGroup",
 					"Widget.PIM.deleteAddressBookGroup",
