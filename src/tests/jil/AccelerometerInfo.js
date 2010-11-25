@@ -188,7 +188,7 @@
 					// Basically we expect x and y to be zero and z 9.81
 					// we give it 0.4 range
 					var vals = {x:wdda.xAxis, y:wdda.yAxis, z:wdda.zAxis};
-					var expectedValues = {x:0, y:0, z:9.81};
+					var expectedValues = {x:0, y:0, z:-9.81};
 					var allowedOffset = 0.2;
 					var xOk = vals.x > expectedValues.x - allowedOffset && vals.x < expectedValues.x + allowedOffset;
 					var yOk = vals.y > expectedValues.y - allowedOffset && vals.y < expectedValues.y + allowedOffset;
