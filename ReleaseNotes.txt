@@ -1,3 +1,24 @@
+Version 1.8.0
+=============
+* PositionInfo: test getting pos 3 times in a row
+* Camera: fixed all tests, made N/A tests also report this
+* Security Policy: fixed some wrong permission tests
+* AudioPlayer: added various tests to run against on-device and in-widget audio files
+* Accelerometer: fixed tests to be exactly spec compliant
+* PositionInfo: added more info about how long a test took
+* Policy tests: made configurable which ones are built, split them into separate files
+* AddressBook: added exception test
+* AddressBook: added test for case-sensitivity when searching for items 
+* increased timeouts for tests that require user input
+* AudioPlayer: better, more verbose audio tests
+* fixed CSV export of test cases
+* maintained "unsupportedApis" configuration
+* fixed a lot of dependencies of tests so they only run for APIs that are supported for each platform
+* AudioPlayer: added tests for streaming audio files
+* AddressBook: more explicit addressbook item tests
+* AddressBook: retreive real addressbook items asynchronous (introduced for N8)
+* made all test loading asynch, so we can get test data, like real addressbook items before running the tests
+
 Version 1.7.2
 =============
 * a lot of fixes and enhancements triggered by the Nokia N8 WRT
