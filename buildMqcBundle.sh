@@ -19,7 +19,8 @@ rm mqc-widget-suite-$1.zip 2> /dev/null # Remove an already generated bundle.
 rm -Rf $TMP_DIR 2> /dev/null
 mkdir $TMP_DIR
 
-cp dist/jil-test-signed/test* $TMP_DIR
+#cp dist/jil-test-signed/test* $TMP_DIR
+cp dist/unsigned/test* $TMP_DIR
 cp ReleaseNotes.txt $TMP_DIR
 cp -R src/test-audio $TMP_DIR/
 cp -R src/test-video $TMP_DIR/
