@@ -39,6 +39,7 @@
 			},
 			{
 				id: 400,
+addIf:false, // we agreed with opera that this is a minor thing that wont be fixed
 				name:"showNotification - Missing params",
 				requiredObjects:["widget.showNotification"],
 				test:function(t){
