@@ -206,7 +206,7 @@
 					"Make sure a contact who's name IS 'ab' is in your addressbook.",
 					"Click 'GO'."
 				],
-				timeout: 10 * 1000,
+				timeout: 20 * 1000,
 				test:function(t){
 					var addr = new pim.AddressBookItem();
 					addr.setAttributeValue("fullName", "ab");
@@ -353,6 +353,7 @@
 				id:1600,
 				name:"addAddressBookItem - Verify just added item.",
 				requiredObjects:["Widget.PIM.findAddressBookItems"],
+				timeout: 20 * 1000,
 				test:function(t){
 					var addr = new pim.AddressBookItem();
 					addr.setAttributeValue("fullName", _testFullName);
