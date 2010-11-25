@@ -71,7 +71,7 @@
 					wdd.onPositionRetrieved = null;
 				}
 			},
-/*			{
+			{
 				id:300,
 				name:"requestPositionInfo('gps') - Verify return value is of type 'PositionInfo'.",
 				addIf:config.geolocation.supportsGps,
@@ -85,6 +85,39 @@
 						t.result = showPosInfo(posInfo, startTime);
 					};
 					wdd.requestPositionInfo("gps");
+				},
+				tearDown:function(){
+					wdd.onPositionRetrieved = null;
+				}
+			},
+			{
+				id:350,
+				name:"requestPositionInfo('gps') - Try getting position three times in a row.",
+				requiredObjects:["Widget.Device.DeviceStateInfo.requestPositionInfo"],
+				instructions:"Click 'GO' to start test!",
+				timeout:locationTimeouts.gps * 4, // at least four times the GPS timeout
+				test:function(t){
+					var getPos = function(callback){
+						wdd.onPositionRetrieved = function(posInfo, method){
+							callback(posInfo);
+						};
+						wdd.requestPositionInfo("gps");
+					};
+					var positions = [];
+					var counter = 0;
+					var getPos2 = function(posInfo){
+						positions[counter++] = posInfo;
+						if (counter<3){
+							dohx.showInfo(counter + "x position retreived - " + showPosInfo(posInfo, startTime));
+							startTime = + new Date();
+							getPos(getPos2);
+						} else {
+							t.assertTrue(true);
+						}
+					};
+					var startTime = +new Date();
+					dohx.showInfo("Trying to retreive position ...");
+					getPos(getPos2);
 				},
 				tearDown:function(){
 					wdd.onPositionRetrieved = null;
