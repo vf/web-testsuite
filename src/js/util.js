@@ -204,5 +204,26 @@ var util = new (doh.util.extend(function(){},{
 		}
 		
 		return _toJson(inp);
+	},
+	
+	xhrPost:function(data){
+		var req = new XMLHttpRequest();
+		if (!req) return;
+		req.open("POST", data.url, true);
+		req.setRequestHeader('User-Agent','XMLHTTP/1.0');
+		req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+		req.onreadystatechange = function () {
+			if (req.readyState != 4) return;
+			if (req.status != 200 && req.status != 304) {
+	//			alert('HTTP error ' + req.status);
+				//return;
+			}
+			// Always do callback, also on errors.
+			if (data.callback){
+				data.callback(req);
+			}
+		}
+		if (req.readyState == 4) return;
+		req.send(data.data);
 	}
 }));
