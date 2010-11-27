@@ -458,6 +458,7 @@ var configHelper = {
 					"Widget.Device.DataNetworkInfo.onNetworkConnectionChanged",
 					"Widget.Device.DataNetworkInfo.getNetworkConnectionName",
 					"Widget.Device.DataNetworkInfo.networkConnectionType",
+					"Widget.Device.DataNetworkInfo.onNetworkConnectionChanged",
 					"Widget.Device.clipboardString",
 					"Widget.Device.copyFile",
 					"Widget.Device.deleteFile",
