@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>test-base-widget</title>
+	<title>test-jil-Basics</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 	<link rel="stylesheet" href="css/style.css" type="text/css">
@@ -18,9 +18,8 @@
 		<img src="img/logo.png" alt="by Vodafone" />
 	</a>
 	
-<div id="dbg" style="color:red;"></div>
-	<div class="content">
-	</div>
+	<div id="dbg" style="color:red;"></div>
+	<div class="content"></div>
 	
 	<div class="manualTest">
 		<h1 class="testName"></h1>
@@ -77,7 +76,7 @@
 		configHelper.onConfigured = function(){
 			var node = document.createElement("script");
 			node.type = "text/javascript";
-			node.src = "tests/base/widget.js?nocache="+(+new Date());
+			node.src = "tests/jil/Basics.js?nocache="+(+new Date());
 			document.body.appendChild(node);
 			// Add the timeout, just so the appended file above gets the time to load and run ... unfortunately not really bullet-proof
 			// but we are "only" doing that so the number of tests are shown properly.

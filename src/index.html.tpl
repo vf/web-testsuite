@@ -18,9 +18,8 @@
 		<img src="img/logo.png" alt="by Vodafone" />
 	</a>
 	
-<div id="dbg" style="color:red;"></div>
-	<div class="content">
-	</div>
+	<div id="dbg" style="color:red;"></div>
+	<div class="content"></div>
 	
 	<div class="manualTest">
 		<h1 class="testName"></h1>
