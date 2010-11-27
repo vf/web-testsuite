@@ -1,3 +1,8 @@
+Version 1.8.1
+=============
+* store and send test results to developer.vodafone.com after test execution
+* made base/xhr/ports tests work properly
+
 Version 1.8.0
 =============
 * PositionInfo: test getting pos 3 times in a row
