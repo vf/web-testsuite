@@ -1,6 +1,8 @@
 doh.ui = {
 	// summary: This object contains the functions that are responsible for rendering out the results of each test.
 	// description: Override this object or the funtion(s) you need to override.
+	
+	results:[],
 
 	started:function(){
 		// summary: This is called when run() was called the first time.
@@ -57,5 +59,59 @@ doh.ui = {
 	report:function(){
 		// summary: 
 		ui.report(doh._numTests, doh._groups.length, doh._numErrors, doh._numFailures, doh._numNotApplicable);
+		var el = util.query(".report .sendingResults")[0];
+		el.style.display = "block";
+		var infoData = [
+			"window.navigator.userAgent",
+			"window.screen.availHeight",
+			"window.screen.availLeft",
+			"window.screen.availWidth",
+			"window.screen.availTop",
+			"window.screen.height",
+			"window.screen.left",
+			"window.screen.top",
+			"window.screen.width",
+			"widget.name",
+			"widget.id",
+			"widget.version",
+			"widget.widgetMode",
+			"widget.height",
+			"widget.width",
+			"Widget.Device.widgetEngineName",
+			"Widget.Device.widgetEngineProvider",
+			"Widget.Device.widgetEngineVersion",
+			"Widget.Device.AccountInfo.phoneOperatorName",
+			"Widget.Device.DeviceInfo.phoneColorDepthDefault",
+			"Widget.Device.DeviceInfo.phoneFirmware",
+			"Widget.Device.DeviceInfo.phoneManufacturer",
+			"Widget.Device.DeviceInfo.phoneModel",
+			"Widget.Device.DeviceInfo.phoneOS",
+			"Widget.Device.DeviceInfo.phoneScreenHeightDefault",
+			"Widget.Device.DeviceInfo.phoneScreenWidthDefault",
+			"Widget.Device.DeviceInfo.phoneSoftware",
+			"Widget.Device.DeviceInfo.totalMemory",
+			"Widget.Device.DeviceStateInfo.language",
+		];
+		var info = {};
+		for (var i=0, l=infoData.length, d; i<l; i++){
+			d = infoData[i];
+			info[d] = util.getObject(d);
+		}
+		// ******************
+		// The version of the data structure we send to the server to store the data
+		// If any of the data change, update this version!!!!!!!!!!!
+		// ******************
+		info.__version__ = 20101126;
+		
+		
+		util.xhrPost({
+			url:"http://developer.vodafone.com/widget-test/add/",
+			callback:function(){
+				// Delay the hiding a bit, so the user sees it for sure.
+				setTimeout(function(){el.style.display = "none";}, 1000);
+			},
+			data: "info=" + window.encodeURIComponent(JSON.stringify(info))
+				+ "&test_data=" + window.encodeURIComponent(JSON.stringify(this.results))
+		});
 	}
 };

@@ -53,6 +53,7 @@ var ui = {};
 						'<span class="failure">${numFailures} failures (${percentFailure}%)</span><br />'+
 						'<span class="success">${numOks} ok (${percentOk}%)</span><br />'+
 						'<span class="notApplicable">${numNotApplicable} not applicable (${percentNotApplicable}%)</span><br />'+
+						'<span class="sendingResults">Sending test results...</span>'+
 					'</div>'+
 					'<div class="percent">'+
 						'<div class="error" style="width: ${percentError}%"><span>${percentError}%</span></div>'+
@@ -94,9 +95,9 @@ var ui = {};
 		},
 		
 		success:function(test){
-			var resString,
-				name = test.name,
-				result = test.result;
+			var resString;
+			var name = test.name;
+			var result = test.result;
 			if (util.isArray(result) && result.length==0){
 				resString = "no data (empty array)";
 			} else if (result===undefined){
@@ -104,7 +105,9 @@ var ui = {};
 			} else {
 				resString = util.toJson(result);
 			}
-			n.innerHTML += this._render({name:name, id:util.getTestId(test), result:resString}, this._templates.SUCCESS);
+			var data = {name:name, id:util.getTestId(test), result:resString};
+			n.innerHTML += this._render(data, this._templates.SUCCESS);
+			doh.ui.results.push(data);
 		},
 		
 		showInfo:function(txt){
@@ -136,14 +139,16 @@ var ui = {};
 			for (var i in error){
 				errorParts.push("<strong>"+i+"</strong>: "+error[i]);
 			}
-			n.innerHTML += this._render({
+			var data = {
 				name: name,
 				id: util.getTestId(test),
 				messagePreview: msg.length>60 ? msg.substr(0,58)+"..." : msg,
 				error:errorParts.join("\n"),
 				failureOrError:isError ? "error" : "failure",
 				testSourceCode:(test._actualTestFunction || test.test).toString().replace(/\t/g, " ")
-			}, this._templates.FAILURE_OR_ERROR);
+			};
+			n.innerHTML += this._render(data, this._templates.FAILURE_OR_ERROR);
+			doh.ui.results.push(data);
 		},
 		
 		invalidConfig:function(){
