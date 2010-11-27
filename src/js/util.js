@@ -214,10 +214,10 @@ var util = new (doh.util.extend(function(){},{
 		req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
 		req.onreadystatechange = function () {
 			if (req.readyState != 4) return;
-			if (req.status != 200 && req.status != 304) {
-	//			alert('HTTP error ' + req.status);
-				//return;
-			}
+			//if (req.status != 200 && req.status != 304) {
+			//	alert('HTTP error ' + req.status);
+			//	return;
+			//}
 			// Always do callback, also on errors.
 			if (data.callback){
 				data.callback(req);
