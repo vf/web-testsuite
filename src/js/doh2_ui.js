@@ -103,7 +103,6 @@ doh.ui = {
 		// ******************
 		info.__version__ = 20101126;
 		
-		
 		util.xhrPost({
 			url:"http://developer.vodafone.com/widget-test/add/",
 			callback:function(){

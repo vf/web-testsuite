@@ -86,12 +86,15 @@ var ui = {};
 		},
 		
 		notApplicable:function(test){
-			n.innerHTML += this._render({name:test.name, id:util.getTestId(test)}, this._templates.NOT_APPLICABLE);
+			var data = {name:test.name, id:util.getTestId(test)};
+			n.innerHTML += this._render(data, this._templates.NOT_APPLICABLE);
+			doh.ui.results.push({result:"not applicable", test:data});
 		},
 		
 		unsupportedApi:function(test, apis){
-			n.innerHTML += this._render({name:test.name, id:util.getTestId(test), apis:apis.join(", ")},
-										this._templates.UNSUPPORTED_API);
+			var data = {name:test.name, id:util.getTestId(test), apis:apis.join(", ")};
+			n.innerHTML += this._render(data, this._templates.UNSUPPORTED_API);
+			doh.ui.results.push({result:"unsupported API", test:data});
 		},
 		
 		success:function(test){
@@ -107,7 +110,7 @@ var ui = {};
 			}
 			var data = {name:name, id:util.getTestId(test), result:resString};
 			n.innerHTML += this._render(data, this._templates.SUCCESS);
-			doh.ui.results.push(data);
+			doh.ui.results.push({result:"success", test:data});
 		},
 		
 		showInfo:function(txt){
@@ -148,7 +151,7 @@ var ui = {};
 				testSourceCode:(test._actualTestFunction || test.test).toString().replace(/\t/g, " ")
 			};
 			n.innerHTML += this._render(data, this._templates.FAILURE_OR_ERROR);
-			doh.ui.results.push(data);
+			doh.ui.results.push({result:isError ? "error" : "failure", test:data});
 		},
 		
 		invalidConfig:function(){
