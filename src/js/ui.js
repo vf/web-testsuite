@@ -53,7 +53,6 @@ var ui = {};
 						'<span class="failure">${numFailures} failures (${percentFailure}%)</span><br />'+
 						'<span class="success">${numOks} ok (${percentOk}%)</span><br />'+
 						'<span class="notApplicable">${numNotApplicable} not applicable (${percentNotApplicable}%)</span><br />'+
-						'<span class="sendingResults">Sending test results...</span>'+
 					'</div>'+
 					'<div class="percent">'+
 						'<div class="error" style="width: ${percentError}%"><span>${percentError}%</span></div>'+
@@ -61,6 +60,7 @@ var ui = {};
 						'<div class="success" style="width: ${percentOk}%"><span>${percentOk}%</span></div>'+
 						'<div class="notApplicable" style="width: ${percentNotApplicable}%"><span>${percentNotApplicable}%</span></div>'+
 					'</div>'+
+					'<div class="sendingResults">Sending test results...</div>'+
 				'</div>'
 			,
 			SUCCESS:
