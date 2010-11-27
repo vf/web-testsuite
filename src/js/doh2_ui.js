@@ -106,8 +106,12 @@ doh.ui = {
 		util.xhrPost({
 			url:"http://developer.vodafone.com/widget-test/add/",
 			callback:function(){
+				el.innerHTML = "Test results sent.";
 				// Delay the hiding a bit, so the user sees it for sure.
-				setTimeout(function(){el.style.display = "none";}, 1000);
+				setTimeout(function(){
+					// The Opera WRT doesn't seem to do this properly :(
+					el.style.display = "none";
+				}, 2000);
 			},
 			data: "info=" + window.encodeURIComponent(JSON.stringify(info))
 				+ "&test_data=" + window.encodeURIComponent(JSON.stringify(this.results))
