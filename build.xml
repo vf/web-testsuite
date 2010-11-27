@@ -121,6 +121,9 @@
 							<property name="dist-filename-prefix" value="util-" />
 						</then>
 						<else>
+							<property name="testfile" location="${test-src}/${test}.js"/>
+							<property name="script-src-prefix-path" value="tests/"/>
+							<property name="dist-filename-prefix" value="test-" />
 							<antcall target="echoTestfiles" />
 							<!-- fetch name of test to build -->
 							<input addproperty="test" message="Build with which test? (Press Enter to build all tests)"/>
