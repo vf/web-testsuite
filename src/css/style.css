@@ -234,6 +234,12 @@ button[disabled=disabled] {
 			color: grey;
 		}
 		
+		.content .row.report .count .sendingResults {
+			background-color: lightyellow;
+			display:none;
+			font-size:large;
+		}
+		
 		.content .row.report .percent .success {
 			background: #33cc2e;
 		}
