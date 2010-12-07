@@ -326,16 +326,20 @@ var configHelper = {
 			}catch(e){
 				// Get the first addressbook item
 				ret._meta.numAsynchConfigs++; // We have an asynch config parameter here, "register" it.
-				var addr = new pim.AddressBookItem();
-				addr.setAttributeValue("fullName", "*");
-				Widget.PIM.onAddressBookItemsFound = function(items){
-					if (items && items.length>0){
-						config.validAddressBookItemId = items[0].addressBookItemId;
+				try{ // Possibly the getting the addressbookitem fails, maybe because the feature URL is missing ...
+					var addr = new pim.AddressBookItem();
+					addr.setAttributeValue("fullName", "*");
+					Widget.PIM.onAddressBookItemsFound = function(items){
+						if (items && items.length>0){
+							config.validAddressBookItemId = items[0].addressBookItemId;
+						}
+						setTimeout(function(){ pim.onAddressBookItemsFound = null; }, 1);
+						configHelper.asynchConfigDone();
 					}
-					setTimeout(function(){ pim.onAddressBookItemsFound = null; }, 1);
-					configHelper.asynchConfigDone();
+					pim.findAddressBookItems(addr, 0, 1);
+				}catch(e){
+					ret._meta.numAsynchConfigs--; // Decrease it again, since it obviously failed.
 				}
-				pim.findAddressBookItems(addr, 0, 1);
 			}
 			
 			return ret;
