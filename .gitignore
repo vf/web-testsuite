@@ -1,1 +1,2 @@
-widget-test-suite.kpf
+*.kpf
+*.komodoproject
