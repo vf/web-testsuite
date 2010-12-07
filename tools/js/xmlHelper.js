@@ -4,7 +4,7 @@ var xmlHelper = {
 	header:"",
 	
 	getXmlObject:function(fileName, features){
-		var rawConfigXml = loadTextFile(fileName);
+		var rawConfigXml = util.loadTextFile(fileName);
 		rawConfigXml = renderConfigTemplate(rawConfigXml, config);
 		// Remove the first line, since that is the <?xml...> which E4X can't handle yet, we will add it later again.
 		this.header = rawConfigXml.split("\n")[0];
