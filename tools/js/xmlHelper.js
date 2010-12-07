@@ -3,9 +3,12 @@ var xmlHelper = {
 	
 	header:"",
 	
-	getXmlObject:function(fileName, features){
-		var rawConfigXml = util.loadTextFile(fileName);
-		rawConfigXml = renderConfigTemplate(rawConfigXml, config);
+	getXmlObject:function(config, features){
+		// summary: Create and return the XML object which represents the config.xml in order to manipulate it in any way.
+		// config: Object
+		// 		The keys in this object are those that can be used inside the config.xml.tpl-js
+		var rawConfigXml = util.loadTextFile(config.configXmlTemplateFile);
+		rawConfigXml = this._renderConfigTemplate(rawConfigXml, config);
 		// Remove the first line, since that is the <?xml...> which E4X can't handle yet, we will add it later again.
 		this.header = rawConfigXml.split("\n")[0];
 		var configXml = rawConfigXml.split("\n").slice(1).join("\n");
@@ -88,4 +91,20 @@ var xmlHelper = {
 		}
 		return xml;
 	},
+	
+	_renderConfigTemplate: function(tplString, variables){
+		// summary: Replace placeholders like {x} in the tplString file.
+	
+		// It can also be done using XML Literal Interpolation (see http://rephrase.net/days/07/06/e4x)
+		// but that seems simpler for now ... would love to learn better.
+		var ret = tplString;
+		for (var key in variables){
+			var placeholder = '{'+key+'}';
+			while(ret.indexOf(placeholder)!=-1){
+				ret = ret.replace(placeholder, config[key]);
+			}
+		}
+		return ret;
+	}
+
 };
