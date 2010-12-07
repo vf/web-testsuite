@@ -76,6 +76,7 @@
 		<java jar="tools/js.jar" fork="true">
 			<!-- list all the js files here in the order they need to be loaded -->
 			<arg line="-f tools/js/console.js"/>
+			<arg line="-f tools/js/util.js"/>
 			<arg line="-f tools/js/global.js"/>
 			<arg line="-f tools/js/xmlHelper.js"/>
 			<!--<arg value="src/tests/base/widget-update/update0.config.xml.js"/>-->
