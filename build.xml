@@ -57,12 +57,42 @@
 		<replace dir="${tmp}" token="$widgetName" value="${_widgetName}">
 			<include name="**/*.tpl"/>
 		</replace>
-	
+		
+		<!--Do the config.xml magic, which means throw it to a Rhino (js.jar) and let it create it -->
+		<!-- check if .js-file for given test is available (fail if not)-->
+		<property name="_tmp" value="${testfile}" />
+		<propertyregex override="true" property="_tmp" input="${_tmp}" regexp="\.js$" replace=".config.xml.js" global="true"/>
+		<available file="${_tmp}" type="file" property="configXmlJsAvail" value="true"/>
+		<if>
+			<isset property="configXmlJsAvail" />
+			<then>
+				<property name="configXmlJsFileName" value="${_tmp}"/>
+			</then>
+			<else>
+				<property name="configXmlJsFileName" value="${src}/config.xml.js"/>
+			</else>
+		</if>
+
+		<java jar="tools/js.jar" fork="true">
+			<!-- list all the js files here in the order they need to be loaded -->
+			<arg line="-f tools/js/console.js"/>
+			<arg line="-f tools/js/global.js"/>
+			<arg line="-f tools/js/xmlHelper.js"/>
+			<!--<arg value="src/tests/base/widget-update/update0.config.xml.js"/>-->
+			<arg line="-f ${configXmlJsFileName}"/>
+			<arg line="-f tools/js/file.js"/>
+			<arg line="tools/js/writeConfigXml.js"/>
+			<arg line="${src}"/> <!-- The complete path to the src directory. -->
+			
+			<!-- The JavaScript test file, e.g. /src/tests/base/window.js -->
+			<arg line="${testfile}"/>
+		</java>
+		
 		<!-- "rename" template files -->
 		<move file="${tmp}/index.html.tpl" tofile="${tmp}/index.html"/>
-		<move file="${tmp}/config.xml.tpl" tofile="${tmp}/config.xml"/>
+		<!--<move file="${tmp}/config.xml.tpl" tofile="${tmp}/config.xml"/>-->
 		<copy file="${tmp}/index.html" todir="${src}"/>
-		<copy file="${tmp}/config.xml" todir="${src}"/>
+		<!--<copy file="${tmp}/config.xml" todir="${src}"/>-->
 	</target>
 
 	<!-- create test-widget from temporary folder -->

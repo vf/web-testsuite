@@ -12,6 +12,7 @@
 					"Reopen it, it should get updated"
 				],
 				test:function(t){
+					widget.update();
 					t.success("Please reopen this widget!");
 				}
 			}

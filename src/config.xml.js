@@ -7,9 +7,4 @@ var config = {
 	widgetName:"update0 (base/widget-update)"
 };
 
-var SRC_PATH = "/Users/cain/work/vodafone-jil/src/widget-test-suite/src/";
-
-var features = ["widget", "audioplayer", "multimedia"];
-var xml = xmlHelper.getXmlObject(SRC_PATH + "config.xml.tpl-js", features);
-xml.@version = "0";
-//xml.widget.id =
+var xml = xmlHelper.getXmlObject(SRC_PATH + "config.xml.tpl-js", "all");
