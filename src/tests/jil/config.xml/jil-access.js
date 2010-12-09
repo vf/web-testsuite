@@ -10,7 +10,7 @@
 				name:"Use &lt;img src&gt; to load an external resource.",
 				expectedResult:"Did you see an image loading?",
 				test:function(t){
-					dohx.showInfo('<img src="' + externalImageUrl + '" alt="external image" width="100">');
+					dohx.showInfo('Loading ...<br /><img src="' + externalImageUrl + '" alt="external image" width="100">');
 				}
 			},
 			{
