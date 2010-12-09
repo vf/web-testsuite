@@ -142,7 +142,7 @@ addIf:false,
 				timeout:10*1000, // User may has to confirm security dialog.
 				test:function(t){
 					wmc.onCameraCaptured = function(fileName){
-						dohx.showInfo('<img src="'+imgFile+'-lowRes.jpg" />'+
+						dohx.showInfo('<img src="file://'+imgFile+'-lowRes.jpg" />'+
 										'<br />' + imgFile+"-lowRes.jpg"
 									  //'<br />'+fileName+
 									  //'<img src="'+fileName+'" />'
