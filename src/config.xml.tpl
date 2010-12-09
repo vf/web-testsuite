@@ -8,7 +8,11 @@
 	<author href="http://vodafone.com" email="wk@uxebu.com">Wolfram Kriesing</author>
 	<description>This widget tests the following: {widgetName}</description>
 
-	<access network="true" localfs="true"/> <!-- until JIL 1.1 this was enough -->
-	<jil:access network="true" localfs="true" remote_scripts="true"/> <!-- this is needed for JIL1.2 -->
+	<!-- until JIL 1.1 this was enough -->
+	<access network="true" localfs="true"/>
+	
+	<!-- this is needed for JIL1.2 -->
+	<jil:access network="true" localfs="true" remote_scripts="true"/>
+	
 	<!--<update href="http://www.jil.org/widgets/" period="0"/>    -->
 </widget>
