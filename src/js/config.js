@@ -302,7 +302,6 @@ var configHelper = {
 			};
 			
 			// Get the first calendarItemId found.
-			var pim = Widget.PIM;
 // No cal implemented on opera yet
 			//ret._meta.numAsynchConfigs++; // We have an asynch config parameter here, "register" it.
 			//pim.onCalendarItemsFound = function(items){
@@ -320,9 +319,9 @@ var configHelper = {
 			// Why? (Currently the Opera WRT crashes on findAddressBookItem) and mostly ID=1 exists.
 			// And since that is prefix for every widget, we would like it not to crash :).
 			try{
+				var pim = Widget.PIM;
 				// Try to read the item, by spec it throws an exception if the ID is invalid.
 				pim.getAddressBookItem(ret.validAddressBookItemId);
-//alert("alright");
 			}catch(e){
 				// Get the first addressbook item
 				ret._meta.numAsynchConfigs++; // We have an asynch config parameter here, "register" it.
