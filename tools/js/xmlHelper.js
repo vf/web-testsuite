@@ -75,18 +75,20 @@ var xmlHelper = {
 		];
 		// Create a regexp that search for the tag name at the end of the string, so we
 		// don't find "message" in "messagetype". Regexp will look like so: /config$|message$/
-		if (features=="all"){
-			var allFeatures = true;
-		} else {
-			var featuresRegExp = new RegExp(features.join("$|").toLowerCase()+"$");
-		}
-		// Make sure we add them in the order they are in possibleFeatures.
-		for (var i=0, l=possibleFeatures.length, f; i<l; i++){
-			feature = possibleFeatures[i];
-			if (allFeatures || feature.match(featuresRegExp)){
-				var tag = <feature name="{feature}" required="false" />; // why the fuck does this not work for me? thought it replaces the literal {feature} :(
-				tag.@name = feature; // when the line above works we can remove this one here
-				xml.feature += tag;
+		if (features=="all" || features.length){
+			if (features=="all"){
+				var allFeatures = true;
+			} else {
+				var featuresRegExp = new RegExp(features.join("$|").toLowerCase()+"$");
+			}
+			// Make sure we add them in the order they are in possibleFeatures.
+			for (var i=0, l=possibleFeatures.length, f; i<l; i++){
+				feature = possibleFeatures[i];
+				if (allFeatures || feature.match(featuresRegExp)){
+					var tag = <feature name="{feature}" required="false" />; // why the fuck does this not work for me? thought it replaces the literal {feature} :(
+					tag.@name = feature; // when the line above works we can remove this one here
+					xml.feature += tag;
+				}
 			}
 		}
 		return xml;
