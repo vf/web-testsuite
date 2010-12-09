@@ -62,7 +62,35 @@ doh.ui = {
 		var el = util.query(".report .sendingResults")[0];
 		el.style.display = "block";
 		var infoData = [
+			"window.navigator.appCodeName",
+			"window.navigator.appName",
+			"window.navigator.appMinorVersion",
+			"window.navigator.appVersion",
 			"window.navigator.userAgent",
+			"window.navigator.language",
+			"window.navigator.product",
+			"window.navigator.mimeTypes",
+			"window.navigator.plugins",
+			"window.navigator.onLine",
+			"window.navigator.platform",
+			"window.navigator.vendor",
+			"window.navigator.cookieEnabled",
+			"window.navigator.geolocation",
+			"window.navigator.productSub",
+			"window.navigator.userLanguage",
+			"window.navigator.vendorSub",
+			"window.navigator.javaEnabled",
+			"window.navigator.getStorageUpdates",
+			"window.navigator.taintEnabled",
+			"window.applicationCache",
+			"window.HTMLCanvasElement",
+			"window.HTMLMediaElement",
+			"window.HTMLAudioElement",
+			"window.HTMLVideoElement",
+			"window.HTMLMeterElement",
+			"window.SVGDocument",
+			"window.JSON.stringify",
+			"window.JSON.parse",
 			"window.screen.availHeight",
 			"window.screen.availLeft",
 			"window.screen.availWidth",
@@ -95,7 +123,7 @@ doh.ui = {
 		var info = {};
 		for (var i=0, l=infoData.length, d; i<l; i++){
 			d = infoData[i];
-			info[d] = util.getObject(d);
+			info[d] = ""+util.getObject(d);
 		}
 		// ******************
 		// The version of the data structure we send to the server to store the data
