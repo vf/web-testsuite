@@ -32,7 +32,7 @@
 	var executeOnly = /devicestateinfo/i;
 	var executeOnly = /position/i;
 	// Find all Widget.methods() (everything that starts with a lower case letter after "Widget." and has no more dots afterwards.)
-	//var executeOnly = /^Widget.[a-z][^.]+$/;
+	var executeOnly = /^Widget.[a-z][^.]+$/;
 	
 	//
 	//	Configure END
