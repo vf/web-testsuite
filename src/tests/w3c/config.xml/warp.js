@@ -2,15 +2,15 @@
 	
 	var externalImageUrl = "http://philstar.de/vf/test.png";
 	
-	dohx.add({name:"Use &lt;jil:access /&gt; first and &lt;access /&gt; below it.",
-		mqcExecutionOrderBaseOffset:440000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
+	dohx.add({name:"Testing WARP only, &lt;access /&gt;",
+		mqcExecutionOrderBaseOffset:470000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
 			{
 				id:100,
 				name:"Use &lt;img src&gt; to load an external resource.",
 				expectedResult:"Did you see an image loading?",
 				test:function(t){
-					dohx.showInfo('Loading...<br /><img src="' + externalImageUrl + '" alt="external image" width="100">');
+					dohx.showInfo('Loading ...<br /><img src="' + externalImageUrl + '" alt="external image" width="100">');
 				}
 			},
 			{
@@ -25,7 +25,7 @@
 					setTimeout(function(){ // Let the showInfo() generate the DIV.
 						var el = util.byId("_imgSrc_");
 						el.appendChild(img);
-					}, 100);
+					}, 1000);
 				}
 			},
 			{
