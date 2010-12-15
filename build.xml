@@ -27,7 +27,7 @@
 	</tstamp>
 
 	<target name="-collectTestNames">
-		<fileset id="tests.contents" dir="${test-src}/" includes="**/*.js"/>
+		<fileset id="tests.contents" dir="${test-src}/" includes="**/*.js" excludes="**/*.config.xml.js" />
 		<property name="test.names" refid="tests.contents"/>
 		<propertyregex override="true" property="test.names" input="${test.names}" regexp="\.js" replace="" global="true"/>
 		<propertyregex override="true" property="test.names" input="${test.names}" regexp="\\" replace="/" global="true"/>
