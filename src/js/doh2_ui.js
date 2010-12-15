@@ -123,13 +123,19 @@ doh.ui = {
 		var info = {};
 		for (var i=0, l=infoData.length, d; i<l; i++){
 			d = infoData[i];
-			info[d] = ""+util.getObject(d);
+			var obj = util.getObject(d);
+			// Convert functions and object into strings.
+			// But only if they are not null, 0, undefined, or alike, leave those alone.
+			if (obj && (typeof obj=="function" || typeof obj=="object")){
+				obj = ""+obj;
+			}
+			info[d] = obj;	
 		}
 		// ******************
 		// The version of the data structure we send to the server to store the data
 		// If any of the data change, update this version!!!!!!!!!!!
 		// ******************
-		info.__version__ = 20101126;
+		info.__version__ = 20101215;
 		
 		util.xhrPost({
 			url:"http://developer.vodafone.com/widget-test/add/",
