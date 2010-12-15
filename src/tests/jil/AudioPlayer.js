@@ -87,7 +87,7 @@
 				name:"Verify Preconditions",
 				instructions:[
 					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
-					"Copy the content of the testsuite's zip-file's  folder 'audio' into the music directory on the phone. (The exact name of the destination folder may vary on your device.)",
+					"Copy the content of the testsuite's zip-file's  folder 'test-audio' into the music directory (try: '" + config._userInfo.audioDirectory + "') on the phone. (The exact name of the destination folder may vary on your device.)",
 					"Ensure the volume is set to high, so you can hear the audio playing!",
 					"Click 'GO' to start testing."
 				],
