@@ -202,7 +202,7 @@
 		<echo level="info">### Building all tests ###</echo>
 		<for list="${test.names}" param="test.name" delimiter=";">
 			<sequential>
-				<antcall target="createWgt">
+				<antcall target="build">
 					<param name="test" value="@{test.name}"/>
 				</antcall>
 			</sequential>
