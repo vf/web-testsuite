@@ -147,8 +147,8 @@ doh.ui = {
 					el.style.display = "none";
 				}, 2000);
 			},
-			data: "info=" + window.encodeURIComponent(JSON.stringify(info))
-				+ "&test_data=" + window.encodeURIComponent(JSON.stringify(this.results))
+			data: "info=" + window.encodeURIComponent(embed.toJson(info))
+				+ "&test_data=" + window.encodeURIComponent(embed.toJson(this.results))
 		});
 	}
 };
