@@ -84,12 +84,13 @@
 	<script type="text/javascript" src="js/config.js"></script> <!-- Load it after the compat, so we can use Widget, etc. -->
 	<script type="text/javascript">
 
-		if (typeof console=="undefined" || !console.log){
+		// Try to override the console.log, so we can use it in the code, mainly for developing purposes though.
+		try{
 			var dbgNode = document.getElementById("dbg");
 			console = {log:function(){
 				dbgNode.innerHTML += Array.prototype.slice.call(arguments, 0).join(", ")+" ";
 			}};
-		}
+		}catch(e){}
 		configHelper.onConfigured = function(){
 			__loadScriptFile("$test.js");
 			// Add the timeout, just so the appended file above gets the time to load and run ... unfortunately not really bullet-proof
