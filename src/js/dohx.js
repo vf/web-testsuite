@@ -131,6 +131,7 @@ doh.util.mixin(dohx._manualTestObject, {
 	},
 	_successfulTestFunction:function(){
 		doh._current.test.setUp = function(){};
+		doh._current.test._actualTestFunction = doh._current.test.test;
 		doh._current.test.test = function(t){
 			t.success("User confirmed success, pressed 'Yes'.");
 		};
@@ -138,6 +139,7 @@ doh.util.mixin(dohx._manualTestObject, {
 	},
 	_failTestFunction:function(){
 		doh._current.test.setUp = function(){};
+		doh._current.test._actualTestFunction = doh._current.test.test;
 		doh._current.test.test = function(t){
 			t.failure("User declined success, pressed 'No'.")
 		};
