@@ -249,10 +249,10 @@ var configHelper = {
 					playableAudioFiles:{
 						onDevice:{
 							// Hope we soon wont need it and opera builds the virtual fs
-							songWav:"file:///sdcard/test-audio/wav/music.wav",
-							songMp3:"file:///sdcard/test-audio/mp3/music.mp3",
-							loopWav:"file:///sdcard/test-audio/wav/loop.wav",
-							loopMp3:"file:///sdcard/test-audio/mp3/loop.mp3"
+							songWav:"file:///sdcard/media/audio/test-audio/wav/music.wav",
+							songMp3:"file:///sdcard/media/audio/test-audio/mp3/music.mp3",
+							loopWav:"file:///sdcard/media/audio/test-audio/wav/loop.wav",
+							loopMp3:"file:///sdcard/media/audio/test-audio/mp3/loop.mp3"
 						}
 					}
 				},
@@ -363,21 +363,21 @@ var configHelper = {
 			var ret = {
 				_meta:{name:"S60 Opera WRT", numAsynchConfigs:0},
 				_userInfo:{
-					audioDirectory:"C:\data\sounds",
-					videoDirectory:"C:\data\videos",
-					photoDirectory:"C:\data\images"
+					audioDirectory:"C:/Data/Sounds",
+					videoDirectory:"C:/Data/Videos",
+					photoDirectory:"C:/Data/Images"
 				},
 				validAddressBookItemId:1,
 				fileSystem:{
-					readablePath:"C:\data\sounds",
-					readableFile:"C:\data\sounds/test-audio/mp3/loop.mp3",
+					readablePath:"C:/Data/Sounds",
+					readableFile:"C:/Data/Sounds/test-audio/mp3/loop.mp3",
 					playableAudioFiles:{
 						onDevice:{
 							// Hope we soon wont need it and opera builds the virtual fs
-							songWav:"file://C:\data\sounds/test-audio/wav/music.wav",
-							songMp3:"file://C:\data\sounds/test-audio/mp3/music.mp3",
-							loopWav:"file://C:\data\sounds/test-audio/wav/loop.wav",
-							loopMp3:"file://C:\data\sounds/test-audio/mp3/loop.mp3"
+							songWav:"file:///C:/Data/Sounds/test-audio/wav/music.wav",
+							songMp3:"file:///C:/Data/Sounds/test-audio/mp3/music.mp3",
+							loopWav:"file:///C:/Data/Sounds/test-audio/wav/loop.wav",
+							loopMp3:"file:///C:/Data/Sounds/test-audio/mp3/loop.mp3"
 						}
 					}
 				},
@@ -489,9 +489,9 @@ var configHelper = {
 			var ret = {
 				_meta:{name:"Symbian3 WRT", numAsynchConfigs:0},
 				_userInfo:{
-					audioDirectory:"C:\data\sounds",
-					videoDirectory:"C:\data\videos",
-					photoDirectory:"C:\data\images",
+					audioDirectory:"C:/Data/Sounds",
+					videoDirectory:"C:/Data/Videos",
+					photoDirectory:"C:/Data/Images"
 				},
 				geolocation:{supportsCellId:false},
 				unsupportedApis:[
