@@ -52,6 +52,14 @@ var configHelper = {
 			numAsynchConfigs:0 // This is actually only needed while configuring, onConfigured is fired when all asynch config callbacks have returned.
 		},
 		
+		// The "userInfo" data are purely meant for informing the user about
+		// certain device settings, like where is the music folder located, etc.
+		_userInfo:{
+			audioDirectory:"unknown",
+			videoDirectory:"unknown",
+			photoDirectory:"unknown"
+		},
+		
 		// summary: This configuration defines the features of the phone.
 		// description: It maybe used to determine if a test is viable
 		// 		and shall be added or not. E.g. if a phone has a certain hardware
@@ -229,6 +237,11 @@ var configHelper = {
 		"regexp:^WidgetManager;.*\\(Android.*Opera.*Widgets.*":function(){
 			var ret = {
 				_meta:{name:"Android Opera WRT", numAsynchConfigs:0},
+				_userInfo:{
+					audioDirectory:"/sdcard/media/audio",
+					videoDirectory:"/sdcard/dcim/100media",
+					photoDirectory:"/sdcard/dcim/100media",
+				},
 				validAddressBookItemId:1,
 				fileSystem:{
 					readablePath:"/sdcard",
@@ -344,11 +357,142 @@ var configHelper = {
 			return ret;
 		},
 		//
-		//	Nokia Symbian 3
+		//	Opera Widget Runtime for Vodafone for Nokia
+		//
+		"regexp:^WidgetManager;.*\\(S60;\\sSymbian.*Opera":function(){
+			var ret = {
+				_meta:{name:"S60 Opera WRT", numAsynchConfigs:0},
+				_userInfo:{
+					audioDirectory:"C:\data\sounds",
+					videoDirectory:"C:\data\videos",
+					photoDirectory:"C:\data\images"
+				},
+				validAddressBookItemId:1,
+				fileSystem:{
+					readablePath:"C:\data\sounds",
+					readableFile:"C:\data\sounds/test-audio/mp3/loop.mp3",
+					playableAudioFiles:{
+						onDevice:{
+							// Hope we soon wont need it and opera builds the virtual fs
+							songWav:"file://C:\data\sounds/test-audio/wav/music.wav",
+							songMp3:"file://C:\data\sounds/test-audio/mp3/music.mp3",
+							loopWav:"file://C:\data\sounds/test-audio/wav/loop.wav",
+							loopMp3:"file://C:\data\sounds/test-audio/mp3/loop.mp3"
+						}
+					}
+				},
+				unsupportedApis:[
+					"Widget.Device.RadioInfo.radioSignalSource",
+					"Widget.Device.RadioInfo.radioSignalStrengthPercent",
+					"Widget.Device.RadioInfo.onSignalSourceChange",
+					"Widget.Device.DataNetworkInfo.onNetworkConnectionChanged",
+					"Widget.Device.DataNetworkInfo.getNetworkConnectionName",
+					"Widget.Device.DataNetworkInfo.networkConnectionType",
+					"Widget.Device.clipboardString",
+					"Widget.Device.copyFile",
+					"Widget.Device.deleteFile",
+					"Widget.Device.findFiles",
+					"Widget.Device.getFileSystemRoots",
+					"Widget.Device.getFileSystemSize",
+					"Widget.Device.moveFile",
+					"Widget.Device.onFilesFound",
+					"Widget.Device.setRingtone",
+					"Widget.Device.vibrate",
+					"Widget.Device.PowerInfo",
+					"Widget.Device.DeviceInfo.ownerInfo",
+					"Widget.Device.DeviceInfo.totalMemory",
+					"Widget.Device.DeviceStateInfo.audioPath",
+					"Widget.Device.DeviceStateInfo.backLightOn",
+					"Widget.Device.DeviceStateInfo.keypadLightOn",
+					"Widget.Device.DeviceStateInfo.onScreenChangeDimensions",
+					"Widget.Device.DeviceStateInfo.Config",
+					"Widget.Device.DeviceStateInfo.processorUtilizationPercent",
+					"Widget.Device.PositionInfo.altitudeAccuracy",
+					"Widget.Device.PositionInfo.cellID",
+					"Widget.PIM.deleteAddressBookItem",
+					"Widget.Multimedia.isVideoPlaying",
+					"Widget.Multimedia.VideoPlayer.*",
+					"Widget.Multimedia.Camera.setWindow",
+					"Widget.PIM.AddressBookItem.getAddressGroupNames",
+					"Widget.PIM.addCalendarItem",
+					"Widget.PIM.createAddressBookGroup",
+					"Widget.PIM.deleteAddressBookGroup",
+					"Widget.PIM.deleteCalendarItem",
+					"Widget.PIM.exportAsVCard",
+					"Widget.PIM.findCalendarItems",
+					"Widget.PIM.getAvailableAddressGroupNames",
+					"Widget.PIM.getCalendarItem",
+					"Widget.PIM.getCalendarItems",
+					"Widget.PIM.onCalendarItemAlert",
+					"Widget.PIM.onCalendarItemsFound",
+					"Widget.PIM.Calendar*",
+					"Widget.PIM.EventRecurrenceTypes",
+					"Widget.Device.AccountInfo.phoneMSISDN",
+					"Widget.Device.AccountInfo.userSubscriptionType",
+					"Widget.Device.AccountInfo.userAccountBalance",
+					"Widget.Telephony*",
+					"Widget.CallRecord*",
+					"Widget.Messag*", // includes Message, Messaging, etc.
+					"Widget.Attachment",
+					"Widget.Account",
+					"Widget.Config"
+				]
+			};
+			
+			// Get the first calendarItemId found.
+// No cal implemented on opera yet
+			//ret._meta.numAsynchConfigs++; // We have an asynch config parameter here, "register" it.
+			//pim.onCalendarItemsFound = function(items){
+			//	if (items.length>0){
+			//		config.validCalendarItemId = items[0].calendarItemId;
+			//	}
+			//	setTimeout(function(){ pim.onCalendarItemsFound = null; }, 1);
+			//	configHelper.asynchConfigDone();
+			//}
+			//var item = new pim.CalendarItem();
+			//item.eventName = "*";
+			//pim.findCalendarItems(item, 0, 1);
+			
+			
+			// If the addressbook item with ID 0 doesnt exist search for it.
+			// Why? (Currently the Opera WRT crashes on findAddressBookItem) and mostly ID=1 exists.
+			// And since that is prefix for every widget, we would like it not to crash :).
+			try{
+				var pim = Widget.PIM;
+				// Try to read the item, by spec it throws an exception if the ID is invalid.
+				pim.getAddressBookItem(ret.validAddressBookItemId);
+			}catch(e){
+				// Get the first addressbook item
+				ret._meta.numAsynchConfigs++; // We have an asynch config parameter here, "register" it.
+				try{ // Possibly the getting the addressbookitem fails, maybe because the feature URL is missing ...
+					var addr = new pim.AddressBookItem();
+					addr.setAttributeValue("fullName", "*");
+					Widget.PIM.onAddressBookItemsFound = function(items){
+						if (items && items.length>0){
+							config.validAddressBookItemId = items[0].addressBookItemId;
+						}
+						setTimeout(function(){ pim.onAddressBookItemsFound = null; }, 1);
+						configHelper.asynchConfigDone();
+					}
+					pim.findAddressBookItems(addr, 0, 1);
+				}catch(e){
+					ret._meta.numAsynchConfigs--; // Decrease it again, since it obviously failed.
+				}
+			}
+			
+			return ret;
+		},
+		//
+		//	Nokia Symbian 3, Nokia Runtime
 		//
 		"regexp:.*Symbian\\/3.*":function(){
 			var ret = {
 				_meta:{name:"Symbian3 WRT", numAsynchConfigs:0},
+				_userInfo:{
+					audioDirectory:"C:\data\sounds",
+					videoDirectory:"C:\data\videos",
+					photoDirectory:"C:\data\images",
+				},
 				geolocation:{supportsCellId:false},
 				unsupportedApis:[
 					"Widget.Device.RadioInfo.onSignalSourceChange",
@@ -567,6 +711,7 @@ var configHelper = {
 	var ua = window.navigator.userAgent;
 	var configToMixin = null;
 //ua = "WidgetManager; (Android Opera Widgets";
+//ua = "WidgetManager; (S60; Symbian Opera";
 //var ua = "WidgetManager; SAMSUNG-GT-I8320-Vodafone;AppleWebKit/528.5+(X11;U;Linux;en;i8329BUIH8)";
 	for (var key in configs){
 		var c = configs[key];
