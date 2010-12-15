@@ -34,6 +34,8 @@
 				test:function(t){
 					try{
 						var xhr = new XMLHttpRequest();
+						// Nokia definitely needs the following header, wont send otherwise!!!
+						xhr.setRequestHeader('User-Agent','XMLHTTP/1.0');
 						xhr.open("GET", "http://philstar.de/vf/test.png?nocache="+ (+new Date()), true);
 						xhr.onreadystatechange = function (){
 							if(xhr.readyState == 4){
