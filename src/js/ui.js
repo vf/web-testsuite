@@ -108,7 +108,12 @@ var ui = {};
 			} else {
 				resString = util.toJson(result);
 			}
-			var data = {name:name, id:util.getTestId(test), result:resString};
+			var data = {
+				name:name,
+				id:util.getTestId(test),
+				result:resString,
+				testSourceCode:(test._actualTestFunction || test.test).toString().replace(/\t/g, " ")
+			};
 			n.innerHTML += this._render(data, this._templates.SUCCESS);
 			doh.ui.results.push({result:"success", test:data});
 		},
