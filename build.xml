@@ -122,6 +122,7 @@
                 <include name="**/js/doh2/*.js"/>
                 <include name="**/${script-src-prefix-path}${test}.js"/>
                 <include name="**/js/*.js"/>
+                <exclude name="**/js/compat.js"/>
                 <include name="**/*.tpl"/>
             </fileset>
         </copy>
