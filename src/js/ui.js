@@ -10,8 +10,8 @@ var ui = {};
 					'<div class="id">${id}</div>'+
 					'${name}'+
 					'<div class="message">${messagePreview}</div>'+
-					//'<pre class="fullError displayNone"><code>${testSourceCode}</code><hr/>${error}</pre>'+
-					'<div class="fullError displayNone">'+
+					//'<pre class="completeInfo displayNone"><code>${testSourceCode}</code><hr/>${error}</pre>'+
+					'<div class="completeInfo displayNone">'+
 						'<hr/>'+
 						'Test function source code:'+
 						'<pre>${testSourceCode}</pre>'+
@@ -36,6 +36,11 @@ var ui = {};
 					'<div class="id">${id}</div>'+
 					'${name}'+
 					'<div class="details">Test not applicable.</div>'+
+					'<div class="completeInfo displayNone">'+
+						'<hr/>'+
+						'Test function source code:'+
+						'<pre>${testSourceCode}</pre>'+
+					'</div>'+
 				'</div>'
 			,
 			UNSUPPORTED_API:
@@ -43,6 +48,11 @@ var ui = {};
 					'<div class="id">${id}</div>'+
 					'${name}'+
 					'<div class="details">API(s) not supported (${apis}).</div>'+
+					'<div class="completeInfo displayNone">'+
+						'<hr/>'+
+						'Test function source code:'+
+						'<pre>${testSourceCode}</pre>'+
+					'</div>'+
 				'</div>'
 			,
 			REPORT:
@@ -68,6 +78,11 @@ var ui = {};
 					'<div class="id">${id}</div>'+
 					'${name}'+
 					'<div class="result">${result}</div>'+
+					'<div class="completeInfo displayNone">'+
+						'<hr/>'+
+						'Test function source code:'+
+						'<pre>${testSourceCode}</pre>'+
+					'</div>'+
 				'</div>'
 			
 		},
@@ -86,13 +101,13 @@ var ui = {};
 		},
 		
 		notApplicable:function(test){
-			var data = {name:test.name, id:util.getTestId(test)};
+			var data = {name:test.name, id:util.getTestId(test), testSourceCode:this._getSourceCode(test)};
 			n.innerHTML += this._render(data, this._templates.NOT_APPLICABLE);
 			doh.ui.results.push({result:"not applicable", test:data});
 		},
 		
 		unsupportedApi:function(test, apis){
-			var data = {name:test.name, id:util.getTestId(test), apis:apis.join(", ")};
+			var data = {name:test.name, id:util.getTestId(test), apis:apis.join(", "), testSourceCode:this._getSourceCode(test)};
 			n.innerHTML += this._render(data, this._templates.UNSUPPORTED_API);
 			doh.ui.results.push({result:"unsupported API", test:data});
 		},
@@ -112,7 +127,7 @@ var ui = {};
 				name:name,
 				id:util.getTestId(test),
 				result:resString,
-				testSourceCode:(test._actualTestFunction || test.test).toString().replace(/\t/g, " ")
+				testSourceCode:this._getSourceCode(test)
 			};
 			n.innerHTML += this._render(data, this._templates.SUCCESS);
 			doh.ui.results.push({result:"success", test:data});
@@ -153,10 +168,14 @@ var ui = {};
 				messagePreview: msg.length>60 ? msg.substr(0,58)+"..." : msg,
 				error:errorParts.join("\n"),
 				failureOrError:isError ? "error" : "failure",
-				testSourceCode:(test._actualTestFunction || test.test).toString().replace(/\t/g, " ")
+				testSourceCode:this._getSourceCode(test)
 			};
 			n.innerHTML += this._render(data, this._templates.FAILURE_OR_ERROR);
 			doh.ui.results.push({result:isError ? "error" : "failure", test:data});
+		},
+		
+		_getSourceCode:function(test){
+			return (test._actualTestFunction || test.test).toString().replace(/\t/g, " ")
 		},
 		
 		invalidConfig:function(){
@@ -198,7 +217,7 @@ var ui = {};
 			}
 		},
 		
-		toggleFullError:function(node){
+		toggleCompleteInfo:function(node){
 			if (node.className.indexOf("displayNone")==-1){
 				node.className += " displayNone";
 			} else {
@@ -208,18 +227,19 @@ var ui = {};
 		
 		onContentClick:function(e){
 			var node = e.target;
+			// If the user clicks on the bottom bar, which shows the summary, toggle all results of the given type (success, failure, etc.).
 			if (util.findNextPredecessorByClassName(node, "percent")){
 				this.toggleResultsFor(node.className);
 				return;
 			}
 			
-			if (node.className.indexOf("fullError")==-1){ // Was the "fullError" node clicked?
-				// Find the "fullError" node to toggle it.
-				node = util.query(".fullError", e.target);
+			if (node.className.indexOf("completeInfo")==-1){ // Was the "completeInfo" node clicked?
+				// Find the "completeInfo" node to toggle it.
+				node = util.query(".completeInfo", e.target);
 				if (!node || node.length<1) return;
 				node = node[0];
 			}
-			this.toggleFullError(node);
+			this.toggleCompleteInfo(node);
 		},
 		
 		_oddCounter:0,

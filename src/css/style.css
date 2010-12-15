@@ -158,12 +158,12 @@ button[disabled=disabled] {
 		color: grey;
 	}
 	
-	.content .row .fullError {
+	.content .row .completeInfo {
 		font-size: 0.8em;
 		white-space: normal;
 	}
 
-	.content .row .fullError strong {
+	.content .row .completeInfo strong {
 		margin-top: 1em;
 		color: darkBlue;
 	}
