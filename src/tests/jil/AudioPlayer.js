@@ -74,7 +74,10 @@
 				}
 			}
 		}
-		wma.open(url);
+		// Decouple it, Operas Nokia runtime e.g. wont render until it has opened the file, it seeems.
+		setTimeout(function(){
+			wma.open(url);
+		}, 1);
 	};
 	
 	// All tests will use this. Its global, so tearDown can access it too and clean up properly.
