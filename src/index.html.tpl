@@ -59,14 +59,31 @@
 	<script type="text/javascript" src="js/doh2_ui.js"></script>
 	<script type="text/javascript" src="js/dohx.js"></script>
 	<script type="text/javascript">
+		function __loadScriptFile(fileName){
+			var node = document.createElement("script");
+			node.type = "text/javascript";
+			node.src = fileName + "?nocache="+(+new Date());
+			document.body.appendChild(node);
+		}
+		
 		// This is just for the local testing, load the compat.js file, which allows testing in opera+FF
 		// without the need of the emulator around it, its much faster!
-		if ((!window.widget && navigator.product=="Gecko") || (window.widget && window.widget.widgetMode=="widget")){
-			document.write("<scri"+"pt src='js/compat.js' type='text/javascript'></scr"+"ipt>");
+		if (!window["Widget"]){
+			alert("Running in compatibility mode, emulating JIL APIs (using js/compat.js).\nIf that seems wrong check back with the test suite provider.");
+			__loadScriptFile("js/compat.js");
+		}
+		
+		// Currently we are using embed.toJson() and need the "vodafone-apps-manager2.2" version
+		// for those devices that have no JSON implementation natively.
+		if (!window["JSON"]){
+			__loadScriptFile("js/embedjs-vodafone-apps-manager2.2.js");
+		} else {
+			__loadScriptFile("js/embedjs-android.js");
 		}
 	</script>
 	<script type="text/javascript" src="js/config.js"></script> <!-- Load it after the compat, so we can use Widget, etc. -->
 	<script type="text/javascript">
+
 		if (typeof console=="undefined" || !console.log){
 			var dbgNode = document.getElementById("dbg");
 			console = {log:function(){
@@ -74,10 +91,7 @@
 			}};
 		}
 		configHelper.onConfigured = function(){
-			var node = document.createElement("script");
-			node.type = "text/javascript";
-			node.src = "$test.js?nocache="+(+new Date());
-			document.body.appendChild(node);
+			__loadScriptFile("$test.js");
 			// Add the timeout, just so the appended file above gets the time to load and run ... unfortunately not really bullet-proof
 			// but we are "only" doing that so the number of tests are shown properly.
 			setTimeout(function(){
