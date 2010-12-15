@@ -1,3 +1,19 @@
+Version 1.8.2
+=============
+* make sure compat mode it never packaged (exclude compat.js)
+* we can create config.xml programmatically now
+* created some very test case specific config.xmls (not all tests have ONLY the features they need in their config.xml, yet!)
+  added e.g. for: AccelerometerInfo, AddressBookItem, Application, AudioPlayer, Basics, Calendar, Camera, ...
+* get initial AddressBook item if possible only (feature might not be given)
+* config.xml: Added tests for <jil:access> and <access> tag (WARP)
+* send over more relevant userAgent data, such as navigator data, capabilities, such as HTMLVideoElement, JSON, HTMLCanvasElement, ...
+* send out proper JS types, not only strings, makes it easier to work with the data (e.g. using CouchDB)
+* show and send out actual success test function code too (to show to users as demo)
+* Added Opera S60 WRT config
+* added a generic JSON implementation using embedjs
+* AudioPlayer: be a bit more verbose to the user about which audio file is being played
+* override console.log if possible, to show results on the screen
+
 Version 1.8.1
 =============
 * store and send test results to developer.vodafone.com after test execution
