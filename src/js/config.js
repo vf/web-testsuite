@@ -374,10 +374,10 @@ var configHelper = {
 					playableAudioFiles:{
 						onDevice:{
 							// Hope we soon wont need it and opera builds the virtual fs
-							songWav:"file:///C:/Data/Sounds/test-audio/wav/music.wav",
-							songMp3:"file:///C:/Data/Sounds/test-audio/mp3/music.mp3",
-							loopWav:"file:///C:/Data/Sounds/test-audio/wav/loop.wav",
-							loopMp3:"file:///C:/Data/Sounds/test-audio/mp3/loop.mp3"
+							songWav:"file://C:/Data/Sounds/test-audio/wav/music.wav",
+							songMp3:"file://C:/Data/Sounds/test-audio/mp3/music.mp3",
+							loopWav:"file://C:/Data/Sounds/test-audio/wav/loop.wav",
+							loopMp3:"file://C:/Data/Sounds/test-audio/mp3/loop.mp3"
 						}
 					}
 				},
