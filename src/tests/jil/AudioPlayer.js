@@ -22,6 +22,7 @@
 	// 		})
 	// All options are optional.
 	var myAudio = function(url, options){
+//document.getElementById("dbg").innerHTML += "<br /><br />"+url+" =&gt; "+embed.toJson(options);
 		this.state = null;
 		this._quit = false;
 		this.cleanUp = function(){
@@ -87,7 +88,7 @@
 				name:"Verify Preconditions",
 				instructions:[
 					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
-					"Copy the content of the testsuite's zip-file's  folder 'test-audio' into the music directory (try: '" + config._userInfo.audioDirectory + "') on the phone. (The exact name of the destination folder may vary on your device.)",
+					"Copy the content of the testsuite's zip-file's  folder 'test-audio' into the music directory (should be: '" + config._userInfo.audioDirectory + "') on the phone. (The exact name of the destination folder may vary on your device.)",
 					"Ensure the volume is set to high, so you can hear the audio playing!",
 					"Click 'GO' to start testing."
 				],
@@ -111,7 +112,7 @@
 			//
 			{
 				id:100,
-				name:"Multimedia.isAudioPlaying true (in widget file)",
+				name:"Multimedia.isAudioPlaying true (in widget file '" + inWidgetAudioFiles.loopWav + "')",
 				timeout:10 * 1000,
 				test:function(t){
 					audioObj = new myAudio(inWidgetAudioFiles.loopWav, {
@@ -128,7 +129,7 @@
 			},
 			{
 				id:150,
-				name:"Multimedia.isAudioPlaying true (on device file)",
+				name:"Multimedia.isAudioPlaying true (on device file '" + onDeviceAudioFiles.loopWav + "')",
 				timeout:10 * 1000,
 				test:function(t){
 					audioObj = new myAudio(onDeviceAudioFiles.loopWav, {
@@ -153,7 +154,7 @@
 			},
 			{
 				id:300,
-				name:"isAudioPlaying true after a while (in widget file)",
+				name:"isAudioPlaying true after a while (in widget file '" + inWidgetAudioFiles.songMp3 + "')",
 				timeout: 10*1000,
 				test:function(t){
 					audioObj = new myAudio(inWidgetAudioFiles.songMp3,{
@@ -171,7 +172,7 @@
 			},
 			{
 				id:350,
-				name:"isAudioPlaying true after a while (on device file)",
+				name:"isAudioPlaying true after a while (on device file '" + onDeviceAudioFiles.songMp3 + "')",
 				timeout: 10*1000,
 				test:function(t){
 					audioObj = new myAudio(onDeviceAudioFiles.songMp3,{
@@ -189,7 +190,7 @@
 			},
 			{
 				id:400,
-				name:"isAudioPlaying false when paused (in widget file)",
+				name:"isAudioPlaying false when paused (in widget file '" + inWidgetAudioFiles.songMp3 + "')",
 				timeout: 10*1000,
 				test:function(t){
 					audioObj = new myAudio(inWidgetAudioFiles.songMp3,{
@@ -208,7 +209,7 @@
 			},
 			{
 				id:450,
-				name:"isAudioPlaying false when paused (on device file)",
+				name:"isAudioPlaying false when paused (on device file '" + onDeviceAudioFiles.songMp3 + "')",
 				timeout: 10*1000,
 				test:function(t){
 					audioObj = new myAudio(onDeviceAudioFiles.songMp3,{
