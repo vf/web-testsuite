@@ -101,7 +101,7 @@ var infoHTML = "<dl>" +
 				instructions: infoHTML,
 				name: "Widget Information",
 				test: function(){
-					console.log(arguments)
+					//console.log(arguments)
 				}
 			}
 		]
