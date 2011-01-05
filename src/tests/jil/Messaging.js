@@ -115,7 +115,7 @@
 					t.success("Message created without any error (and sent)");
 				}
 			},
-			{
+/*			{
 				id: 400,
 				name: "createMessage - Throws INVALID_PARAMETER for missing param?",
 				requiredObjects:["Widget.Messaging.createMessage"],
@@ -181,35 +181,33 @@
 			//
 			// getMessage
 			//
-			{
+*/			{
 				id: 800,
-				name: "getMessage - Verify SMS with subject '" + _testMessage.subject + "'.",
+				name: "getMessage - Verify SMS with content '" + _testMessage.body + "'.",
 				requiredObjects:["Widget.Messaging.getMessage", "Widget.Messaging.MessageTypes.SMSMessage"],
 				instructions:"Please verify that at least one SMS had been sent.",
 				expectedResult:"Is this message shown correct?",
 				test: function(t){
 					var msg = wm.getMessage(wmt.SMSMessage, wmft.SENTBOX, 0);
-					t.assertEqual(msg.subject, _testMessage.subject);
+					t.assertEqual(_testMessage.body, msg.body);
 				}
 			},
 			{
 				id: 900,
 				name: "getMessage - Verify EMail with subject '" + _testMessage.subject + "'.",
 				requiredObjects:["Widget.Messaging.getMessage", "Widget.Messaging.MessageTypes.EmailMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
-				expectedResult:"Is this message shown correct?",
 				test: function(t){
 					var msg = wm.getMessage(wmt.EmailMessage, wmft.SENTBOX, 0);
-					t.assertEqual(msg.subject, _testMessage.subject);
+					t.assertEqual(_testMessage.subject, msg.subject);
 				}
 			},
 			{
 				id: 1000,
 				name: "getMessage - Verify MMS with subject '" + _testMessage.subject + "'.",
 				requiredObjects:["Widget.Messaging.getMessage", "Widget.Messaging.MessageTypes.MMSMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
-				expectedResult:"Is this message shown correct?",
 				test: function(t){
 					var msg = wm.getMessage(wmt.MMSMessage, wmft.SENTBOX, 0);
-					t.assertEqual(msg.subject, _testMessage.subject);
+					t.assertEqual(_testMessage.subject, msg.subject);
 				}
 			},
 			{
@@ -243,7 +241,7 @@
 			//
 			// deleteMessage
 			//
- //TODO: Wrong Params
+ //TODO: write tests for wrong Params
 			{
 				id: 1100,
 				name: "deleteMessage - Delete MMS with subject '" + _testMessage.subject + "'.",
@@ -254,7 +252,7 @@
 			},
 			{
 				id: 1200,
-				name: "deleteMessage - Delete SMS with subject '" + _testMessage.subject + "'.",
+				name: "deleteMessage - Delete SMS with content '" + _testMessage.body + "'.",
 				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.MMSMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
 				test: function(t){
 					wm.deleteMessage(wmt.SMSMessage, wmft.SENTBOX, _createdMessages["sms"].messageId);
@@ -348,7 +346,7 @@
 						wm.sendMessage(msg);
 						t.failure("Exception not thrown.");
 					}catch(e){
-						t.assertJilException(e, Widget.ExceptionTypes.UNKNOWN);
+						t.assertJilException(e, Widget.ExceptionTypes.INVALID_PARAMETER);
 					}
 				}
 			},
@@ -378,7 +376,7 @@
 						wm.sendMessage(msg);
 						t.failure("Exception not thrown.");
 					}catch(e){
-						t.assertJilException(e, Widget.ExceptionTypes.UNKNOWN);
+						t.assertJilException(e, Widget.ExceptionTypes.INVALID_PARAMETER);
 					}
 				}
 			},
@@ -396,6 +394,7 @@
 			},
 			{
 				id: 2300,
+addIf:false, // spec doesnt mention an email validation
 				name: "sendMessage - Throw UNKNOWN for Email to unknown@vf.commmmmm",
 				requiredObjects: ["Widget.Messaging.createMessage", "Widget.Messaging.sendMessage", "Widget.Messaging.MessageTypes.EmailMessage"],
 				test: function(t) {
