@@ -28,6 +28,9 @@
 		.tabLink2, .tab2 {
 			background-color: #EEF;
 		}
+		.tabLink3, .tab3 {
+			background-color: #FAA;
+		}
 	</style>
 </head>
 <body>
@@ -41,11 +44,14 @@
 	<div class="tabNavi">
 		<a href="javascript://" onclick="selectTab(0)" class="tabLink0">Step 1, Diff CSV</a>
 		<a href="javascript://" onclick="selectTab(1)" class="tabLink1">Step 2, All IDs (JSON)</a>
-		<a href="javascript://" onclick="selectTab(2)" class="tabLink2">Step 3, Complete CSV</a>
+		<a href="javascript://" onclick="selectTab(2)" class="tabLink2">Step 3, Complete MQC compatible CSV</a>
+		<a href="javascript://" onclick="selectTab(3)" class="tabLink3">Complete Test list (CSV)</a>
 	</div>
 	<pre class="tab tab0" id="diffCsvNode"></pre>
 	<pre class="tab tab1" id="allIdsJsNode"></pre>
 	<pre class="tab tab2" id="allCsvNode">ick bin tab 2</pre>
+	<pre class="tab tab3" id="allListCsvNode">ick bin tab 3</pre>
+	
 	<script type="text/javascript" src="js/doh2/doh.js"></script>
 	<script type="text/javascript" src="js/doh2/config.js"></script>
 	<script type="text/javascript" src="js/doh2/util.js"></script>
@@ -74,8 +80,8 @@
 			// Copy functions from original dohx, to make add() work (needed e.g. for policy tests).
 			isApiSupported:dohx_isApiSupported,
 			// The data are sorted in the order the tests are added.
-			_csvData:[],
-			_csvDiffData:[],
+			_mqcCsvData:[],
+			_mqcCsvDiffData:[],
 			_allTestIds:[], // Store all the unique test IDs in here, those are actually the values we store in the field "execution order".
 			add:function(obj){
 				if (obj.name.indexOf("__preconditions__")!=-1){
@@ -95,8 +101,9 @@
 					}
 					// Find out the filename, this is very Firefoxy.
 					// And use the last JS file found, which is the one that was loaded, the widget file.
-					var wgtName = new Error().stack.match(/[a-zA-Z0-9]+\.js/g).pop();
-					wgtName = wgtName.substr(0, wgtName.length-3); // Remove the trailing ".js".
+					var prefixToRemove = location.href.replace("/csv.html", "");
+					var wgtName = new Error().stack.match(/http:\/\/.*[a-zA-Z0-9/]+\.js/g).pop().replace(prefixToRemove+"/tests/", "");
+					wgtName = wgtName.replace(/\.js$/, "").replace(/[^a-zA-Z0-9]/g, "_");
 					var subject = "TC Now+ Vertical\\WidgetRuntime\\JIL\\" + wgtName;
 					var executionOrder = obj.mqcExecutionOrderBaseOffset + t.id;
 					if (!util.isNumber(executionOrder)){
@@ -133,18 +140,33 @@
 						"None", // Certificate
 						"Not Replicated" // Replicate
 					];
-					this._csvData.push(data);
-					if (this.alreadyImportedTestIds.indexOf(executionOrder)==-1) this._csvDiffData.push(data);
+					this._mqcCsvData.push(data);
+					if (this.alreadyImportedTestIds.indexOf(executionOrder)==-1) this._mqcCsvDiffData.push(data);
 					this._allTestIds.push(executionOrder);
 				}
 			},
-			createCsv:function(){
-				return this._createCsv(this._csvData);
+			createMqcCsv:function(){
+				return this._createMqcCsv(this._mqcCsvData);
 			},
-			createCsvDiff:function(){
-				return this._createCsv(this._csvDiffData);
+			dumpStatsLog:function(){
+				// Group the number of tests by the second field (Subject)
+				var groups = {};
+				for (var i=0, l=this._mqcCsvData.length; i<l; i++){
+					var subject = this._mqcCsvData[i][1];
+					if (!groups[subject]) groups[subject] = 0;
+					groups[subject]++;
+				}
+				var sum = 0;
+				for (s in groups){
+					console.log(s + " \t\t\t " + groups[s]);
+					sum += groups[s];
+				}
+				console.log("Overall: ", sum, "tests");
 			},
-			_createCsv:function(data){
+			createMqcCsvDiff:function(){
+				return this._createMqcCsv(this._mqcCsvDiffData);
+			},
+			_createMqcCsv:function(data){
 				var lines = [];
 				if (data.length > 0){
 					var headers = [
@@ -255,9 +277,16 @@
 
 			loadTestFile("tests/w3c/config.xml/warp.js");
 			
+			loadTestFile("tests/w3c/css/animation.js");
+			loadTestFile("tests/w3c/css/basic.js");
+			loadTestFile("tests/w3c/css/transform.js");
+			loadTestFile("tests/w3c/css/transition.js");
+//*/			
 			setTimeout(function(){
-				document.getElementById("allCsvNode").innerHTML = dohx.createCsv();
-				document.getElementById("diffCsvNode").innerHTML = dohx.createCsvDiff() || "NO NEW DATA SETS";
+				dohx.dumpStatsLog();
+				document.getElementById("allCsvNode").innerHTML = dohx.createMqcCsv();
+				document.getElementById("allListCsvNode").innerHTML = dohx.createTestListCsv();
+				document.getElementById("diffCsvNode").innerHTML = dohx.createMqcCsvDiff() || "NO NEW DATA SETS";
 				document.getElementById("allIdsJsNode").innerHTML = 'dohx.alreadyImportedTestIds = ' + dohx.createAllIdsJs();
 			} ,100);
 		};
