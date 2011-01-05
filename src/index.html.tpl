@@ -5,7 +5,6 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 	<link rel="stylesheet" href="css/style.css" type="text/css">
-	<script type="text/javascript">if(parent.emulator)parent.emulator.begin(window);</script>
 </head>
 <body>
 	<div class="statusBar">
