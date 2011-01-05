@@ -5,7 +5,12 @@
 	}
 	
 	var pim = util.isObject("Widget.PIM") ? Widget.PIM : {};
+	
+	// page 140
+	// "A JIL Widget engine must support these attribute names, although
+	// additional attribute names can be supported if they are not duplicates of existing ones."
 	var addressProperties = ["address", "addressBookItemId", "company", "eMail", "fullName", "homePhone", "mobilePhone", "title", "workPhone"];
+	
 	var _testGroupName; // Will be filled by the tests, since multiple tests use it, its defined here.
 	var _testFullName;
 	
@@ -24,7 +29,7 @@
 				missing.push(p);
 			}
 		}
-		return ret.join(", ") + (missing.length>0 ? (". Missing properties: "+missing.join(", ")) : "");
+		return ret.join(", ") + (missing.length>0 ? (".<br/>Missing properties: "+missing.join(", ")) : "");
 	}
 	
 	dohx.add({name:"AddressBook",
@@ -68,7 +73,7 @@
 				id:200,
 				requiredObjects:["Widget.PIM.getAddressBookItem", "Widget.PIM.AddressBookItem"],
 				name:"getAddressBookItem - Verify values.",
-				expectedResult:"Are the shown values correct?",
+				expectedResult:"Are the shown values as stored in your addressbook?",
 				test:function(t){
 					dohx.showInfo(_getAddressInfo(pim.getAddressBookItem(config.validAddressBookItemId)));
 				}
