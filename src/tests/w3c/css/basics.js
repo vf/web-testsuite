@@ -1,6 +1,6 @@
 (function(){
 	
-	dohx.add({name:"CSS",
+	dohx.add({name:"CSS basics",
 		mqcExecutionOrderBaseOffset:480000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
 // TODO rename DIVs in here and in css.css using the test ID
