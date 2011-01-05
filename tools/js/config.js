@@ -9,14 +9,14 @@ var pathParts = TEST_FILE.replace(/\.js$/, "").split("/");
 var now = new Date();
 var config = {
 	
+	testFile: TEST_FILE,
+	
 	// The complete path to the config.xml template that will be used to render and all placeholder in there will be replaced
 	templateFile: SRC_PATH + TARGET_FILE + ".tpl",
 	
 	destinationFile: SRC_PATH + TARGET_FILE,
 	
-	// Set this to true if the rendered file shall be prefixed with the
-	// XML Header: <?xml version="1.0" encoding="UTF-8"?> in the first line.
-	addXmlHeader: /\.xml$/.test(TARGET_FILE),
+	defaultNamespace: TARGET_FILE=="config.xml" ? "http://www.w3.org/ns/widgets" : "",
 	
 	// The version string to be used for the widget.
 	// Using the date initially ensures that the latest version will always be newer
