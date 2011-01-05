@@ -12,7 +12,7 @@
 		var ret = [];
 		for (var i=0, l=fileProperties.length; i<l; i++){
 			var p = fileProperties[i];
-			ret.push(p+": "+util.toJson(fileInfo[p] || ""));
+			ret.push(p+": "+embed.toJson(fileInfo[p] || ""));
 		}
 		return ret.join(", ");
 	}

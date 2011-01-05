@@ -50,7 +50,7 @@
 							t.failure("Excpetion getFile('"+fileName+"')." + e);
 						}
 						t.assertTrue(typeof f.fileSize!="undefined" && f.fileSize>0, "Filesize expected to be >0, but is: " + f.fileSize);
-						t.result = util.toJson(f);
+						t.result = embed.toJson(f);
 					}
 					wmc.startVideoCapture(videoFile + "-creates-file.mp4", true, 1, false);
 				},

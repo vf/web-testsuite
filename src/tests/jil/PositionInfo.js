@@ -8,7 +8,7 @@
 		var ret = [];
 		for (var i=0, l=positionProperties.length; i<l; i++){
 			var p = positionProperties[i];
-			ret.push(p+": "+util.toJson(posInfo[p]));
+			ret.push(p+": "+embed.toJson(posInfo[p]));
 		}
 		return ret.join(", ")  + (startTime?"<br/>(took "+ (+new Date() - startTime)/1000 +"seconds)":"");
 	}
@@ -175,7 +175,7 @@
 					// Get the position.
 					wdd.onPositionRetrieved = function(posInfo){
 						var check = util.checkProperties(posInfo, positionProperties);
-						t.assertTrue(check.missing.length==0, "Missing properties: " + check.missing.join(", ") + "! (Return value was: "+util.toJson(posInfo)+")");
+						t.assertTrue(check.missing.length==0, "Missing properties: " + check.missing.join(", ") + "! (Return value was: "+embed.toJson(posInfo)+")");
 						t.result = showPosInfo(posInfo);
 					};
 					wdd.requestPositionInfo(_fastestMethod);

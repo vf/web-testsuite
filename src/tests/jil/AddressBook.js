@@ -24,7 +24,7 @@
 		for (var i=0, l=addressProperties.length; i<l; i++){
 			var p = addressProperties[i];
 			if (info.hasOwnProperty(p)){
-				ret.push(p + ": " + util.toJson(info[p]));
+				ret.push(p + ": " + embed.toJson(info[p]));
 			} else {
 				missing.push(p);
 			}
@@ -59,7 +59,7 @@
 				requiredObjects:["Widget.PIM.getAddressBookItem", "Widget.PIM.AddressBookItem"],
 				name:"[1] getAddressBookItem - Get the one with ID "+ config.validAddressBookItemId +".",
 				instructions:[
-					"Make sure an address book item with the ID " + util.toJson(config.validAddressBookItemId) + " exists.",
+					"Make sure an address book item with the ID " + embed.toJson(config.validAddressBookItemId) + " exists.",
 					"Press 'GO'."
 				],
 				test:function(t){
@@ -130,7 +130,7 @@
 					addr.setAttributeValue("fullName", "*");
 					Widget.PIM.onAddressBookItemsFound = function(items){
 						t.assertTrue(util.isArray(items), "Return value is not an array.");
-						t.result = items.length + " items found. " + util.toJson(items.slice(0, 5));
+						t.result = items.length + " items found. " + embed.toJson(items.slice(0, 5));
 					}
 					pim.findAddressBookItems(addr, 0, 10);
 				},
@@ -148,7 +148,7 @@
 					addr.setAttributeValue("fullName", null);
 					Widget.PIM.onAddressBookItemsFound = function(items){
 						t.assertTrue(util.isArray(items), "Return value is not an array.");
-						t.result = items.length + " items found. " + util.toJson(items.slice(0, 5));
+						t.result = items.length + " items found. " + embed.toJson(items.slice(0, 5));
 					}
 					pim.findAddressBookItems(addr, 0, 10);
 				},

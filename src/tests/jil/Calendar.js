@@ -12,7 +12,7 @@
 		var ret = [];
 		for (var i=0, l=calendarProperties.length; i<l; i++){
 			var p = calendarProperties[i];
-			ret.push(p+": "+util.toJson(info[p]));
+			ret.push(p+": "+embed.toJson(info[p]));
 		}
 		return ret.join(", ");
 	}
@@ -58,14 +58,15 @@ addIf:false,
 					var ret = pim.addCalendarItem(item);
 					t.assertEqual(undefined, ret);
 				}
-			},{
+			},
+			{
 				id:300,
 				name:"[2] findCalendarItems/onCalendarItemsFound - Find the just added item, at least.",
 				requiredObjects:["Widget.PIM.findCalendarItems"],
 				test:function(t){
 					pim.onCalendarItemsFound = function(found){
 						t.assertTrue(found.length>=1, "Only " + found.length + " items found.");
-						t.result = found.length+" items found, " + util.toJson(found);
+						t.result = found.length + " items found, " + embed.toJson(found);
 					}
 					var item = new pim.CalendarItem();
 					item.eventName = "Meeting";
@@ -74,7 +75,8 @@ addIf:false,
 				tearDown:function(){
 					pim.onCalendarItemsFound = null;
 				}
-			},{
+			},
+			{
 				id:400,
 				name:"[3] findCalendarItems/onCalendarItemsFound - Verify returned object's are of type 'Widget.PIM.CalendarItem'.",
 				requiredObjects:["Widget.PIM.findCalendarItems"],
@@ -98,7 +100,8 @@ addIf:false,
 				tearDown:function(){
 					pim.onCalendarItemsFound = null;
 				}
-			},{
+			},
+			{
 				id:500,
 				name:"[4] findCalendarItems/onCalendarItemsFound - Verify the returned object's properties.",
 				requiredObjects:["Widget.PIM.findCalendarItems"],
@@ -119,7 +122,8 @@ addIf:false,
 				tearDown:function(){
 					pim.onCalendarItemsFound = null;
 				}
-			},{
+			},
+			{
 				id:600,
 				name:"findCalendarItems/onCalendarItemsFound - Search with wildcard!",
 				requiredObjects:["Widget.PIM.findCalendarItems"],
@@ -130,7 +134,7 @@ addIf:false,
 				test:function(t){
 					pim.onCalendarItemsFound = function(found){
 						t.assertFalse(found.length==0, found.length + ' items found.');
-						t.result = found.length + ' items found. ' + util.toJson(found.slice(0, 3)); // Show max of three results.
+						t.result = found.length + ' items found. ' + embed.toJson(found.slice(0, 3)); // Show max of three results.
 					}
 					var item = new pim.CalendarItem();
 					item.eventName = "*";
@@ -139,7 +143,8 @@ addIf:false,
 				tearDown:function(){
 					pim.onCalendarItemsFound = null;
 				}
-			},{
+			},
+			{
 				id:700,
 				name:"findCalendarItems/onCalendarItemsFound - Verify accessing found object's property directly (e.g. item.eventName).",
 				requiredObjects:["Widget.PIM.findCalendarItems"],
@@ -169,7 +174,8 @@ addIf:false,
 				tearDown:function(){
 					pim.onCalendarItemsFound = null;
 				}
-			},{
+			},
+			{
 				id:800,
 				name:"[1] getCalendarItem - Get the one with ID "+ config.validCalendarItemId +".",
 				requiredObjects:["Widget.PIM.getCalendarItem"],
@@ -191,7 +197,8 @@ addIf:false,
 					t.assertTrue(check.missing.length==0, "Missing properties: " + check.missing.join(", ") + "!");
 					return showCalendarInfo(item);
 				}
-			},{
+			},
+			{
 				id:1000,
 				name:"getCalendarItems - Does it return an array for all events in " + (new Date().getFullYear()) + "!",
 				requiredObjects:["Widget.PIM.getCalendarItems"],
@@ -201,25 +208,29 @@ addIf:false,
 					t.assertTrue(util.isArray(items), "Return value is no array.");
 					return items.slice(0, 5);
 				}
-//			},{
+//			},
+//			{
 //				id:1100,
 //				name:"deleteCalendarItem(<String> calendarId)",
 //				test:function(){
 //TODO test not yet implemented
 //				}
-//			},{
+//			},
+//			{
 //				id:1200,
 //				name:"findCalendarItems(<CalendarItem> itemToMatch, <Number> startInx, <Number> endInx)",
 //				test:function(){
 //TODO test not yet implemented
 //				}
-//			},{
+//			},
+//			{
 //				id:1300,
 //				name:"onCalendarItemAlert(calendarItem)",
 //				test:function(){
 //TODO test not yet implemented
 //				}
-//			},{
+//			},
+//			{
 //				id:1400,
 //				name:"onCalendarItemsFound(<Array> calendarItemsFound)",
 //				test:function(){

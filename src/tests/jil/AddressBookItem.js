@@ -100,7 +100,7 @@
 				requiredObjects:["Widget.PIM.getAddressBookItem"],
 				mustSupportApis:["Widget.PIM.AddressBookItem.getAddressGroupNames"],
 				instructions:[
-					"Make sure an address book item with the ID " + util.toJson(config.validAddressBookItemId) + " exists.",
+					"Make sure an address book item with the ID " + embed.toJson(config.validAddressBookItemId) + " exists.",
 					"Add this contact at least into one group.",
 					"Click 'GO'."
 				],

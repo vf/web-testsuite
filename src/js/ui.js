@@ -15,7 +15,6 @@ var ui = {};
 						'<hr/>'+
 						'Test function source code:'+
 						'<pre>${testSourceCode}</pre>'+
-						'<hr/>'+
 						'Error message:'+
 						'<pre>${error}</pre>'+
 					'</div>'+
@@ -121,7 +120,7 @@ var ui = {};
 			} else if (result===undefined){
 				resString = "";
 			} else {
-				resString = util.toJson(result);
+				resString = embed.toJson(result);
 			}
 			var data = {
 				name:name,

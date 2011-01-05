@@ -64,7 +64,7 @@
 							t.failure("Excpetion getFile('"+destFile+"')." + e);
 						}
 						t.assertTrue(typeof f.fileSize!="undefined" && f.fileSize>0, "Filesize expected to be >0, but is: " + f.fileSize);
-						t.result = util.toJson(f);
+						t.result = embed.toJson(f);
 					}
 					wmc.captureImage(destFile, true);
 				},

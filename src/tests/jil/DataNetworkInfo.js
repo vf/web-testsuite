@@ -79,7 +79,7 @@
 				test:function(t){
 					var types = wdd.networkConnectionType;
 					if (!util.isArray(types) || types.length==0){
-						throw new Error("Property 'networkConnectionType' returned only '" + util.toJson(types) + "', can not execute test.");
+						throw new Error("Property 'networkConnectionType' returned only '" + embed.toJson(types) + "', can not execute test.");
 					}
 					var val = wdd.getNetworkConnectionName(types[0]);
 					t.assertNotEqual("", val, "Should not be empty.");
@@ -93,7 +93,7 @@
 				test:function(t){
 					var types = wdd.networkConnectionType;
 					if (!util.isArray(types) || types.length==0){
-						throw new Error("Property 'networkConnectionType' returned only '" + util.toJson(types) + "', can't execute test.");
+						throw new Error("Property 'networkConnectionType' returned only '" + embed.toJson(types) + "', can't execute test.");
 					}
 					var success = true;
 					var errors = [];
@@ -102,7 +102,7 @@
 						var val = wdd.getNetworkConnectionName(types[i]);
 						if (!val){
 							success = false;
-							errors.push(types[i] + "= '" + util.toJson(val) + "'");
+							errors.push(types[i] + "= '" + embed.toJson(val) + "'");
 						}
 						ret.push(types[i] + ": " + val);
 					}

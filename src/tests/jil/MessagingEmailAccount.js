@@ -19,7 +19,7 @@
 				expectedResult:"Is the above info correct?",
 				test:function(t){
 					var ret = wm.getCurrentEmailAccount();
-					dohx.showInfo("API reports: " + util.toJson(ret));
+					dohx.showInfo("API reports: " + embed.toJson(ret));
 					return ret;
 				}
 			},
@@ -48,7 +48,7 @@
 				expectedResult:"Is the above result correct?",
 				test:function(t){
 					var ret = wm.getEmailAccounts();
-					dohx.showInfo("API reports: " + util.toJson(ret));
+					dohx.showInfo("API reports: " + embed.toJson(ret));
 					return ret;
 				}
 			},
