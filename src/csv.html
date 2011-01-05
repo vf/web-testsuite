@@ -20,16 +20,22 @@
 		}
 		
 		.tabLink0, .tab0 {
-			background-color: #FEE;
+			background-color: #AFA;
 		}
 		.tabLink1, .tab1 {
-			background-color: #EFE;
+			background-color: #CFC;
 		}
 		.tabLink2, .tab2 {
-			background-color: #EEF;
+			background-color: #EFE;
 		}
 		.tabLink3, .tab3 {
 			background-color: #FAA;
+		}
+		.tabLink4, .tab4 {
+			background-color: #FCC;
+		}
+		.tabLink5, .tab5 {
+			background-color: #FEE;
 		}
 	</style>
 </head>
@@ -40,17 +46,28 @@
 		<li>Save the contents of the first tab into "mqc-tests-diff.csv"</li>
 		<li>Save the contents of the second tab into "mqc-tests-all.js"</li>
 		<li>Save the contents of tab three into "mqc-tests-all.csv"</li>
+		
+		<li>Save the contents of the first tab into "tests-new.csv"</li>
+		<li>Save the contents of the second tab into "tests-all.js"</li>
+		<li>Save the contents of tab three into "tests-all.csv"</li>
 	</ol>
 	<div class="tabNavi">
-		<a href="javascript://" onclick="selectTab(0)" class="tabLink0">Step 1, Diff CSV</a>
-		<a href="javascript://" onclick="selectTab(1)" class="tabLink1">Step 2, All IDs (JSON)</a>
-		<a href="javascript://" onclick="selectTab(2)" class="tabLink2">Step 3, Complete MQC compatible CSV</a>
-		<a href="javascript://" onclick="selectTab(3)" class="tabLink3">Complete Test list (CSV)</a>
+		<a href="javascript://" onclick="selectTab(0)" class="tabLink0">Step 1, MQC Diff CSV</a>
+		<a href="javascript://" onclick="selectTab(1)" class="tabLink1">Step 2, MQC All IDs (JSON)</a>
+		<a href="javascript://" onclick="selectTab(2)" class="tabLink2">Step 3, MQC All Tests (CSV)</a>
+		
+		<a href="javascript://" onclick="selectTab(3)" class="tabLink3">Step 4, Diff (CSV)</a>
+		<a href="javascript://" onclick="selectTab(4)" class="tabLink4">Step 5, All IDs (JSON)</a>
+		<a href="javascript://" onclick="selectTab(5)" class="tabLink5">Step 6, All Tests (JSON)</a>
 	</div>
-	<pre class="tab tab0" id="diffCsvNode"></pre>
-	<pre class="tab tab1" id="allIdsJsNode"></pre>
-	<pre class="tab tab2" id="allCsvNode">ick bin tab 2</pre>
-	<pre class="tab tab3" id="allListCsvNode">ick bin tab 3</pre>
+	<!--MQC-->
+	<pre class="tab tab0" id="mqcDiffCsvNode"></pre>
+	<pre class="tab tab1" id="mqcAllIdsJsonNode"></pre>
+	<pre class="tab tab2" id="mqcAllCsvNode">ick bin tab 2</pre>
+	<!--normal--> 
+	<pre class="tab tab3" id="diffCsvNode">ick bin tab 3</pre>
+	<pre class="tab tab4" id="allIdsJsonNode">ick bin tab 4</pre>
+	<pre class="tab tab5" id="allCsvNode">ick bin tab 5</pre>
 	
 	<script type="text/javascript" src="js/doh2/doh.js"></script>
 	<script type="text/javascript" src="js/doh2/config.js"></script>
@@ -80,8 +97,10 @@
 			// Copy functions from original dohx, to make add() work (needed e.g. for policy tests).
 			isApiSupported:dohx_isApiSupported,
 			// The data are sorted in the order the tests are added.
-			_mqcCsvData:[],
-			_mqcCsvDiffData:[],
+			_csvData:[], // This contains the list we will export for the "normal" users, all the tests and all relevant info for each.
+			_mqcCsvData:[], // All the MQC data as CSV.
+			_mqcCsvDiffData:[], // All the new MQC data.
+			_csvDiffData:[], // All the NEW data.
 			_allTestIds:[], // Store all the unique test IDs in here, those are actually the values we store in the field "execution order".
 			add:function(obj){
 				if (obj.name.indexOf("__preconditions__")!=-1){
@@ -102,8 +121,8 @@
 					// Find out the filename, this is very Firefoxy.
 					// And use the last JS file found, which is the one that was loaded, the widget file.
 					var prefixToRemove = location.href.replace("/csv.html", "");
-					var wgtName = new Error().stack.match(/http:\/\/.*[a-zA-Z0-9/]+\.js/g).pop().replace(prefixToRemove+"/tests/", "");
-					wgtName = wgtName.replace(/\.js$/, "").replace(/[^a-zA-Z0-9]/g, "_");
+					var testFileName = new Error().stack.match(/http:\/\/.*[a-zA-Z0-9/]+\.js/g).pop().replace(prefixToRemove+"/tests/", "");
+					wgtName = testFileName.replace(/\.js$/, "").replace(/[^a-zA-Z0-9]/g, "_");
 					var subject = "TC Now+ Vertical\\WidgetRuntime\\JIL\\" + wgtName;
 					var executionOrder = obj.mqcExecutionOrderBaseOffset + t.id;
 					if (!util.isNumber(executionOrder)){
@@ -141,18 +160,50 @@
 						"Not Replicated" // Replicate
 					];
 					this._mqcCsvData.push(data);
-					if (this.alreadyImportedTestIds.indexOf(executionOrder)==-1) this._mqcCsvDiffData.push(data);
+					if (this.alreadyImportedMqcTestIds.indexOf(executionOrder)==-1) this._mqcCsvDiffData.push(data);
+					
+					// Prepare the "normal" test list.
+					var widgetFileName = testFileName.replace(/\.js$/, "").replace(/\//g, "_") + ".wgt";
+					if (/policy\.js$/.test(testFileName)){
+						// The policy files are still chunked into multiple files by hand.
+						// Replace "test-jil-security-policy.wgt" by "test-jil-security-policy-*.wgt"
+						widgetFileName = widgetFileName.replace(/policy\.wgt/, "policy-*.wgt");
+					}
+					data = [
+						"test_" + widgetFileName, // 
+						util.getTestId(t, obj.name), // Test ID
+						(""+t.name).replace(/[^0-9a-zA-Z]/g, " "), // Test Name
+						
+						instructions || "Follow the instructions on the screen.", // Instructions
+						t.expectedResult || "See green colored line on the device screen.", // Expected Result
+					];
+					this._csvData.push(data)
+					if (this.alreadyImportedTestIds.indexOf(executionOrder)==-1) this._csvDiffData.push(data);
 					this._allTestIds.push(executionOrder);
 				}
 			},
+			createCsv:function(){
+				// The complete test list for normal use (not MQC specific!).
+				return this._getCsv(this._csvData);
+			},
+			_getCsv:function(data){
+				var headers = [
+					"test file",
+					"ID",
+					"name",
+					"instructions",
+					"expected result"
+				];
+				return this._createCsv(data, headers);
+			},
 			createMqcCsv:function(){
-				return this._createMqcCsv(this._mqcCsvData);
+				return this._getMqcCsv(this._mqcCsvData);
 			},
 			dumpStatsLog:function(){
-				// Group the number of tests by the second field (Subject)
+				// Group the number of tests by the first field, the widget-file name
 				var groups = {};
-				for (var i=0, l=this._mqcCsvData.length; i<l; i++){
-					var subject = this._mqcCsvData[i][1];
+				for (var i=0, l=this._csvData.length; i<l; i++){
+					var subject = this._csvData[i][0];
 					if (!groups[subject]) groups[subject] = 0;
 					groups[subject]++;
 				}
@@ -164,22 +215,28 @@
 				console.log("Overall: ", sum, "tests");
 			},
 			createMqcCsvDiff:function(){
-				return this._createMqcCsv(this._mqcCsvDiffData);
+				return this._getMqcCsv(this._mqcCsvDiffData);
 			},
-			_createMqcCsv:function(data){
+			createCsvDiff:function(){
+				return this._getCsv(this._csvDiffData);
+			},
+			_getMqcCsv:function(data){
+				var headers = [
+					"Test Name", "Subject", "Test ID", "TC Coordinator",
+					"Type", "Test Area", "Status", "Test Type", "Primary OpCo",
+					"Alternative OpCo’s", "TC Owner", "Suggested Severity",
+					"OpCo Network specific", "Country Specific Settings",
+					"Bearer Specific", "Coverage", "Physical Resource",
+					"Description", "Est. Effort (min.)", "Creation Date",
+					"Grouping Area", "Step Name (Design steps)",
+					"Description (Design steps)", "Expected (Design steps)",
+					"Execution Order", "Template", "Certificate", "Replicate"
+				];
+				return this._createCsv(data, headers);
+			},
+			_createCsv:function(data, headers){
 				var lines = [];
 				if (data.length > 0){
-					var headers = [
-						"Test Name", "Subject", "Test ID", "TC Coordinator",
-						"Type", "Test Area", "Status", "Test Type", "Primary OpCo",
-						"Alternative OpCo’s", "TC Owner", "Suggested Severity",
-						"OpCo Network specific", "Country Specific Settings",
-						"Bearer Specific", "Coverage", "Physical Resource",
-						"Description", "Est. Effort (min.)", "Creation Date",
-						"Grouping Area", "Step Name (Design steps)",
-						"Description (Design steps)", "Expected (Design steps)",
-						"Execution Order", "Template", "Certificate", "Replicate"
-					];
 					var line = [];
 					for (var i=0, l=headers.length; i<l; i++){
 						line.push(this._renderItem(headers[i]));
@@ -212,6 +269,7 @@
 		};
 	</script>
 	<script type="text/javascript" src="../mqc-tests-all.js"></script>
+	<script type="text/javascript" src="../tests-all.js"></script>
 	<script type="text/javascript" src="js/compat.js"></script>
 	<script type="text/javascript">
 		//
@@ -278,24 +336,21 @@
 			loadTestFile("tests/w3c/config.xml/warp.js");
 			
 			loadTestFile("tests/w3c/css/animation.js");
-			loadTestFile("tests/w3c/css/basic.js");
+			loadTestFile("tests/w3c/css/basics.js");
 			loadTestFile("tests/w3c/css/transform.js");
 			loadTestFile("tests/w3c/css/transition.js");
 //*/			
 			setTimeout(function(){
 				dohx.dumpStatsLog();
-				document.getElementById("allCsvNode").innerHTML = dohx.createMqcCsv();
-				document.getElementById("allListCsvNode").innerHTML = dohx.createTestListCsv();
-				document.getElementById("diffCsvNode").innerHTML = dohx.createMqcCsvDiff() || "NO NEW DATA SETS";
-				document.getElementById("allIdsJsNode").innerHTML = 'dohx.alreadyImportedTestIds = ' + dohx.createAllIdsJs();
+				document.getElementById("mqcDiffCsvNode").innerHTML = dohx.createMqcCsvDiff() || "NO NEW DATA SETS";
+				document.getElementById("mqcAllIdsJsonNode").innerHTML = 'dohx.alreadyImportedMqcTestIds = ' + dohx.createAllIdsJs();
+				document.getElementById("mqcAllCsvNode").innerHTML = dohx.createMqcCsv();
+				
+				document.getElementById("diffCsvNode").innerHTML = dohx.createCsvDiff() || "NO NEW DATA SETS";
+				document.getElementById("allIdsJsonNode").innerHTML = 'dohx.alreadyImportedTestIds = ' + dohx.createAllIdsJs();
+				document.getElementById("allCsvNode").innerHTML = dohx.createCsv();
 			} ,100);
 		};
 	</script>
-	<!--<script type="text/javascript" src="tests/jil/PIM.js"></script>-->
-	<!--<script type="text/javascript" src="tests/jil/VideoPlayer.js"></script>-->
-	<!--<script type="text/javascript" src="tests/jil/WidgetManager.js"></script>-->
-
-
-
 </body>
 </html>
