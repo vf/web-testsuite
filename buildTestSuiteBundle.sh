@@ -21,6 +21,7 @@ mkdir $TMP_DIR
 
 #cp dist/jil-test-signed/test* $TMP_DIR
 cp dist/unsigned/test* $TMP_DIR
+cp dist/unsigned/util* $TMP_DIR
 cp ReleaseNotes.txt $TMP_DIR
 cp all-tests.xls $TMP_DIR
 cp -R src/test-audio $TMP_DIR/
