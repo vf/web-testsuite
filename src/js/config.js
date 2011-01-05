@@ -512,6 +512,7 @@ var configHelper = {
 					"Widget.Multimedia.isVideoPlaying",
 					"Widget.Multimedia.VideoPlayer.*",
 					"Widget.PIM.exportAsVCard",
+					"Widget.PIM.getAddressBookItem",
 					"Widget.PIM.onCalendarItemAlert",
 					"Widget.PIM.CalendarItem.alarmed",
 					"Widget.onRestore",
