@@ -494,6 +494,9 @@ var configHelper = {
 					photoDirectory:"C:/Data/Images"
 				},
 				geolocation:{supportsCellId:false},
+				events: {
+					invalidRecurrenceTypes: ['EVERY_WEEKDAY']
+				},
 				unsupportedApis:[
 					"Widget.Device.RadioInfo.onSignalSourceChange",
 					"Widget.Device.setRingtone",
@@ -513,6 +516,7 @@ var configHelper = {
 					"Widget.Multimedia.VideoPlayer.*",
 					"Widget.PIM.exportAsVCard",
 					"Widget.PIM.getAddressBookItem",
+					"Widget.PIM.getCalendarItem",
 					"Widget.PIM.onCalendarItemAlert",
 					"Widget.PIM.CalendarItem.alarmed",
 					"Widget.onRestore",
