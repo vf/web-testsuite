@@ -1,0 +1,26 @@
+div.transition {
+	border: 1px solid;
+	width: 80%;
+	padding: 1em; /*give it some room and make it touchable*/
+}
+
+div#test100, div#test200 {
+	position: relative;
+	left: 0;
+	-webkit-transition-property: left;
+	-webkit-transition-duration: 1s;
+	-webkit-transition-delay: .1s;
+	-webkit-transition-timing-function: ease-out;
+	-o-transition-property: left;
+	-o-transition-duration: 1s;
+	-o-transition-delay: .1s;
+	-o-transition-timing-function: ease-out;
+	-moz-transition-property: left;
+	-moz-transition-duration: 1s;
+	-moz-transition-delay: .1s;
+	-moz-transition-timing-function: ease-out;
+}
+
+div#test100.active, div#test200.active {
+	left: 100px;
+}

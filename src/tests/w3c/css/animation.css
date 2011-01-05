@@ -1,0 +1,39 @@
+div.animation {
+	border: 1px solid;
+	width: 300px;
+	padding: 1em; /*give it some room and make it touchable*/
+}
+
+div#test100 {
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+div#test100.active {
+	-webkit-animation-name: pos;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-iteration-count: 2;
+	
+	-o-animation-name: pos;
+	-o-animation-duration: 3s;
+	-o-animation-iteration-count: 2;
+	
+	-moz-animation-name: pos;
+	-moz-animation-duration: 3s;
+	-moz-animation-iteration-count: 2;
+	
+}
+
+@-webkit-keyframes pos {
+	0% {left: 0; width: 300px;}
+	30% {left: 190px; width: 500px;}
+	70% {left: 190px; width: 100px;}
+	100% {left: 0; width: 300px;}
+}
+
+@keyframes pos {
+	0% {left: 0; width: 300px;}
+	30% {left: 190px; width: 500px;}
+	70% {left: 190px; width: 100px;}
+	100% {left: 0; width: 300px;}
+}
