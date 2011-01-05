@@ -173,39 +173,6 @@ var util = new (doh.util.extend(function(){},{
 		}
 	},
 	
-	toJson:function(inp){
-		function _toJson(val){
-			if (util.isArray(val)){
-				return _array(val);
-			} else if (typeof val=="object"){
-				var ret = _object(val);
-				return ret=="{}" ? ""+val : ret;
-			} else if (typeof val=="string"){
-				return '"' + val + '"';
-			}
-			return ""+val;
-		}
-		function _array(val){
-			var ret = [];
-			for (var i=0, l=val.length; i<l; i++){
-				ret.push(_toJson(val[i]));
-			}
-			return "[" + ret.join(", ") + "]";
-		}
-		function _object(val){
-			var ret = [];
-			for (var i in val){
-				if (typeof val[i]=="function"){
-					continue;
-				}
-				ret.push('"' + i + '": ' + _toJson(val[i]));
-			}
-			return "{" + ret.join(", ") + "}";
-		}
-		
-		return _toJson(inp);
-	},
-	
 	xhrPost:function(data){
 		var req = new XMLHttpRequest();
 		if (!req) return;
