@@ -1,0 +1,52 @@
+.manualTest .testInfo {
+	color: white;
+}
+
+div#test11,div#test12 {
+	border: 1px solid black;
+	padding: 10px;
+}
+
+div#test12 {
+	background-color: white;
+}
+
+div#test10 > div {
+	background-color: red;
+}
+
+div#test20 + div {
+	border: 1px solid black;
+	padding: 10px;
+	background-color: red;
+}
+ul#test30 li:last-child {
+	background-color: red;
+}
+
+input#test40:disabled {
+	background-color: red;
+}
+
+input#test41:checked {
+	margin-left: 100px;
+}
+
+div.test50[align=right] {
+	background-color: red;
+}
+
+div[class^=test51] { /* starts with value */
+	background-color: red;
+}
+div[class$=test51] { /* ends with value */
+	font-size: 180%;
+}
+div[class*=test51] { /* contains value */
+	text-decoration: underline;
+}
+
+ul#test60 li:nth-child(2n) {
+	background-color: red;
+}
+
