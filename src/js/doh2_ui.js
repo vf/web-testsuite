@@ -88,9 +88,13 @@ doh.ui = {
 			"window.HTMLAudioElement",
 			"window.HTMLVideoElement",
 			"window.HTMLMeterElement",
+			"window.localStorage",
+			"window.NodeList",
 			"window.SVGDocument",
 			"window.JSON.stringify",
 			"window.JSON.parse",
+			"window.WebGLRenderingContext",
+			"window.Worker",
 			"window.screen.availHeight",
 			"window.screen.availLeft",
 			"window.screen.availWidth",
@@ -135,7 +139,7 @@ doh.ui = {
 		// The version of the data structure we send to the server to store the data
 		// If any of the data change, update this version!!!!!!!!!!!
 		// ******************
-		info.__version__ = 20101215;
+		info.__version__ = 20110104;
 		
 		util.xhrPost({
 			url:"http://developer.vodafone.com/widget-test/add/",
