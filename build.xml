@@ -58,11 +58,12 @@
 			<include name="**/*.tpl"/>
 		</replace>
 		
-		<!--Do the config.xml magic, which means throw it to a Rhino (js.jar) and let it create it -->
-		<!-- check if .js-file for given test is available (fail if not)-->
+		<!--Do the config.xml magic, which means throw config.xml.tpl into a Rhino (js.jar) and let it create config.xml -->
 		<property name="_tmp" value="${testfile}" />
 		<propertyregex override="true" property="_tmp" input="${_tmp}" regexp="\.js$" replace=".config.xml.js" global="true"/>
 		<available file="${_tmp}" type="file" property="configXmlJsAvail" value="true"/>
+		
+		<!-- check if {test}.config.xml.js-file for given test is available (use default if not)-->
 		<if>
 			<isset property="configXmlJsAvail" />
 			<then>
@@ -82,9 +83,11 @@
 			<!--<arg value="src/tests/base/widget-update/update0.config.xml.js"/>-->
 			<arg line="-f ${configXmlJsFileName}"/>
 			<arg line="-f tools/js/file.js"/>
-			<arg line="tools/js/writeConfigXml.js"/>
-			<arg line="${src}"/> <!-- The complete path to the src directory. -->
+			<arg line="tools/js/writeRenderedFile.js"/>
+			<!--arguments passed to the Rhino-->
 			
+			<!-- The complete path to the src directory and the file. -->
+			<arg line="${src}/config.xml"/>
 			<!-- The JavaScript test file, e.g. /src/tests/base/window.js -->
 			<arg line="${testfile}"/>
 		</java>
