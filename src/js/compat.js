@@ -57,9 +57,9 @@ var widget = {};
 		
 	Widget.Device = {
 		// Properties.
-		widgetEngineName:"Browser",
+		widgetEngineName:"emulated Data - widgetEngineName",
 		//widgetEngineProvider:"Firefox :-)",
-		widgetEngineVersion:"GOLD",
+		widgetEngineVersion:"emulated Data - widgetEngineVersion",
 		// Methods.
 		vibrate:function(secs){
 			console.log("vibrating "+secs+" seconds");
@@ -67,16 +67,16 @@ var widget = {};
 	};
 	
 	Widget.Device.DeviceInfo = {
-		ownerInfo:"me",
-		phoneColorDepthDefault:123456,
-		phoneFirmware:"boot",
-		phoneManufacturer:"me",
-		phoneModel:"new",
-		phoneOS:"BeOS",
-		phoneScreenHeightDefault:874,
-		phoneScreenWidthDefault:1440,
-		phoneSoftware:"DOS",
-		totalMemory:1
+		ownerInfo:"emulated Data - ownerInfo",
+		phoneColorDepthDefault:42,
+		phoneFirmware:"emulated Data - phoneFirmware",
+		phoneManufacturer:"emulated Data - phoneManufacturer",
+		phoneModel:"emulated Data - phoneModel",
+		phoneOS:"emulated Data - phoneOS",
+		phoneScreenHeightDefault:23,
+		phoneScreenWidthDefault:42,
+		phoneSoftware:"emulated Data - phoneSoftware",
+		totalMemory:42
 	};
 	
 	Widget.Device.DeviceStateInfo = {
