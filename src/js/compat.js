@@ -477,6 +477,9 @@ Widget.Device.getFileSystemRoots = function(){return []};
 		}, 10);
 	}
 	wm.getMessage = function(){
+		if (arguments.length != 3){
+			throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
+		}
 		return new wm.Message();
 	}
 	wm.sendMessage = function(){
@@ -520,8 +523,8 @@ Widget.Device.getFileSystemRoots = function(){return []};
 	wm.Message = function(){
 		this.attachments = [];
 		this.bccAddress = [];
-		this.body = "";
-		this.callbackNumber = "";
+		this.body = "emulated Data - body";
+		this.callbackNumber = "+42";
 		this.ccAddress = [];
 		this.destinationAddress = [];
 		this.isRead = false;
@@ -529,7 +532,7 @@ Widget.Device.getFileSystemRoots = function(){return []};
 		this.messagePriority= false;
 		this.messageType = "";
 		this.sourceAddress = "";
-		this.subject = "";
+		this.subject = "emulated Data - subject";
 		this.time = new Date();
 		this.validityPeriodHours = 0;
 		
