@@ -32,7 +32,12 @@ input#test40:disabled {
 	background-color: red;
 }
 
-input#test41:checked {
+input#test700 {
+	height: 5em; /* give it some room, to make it touchable */
+	width: 5em; /* give it some room, to make it touchable */
+	background-color: white; /* Seems like ONLY width, heigth and background-color render the checkbox bigger. */
+}
+input#test700:checked {
 	margin-left: 100px;
 }
 
@@ -63,22 +68,22 @@ div#test2000 {
 }
 
 div#test2100 {
-	overflow: auto;
-	height: 100px;
-	width: 100%;
-	background-image: url(../../img/logo.png);
-	background-attachment: local;
-	background-repeat: no-repeat;
-}
-
-
-div#test112 {
 	border: 1px solid black;
-	background-image: url(../../img/logo.png), url(../../img/logo.png);
+	background-image: url(../../../img/logo.png), url(../../../img/logo.png);
 	background-repeat: no-repeat;
 	background-position: left top, right top;
 	width: 350px;
 }
+
+div#test2200 {
+	overflow: auto;
+	height: 100px;
+	width: 100%;
+	background-image: url(../../../img/logo.png);
+	background-attachment: local;
+	background-repeat: no-repeat;
+}
+
 
 
 div#test2300 {
