@@ -2,7 +2,7 @@
 	
 	var externalImageUrl = "http://philstar.de/vf/test.png";
 	
-	dohx.add({name:"Missing &lt;access /&gt; tags completely.",
+	dohx.add({name:"No access-tags.",
 		mqcExecutionOrderBaseOffset:450000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
 			{
