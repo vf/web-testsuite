@@ -69,7 +69,7 @@
 				name:"Selectors: :disabled",
 				expectedResult:"Is the text input red and is it NOT possible to write text into it?",
 				test:function(t){
-					dohx.showInfo('<input type="text" id="test40" disabled style="height:2em;">');
+					dohx.showInfo('<input type="text" id="test40" disabled style="font-size:2em;">');
 				}
 			},
 			{
