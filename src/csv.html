@@ -55,6 +55,7 @@
 	<script type="text/javascript" src="js/doh2/deferred.js"></script>
 	<script type="text/javascript" src="js/doh2/assert.js"></script>
 	<script type="text/javascript" src="js/dohx.js"></script>
+	<script type="text/javascript" src="js/embed.js"></script>
 	<script type="text/javascript" src="js/config.js"></script>
 	<script type="text/javascript">
 	
@@ -174,7 +175,7 @@
 				return lines.join("\n");
 			},
 			createAllIdsJs:function(){
-				return util.toJson(this._allTestIds);
+				return embed.toJson(this._allTestIds);
 			},
 			_renderItem:function(item){
 				item = "" + item; // Make sure its a string! So we can do indexOf().
