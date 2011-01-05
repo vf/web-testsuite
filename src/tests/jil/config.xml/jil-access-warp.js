@@ -2,7 +2,7 @@
 	
 	var externalImageUrl = "http://philstar.de/vf/test.png";
 	
-	dohx.add({name:"Use &lt;jil:access /&gt; first and &lt;access /&gt; below it.",
+	dohx.add({name:"jil:access-tag first and access-tag below it.",
 		mqcExecutionOrderBaseOffset:440000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
 			{
