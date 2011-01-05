@@ -23,7 +23,8 @@ mkdir $TMP_DIR
 cp dist/unsigned/test* $TMP_DIR
 cp dist/unsigned/util* $TMP_DIR
 cp ReleaseNotes.txt $TMP_DIR
-cp all-tests.xls $TMP_DIR
+cp tests-all.xls $TMP_DIR/tests-all-$1.xls
+cp tests-new.xls $TMP_DIR/tests-new-$1.xls
 cp -R src/test-audio $TMP_DIR/
 cp -R src/test-video $TMP_DIR/
 cp -R src/test-photo $TMP_DIR/

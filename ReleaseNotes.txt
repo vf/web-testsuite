@@ -1,3 +1,15 @@
+Version 1.8.4
+=============
+* AudioPlayer: make changing volume easier (on android) by playing music at this time
+* CSS: added first bunch of CSS tests, thx PPK
+* Messaging: fixed expected error messages
+* added some more data about the mobile's capabilities for reporting
+* adding XLS with all the tests and what is new to the test suite package (watch out "tests-new.xls" might be incomplete in this release due to missing history!)
+* allow creating/modifying index.html dynamically per test
+* fixed JSON encoding which made tests fail, thx Nokia for the bug report
+* started using embed.js to replace proprietary library code
+* Added quite some commenting and fixes, thanks for the input Nokia!
+
 Version 1.8.3
 =============
 * added all-tests.xls file which lists all the tests (might still be incomplete, tbd)
