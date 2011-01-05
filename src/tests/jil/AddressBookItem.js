@@ -38,7 +38,7 @@
 				test:function(t){
 					var item = pim.getAddressBookItem(config.validAddressBookItemId);
 					var ret = item.getAttributeValue("title");
-					// Spec 1.2.1 says:
+					// Spec 1.2.2 says:
 					// This should be undefined if the 
 					// addressBookItem has no value assigned for the attribute. Note, however, that 
 					// under some implementations a null or empty string ("") value may also be 
