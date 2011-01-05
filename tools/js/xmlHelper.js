@@ -13,7 +13,7 @@ var xmlHelper = {
 		this.header = rawConfigXml.split("\n")[0];
 		var configXml = rawConfigXml.split("\n").slice(1).join("\n");
 		
-		default xml namespace = "http://www.w3.org/ns/widgets";
+		default xml namespace = config.defaultNamespace;
 		var ret = new XML(configXml);
 		ret = this.addFeatureTags(ret, features);
 		return ret;
@@ -75,7 +75,7 @@ var xmlHelper = {
 		];
 		// Create a regexp that search for the tag name at the end of the string, so we
 		// don't find "message" in "messagetype". Regexp will look like so: /config$|message$/
-		if (features=="all" || features.length){
+		if (features && (features=="all" || features.length)){
 			if (features=="all"){
 				var allFeatures = true;
 			} else {
