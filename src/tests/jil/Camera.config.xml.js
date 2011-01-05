@@ -1,3 +1,4 @@
 
-var features = ["widget", "multimedia", "camera", "device", "applicationtypes"];
+var features = ["widget", "exception", "exceptiontypes",
+				"multimedia", "camera", "device", "applicationtypes"];
 var xml = xmlHelper.getXmlObject(config, features);

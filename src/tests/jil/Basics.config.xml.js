@@ -1,3 +1,4 @@
 
-var features = ["widget", "device"];
+var features = ["widget", "exception", "exceptiontypes",
+				"device"];
 var xml = xmlHelper.getXmlObject(config, features);
