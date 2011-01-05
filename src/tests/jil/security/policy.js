@@ -33,6 +33,7 @@
 	var executeOnly = /position/i;
 	// Find all Widget.methods() (everything that starts with a lower case letter after "Widget." and has no more dots afterwards.)
 	var executeOnly = /^Widget.[a-z][^.]+$/;
+	var executeOnly = /.*/; // leave this as default, since the csv.html which generates the test overview wants to see all tests!
 	
 	//
 	//	Configure END
