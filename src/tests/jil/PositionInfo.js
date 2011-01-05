@@ -1,6 +1,13 @@
 (function(){
 	var wd = util.isObject("Widget.Device") ? Widget.Device : {};
 	var wdd = util.isObject("DeviceStateInfo", wd) ? wd.DeviceStateInfo : {};
+	
+	// Spec 1.2.2 says
+	//	"Some or all of the properties may be undefined if the back-end
+	//	services should be unavailable (e.g., due to network unavailability)
+	//	or if the Widget does not have sufficient security permissions
+	//	to obtain this information."
+	// This means all properties must be given, but can be undefined.
 	var positionProperties = ["accuracy", "altitude", "altitudeAccuracy", "cellID", "latitude", "longitude", "timeStamp"];
 	var locationTimeouts = config.geolocation.timeouts;
 	
@@ -165,7 +172,8 @@
 				tearDown:function(){
 					wdd.onPositionRetrieved = null;
 				}
-			},{
+			},
+			{
 				id:600,
 				name:"requestPositionInfo - Verify properties of returned 'PositionInfo' object.",
 				addIf:config.geolocation.supportsCellId || config.geolocation.supportsGps || config.geolocation.supportsAgps,
