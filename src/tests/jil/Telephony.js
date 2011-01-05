@@ -218,7 +218,7 @@
 					}
 					var recs = _callRecords[callType];
 					var record = wt.getCallRecord(callType, recs[0].callRecordId);
-					t.assertTrue(embed.toJson(record), embed.toJson(recs[0]));
+					t.assertEqual(record, recs[0]);
 					return record;
 				}
 			},
@@ -234,7 +234,7 @@
 					}
 					var recs = _callRecords[callType];
 					var record = wt.getCallRecord(callType, recs[0].callRecordId);
-					t.assertTrue(embed.toJson(record), embed.toJson(recs[0]));
+					t.assertEqual(record, recs[0]);
 					return record;
 				}
 			},
@@ -250,7 +250,7 @@
 					}
 					var recs = _callRecords[callType];
 					var record = wt.getCallRecord(callType, recs[0].callRecordId);
-					t.assertTrue(embed.toJson(record), embed.toJson(recs[0]));
+					t.assertEqual(record, recs[0]);
 					return record;
 				}
 			},
