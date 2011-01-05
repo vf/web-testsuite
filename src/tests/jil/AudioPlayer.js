@@ -82,6 +82,7 @@
 	
 	// All tests will use this. Its global, so tearDown can access it too and clean up properly.
 	var audioObj;
+	var interval;
 	
 	dohx.add({name:"AudioPlayer",
 		mqcExecutionOrderBaseOffset:70000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
@@ -815,7 +816,15 @@
 				],
 				expectedResult:"Is the shown volume level correct?",
 				test:function(t){
-					dohx.showInfo("API reports volume is at: " + wm.getVolume()*10 +"%");
+					// Play a file so the media volume can be changed (at least on android it would be the ringer volume otherwise)
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3, {autoPlay:true});
+					interval = setInterval(function(){
+						dohx.showInfo("API reports volume is at: " + wm.getVolume()*10 +"%");
+					}, 200);
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+					clearInterval(interval);
 				}
 			},
 			{
@@ -828,7 +837,15 @@
 				],
 				expectedResult:"Is the shown volume level correct?",
 				test:function(t){
-					dohx.showInfo("API reports volume is at: " + wm.getVolume()*10 +"%");
+					// Play a file so the media volume can be changed (at least on android it would be the ringer volume otherwise)
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3, {autoPlay:true});
+					interval = setInterval(function(){
+						dohx.showInfo("API reports volume is at: " + wm.getVolume()*10 +"%");
+					}, 200);
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+					clearInterval(interval);
 				}
 			},
 			{
@@ -839,8 +856,20 @@
 					"Change the volume of the phone to the loudest possible!",
 					"Click 'GO'."
 				],
+				timeout:15*1000,
 				test:function(t){
-					t.assertEqual(10, wm.getVolume());
+					// Play a file so the media volume can be changed (at least on android it would be the ringer volume otherwise)
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3, {autoPlay:true});
+					interval = setInterval(function(){
+						dohx.showInfo("API reports volume is at: " + wm.getVolume()*10 +"%");
+						if (wm.getVolume()==10){
+							t.success("Volume: " + wm.getVolume());
+						}
+					}, 200);
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+					clearInterval(interval);
 				}
 			},
 			{
@@ -852,7 +881,18 @@
 					"Click 'GO'."
 				],
 				test:function(t){
-					t.assertEqual(0, wm.getVolume());
+					// Play a file so the media volume can be changed (at least on android it would be the ringer volume otherwise)
+					audioObj = new myAudio(inWidgetAudioFiles.songMp3, {autoPlay:true});
+					interval = setInterval(function(){
+						dohx.showInfo("API reports volume is at: " + wm.getVolume()*10 +"%");
+						if (wm.getVolume()==0){
+							t.success("Volume: " + wm.getVolume());
+						}
+					}, 200);
+				},
+				tearDown:function(){
+					audioObj.cleanUp();
+					clearInterval(interval);
 				}
 			},
 			{
@@ -862,17 +902,20 @@
 					"Widget.Multimedia.AudioPlayer.open", "Widget.Multimedia.AudioPlayer.play", "Widget.Multimedia.AudioPlayer.stop"
 				],
 				instructions:[
-					"Change the volume up, to as loud as possible.",
 					"Click 'GO'!",
-					"Turn down the volume to the lowest possible value.",
+					"Turn down the volume.",
 					"Turn down the volume back up.",
 				],
 				expectedResult:"Had you been able to turn down the volume and back up?",
 				test:function(t){
 					audioObj = new myAudio(inWidgetAudioFiles.songMp3, {autoPlay:true, repeatTimes:5});
+					interval = setInterval(function(){
+						dohx.showInfo("API reports volume is at: " + wm.getVolume()*10 +"%");
+					}, 200);
 				},
 				tearDown:function(){
 					audioObj.cleanUp();
+					clearInterval(interval);
 				}
 			}
 //*/
