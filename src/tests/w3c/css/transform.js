@@ -65,7 +65,7 @@
 			{
 				id:600,
 				name:"Transform origin",
-				expectedResult:"Touch the test element. Does it change?",
+				expectedResult:"Touch the test element. Does it rotate around its upper right corner?",
 				test:function(t){
 					dohx.showInfo(
 						'<div class="transform" id="test600" onclick="__toggleActive(this)">This is a transform test for transform-origin</div>'
