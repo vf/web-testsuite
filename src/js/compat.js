@@ -1,9 +1,3 @@
-// This is just for the local testing, load the compat.js file, which allows testing in opera+FF
-// without the need of the emulator around it, its much faster!
-if (!window["Widget"] && !window["widget"]){
-	alert("Widget is emulating JIL APIs (using js/compat.js).\nIf that seems wrong check back with the test suite provider.");
-
-
 //
 //	This file contains compatibility layer.
 //
@@ -554,4 +548,3 @@ Widget.Device.getFileSystemRoots = function(){return []};
 
 //*/
 
-}
