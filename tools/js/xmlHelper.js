@@ -7,7 +7,7 @@ var xmlHelper = {
 		// summary: Create and return the XML object which represents the config.xml in order to manipulate it in any way.
 		// config: Object
 		// 		The keys in this object are those that can be used inside the config.xml.tpl-js
-		var rawConfigXml = util.loadTextFile(config.configXmlTemplateFile);
+		var rawConfigXml = util.loadTextFile(config.templateFile);
 		rawConfigXml = this._renderConfigTemplate(rawConfigXml, config);
 		// Remove the first line, since that is the <?xml...> which E4X can't handle yet, we will add it later again.
 		this.header = rawConfigXml.split("\n")[0];
