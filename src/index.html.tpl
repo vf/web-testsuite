@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>$testfilename</title>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<title>{widgetName}</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body>
 	<div class="statusBar">
@@ -73,7 +73,7 @@
 		configHelper.onConfigured = function(){
 			var node = document.createElement("script");
 			node.type = "text/javascript";
-			node.src = "$test.js?nocache="+(+new Date());
+			node.src = "{testFile}?nocache="+(+new Date());
 			document.body.appendChild(node);
 			// Add the timeout, just so the appended file above gets the time to load and run ... unfortunately not really bullet-proof
 			// but we are "only" doing that so the number of tests are shown properly.
