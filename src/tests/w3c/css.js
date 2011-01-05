@@ -3,6 +3,7 @@
 	dohx.add({name:"CSS",
 		mqcExecutionOrderBaseOffset:480000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
+// TODO rename DIVs in here and in css.css using the test ID
 			{
 				id:100,
 				name:"Selectors: nth-child",
@@ -68,7 +69,7 @@
 				name:"Selectors: :disabled",
 				expectedResult:"Is the text input red and is it NOT possible to write text into it?",
 				test:function(t){
-					dohx.showInfo('<input type="text" id="test40" disabled>');
+					dohx.showInfo('<input type="text" id="test40" disabled style="height:2em;">');
 				}
 			},
 			{
@@ -135,6 +136,110 @@
 					newLI.innerHTML = 'The zeroth item';
 					wr.insertBefore(newLI,wr.firstChild);
 					return false;
+				}
+			},
+			
+			{
+				id:2000,
+				name:"Selectors: overflow:auto",
+				expectedResult:"Can you scroll the element?",
+				test:function(t){
+					dohx.showInfo('<div id="test2000">'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+					'</div>');
+				}
+			},
+			{
+				id:2100,
+				name:"background-position: local (ONLY to be done if overflow: auto is supported)",
+				expectedResult:"Scroll the element. Does the image scroll with the element?",
+				test:function(t){
+					dohx.showInfo('<div id="test2100">'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+					'</div>');
+				}
+			},
+			{
+				id:2200,
+				name:"multiple background images",
+				expectedResult:"Do you see two images in the element?",
+				test:function(t){
+					dohx.showInfo('<div id="test112">'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+					'</div>');
+				}
+			},
+			{
+				id:2300,
+				name:"border-radius",
+				expectedResult:"Does the element have rounded corners?",
+				test:function(t){
+					dohx.showInfo('<div id="test2300">'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+					'</div>');
+				}
+			},
+			{
+				id:2400,
+				name:"rgba colors",
+				expectedResult:"Is the text red?",
+				test:function(t){
+					dohx.showInfo('<div id="test114">'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+					'</div>');
+				}
+			},
+			{
+				id:2500,
+				name:"hsla colors",
+				expectedResult:"Is the text red?",
+				test:function(t){
+					dohx.showInfo('<div id="test115">'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+					'</div>');
+				}
+			},
+			{
+				id:2600,
+				name:"outline",
+				expectedResult:"Does the element have a red border?",
+				test:function(t){
+					dohx.showInfo('<div id="test2600">'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+						'This is the element<br>This is the element<br>This is the element<br>'+
+					'</div>');
+				}
+			},
+			{
+				id:2700,
+				name:"letter-spacing",
+				expectedResult:"Are the letters in the second line farther apart than in the first?",
+				test:function(t){
+					dohx.showInfo('<div id="test2700">'+
+						'This is the element<p>This is the element</p>'+
+					'</div>');
+				}
+			},
+			{
+				id:2800,
+				name:"word-spacing",
+				expectedResult:"Are the words in the second line farther apart than in the first?",
+				test:function(t){
+					dohx.showInfo('<div id="test2800">'+
+						'This is the element<p>This is the element</p>'+
+					'</div>');
 				}
 			}
 		]

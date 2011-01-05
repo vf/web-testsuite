@@ -50,3 +50,67 @@ ul#test60 li:nth-child(2n) {
 	background-color: red;
 }
 
+
+
+div#test2000 {
+	overflow: auto;
+	height: 100px;
+	width: 100%;
+}
+
+div#test2100 {
+	overflow: auto;
+	height: 100px;
+	width: 100%;
+	background-image: url(../../img/logo.png);
+	background-attachment: local;
+	background-repeat: no-repeat;
+}
+
+
+div#test112 {
+	border: 1px solid black;
+	background-image: url(../../img/logo.png), url(../../img/logo.png);
+	background-repeat: no-repeat;
+	background-position: left top, right top;
+	width: 350px;
+}
+
+
+div#test2300 {
+	border: 1px solid white;
+	border-radius: 10px;
+	width: 200px;
+	padding: 5px;
+}
+
+div#test114 {
+	color: rgba(204,0,0,.9);
+}
+
+div#test115 {
+	color: hsla(0,100%,40%,.9);
+}
+
+div#test2600 {
+	outline: 3px solid red;
+	width: 200px;
+}
+
+div#test2700 {
+	width: 200px;
+}
+
+div#test2700 p {
+	margin: 0;
+	letter-spacing: 2px;
+}
+
+div#test2800 {
+	width: 200px;
+}
+
+div#test2800 p {
+	margin: 0;
+	word-spacing: 6px;
+}
