@@ -93,7 +93,7 @@
 		
 		<!-- "rename" template files -->
 		<move file="${tmp}/index.html.tpl" tofile="${tmp}/index.html"/>
-		<!--<move file="${tmp}/config.xml.tpl" tofile="${tmp}/config.xml"/>-->
+		<delete file="${tmp}/config.xml.tpl"/>
 		<copy file="${tmp}/index.html" todir="${src}"/>
 	</target>
 
