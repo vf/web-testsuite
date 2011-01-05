@@ -12,7 +12,7 @@
 				id: 100,
 				name:"showNotification - simple",
 				requiredObjects:["widget.showNotification"],
-				expectedResult:"Did you see a popup with 1) headline 'Hello headline' and 2) the message telling you something nice?",
+				expectedResult:"Did you see a notification with 1) headline 'Hello headline' and 2) the message telling you something nice?",
 				test:function(t){
 					widget.showNotification("Hello headline", "Hello, have a nice day!!!");
 				}
@@ -21,7 +21,7 @@
 				id: 200,
 				name:"showNotification - two lines",
 				requiredObjects:["widget.showNotification"],
-				expectedResult:"Did you see a popup, with 1) the headline and 2) a TWO LINE message?",
+				expectedResult:"Did you see a notification, with 1) the headline and 2) a TWO LINE message?",
 				test:function(t){
 					widget.showNotification("Hello headline", "Hello, have a nice day!!!\nA really nice day!");
 				}
@@ -31,6 +31,10 @@
 				name:"showNotification - callback",
 				requiredObjects:["widget.showNotification"],
 				timeout:30 * 1000, // Give the user 30secs
+				instructions:[
+					"Click 'GO'!",
+					"Confirm the notification."
+				],
 				test:function(t){
 					widget.showNotification("Hello headline", "Just click me away, thanks.", function(){
 						t.success("Callback fired.");
