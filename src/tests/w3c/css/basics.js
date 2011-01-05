@@ -41,8 +41,8 @@
 				expectedResult:"Does the third item have a red background color?",
 				test:function(t){
 					dohx.showInfo(
-								'<ul id="test30">'+
-									'<li>First item</li><li>Second item</li><li id="test31">Third item</li>'+
+								'<ul id="test400">'+
+									'<li>First item</li><li>Second item</li><li>Third item</li>'+
 								'</ul>'
 					);
 				}
@@ -50,15 +50,15 @@
 			{
 				id:500,
 				name:"Selectors: ':last-child' selector (2)",
-				expectedResult:"Does the third item have a black background color?",
+				expectedResult:"Does the third item have a BLACK background color?",
 				test:function(t){
 					dohx.showInfo(
-								'<ul id="test30">'+
-									'<li>First item</li><li>Second item</li><li id="test31">Third item</li>'+
+								'<ul id="test500">'+
+									'<li>First item</li><li>Second item</li><li id="test500_1">Third item</li>'+
 								'</ul>'
 					);
-					var root = document.getElementById('test30');
-					var newLI = document.getElementById('test31').cloneNode(true);
+					var root = document.getElementById('test500');
+					var newLI = document.getElementById('test500_1').cloneNode(true);
 					newLI.id = '';
 					newLI.innerHTML = 'Fourth item';
 					root.appendChild(newLI);
@@ -242,6 +242,7 @@
 					'</div>');
 				}
 			}
+//*/
 		]
 	});
 

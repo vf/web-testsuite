@@ -20,7 +20,11 @@ div#test20 + div {
 	padding: 10px;
 	background-color: red;
 }
-ul#test30 li:last-child {
+ul#test400 li:last-child {
+	background-color: red;
+}
+
+ul#test500 li:last-child {
 	background-color: red;
 }
 
