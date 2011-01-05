@@ -21,7 +21,8 @@
 					t.assertFalse(val);
 					return val;
 				}
-			},{
+			},
+			{
 				id:200,
 				name:"isCharging - Verify reported state.",
 				requiredObjects:["Widget.Device.PowerInfo.isCharging"],
@@ -34,7 +35,8 @@
 					t.assertTrue(val);
 					return val;
 				}
-			},{
+			},
+			{
 				id:300,
 				name:"percentRemaining - Verify value.",
 				requiredObjects:["Widget.Device.PowerInfo.percentRemaining"],
@@ -45,7 +47,8 @@
 				test:function(){
 					dohx.showInfo("API reports battery level is: ", wdp.percentRemaining+"%.");
 				}
-			},{
+			},
+			{
 				id:400,
 				name:"percentRemaining - Verify changed value.",
 				requiredObjects:["Widget.Device.PowerInfo.percentRemaining"],
@@ -64,6 +67,7 @@
 			{
 				id:500,
 				name:"onChargeLevelChange - Verify that callback fires.",
+				requiredObjects:["Widget.Device.PowerInfo.percentRemaining"],
 				instructions:[
 					'Make sure the phone is NOT FULLY charged.',
 					'Plug in the charger.',
@@ -83,9 +87,11 @@
 					clearInterval(_interval);
 					delete wdp.onChargeLevelChange;
 				}
-			},{
+			},
+			{
 				id:600,
 				name:"onChargeLevelChange - Verify changing value.",
+				requiredObjects:["Widget.Device.PowerInfo.percentRemaining"],
 				instructions:[
 					'Make sure the phone is NOT FULLY charged.',
 					'Plug in the charger.',
@@ -106,7 +112,8 @@
 					clearInterval(_interval);
 					delete wdp.onChargeLevelChange;
 				}
-			},{
+			},
+			{
 				id:700,
 				name:"onChargeStateChange - Verify callback.",
 				instructions:[
@@ -122,7 +129,8 @@
 				tearDown:function(){
 					delete wdp.onChargeStateChange;
 				}
-			},{
+			},
+			{
 				id:800,
 				name:"onChargeStateChange - Verify change to 'discharging'.",
 				instructions:[
@@ -140,7 +148,8 @@
 				tearDown:function(){
 					delete wdp.onChargeStateChange;
 				}
-			},{
+			},
+			{
 				id:900,
 				name:"onChargeStateChange - Verify change to 'charging'.",
 				instructions:[
@@ -157,7 +166,8 @@
 				tearDown:function(){
 					delete wdp.onChargeStateChange;
 				}
-			},{
+			},
+			{
 				id:1000,
 				name:"onChargeStateChange - Verify change to 'full'.",
 				instructions:[
