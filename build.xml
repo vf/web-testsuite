@@ -121,6 +121,7 @@
                 <include if="isVideo" name="**/test-video/**"/>
                 <include name="**/js/doh2/*.js"/>
                 <include name="**/${script-src-prefix-path}${test}.js"/>
+                <include name="**/${script-src-prefix-path}${test}.css"/>
                 <include name="**/js/*.js"/>
                 <exclude name="**/js/compat.js"/>
                 <include name="**/*.tpl"/>
