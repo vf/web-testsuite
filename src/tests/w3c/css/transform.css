@@ -1,0 +1,44 @@
+div.transform {
+	border: 1px solid;
+	width: 300px;
+}
+
+div#test100.active {
+	-webkit-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+}
+
+div#test200.active {
+	-webkit-transform: scale(.5);
+	-o-transform: scale(.5);
+	-moz-transform: scale(.5);
+}
+
+div#test300.active {
+	-webkit-transform: skew(30deg,15deg);
+	-o-transform: skew(30deg,15deg);
+	-moz-transform: skew(30deg,15deg);
+}
+
+div#test400.active {
+	-webkit-transform: translate(30px,15px);
+	-o-transform: translate(30px,15px);
+	-moz-transform: translate(30px,15px);
+}
+
+div#test500.active {
+	-webkit-transform: translate(50px,15px) rotate(45deg);
+	-o-transform: translate(50px,15px) rotate(45deg);
+	-moz-transform: translate(50px,15px) rotate(45deg);
+}
+
+div#test600.active {
+	-webkit-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	
+	-webkit-transform-origin: 100% 0;
+	-o-transform-origin: 100% 0;
+	-moz-transform-origin: 100% 0;
+}
