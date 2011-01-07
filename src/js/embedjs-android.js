@@ -1,14 +1,1 @@
-var embed=dojo={};
-embed.config={};
-embed.global=window;
-embed.doc=document;
-embed.body=function(){
-return document.body;
-};
-dojo.toJson=function(_1){
-return JSON.stringify(_1);
-};
-dojo.fromJson=function(_2){
-return JSON.parse(_2);
-};
-
+var embed=dojo={};embed.config={};embed.global=window;embed.doc=document;embed.body=function(){return document.body;};dojo.toJson=function(_1){return JSON.stringify(_1);};dojo.fromJson=function(_2){return JSON.parse(_2);};dojo.byId=function(id,_3){return (typeof id=="string")?(_3||document).getElementById(id):id;};dojo.query=function(_4,_5){if(typeof _5=="string"){_5=dojo.byId(_5);if(!_5){return [];}}_5=_5||dojo.doc;if(/[>+~]\s*$/.test(_4)){_4+="*";}var _6=_5;if(_5.nodeType==9){if(/^\s*>/.test(_4)){var _7=_4.replace(/^\s*>/,"").match(/([^\s>+~]+)(.*)/);if(!_7){return [];}var _8=_7[1];_4=_7[2];if(_5.querySelector(_8)!==_5.documentElement){return [];}if(!_4){return [_5.documentElement];}_5=_5.documentElement;}else{if(/^\s*[+~]/.test(_4)){return [];}}}if(_5.nodeType==1){var _9=_5.id;var _a=_9;if(!_9){_a=_5.id="d---dojo-query-synthetic-id-"+new Date().getTime();var _b=true;}_4="#"+_a+" "+_4;_6=_5.parentNode||_5;}var n=_6.querySelectorAll(_4);if(_b){_5.id="";}return n||[];};
