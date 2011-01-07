@@ -1,0 +1,26 @@
+.landscape, .portrait {
+	display: none;
+	color: green;
+}
+
+.notsupported {
+	color: red;
+}
+
+@media (orientation: landscape) {
+	.landscape {
+		display:  block;
+	}
+	.notsupported {
+		display: none;
+	}
+}
+
+@media (orientation: portrait) {
+	.portrait{
+		display:  block;
+	}
+	.notsupported {
+		display: none;
+	}
+}
