@@ -21,7 +21,7 @@
 				test:function(t){
 					dohx.showInfo(getHtmlChunk(100));
 					var computedStyle = document.defaultView.getComputedStyle(embed.query("#test100 .portrait")[0], null);
-					t.assertEqual(computedStyle.display, "block", "portrait DIV's computedStyle wrong");
+					t.assertEqual("block", computedStyle.display, "portrait DIV's computedStyle wrong");
 				}
 			},
 			{
@@ -34,7 +34,7 @@
 				test:function(t){
 					dohx.showInfo(getHtmlChunk(200));
 					var computedStyle = document.defaultView.getComputedStyle(embed.query("#test200 .landscape")[0], null);
-					t.assertEqual(computedStyle.display, "block", "landscape DIV's computedStyle wrong");
+					t.assertEqual("block", computedStyle.display, "landscape DIV's computedStyle wrong");
 				}
 			},
 //*/
