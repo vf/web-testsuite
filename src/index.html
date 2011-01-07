@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>policy (tests/jil/security)</title>
+    <title>widthHeight (tests/w3c/mediaquery)</title>
     <meta content="text/html; charset=utf-8" http-equiv="content-type"></meta>
     <link href="css/style.css" rel="stylesheet" type="text/css"></link>
+    <link href="tests/w3c/mediaquery/widthHeight.css" rel="stylesheet" type="text/css"></link>
   </head>
   <body>
     <div class="statusBar">
@@ -73,7 +74,7 @@
 		configHelper.onConfigured = function(){
 			var node = document.createElement("script");
 			node.type = "text/javascript";
-			node.src = "tests/jil/security/policy.js?nocache="+(+new Date());
+			node.src = "tests/w3c/mediaquery/widthHeight.js?nocache="+(+new Date());
 			document.body.appendChild(node);
 			// Add the timeout, just so the appended file above gets the time to load and run ... unfortunately not really bullet-proof
 			// but we are "only" doing that so the number of tests are shown properly.
