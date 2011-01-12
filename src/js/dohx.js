@@ -211,7 +211,7 @@ dohx.showInfo = function(){
 	ui.showInfo(Array.prototype.slice.apply(arguments).join(" "));
 }
 dohx.hideInfo = function(){
-	ui.hideInfo();
+	ui.resetInfo();
 }
 
 dohx.extendTestObject = function(obj){
