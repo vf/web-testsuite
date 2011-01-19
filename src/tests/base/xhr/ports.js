@@ -12,7 +12,12 @@
 		}
 		req.setRequestHeader('User-Agent','XMLHTTP/1.0');
 		req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+		var lastReadState = null;
 		req.onreadystatechange = function () {
+			if (lastReadState != req.readyState && data.onReadyStateChange){
+				data.onReadyStateChange(req);
+			}
+			lastReadState = req.readyState;
 			if (req.readyState != 4) return; // We only care about 4.
 			if (req.status != 200 && req.status != 304) {
 				if (data.onError){
@@ -38,7 +43,7 @@
 		tests:[
 			{
 				id:100,
-				timeout:10*1000,
+				timeout:60*1000, // Give user time to choose connection.
 				name:"xhr - Call to HTTP site",
 				test:function(t){
 					setTimeout(function(){requestWrapper({
@@ -55,7 +60,7 @@
 			},
 			{
 				id:200,
-				timeout:10*1000,
+				timeout:60*1000,
 				name:"xhr - Call to HTTPS site",
 				test:function(t){
 					setTimeout(function(){requestWrapper({
@@ -73,7 +78,7 @@
 			{
 				id:300,
 				name:"xhr - Call to HTTPS site with credentials",
-				timeout:10*1000,
+				timeout:60*1000,
 				test:function(t){
 					requestWrapper({
 						openParams:["POST", "https://api.del.icio.us/v1/posts/all?results=175&meta=no", true, "demo__user","iwinan96"],
@@ -89,14 +94,17 @@
 			},
 			{
 				id:400,
-				timeout:10*1000,
+				timeout:60*1000,
 				name:"xhr - Page which runs on port 8000.",
 				test:function(t){
 					requestWrapper({
 						url:"http://stream.live-inselradio.com:8000/",
-						onSuccess:function(){
-							t.result = req.status + ": " + req.statusText;
-							t.success(true);
+						onReadyStateChange:function(req){
+							// check status, it is streaming, so it will never get done
+							if (req.readyState == 3 || req.readyState == 4){ // readyState==3 means LOADING, 4 is DONE (somehow the Nokia E5-00 doenst send readyState=3, just 4)
+								t.result = req.status + ": " + req.statusText;
+								t.success(true);
+							}
 						},
 						onError:function(req){
 							t.failure(req.status);
