@@ -66,7 +66,7 @@
 		try{
 			var dbgNode = document.getElementById("dbg");
 			console = {log:function(){
-				dbgNode.innerHTML += Array.prototype.slice.call(arguments, 0).join(", ")+" ";
+				dbgNode.innerHTML += Array.prototype.slice.call(arguments, 0).join(" ")+" ";
 			}};
 		}catch(e){}
 		
