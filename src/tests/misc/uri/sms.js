@@ -17,23 +17,26 @@
 	
 	var testSet = [
 		// Only phone number(s) are given
-		[100, "Only one local number", "12345"],
-		[200, "Only one global number", "+12345678"],
-		[300, "Two local numbers", "12345,223344"],
-		[400, "Two global numbers", "+12345678,+333444"],
-		[500, "Multiple local numbers", "12345,223344,444555,9090909,88888"],
-		[600, "Multiple global numbers", "+12345678,+333444,+222222,+9990999"],
-		[700, "One local and global number", "12345,+555666"],
-		[800, "One global and local number", "+555666,12345"],
+		[100, "Only one local number", ["12345"]],
+		[200, "Only one global number", ["+12345678"]],
+		[300, "Two local numbers", ["12345","223344"]],
+		[400, "Two global numbers", ["+12345678","+333444"]],
+		[500, "Multiple local numbers", ["12345","223344","444555","9090909","88888"]],
+		[600, "Multiple global numbers", ["+12345678","+333444","+222222","+9990999"]],
+		[700, "One local and global number", ["12345","+555666"]],
+		[800, "One global and local number", ["+555666","12345"]],
 		
 		// Phone number and body given
-		[1000, "One local number, body", "12345", "test content"],
-		[1100, "One global number, body", "+12345678", "test content"],
+		[1000, "One local number, body", ["12345"], "test content"],
+		[1100, "One global number, body", ["+12345678"], "test content"],
 	];
 	
 	var tests = [];
 	for (var i=0, l=testSet.length, test; i<l; i++){
 		test = testSet[i];
+		var recipientsString = test[2].length > 1 ?
+								(test[2].length + " recipients ("+ test[2].join(", ") +")") :
+								test[2][0];
 		var tmp = {
 			id: test[0],
 			name: test[1],
@@ -42,9 +45,8 @@
 				"Follow the instructions on the screen.",
 				"The SMS app should open, close it and come back to this app"
 			],
-			expectedResult: test.length == 3 ?
-								"Did the SMS app open a new message to '" + test[2] + "'" :
-								"Did the SMS app open a new message to '" + test[2] + "' with the content '" + test[3] + "'"
+			expectedResult: "Did the SMS app open a new message<br />* to " + recipientsString +
+								(test.length == 3 ? "" : ("<br />* with the content '" + test[3] + "'")) + "?"
 		};
 		var url = "sms:" + test[2] + (test.length == 3 ? "" : "?body=" + window.encodeURIComponent(test[3]));
 		tmp.test = (function(url){
