@@ -123,7 +123,7 @@
 					var prefixToRemove = location.href.replace("/csv.html", "");
 					var testFileName = new Error().stack.match(/http:\/\/.*[a-zA-Z0-9/]+\.js/g).pop().replace(prefixToRemove+"/tests/", "");
 					wgtName = testFileName.replace(/\.js$/, "").replace(/[^a-zA-Z0-9]/g, "_");
-					var subject = "TC Now+ Vertical\\WidgetRuntime\\JIL\\" + wgtName;
+					var subject = "VF Test suite\\" + wgtName;
 					var executionOrder = obj.mqcExecutionOrderBaseOffset + t.id;
 					if (!util.isNumber(executionOrder)){
 						alert("Error, executionOrder ID missing in '" + wgtName + "' test name '" + t.name + "'");
@@ -289,7 +289,8 @@
 		}
 
 		configHelper.onConfigured = function(){
-			loadTestFile("tests/base/metrics.js");
+			loadTestFile("tests/vendor/vodafone/metrics.js");
+			
 			loadTestFile("tests/base/window.js");
 			loadTestFile("tests/base/widget.js");
 			loadTestFile("tests/base/widget-update/update0.js");
@@ -332,13 +333,17 @@
 			loadTestFile("tests/jil/Widget.js");
 			
 			loadTestFile("tests/performance/jil/AddressBook.js");
-
+			
 			loadTestFile("tests/w3c/config.xml/warp.js");
 			
 			loadTestFile("tests/w3c/css/animation.js");
 			loadTestFile("tests/w3c/css/basics.js");
 			loadTestFile("tests/w3c/css/transform.js");
 			loadTestFile("tests/w3c/css/transition.js");
+			
+			loadTestFile("tests/misc/uri/sms.js");
+			loadTestFile("tests/misc/uri/mailto.js");
+			
 //*/			
 			setTimeout(function(){
 				dohx.dumpStatsLog();
