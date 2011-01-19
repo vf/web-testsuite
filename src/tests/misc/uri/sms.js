@@ -40,11 +40,6 @@
 		var tmp = {
 			id: test[0],
 			name: test[1],
-			instructions: [
-				"Click 'GO'",
-				"Follow the instructions on the screen.",
-				"The SMS app should open, close it and come back to this app"
-			],
 			expectedResult: "Did the SMS app open a new message<br />* to " + recipientsString +
 								(test.length == 3 ? "" : ("<br />* with the content '" + test[3] + "'")) + "?"
 		};
@@ -59,7 +54,7 @@
 	}
 
 	
-	dohx.add({name:"SMS URI scheme",
+	dohx.add({name:"sms URI scheme",
 		mqcExecutionOrderBaseOffset:540000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:tests
 	});
