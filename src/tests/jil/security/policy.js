@@ -218,35 +218,35 @@
 		},
 		{
 			id: 306,
-			name:"AddressBookItem.getAddressGroupNames",
+			name:"PIM.AddressBookItem.getAddressGroupNames",
 			test:function(){
 				tmp.addressBookItem.getAddressGroupNames();
 			}
 		},
 		{
 			id: 308,
-			name:"AddressBookItem.getAttributeValue",
+			name:"PIM.AddressBookItem.getAttributeValue",
 			test:function(){
 				tmp.addressBookItem.getAttributeValue("fullName");
 			}
 		},
 		{
 			id: 310,
-			name:"AddressBookItem.getAvailableAttributes",
+			name:"PIM.AddressBookItem.getAvailableAttributes",
 			test:function(){
 				tmp.addressBookItem.getAvailableAttributes();
 			}
 		},
 		{
 			id: 312,
-			name:"AddressBookItem.setAddressGroupNames",
+			name:"PIM.AddressBookItem.setAddressGroupNames",
 			test:function(){
 				tmp.addressBookItem.setAddressGroupNames(tmp.addressGroupNames);
 			}
 		},
 		{
 			id: 314,
-			name:"AddressBookItem.setAttributeValue",
+			name:"PIM.AddressBookItem.setAttributeValue",
 			test:function(){
 				// Use some random phonenumber so we are sure update() will have work.
 				tmp.addressBookItem.setAttributeValue("mobilePhone", (""+Math.random()).replace(/[^0-9]/, ""));
@@ -254,7 +254,7 @@
 		},
 		{
 			id: 316,
-			name:"AddressBookItem.update",
+			name:"PIM.AddressBookItem.update",
 			permissions:[p.ONE_SHOT, p.BLANKET, p.ALLOWED],
 			test:function(){
 				tmp.addressBookItem.update();
@@ -262,7 +262,7 @@
 		},
 		{
 			id: 318,
-			name:"AddressBookItem - new Widget.PIM.AddressBookItem",
+			name:"PIM.AddressBookItem - new Widget.PIM.AddressBookItem",
 			test:function(){
 				tmp.newAddressBookItem = new Widget.PIM.AddressBookItem();
 			}
@@ -271,7 +271,7 @@
 			// This is actually a duplicate test, but this one is working on a new AddressBookItem
 			// unlike test 314 which works on an existing item.
 			id: 320,
-			name:"AddressBookItem.setAttributeValue",
+			name:"PIM.AddressBookItem.setAttributeValue",
 			test:function(){
 				var uniqueString = new Date().getTime();
 				var _testFullName = "test Contact " + uniqueString;
