@@ -8,6 +8,10 @@ TODO
   AND
      callback = null;
 
+policy
+* generate tests for BLANKET which are a separate widget and have to be run AFTER all other tests had been run, to test that the permission dialog is not shown again even across multiple widget launches
+  problem doing that is if we generate a widget that ONLY executes the BLANKET tests again that some dependencies are not met (some tests need to be executed before which dont have BLANKET)
+  i tried it and gave up since I dont know a simple solution yet ...
 
 Device
 * setRingtone
