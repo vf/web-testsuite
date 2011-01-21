@@ -64,6 +64,18 @@ button[disabled=disabled] {
 	height: 0.9em;
 }
 
+.warningOverlay {
+	border: 3px solid black;
+	background-color: red;
+	color: yellow;
+	font-size: 1em;
+	padding: 2em 1em;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+
 .copyright {
 	text-decoration: none;
 	position: fixed;

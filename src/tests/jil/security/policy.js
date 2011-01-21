@@ -6,6 +6,7 @@
 		OPERATOR_SIGNED:2
 	};
 	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//
 	//	Configure BEGIN
 	//
@@ -37,7 +38,14 @@
 	
 	//
 	//	Configure END
-	//
+	//	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	var key = ("executeOnly: "+executeOnly).replace(/[^0-9a-z]+/gi, "");
+	if (Widget.preferenceForKey(key)){
+		var node = embed.create("div", {className:"warningOverlay", innerHTML: "This widget had been started before.<br /><br />All the tests MUST be executed on the first start of the widget!<br /><br /> Please uninstall it and launch the this widget again."}, embed.body());
+	}
+	Widget.setPreferenceForKey(true, key);
 	
 	var p = permissions = {
 		ALLOWED: 1,
@@ -56,6 +64,15 @@
 	expectedResults["SESSION 2nd message"] = "No security dialog should have opened, was that the case?";
 	expectedResults[p.UNRESTRICTED] = "No security dialog should have opened, was that the case?";
 	
+	var instructions = [
+		"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
+		"At least one contact has to exist on the phone. (contact with the ID '" + config.validAddressBookItemId + "' will be used)",
+		//"Copy the content of the testsuite's zip-file's  folder 'audio' into the music directory on the phone. (The exact name of the destination folder may vary on your device.)",
+		"At least one calendar item has to exist on the phone. (calender item with the ID '" + config.validCalendarItemId + "' will be used)",
+		"At least one MISSED call has to exist on the phone.",
+		//"Copy the content of the testsuite's zip-file's  folder 'video' into the videos directory on the phone. (The exact name of the destination folder may vary on your device.)",
+		"Click 'GO' to start testing."
+	];
 	
 	dohx.add({name:testGroupName,
 		mqcExecutionOrderBaseOffset:350000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
@@ -63,15 +80,7 @@
 			{
 				id:1,
 				name:"Verify Preconditions",
-				instructions:[
-					"Make sure all the preconditions listed are met. They will be required by upcoming tests.",
-					"At least one contact has to exist on the phone. (contact with the ID '" + config.validAddressBookItemId + "' will be used)",
-					//"Copy the content of the testsuite's zip-file's  folder 'audio' into the music directory on the phone. (The exact name of the destination folder may vary on your device.)",
-					"At least one calendar item has to exist on the phone. (calender item with the ID '" + config.validCalendarItemId + "' will be used)",
-					"At least one MISSED call has to exist on the phone.",
-					//"Copy the content of the testsuite's zip-file's  folder 'video' into the videos directory on the phone. (The exact name of the destination folder may vary on your device.)",
-					"Click 'GO' to start testing."
-				],
+				instructions:instructions,
 				test:function(t){
 					t.success("Preconditions met, user confirmed.");
 				}
@@ -260,7 +269,7 @@
 		},
 		{
 			// This is actually a duplicate test, but this one is working on a new AddressBookItem
-			// unlinke test 314 which works on an existing item.
+			// unlike test 314 which works on an existing item.
 			id: 320,
 			name:"AddressBookItem.setAttributeValue",
 			test:function(){
