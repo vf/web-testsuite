@@ -98,6 +98,7 @@
 			{
 				id:200,
 				name:"config.validCalendarItemId - possible value (eventName=null)",
+				timeout: 60*1000, // some devices are slooooow E5-00 ;)
 				test:function(t){
 					var item = new pim.CalendarItem();
 					item.eventName = null;
@@ -122,6 +123,7 @@
 			{
 				id:205,
 				name:"config.validCalendarItemId - possible value (eventName=*)",
+				timeout: 60*1000, // some devices are slooooow E5-00 ;)
 				test:function(t){
 					var item = new pim.CalendarItem();
 					item.eventName = "*";

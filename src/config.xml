@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:jil="http://www.jil.org/ns/widgets1.2" height="9999" id="http://jil.org/wid/cc4b75128e6bc033fb7f40e7a8818a7c5311dff8c8b6a8b69f0376214ae8d0b1/tests-jil-security-policy" version="2011119205317" viewmodes="all" width="9999">
-  <name>policy (tests/jil/security)</name>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:jil="http://www.jil.org/ns/widgets1.2" height="9999" id="http://jil.org/wid/cc4b75128e6bc033fb7f40e7a8818a7c5311dff8c8b6a8b69f0376214ae8d0b1/util-setupHelper" version="2011120230204" viewmodes="all" width="9999">
+  <name>setupHelper (util)</name>
   <icon src="img/icon.png"/>
   <jil:maximum_display_mode height="9999" width="9999"/>
   <author email="wk@uxebu.com" href="http://vodafone.com">Wolfram Kriesing</author>
-  <description>This widget tests the following: policy (tests/jil/security)</description>
+  <description>This widget tests the following: setupHelper (util)</description>
   <!-- until JIL 1.1 this was enough -->
   <access localfs="true" network="true"/>
   <!-- this is needed for JIL1.2 -->
