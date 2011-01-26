@@ -1,0 +1,24 @@
+Artist: OG (Olivier Girardot) - http://www.ogmusik.com/
+Title: 2009 AD
+Album: 01 - http://www.jamendo.com/album/47516
+License: Creative Commons - Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0)
+Copyright: 
+   loop.flac
+   loop.m4a
+   loop.mp2
+   loop.mp3
+   loop.ogg
+   loop.wav
+
+
+Artist: Jamison Young - http://www.jamyoung.net/
+Title: How Far
+Album: Shifting Sands Of A Blue Car - http://www.jamendo.com/album/18714
+License: Creative Commons - Attribution 2.5 Australia (CC BY 2.5)
+Copyright: 
+   song.flac
+   song.m4a
+   song.mp2
+   song.mp3
+   song.ogg
+   song.wav

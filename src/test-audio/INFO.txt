@@ -1,0 +1,19 @@
+FILE             | DETAILS - AUDIO
+------------------------------------------------------------
+loop.flac        | FLAC
+song.flac        | Stereo, 44.1 GHz, 16 bps
+-----------------+------------------------------------------
+loop.m4a         | MPEG-4 AAC audio
+song.m4a         | Stereo, 44.1 GHz, 128 Kb/s
+-----------------+------------------------------------------
+loop.mp2         | MPEG 1 Audio, Layer 2
+song.mp2         | Stereo, 44.1 GHz, 160 Kb/s
+-----------------+------------------------------------------
+loop.mp3         | MPEG 1 Audio, Layer 3 (MP3)
+song.mp3         | Stereo, 44.1 GHz, 128 Kb/s
+-----------------+------------------------------------------
+loop.ogg         | Vorbis
+song.ogg         | Stereo, 44.1 GHz, 160 Kb/s
+-----------------+------------------------------------------
+loop.wav         | Uncomp. 16-bit PCM audio (PCM S16 LE)
+song.wav         | Stereo, 44.1 GHz, 16 bps

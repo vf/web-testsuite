@@ -119,17 +119,54 @@ var configHelper = {
 			// files provided with the widget (like audio or video files).
 			widgetPath:"",
 			playableAudioFiles:{
+				//FILE             | DETAILS - AUDIO
+				//------------------------------------------------------------
+				//loop.flac        | FLAC
+				//song.flac        | Stereo, 44.1 GHz, 16 bps
+				//-----------------+------------------------------------------
+				//loop.m4a         | MPEG-4 AAC audio
+				//song.m4a         | Stereo, 44.1 GHz, 128 Kb/s
+				//-----------------+------------------------------------------
+				//loop.mp2         | MPEG 1 Audio, Layer 2
+				//song.mp2         | Stereo, 44.1 GHz, 160 Kb/s
+				//-----------------+------------------------------------------
+				//loop.mp3         | MPEG 1 Audio, Layer 3 (MP3)
+				//song.mp3         | Stereo, 44.1 GHz, 128 Kb/s
+				//-----------------+------------------------------------------
+				//loop.ogg         | Vorbis
+				//song.ogg         | Stereo, 44.1 GHz, 160 Kb/s
+				//-----------------+------------------------------------------
+				//loop.wav         | Uncomp. 16-bit PCM audio (PCM S16 LE)
+				//song.wav         | Stereo, 44.1 GHz, 16 bps
 				inWidget:{
-					songWav:"test-audio/wav/music.wav",
-					songMp3:"test-audio/mp3/music.mp3",
-					loopWav:"test-audio/wav/loop.wav",
-					loopMp3:"test-audio/mp3/loop.mp3"
+					songFlac:"test-audio/song.flac",
+					songM4a:"test-audio/song.m4a",
+					songMp2:"test-audio/song.mp2",
+					songMp3:"test-audio/song.mp3",
+					songOgg:"test-audio/song.ogg",
+					songWav:"test-audio/song.wav",
+					
+					loopFlac:"test-audio/loop.flac",
+					loopM4a:"test-audio/loop.m4a",
+					loopMp2:"test-audio/loop.mp2",
+					loopMp3:"test-audio/loop.mp3",
+					loopOgg:"test-audio/loop.ogg",
+					loopWav:"test-audio/loop.wav"
 				},
 				onDevice:{
-					songWav:"/virtual/music/test-audio/wav/music.wav",
-					songMp3:"/virtual/music/test-audio/mp3/music.mp3",
-					loopWav:"/virtual/music/test-audio/wav/loop.wav",
-					loopMp3:"/virtual/music/test-audio/mp3/loop.mp3"
+					songFlac:"/virtual/music/test-audio/song.flac",
+					songM4a:"/virtual/music/test-audio/song.m4a",
+					songMp2:"/virtual/music/test-audio/song.mp2",
+					songMp3:"/virtual/music/test-audio/song.mp3",
+					songOgg:"/virtual/music/test-audio/song.ogg",
+					songWav:"/virtual/music/test-audio/song.wav",
+					
+					loopFlac:"/virtual/music/test-audio/loop.flac",
+					loopM4a:"/virtual/music/test-audio/loop.m4a",
+					loopMp2:"/virtual/music/test-audio/loop.mp2",
+					loopMp3:"/virtual/music/test-audio/loop.mp3",
+					loopOgg:"/virtual/music/test-audio/loop.ogg",
+					loopWav:"/virtual/music/test-audio/loop.wav"
 				}
 			},
 			playableVideoFiles:{
@@ -261,21 +298,15 @@ var configHelper = {
 				_meta:{name:"Android Opera WRT", numAsynchConfigs:0},
 				_userInfo:{
 					audioDirectory:"/sdcard/media/audio",
-					videoDirectory:"/sdcard/dcim/100media",
-					photoDirectory:"/sdcard/dcim/100media",
+					videoDirectory:"/sdcard/DCIM/100media",
+					photoDirectory:"/sdcard/DCIM/100media",
 				},
 				validAddressBookItemId:1,
 				fileSystem:{
 					readablePath:"/sdcard",
-					readableFile:"/sdcard/test-audio/mp3/loop.mp3",
+					readableFile:"/sdcard/DCIM/100media/test-audio/loop.mp3",
 					playableAudioFiles:{
-						onDevice:{
-							// Hope we soon wont need it and opera builds the virtual fs
-							songWav:"file:///sdcard/media/audio/test-audio/wav/music.wav",
-							songMp3:"file:///sdcard/media/audio/test-audio/mp3/music.mp3",
-							loopWav:"file:///sdcard/media/audio/test-audio/wav/loop.wav",
-							loopMp3:"file:///sdcard/media/audio/test-audio/mp3/loop.mp3"
-						}
+						onDevice:{} // Will be set further down
 					}
 				},
 				unsupportedApis:[
@@ -336,6 +367,10 @@ var configHelper = {
 				]
 			};
 			
+			for (var i in defaults.fileSystem.playableAudioFiles.onDevice){
+				ret.fileSystem.playableAudioFiles.onDevice[i] = defaults.fileSystem.playableAudioFiles.onDevice[i].replace("/virtual/music", "file:///sdcard/DCIM/100media");
+ 			}
+			
 			// Get the first calendarItemId found.
 // No cal implemented on opera yet
 			//ret._meta.numAsynchConfigs++; // We have an asynch config parameter here, "register" it.
@@ -392,14 +427,14 @@ var configHelper = {
 				validAddressBookItemId:1,
 				fileSystem:{
 					readablePath:"C:/Data/Sounds",
-					readableFile:"C:/Data/Sounds/test-audio/mp3/loop.mp3",
+					readableFile:"C:/Data/Sounds/test-audio/loop.mp3",
 					playableAudioFiles:{
 						onDevice:{
 							// Hope we soon wont need it and opera builds the virtual fs
-							songWav:"file://C:/Data/Sounds/test-audio/wav/music.wav",
-							songMp3:"file://C:/Data/Sounds/test-audio/mp3/music.mp3",
-							loopWav:"file://C:/Data/Sounds/test-audio/wav/loop.wav",
-							loopMp3:"file://C:/Data/Sounds/test-audio/mp3/loop.mp3"
+							songWav:"file://C:/Data/Sounds/test-audio/music.wav",
+							songMp3:"file://C:/Data/Sounds/test-audio/music.mp3",
+							loopWav:"file://C:/Data/Sounds/test-audio/loop.wav",
+							loopMp3:"file://C:/Data/Sounds/test-audio/loop.mp3"
 						}
 					}
 				},
