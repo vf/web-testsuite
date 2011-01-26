@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>setupHelper (util)</title>
+    <title>VideoPlayer (tests/jil)</title>
     <meta content="text/html; charset=utf-8" http-equiv="content-type"></meta>
     <link href="css/style.css" rel="stylesheet" type="text/css"></link>
   </head>
@@ -73,7 +73,7 @@
 		configHelper.onConfigured = function(){
 			var node = document.createElement("script");
 			node.type = "text/javascript";
-			node.src = "util/setupHelper.js?nocache="+(+new Date());
+			node.src = "tests/jil/VideoPlayer.js?nocache="+(+new Date());
 			document.body.appendChild(node);
 			// Add the timeout, just so the appended file above gets the time to load and run ... unfortunately not really bullet-proof
 			// but we are "only" doing that so the number of tests are shown properly.
