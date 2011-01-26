@@ -1,0 +1,16 @@
+FILE             | DETAILS - VIDEO (1st line) / AUDIO (2nd)
+------------------------------------------------------------
+long-h263_lq.3gp | H.263, 176*144, 15 fps (bad quality)
+loop-h263_lq.3gp | AMR audio, Mono, 8 GHz (bad quality)
+-----------------+------------------------------------------
+long-h264.mp4    | H.264 / AVC, 320*180, 30 fps
+loop-h264.mp4    | MPEG-4 AAC audio, Stereo, 44.1 GHz
+-----------------+------------------------------------------
+long-mpeg4.mp4   | MPEG-4 video, 320*180, 30 fps
+loop-mpeg4.mp4   | MPEG-4 AAC audio, Stereo, 44.1 GHz
+-----------------+------------------------------------------
+long-theora.ogv  | Theora, 320*180, 30 fps
+loop-theora.ogv  | Vorbis, Stereo, 44.1 GHz, 112 Kb/s
+-----------------+------------------------------------------
+long-webm.webm   | VP8 video, 320*180, 30 fps
+loop-webm.webm   | Vorbis, Stereo, 44.1 GHz, 112 Kb/s

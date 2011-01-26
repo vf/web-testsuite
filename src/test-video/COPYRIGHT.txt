@@ -1,0 +1,18 @@
+Title: Big Buck Bunny
+License: Creative Commons - Attribution 3.0 Unported (CC BY 3.0)
+Copyright: (c) copyright 2008, Blender Foundation / www.bigbuckbunny.org
+   long-h263_lq.3gp
+   long-h264.mp4
+   long-mpeg4.mp4
+   long-theora.ogv
+   long-webm.webm
+
+
+Title: Elephants Dream
+License: Creative Commons - Attribution 2.5 Generic (CC BY 2.5)
+Copyright: (c) copyright 2006, Blender Foundation / Netherlands Media Art Institute / www.elephantsdream.org
+   loop-h263_lq.3gp
+   loop-h264.mp4
+   loop-mpeg4.mp4
+   loop-theora.ogv
+   loop-webm.webm

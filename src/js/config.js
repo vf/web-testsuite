@@ -133,27 +133,49 @@ var configHelper = {
 				}
 			},
 			playableVideoFiles:{
-				//viaHttp:"http://...",
-				//viaHttps:"https://...",
-				//viaRtsp:"rtsp://...",
-				//viaFile:"file:///", // ??? shall this be the virtual FS or the real FS (=device specific)???
-				avc:{
-					inWidget:"test-video/avc/AVC_AAC_48K_30F_QVGA.mp4",
-					onDevice:"/virtual/videos/test-video/avc/AVC_AAC_48K_30F_QVGA.mp4"
-				},
+				//long-h263_lq.3gp | H.263, 176*144, 15 fps (bad quality)
+				//loop-h263_lq.3gp | AMR audio, Mono, 8 GHz (bad quality)
+				//-----------------+------------------------------------------
+				//long-h264.mp4    | H.264 / AVC, 320*180, 30 fps
+				//loop-h264.mp4    | MPEG-4 AAC audio, Stereo, 44.1 GHz
+				//-----------------+------------------------------------------
+				//long-mpeg4.mp4   | MPEG-4 video, 320*180, 30 fps
+				//loop-mpeg4.mp4   | MPEG-4 AAC audio, Stereo, 44.1 GHz
+				//-----------------+------------------------------------------
+				//long-theora.ogv  | Theora, 320*180, 30 fps
+				//loop-theora.ogv  | Vorbis, Stereo, 44.1 GHz, 112 Kb/s
+				//-----------------+------------------------------------------
+				//long-webm.webm   | VP8 video, 320*180, 30 fps
+				//loop-webm.webm   | Vorbis, Stereo, 44.1 GHz, 112 Kb/s
 				h263:{
-					inWidget:"test-video/h263/H263_148K_QCIF_15_plus_MP4AAC_22_1.3gp",
-					onDevice:"/virtual/videos/test-video/h263/H263_148K_QCIF_15_plus_MP4AAC_22_1.3gp"
+					inWidget:"test-video/long-h263_lq.3gp",
+					onDevice:"/virtual/videos/test-video/long-h263_lq.3gp",
+					inWidget1:"test-video/loop-h263_lq.3gp",
+					onDevice1:"/virtual/videos/test-video/loop-h263_lq.3gp"
 				},
 				h264:{
-					inWidget:"test-video/h264/H264_256K_QVGA_15_plus_AAC_22_2.mp4",
-					onDevice:"/virtual/videos/test-video/h264/H264_256K_QVGA_15_plus_AAC_22_2.mp4",
-					inWidget1:"test-video/h264/HMC_boa_320_240.MP4",
-					onDevice1:"/virtual/videos/test-video/h264/HMC_boa_320_240.MP4"
+					inWidget:"test-video/long-h264.mp4",
+					onDevice:"/virtual/videos/test-video/long-h264.mp4",
+					inWidget1:"test-video/loop-h264.mp4",
+					onDevice1:"/virtual/videos/test-video/loop-h264.mp4"
 				},
-				mp4:{
-					inWidget:"test-video/mp4/MP4V_508K_QVGA_15_plus_MP4AAC_32_2.mp4",
-					onDevice:"/virtual/videos/test-video/mp4/MP4V_508K_QVGA_15_plus_MP4AAC_32_2.mp4"
+				mpeg4:{
+					inWidget:"test-video/long-mpeg4.mp4",
+					onDevice:"/virtual/videos/test-video/long-mpeg4.mp4",
+					inWidget1:"test-video/loop-mpeg4.mp4",
+					onDevice1:"/virtual/videos/test-video/loop-mpeg4.mp4"
+				},
+				theora:{
+					inWidget:"test-video/long-theora.ogv",
+					onDevice:"/virtual/videos/test-video/long-theora.ogv",
+					inWidget1:"test-video/loop-theora.ogv",
+					onDevice1:"/virtual/videos/test-video/loop-theora.ogv"
+				},
+				webm:{
+					inWidget:"test-video/long-webm.webm",
+					onDevice:"/virtual/videos/test-video/long-webm.webm",
+					inWidget1:"test-video/loop-webm.webm",
+					onDevice1:"/virtual/videos/test-video/loop-webm.webm"
 				}
 			},
 			imageFile:""

@@ -239,7 +239,7 @@
 				expectedResult:"Did you see the video twice?",
 				setUp:_setUp,
 				test:function(t){
-					videoObj = new myVideo(videoFiles.mp4.inWidget, {
+					videoObj = new myVideo(videoFiles.mpeg4.inWidget, {
 						autoPlay:true,
 						repeatTimes:2
 					});
@@ -253,7 +253,7 @@
 				expectedResult:"Did you see the video five times?",
 				setUp:_setUp,
 				test:function(t){
-					videoObj = new myVideo(videoFiles.mp4.inWidget, {
+					videoObj = new myVideo(videoFiles.mpeg4.inWidget, {
 						autoPlay:true,
 						repeatTimes:5
 					});
@@ -267,7 +267,7 @@
 				expectedResult:"Did the video play, pause and play again?",
 				setUp:_setUp,
 				test:function(t){
-					videoObj = new myVideo(videoFiles.mp4.inWidget, {
+					videoObj = new myVideo(videoFiles.mpeg4.inWidget, {
 						autoPlay:true,
 						onPlay:function(){
 							setTimeout(function(){
@@ -313,10 +313,22 @@ addIf:false, // make this a somehow meaningful test, it is a bit strange right n
 		{id:3030, "type":"h263", location:"onDevice"},
 		{id:3040, "type":"h264", location:"inWidget"},
 		{id:3050, "type":"h264", location:"onDevice"},
-		{id:3060, "type":"mp4", location:"inWidget"},
-		{id:3070, "type":"mp4", location:"onDevice"},
+		{id:3060, "type":"mpeg4", location:"inWidget"},
+		{id:3070, "type":"mpeg4", location:"onDevice"},
 		{id:3080, "type":"h264", location:"inWidget1"},
 		{id:3090, "type":"h264", location:"onDevice1"},
+		{id:3100, "type":"h263", location:"inWidget"},
+		{id:3110, "type":"h263", location:"onDevice"},
+		{id:3120, "type":"mpeg4", location:"inWidget1"},
+		{id:3130, "type":"mpeg4", location:"onDevice1"},
+		{id:3140, "type":"theora", location:"inWidget"},
+		{id:3150, "type":"theora", location:"onDevice"},
+		{id:3160, "type":"theora", location:"inWidget1"},
+		{id:3170, "type":"theora", location:"onDevice1"},
+		{id:3180, "type":"webm", location:"inWidget"},
+		{id:3190, "type":"webm", location:"onDevice"},
+		{id:3200, "type":"webm", location:"inWidget1"},
+		{id:3210, "type":"webm", location:"onDevice1"}
 	];
 	for (var i=0, l=_videoFiles.length; i<l; i++){
 		(function(videoFileInfo){
