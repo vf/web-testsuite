@@ -2,6 +2,7 @@
 	
 	var wdda = util.isObject("Widget.Device.DeviceStateInfo.AccelerometerInfo") ? Widget.Device.DeviceStateInfo.AccelerometerInfo : {};
 	var intervals = [];
+	var DEFAULT_TIMEOUT = 30 * 1000;
 	
 	function valuesToString(x, y, z){
 		return "x=" + x + " y=" + y + " z=" + z;
@@ -105,6 +106,7 @@
 			{
 				id: 100,
 				name: "Is xAxis a number?",
+				timeout: DEFAULT_TIMEOUT,
 				setUp:_setup,
 				test: function(t) {
 					t.assertFalse(isNaN(wdda.xAxis));
@@ -114,6 +116,7 @@
 			{
 				id: 200,
 				name: "Is yAxis a number?",
+				timeout: DEFAULT_TIMEOUT,
 				setUp:_setup,
 				test: function(t) {
 					t.assertFalse(isNaN(wdda.yAxis));
@@ -123,6 +126,7 @@
 			{
 				id: 300,
 				name: "Is zAxis a number?",
+				timeout: DEFAULT_TIMEOUT,
 				setUp:_setup,
 				test: function(t) {
 					t.assertFalse(isNaN(wdda.zAxis));
@@ -133,6 +137,7 @@
 				id: 310,
 				// This tests a fixed bug where x and z used to be equal (in Opera's Android WRT).
 				name: "Verify the values for x, z and y are different.",
+				timeout: DEFAULT_TIMEOUT,
 				instructions:[
 					"Click 'GO'!",
 					"Move the phone while the test is running, to generate different values."
@@ -155,6 +160,7 @@
 			{
 				id: 320,
 				name: "MUST SUCCEED. Initial position test - flat on the table.",
+				timeout: DEFAULT_TIMEOUT,
 				instructions:[
 					"Place the phone flat on the table, display facing upwards.",
 					"Click 'GO'!"
@@ -177,6 +183,7 @@
 			{
 				id: 330,
 				name: "Check tight range - flat on the table.",
+				timeout: DEFAULT_TIMEOUT,
 				instructions:[
 					"Place the phone flat on the table, display facing upwards.",
 					"Make sure it's really on a flat table, may use a gauge to ensure so.",
@@ -207,6 +214,7 @@
 			{
 				id: 400,
 				name: "Tilt RIGHT, xAxis.",
+				timeout: DEFAULT_TIMEOUT,
 				instructions: [
 					"Click 'Go'",
 					"Move the phone to the initial position.",
@@ -224,6 +232,7 @@
 			{
 				id: 500,
 				name: "Tilt LEFT, xAxis.",
+				timeout: DEFAULT_TIMEOUT,
 				instructions: [
 					"Click 'Go'",
 					"Move the phone to the initial position.",
@@ -247,6 +256,7 @@
 			{
 				id: 600,
 				name: "Tilt FORWARD, zAxis.",
+				timeout: DEFAULT_TIMEOUT,
 				instructions: [
 					"Click 'Go'",
 					"Move the phone to the initial position.",
@@ -264,6 +274,7 @@
 			{
 				id: 700,
 				name: "Tilt BACKWARD, zAxis.",
+				timeout: DEFAULT_TIMEOUT,
 				instructions: [
 					"Click 'Go'",
 					"Move the phone to the initial position.",
@@ -281,6 +292,7 @@
 			{
 				id: 800,
 				name: "Tilt UPSIDE DOWN, zAxis.",
+				timeout: DEFAULT_TIMEOUT,
 				instructions: [
 					"Click 'Go'",
 					"Move the phone to the initial position.",
@@ -303,6 +315,7 @@
 			{
 				id: 900,
 				name: "Facing me, yAxis.",
+				timeout: DEFAULT_TIMEOUT,
 				instructions: [
 					"Click 'Go'",
 					"Move the phone to the initial position.",
@@ -320,6 +333,7 @@
 			{
 				id: 1000,
 				name: "Facing me upside down, yAxis.",
+				timeout: DEFAULT_TIMEOUT,
 				instructions: [
 					"Click 'Go'",
 					"Move the phone to the initial position.",
