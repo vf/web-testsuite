@@ -98,6 +98,9 @@
 				}
 			},
 			{
+				// A pretty new version of HTML spec http://www.w3.org/TR/2010/WD-html5-20100624/author/timers.html#simple-dialogs
+				// says:
+				// 		"If the user cancels the prompt, then returns null instead."
 				id: 700,
 				name:"prompt - click 'Cancel'",
 				requiredObjects:["window.prompt"],
