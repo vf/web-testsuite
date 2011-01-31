@@ -1,7 +1,7 @@
 (function(){
 	var pim = util.isObject("Widget.PIM") ? Widget.PIM : {};
 	
-	dohx.add({name:"AddressBook",
+	dohx.add({name:"setupHelper",
 		tests:[
 			//
 			// Preconditions
