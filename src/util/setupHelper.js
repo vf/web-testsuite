@@ -11,6 +11,8 @@
 				name:"Helper Widget",
 				instructions:[
 					"This widget will show some relevant information which you might need to configure your test widget(s) properly.",
+					"Please make sure you have at least one AddressBook item available.",
+					"Please make sure you have at least one Calendar item available."
 				],
 				test:function(t){
 					t.success(true);
