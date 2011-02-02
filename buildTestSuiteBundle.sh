@@ -18,10 +18,11 @@ rm release/widget-testsuite-$1.zip 2> /dev/null # Remove an already generated bu
 
 rm -Rf $TMP_DIR 2> /dev/null
 mkdir $TMP_DIR
+mkdir $TMP_DIR/helper
 
 #cp dist/jil-test-signed/test* $TMP_DIR
 cp dist/unsigned/test* $TMP_DIR
-cp dist/unsigned/util* $TMP_DIR
+cp dist/unsigned/util* $TMP_DIR/helper
 cp ReleaseNotes.txt $TMP_DIR
 cp tests-all.xls $TMP_DIR/tests-all-$1.xls
 cp tests-new.xls $TMP_DIR/tests-new-$1.xls
