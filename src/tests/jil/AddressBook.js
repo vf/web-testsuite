@@ -79,9 +79,15 @@
 				}
 			},
 			{
+				// The spec says
+				// 		When accessing the JIL pre-defined fields(fullName, address, homePhone, etc),
+				// 		the WRT should map values from the native address book as well as possible.
+				// we interpret it as that those properties shall be accessible, that means they should exist
+				// and not be absent.
+				// And the types of the properties are all defined as "String" so they are expected to be empty strings,
+				// rather than undefined!
 				id:300,
 				name:"getAddressBookItem - Verify returned 'AddressBookItem' object.",
-// fails if e.g. one value is not given, then the property is missing.... what does the spec say????? not found yet
 				requiredObjects:["Widget.PIM.getAddressBookItem"],
 				test:function(t){
 					var item = pim.getAddressBookItem(config.validAddressBookItemId)
