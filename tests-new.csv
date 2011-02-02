@@ -1,4 +1,16 @@
 "test file",ID,name,instructions,"expected result"
+test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3100,"Protocol   Test codec  h263  from  test video long h263 lq 3gp ","Click 'GO' to play video.","Did you see the video?"
+test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3110,"Protocol   Test codec  h263  from   virtual videos test video long h263 lq 3gp ","Click 'GO' to play video.","Did you see the video?"
+test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3120,"Protocol   Test codec  mpeg4  from  test video loop mpeg4 mp4 ","Click 'GO' to play video.","Did you see the video?"
+test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3130,"Protocol   Test codec  mpeg4  from   virtual videos test video loop mpeg4 mp4 ","Click 'GO' to play video.","Did you see the video?"
+test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3140,"Protocol   Test codec  theora  from  test video long theora ogv ","Click 'GO' to play video.","Did you see the video?"
+test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3150,"Protocol   Test codec  theora  from   virtual videos test video long theora ogv ","Click 'GO' to play video.","Did you see the video?"
+test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3160,"Protocol   Test codec  theora  from  test video loop theora ogv ","Click 'GO' to play video.","Did you see the video?"
+test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3170,"Protocol   Test codec  theora  from   virtual videos test video loop theora ogv ","Click 'GO' to play video.","Did you see the video?"
+test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3180,"Protocol   Test codec  webm  from  test video long webm webm ","Click 'GO' to play video.","Did you see the video?"
+test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3190,"Protocol   Test codec  webm  from   virtual videos test video long webm webm ","Click 'GO' to play video.","Did you see the video?"
+test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3200,"Protocol   Test codec  webm  from  test video loop webm webm ","Click 'GO' to play video.","Did you see the video?"
+test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3210,"Protocol   Test codec  webm  from   virtual videos test video loop webm webm ","Click 'GO' to play video.","Did you see the video?"
 test_misc_uri_sms.wgt,ID_JIL_sms_URI_scheme_100,"Only one local number","Follow the instructions on the screen.","Did the SMS app open a new message
 * to 12345?"
 test_misc_uri_sms.wgt,ID_JIL_sms_URI_scheme_200,"Only one global number","Follow the instructions on the screen.","Did the SMS app open a new message

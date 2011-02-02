@@ -1,3 +1,17 @@
+Version 1.8.5
+=============
+* added media query orientation tests
+* automated media query width+height tests (less user interaction required)
+* new "sms:" URI tests
+* new "mailto:" URI tests
+* fixed xhr/ports tests, the streaming tests need to check statusCode=3 (instead of 4, since streaming is continuous)
+* fixed a couple of license issues, replaced audio+video by creative commons licensed material
+* JIL security policy: prevent from running certain tests multiple times, fixed some (un)supported APIs
+* Accelerometer: made timeouts longer
+* fixed name used in the ID of util-setupHelper.wgt (used to be the wrong "AddressBook" is "setupHelper" now)
+* moved util-widgets in the release into directory "helper"
+* added getCalendarItem() and getAddressBookItem() for Nokia to the supported APIs
+
 Version 1.8.4
 =============
 * AudioPlayer: make changing volume easier (on android) by playing music at this time

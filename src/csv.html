@@ -254,7 +254,8 @@
 				return lines.join("\n");
 			},
 			createAllIdsJs:function(){
-				return embed.toJson(this._allTestIds);
+				// One ID per line so we can see diffs better.
+				return embed.toJson(this._allTestIds).replace(/,/g, ",\n");
 			},
 			_renderItem:function(item){
 				item = "" + item; // Make sure its a string! So we can do indexOf().
