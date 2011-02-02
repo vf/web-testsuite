@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="jil-api-tests" default="default">
 
-    <description>
-        Packages the jil-api-test widgets
-    </description>
-
-    <!-- include antcontrib to enable additional tasks like foreach or popertyregexp -->
-    <taskdef resource="net/sf/antcontrib/antlib.xml">
-        <classpath>
-            <pathelement location="${basedir}/util/ant-contrib-1.0b3.jar"/>
-        </classpath>
-    </taskdef>
+	<description>
+		Packages the jil-api-test widgets
+	</description>
+	
+	<!-- include antcontrib to enable additional tasks like foreach or popertyregexp -->
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="${basedir}/util/ant-contrib-1.0b3.jar"/>
+		</classpath>
+	</taskdef>
 
 	<!-- set some directories -->
 	<property name="dist" location="dist/unsigned"/>
@@ -140,17 +140,17 @@
         <mkdir dir="${tmp}"/>
         <copy todir="${tmp}">
             <fileset dir="${src}">
-                <include name="**/css/*"/>
-                <include name="**/img/*"/>
+                <include name="css/*"/>
+                <include name="img/*"/>
                 <include if="isAudio" name="**/test-audio/**"/>
                 <include if="isAudioMp3Only" name="**/test-audio/mp3/*"/>
                 <include if="isVideo" name="**/test-video/**"/>
-                <include name="**/js/doh2/*.js"/>
                 <include name="**/${script-src-prefix-path}${test}.js"/>
                 <include name="**/${script-src-prefix-path}${test}.css"/>
-                <include name="**/js/*.js"/>
+                <include name="js/doh2/*.js"/>
+                <include name="js/*.js"/>
+				<!-- Make sure the compat is NOT in there!!! -->
                 <exclude name="**/js/compat.js"/>
-                <include name="**/*.tpl"/>
             </fileset>
         </copy>
     </target>
