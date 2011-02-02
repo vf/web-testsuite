@@ -572,8 +572,8 @@ var configHelper = {
 					"Widget.Multimedia.isVideoPlaying",
 					"Widget.Multimedia.VideoPlayer.*",
 					"Widget.PIM.exportAsVCard",
-					"Widget.PIM.getCalendarItem",
 					//"Widget.PIM.getAddressBookItem",
+					//"Widget.PIM.getCalendarItem",
 					"Widget.PIM.onCalendarItemAlert",
 					"Widget.PIM.CalendarItem.alarmed",
 					"Widget.onRestore",
@@ -592,30 +592,39 @@ var configHelper = {
 			};
 			// Get the first calendarItemId found.
 			ret._meta.numAsynchConfigs++; // We have an asynch config parameter here, "register" it.
-			var pim = Widget.PIM;
-			pim.onCalendarItemsFound = function(items){
-				if (items.length>0){
-					config.validCalendarItemId = items[0].calendarItemId;
+			try{
+				var pim = Widget.PIM;
+				pim.onCalendarItemsFound = function(items){
+					if (items.length>0){
+						config.validCalendarItemId = items[0].calendarItemId;
+					}
+					setTimeout(function(){ pim.onCalendarItemsFound = null; }, 1);
+					configHelper.asynchConfigDone();
 				}
-				setTimeout(function(){ pim.onCalendarItemsFound = null; }, 1);
-				configHelper.asynchConfigDone();
+				var item = new pim.CalendarItem();
+				item.eventName = "*";
+				pim.findCalendarItems(item, 0, 1);
+			}catch(e){
+				ret._meta.numAsynchConfigs--; // Decrease it again, since it obviously failed.
 			}
-			var item = new pim.CalendarItem();
-			item.eventName = "*";
-			pim.findCalendarItems(item, 0, 1);
 			
 			// Get the first addressbook item
 			ret._meta.numAsynchConfigs++; // We have an asynch config parameter here, "register" it.
-			var addr = new pim.AddressBookItem();
-			addr.setAttributeValue("fullName", null);
-			Widget.PIM.onAddressBookItemsFound = function(items){
-				if (items.length>0){
-					config.validAddressBookItemId = items[0].addressBookItemId;
+			try{
+				var pim = Widget.PIM;
+				var addr = new pim.AddressBookItem();
+				addr.setAttributeValue("fullName", null);
+				Widget.PIM.onAddressBookItemsFound = function(items){
+					if (items.length>0){
+						config.validAddressBookItemId = items[0].addressBookItemId;
+					}
+					setTimeout(function(){ pim.onAddressBookItemsFound = null; }, 1);
+					configHelper.asynchConfigDone();
 				}
-				setTimeout(function(){ pim.onAddressBookItemsFound = null; }, 1);
-				configHelper.asynchConfigDone();
+				pim.findAddressBookItems(addr, 0, 1);
+			}catch(e){
+				ret._meta.numAsynchConfigs--; // Decrease it again, since it obviously failed.
 			}
-			pim.findAddressBookItems(addr, 0, 1);
 
 			
 			return ret;
