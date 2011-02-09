@@ -1,3 +1,15 @@
+Version 1.8.6
+=============
+* jil.Telephony: add more explicit tests for onCallEvent, fixed some callback resetting (Nokia only allows setting them to null, not "delete")
+* jil.Messaging: fixed various issues, added tests for generated Message-objects, fixed callback resettings (as above)
+* added more media query tests
+
+* making the test suite browser ready, added an all.html to run any test from there (not in the distro yet)
+* added HTML5 logo :)
+* added various licenses as required
+* tests can also use "dependsOn" now, to not execute depending on the success of another previous test
+* externalized the loader
+
 Version 1.8.5
 =============
 * added media query orientation tests
