@@ -46,11 +46,9 @@
 		</div>
 	</div>
 	
-	<button id="backButton" style="display:none; z-index:200; position:fixed; bottom:0; heigth:1.5em;" onclick="window.parent.showList()">BACK</button>
+	<button id="backButton" onclick="window.parent.showList()">BACK</button>
 	
-	<div id="loading" style="position:absolute; left:1em; top:1em; background-color:red; padding:1em; opacity:0.9;">
-		
-	</div>
+	<div id="loading">Loading tests...</div>
 	
 	<script type="text/javascript" src="js/doh2/doh.js"></script>
 	<script type="text/javascript" src="js/doh2/config.js"></script>

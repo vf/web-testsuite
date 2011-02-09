@@ -78,6 +78,7 @@ button[disabled=disabled] {
 	color: white;
 	padding: 0.3em;
 	height: 0.9em;
+	overflow: hidden;
 }
 
 .warningOverlay {
@@ -370,3 +371,23 @@ button[disabled=disabled] {
 		background-color: black;
 		color: red;
 	}
+	
+	
+#loading {
+	position:absolute;
+	left:1em;
+	top:1em;
+	background-color:red;
+	color:white;
+	padding:1em;
+	opacity:0.9;
+	z-index: 200;
+}
+
+#backButton {
+	display:none;
+	z-index:200;
+	position:fixed;
+	bottom:0;
+	height:1.5em;
+}
