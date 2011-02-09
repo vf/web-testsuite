@@ -42,6 +42,17 @@
 		return msg;
 	}
 	
+	var messageProperties = "attachments bccAddress body callbackNumber ccAddress destinationAddress isRead messageId messageProperties messageType subject time validityPeriodHours".split(" ");
+	function showMessageInfo(info){
+// TODO just here because iterating over the props doesnt work, using toJson()
+		var ret = [];
+		for (var i=0, l=messageProperties.length; i<l; i++){
+			var p = messageProperties[i];
+			ret.push(p+": "+embed.toJson(info[p]));
+		}
+		return ret.join(", ");
+	}
+	
 	dohx.add({name:"Messaging",
 		mqcExecutionOrderBaseOffset:200000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:[
@@ -75,8 +86,8 @@
 					_testRecipients.sms = getPref("Please enter a phone number to send test SMS to!", "sms");
 					_testRecipients.mms = getPref("Please enter a phone number to send test MMS to!", "mms", _testRecipients.sms);
 					_testRecipients.email = getPref("Please enter an email address to send test Emails to!", "email");
-					//_testRecipients.sms = "01743004595";
-					//_testRecipients.mms = "01743004595";
+					//_testRecipients.sms = "";
+					//_testRecipients.mms = _testRecipients.sms;
 					//_testRecipients.email = "wk@uxebu.com";
 					t.success("Preconditions met, user confirmed.");
 				}
@@ -88,34 +99,67 @@
 			{
 				id: 100,
 				name: "createMessage - Create SMS (and send it).",
-				requiredObjects:["Widget.Messaging.createMessage", "Widget.Messaging.sendMessage"],
+				requiredObjects:["Widget.Messaging.createMessage", "Widget.Messaging.sendMessage", "Widget.Messaging.MessageTypes.SMSMessage"],
 				test: function(t) {
 					var msg = _createTestMessage("sms");
 					wm.sendMessage(msg);
-					t.success("Message created without any error (and sent)");
+					t.success("Created and sent. " + showMessageInfo(msg));
+				}
+			},
+			{
+				// Spec says about "messageId":
+				// 		This property is read only and is set by the deviceÕs widget runtime environment.
+				id: 110,
+				name: "sms.messageId - Verify that the generated message has an ID.",
+				test: function(t) {
+					var id = _createdMessages.sms.messageId;
+					t.assertTrue(!!id, "messageId not set, value was: '" + id + "'.");
+					return id;
 				}
 			},
 			{
 				id: 200,
 				name: "createMessage - Create MMS (and send it).",
-				requiredObjects:["Widget.Messaging.createMessage", "Widget.Messaging.sendMessage"],
+				requiredObjects:["Widget.Messaging.createMessage", "Widget.Messaging.sendMessage", "Widget.Messaging.MessageTypes.MMSMessage"],
 				test: function(t) {
 					var msg = _createTestMessage("mms");
 					wm.sendMessage(msg);
-					t.success("Message created without any error (and sent)");
+					t.success("Created and sent. " + showMessageInfo(msg));
+				}
+			},
+			{
+				// Spec says about "messageId":
+				// 		This property is read only and is set by the deviceÕs widget runtime environment.
+				id: 210,
+				name: "mms.messageId - Verify that the generated message has an ID.",
+				test: function(t) {
+					var id = _createdMessages.mms.messageId;
+					t.assertTrue(!!id, "messageId not set, value was: '" + id + "'.");
+					return id;
 				}
 			},
 			{
 				id: 300,
 				name: "createMessage - Create Email (and send it).",
-				requiredObjects:["Widget.Messaging.createMessage", "Widget.Messaging.sendMessage"],
+				requiredObjects:["Widget.Messaging.createMessage", "Widget.Messaging.sendMessage", "Widget.Messaging.MessageTypes.EmailMessage"],
 				test: function(t) {
 					var msg = _createTestMessage("email");
 					wm.sendMessage(msg);
-					t.success("Message created without any error (and sent)");
+					t.success("Created and sent. " + showMessageInfo(msg));
 				}
 			},
-/*			{
+			{
+				// Spec says about "messageId":
+				// 		This property is read only and is set by the deviceÕs widget runtime environment.
+				id: 310,
+				name: "email.messageId - Verify that the generated message has an ID.",
+				test: function(t) {
+					var id = _createdMessages.email.messageId;
+					t.assertTrue(!!id, "messageId not set, value was: '" + id + "'.");
+					return id;
+				}
+			},
+			{
 				id: 400,
 				name: "createMessage - Throws INVALID_PARAMETER for missing param?",
 				requiredObjects:["Widget.Messaging.createMessage"],
@@ -158,7 +202,7 @@
 					wm.findMessages(msg, wmft.INBOX, 0, 10);
 				},
 				tearDown:function(){
-					delete wm.onMessagesFound;
+					wm.onMessagesFound = null;
 				}
 			},
 			{
@@ -174,19 +218,18 @@
 					wm.findMessages(msg, wmft.OUTBOX, 0, 10);
 				},
 				tearDown:function(){
-					delete wm.onMessagesFound;
+					wm.onMessagesFound = null;
 				}
 			},
 			
 			//
 			// getMessage
 			//
-*/			{
+			{
 				id: 800,
 				name: "getMessage - Verify SMS with content '" + _testMessage.body + "'.",
-				requiredObjects:["Widget.Messaging.getMessage", "Widget.Messaging.MessageTypes.SMSMessage"],
+				requiredObjects:["Widget.Messaging.getMessage", "Widget.Messaging.MessageTypes.SMSMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
 				instructions:"Please verify that at least one SMS had been sent.",
-				expectedResult:"Is this message shown correct?",
 				test: function(t){
 					var msg = wm.getMessage(wmt.SMSMessage, wmft.SENTBOX, 0);
 					t.assertEqual(_testMessage.body, msg.body);
@@ -254,22 +297,39 @@
 				id: 1200,
 				name: "deleteMessage - Delete SMS with content '" + _testMessage.body + "'.",
 				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.MMSMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
+				dependsOn: [110], // If test for sms.messageId had failed this test can't be executed successfully anyway.
 				test: function(t){
-					wm.deleteMessage(wmt.SMSMessage, wmft.SENTBOX, _createdMessages["sms"].messageId);
+					var id = _createdMessages["sms"].messageId;
+					var text = " Deleting message with messageId='" + id + "'. ";
+					try{
+						wm.deleteMessage(wmt.SMSMessage, wmft.SENTBOX, id);
+						t.success("OK." + text);
+					}catch(e){
+						t.failure(text + "Threw an unexpected exception: " + e);
+					}
 				}
 			},
 			{
 				id: 1300,
 				name: "deleteMessage - Delete EMail with subject '" + _testMessage.subject + "'.",
 				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.EmailMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
+				dependsOn: [310], // If test for sms.messageId had failed this test can't be executed successfully anyway.
 				test: function(t){
-					wm.deleteMessage(wmt.EmailMessage, wmft.SENTBOX, _createdMessages["email"].messageId);
+					var id = _createdMessages["email"].messageId;
+					var text = " Deleting message with messageId='" + id + "'. ";
+					try{
+						wm.deleteMessage(wmt.EmailMessage, wmft.SENTBOX, id);
+						t.success("OK." + text);
+					}catch(e){
+						t.failure(text + "Threw an unexpected exception: " + e);
+					}
 				}
 			},
 			{
 				id: 1400,
 				name: "deleteMessage - Delete already deleted MMS again.",
 				requiredObjects:["Widget.Messaging.deleteMessage", "Widget.Messaging.MessageTypes.MMSMessage", "Widget.Messaging.MessageFolderTypes.SENTBOX"],
+				dependsOn: [210], // If test for mms.messageId had failed this test can't be executed successfully anyway.
 				test: function(t) {
 					try{
 						wm.deleteMessage(wmt.MMSMessage, wmft.SENTBOX, _createdMessages["mms"].messageId);
