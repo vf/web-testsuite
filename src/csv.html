@@ -80,6 +80,7 @@
 	<script type="text/javascript" src="js/dohx.js"></script>
 	<script type="text/javascript" src="js/embed.js"></script>
 	<script type="text/javascript" src="js/config.js"></script>
+	<script type="text/javascript" src="testList.js"></script>
 	<script type="text/javascript">
 	
 		function selectTab(id){
@@ -290,61 +291,14 @@
 		}
 
 		configHelper.onConfigured = function(){
-			loadTestFile("tests/vendor/vodafone/metrics.js");
-			
-			loadTestFile("tests/base/window.js");
-			loadTestFile("tests/base/widget.js");
-			loadTestFile("tests/base/widget-update/update0.js");
-			loadTestFile("tests/base/widget-update/update1.js");
-			loadTestFile("tests/base/xhr/ports.js");
-			
-			loadTestFile("tests/jil/security/policy.js");
-			
-			loadTestFile("tests/jil/config.xml/jil-access-false.js");
-			loadTestFile("tests/jil/config.xml/jil-access-warp.js");
-			loadTestFile("tests/jil/config.xml/jil-access.js");
-			loadTestFile("tests/jil/config.xml/missing-access.js");
-			loadTestFile("tests/jil/config.xml/warp-jil-access.js");
-			
-			loadTestFile("tests/jil/AccelerometerInfo.js");
-			loadTestFile("tests/jil/AccountInfo.js");
-			loadTestFile("tests/jil/AddressBook.js");
-			loadTestFile("tests/jil/AddressBookItem.js");
-			loadTestFile("tests/jil/Application.js");
-			loadTestFile("tests/jil/AudioPlayer.js");
-			loadTestFile("tests/jil/Basics.js");
-			loadTestFile("tests/jil/Calendar.js");
-			loadTestFile("tests/jil/Camera.js");
-			loadTestFile("tests/jil/Config.js");
-			loadTestFile("tests/jil/DataNetworkInfo.js");
-			loadTestFile("tests/jil/Device.js");
-			loadTestFile("tests/jil/DeviceInfo.js");
-			loadTestFile("tests/jil/DeviceStateInfo.js");
-			loadTestFile("tests/jil/File.js");
-			//loadTestFile("tests/jil/MessageQuantities.js");
-			loadTestFile("tests/jil/Messaging.js");
-			loadTestFile("tests/jil/MessagingEmailAccount.js");
-			loadTestFile("tests/jil/MessagingFolder.js");
-			loadTestFile("tests/jil/PositionInfo.js");
-			loadTestFile("tests/jil/PowerInfo.js");
-			loadTestFile("tests/jil/RadioInfo.js");
-			loadTestFile("tests/jil/Telephony.js");
-			loadTestFile("tests/jil/VideoCamera.js");
-			loadTestFile("tests/jil/VideoPlayer.js");
-			loadTestFile("tests/jil/Widget.js");
-			
-			loadTestFile("tests/performance/jil/AddressBook.js");
-			
-			loadTestFile("tests/w3c/config.xml/warp.js");
-			
-			loadTestFile("tests/w3c/css/animation.js");
-			loadTestFile("tests/w3c/css/basics.js");
-			loadTestFile("tests/w3c/css/transform.js");
-			loadTestFile("tests/w3c/css/transition.js");
-			
-			loadTestFile("tests/misc/uri/sms.js");
-			loadTestFile("tests/misc/uri/mailto.js");
-			
+			var tests = [];
+			// Get all tests where the applies is true.
+			for (var cat in testList){
+				var files = testList[cat].files;
+				for (var i=0, l=files.length; i<l; i++){
+					loadTestFile(files[i]);
+				}
+			}			
 //*/			
 			setTimeout(function(){
 				dohx.dumpStatsLog();
@@ -355,7 +309,7 @@
 				document.getElementById("diffCsvNode").innerHTML = dohx.createCsvDiff() || "NO NEW DATA SETS";
 				document.getElementById("allIdsJsonNode").innerHTML = 'dohx.alreadyImportedTestIds = ' + dohx.createAllIdsJs();
 				document.getElementById("allCsvNode").innerHTML = dohx.createCsv();
-			} ,100);
+			} ,200);
 		};
 	</script>
 </body>
