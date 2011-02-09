@@ -420,7 +420,13 @@ Widget.Device.getFileSystemRoots = function(){return []};
 		return 0;
 	};
 	
-	wt.initiateVoiceCall = 
+	wt.initiateVoiceCall = function(phoneNumber){
+		setTimeout(function(){
+			if (wt.onCallEvent){
+				wt.onCallEvent(wt.CallRecordTypes.OUTGOING, phoneNumber);
+			}
+		}, 500);
+	};
 	wt.deleteCallRecord =
 	wt.deleteAllCallRecords = function(){}
 
@@ -522,7 +528,7 @@ Widget.Device.getFileSystemRoots = function(){return []};
 		this.ccAddress = [];
 		this.destinationAddress = [];
 		this.isRead = false;
-		this.messageId = "";
+		this.messageId = "emulated Data - "+(+new Date);
 		this.messagePriority= false;
 		this.messageType = "";
 		this.sourceAddress = "";
