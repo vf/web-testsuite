@@ -67,6 +67,7 @@
 		
 		function showList(){
 			var node = embed.byId("testRunner");
+			node.src = ""; // Empty the screen, so the next open doesnt show the left-overs.
 			embed.style(node, "display", "none");
 			embed.style(embed.body(), "overflow", "auto");
 			window.scrollTo(0,0);
