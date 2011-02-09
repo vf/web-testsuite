@@ -58,7 +58,7 @@
 				test:function(t){
 					wt.onCallRecordsFound = function(res){
 						t.assertTrue(util.isArray(res));
-						t.result = res.length;
+						t.result = res && res.length;
 					}
 					var searchFor = new wt.CallRecord();
 					searchFor.callRecordName = "*";
