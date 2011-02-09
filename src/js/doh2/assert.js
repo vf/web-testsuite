@@ -63,7 +63,7 @@ doh.assert = {
 			(doh.assert._objPropEq(expected, actual)) ){
 			return true;
 		}
-		throw new doh.assert.Failure("assertEqual() failed:\n\texpected\n\t\t"+expected+"\n\tbut got\n\t\t"+actual+"\n\n", hint);
+		throw new doh.assert.Failure("assertEqual() failed:\n\texpected\n\t\t'"+expected+"'\n\tbut got\n\t\t'"+actual+"'\n\n", hint);
 	},
 
 	assertNotEqual:function(/*Object*/ notExpected, /*Object*/ actual, /*String?*/ hint){

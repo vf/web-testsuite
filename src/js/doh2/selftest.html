@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>D.O.H. v2</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+</head>
+<body>
+	
+	<h1>Self tests</h1>
+	<p>This will run several tests using this library, don't be scared when some
+	of the test fail, this is intentionally, to test the test suite itself.</p>
+	
+	<h2>Your result should look like this:</h2>
+	<pre style="font-size: large; color: red;">
+<span id="numTestsRan">0</span> tests ran, <span id="numFailures">0</span> failures, <span id="numErrors">0</span> errors
+	</pre>
+	
+	<script type="text/javascript" src="doh.js"></script>
+	<script type="text/javascript" src="config.js"></script>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript" src="deferred.js"></script>
+	<script type="text/javascript" src="assert.js"></script>
+	<script type="text/javascript" src="ui.js"></script>
+	<script type="text/javascript" src="selftests.js"></script>
+	<script type="text/javascript">
+		// Go through all the tests and find out how many should fail
+		// and how many should pass, the name of each test tells.
+		// And fill the HTML above appropriately.
+		var numTests = 0,
+			numFailures = 0,
+			numErrors = 0;
+		for (var i=0, g; g=doh._groups[i]; i++){
+			numTests += g.tests.length;
+			for (var j=0, t; t=g.tests[j]; j++){
+				if (t.name.indexOf("fail: ")===0){
+					numFailures++;
+				} else if (t.name.indexOf("error: ")===0){
+					numErrors++;
+				}
+			}
+		}
+		document.getElementById("numTestsRan").innerHTML = numTests;
+		document.getElementById("numFailures").innerHTML = numFailures;
+		document.getElementById("numErrors").innerHTML = numErrors;
+		
+		doh.run();
+	</script>
+</body>
+</html>

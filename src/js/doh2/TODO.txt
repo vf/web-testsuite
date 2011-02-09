@@ -3,3 +3,9 @@ TODO
   currently the error is caught, so the suite continues to execute, but shall this throw
   an error, make the test fail, be silent? being silent means that the
   following tests may fail because the test couldnt clean up ...
+* allow success() take multiple parameters, just like console.log()
+  in doh.js line 99 we would have to do
+    d.test.result = Array.prototype.slice.apply(arguments);
+  instead of
+	d.test.result = msg;
+
