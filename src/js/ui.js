@@ -100,13 +100,13 @@ var ui = {};
 		},
 		
 		notApplicable:function(test){
-			var data = {name:test.name, id:util.getTestId(test), testSourceCode:this._getSourceCode(test)};
+			var data = this._getResultsData(test);
 			n.innerHTML += this._render(data, this._templates.NOT_APPLICABLE);
 			doh.ui.results.push({result:"not applicable", test:data});
 		},
 		
 		unsupportedApi:function(test, apis){
-			var data = {name:test.name, id:util.getTestId(test), apis:apis.join(", "), testSourceCode:this._getSourceCode(test)};
+			var data = this._getResultsData(test, {apis:apis.join(", ")});
 			n.innerHTML += this._render(data, this._templates.UNSUPPORTED_API);
 			doh.ui.results.push({result:"unsupported API", test:data});
 		},
@@ -122,12 +122,7 @@ var ui = {};
 			} else {
 				resString = embed.toJson(result);
 			}
-			var data = {
-				name:name,
-				id:util.getTestId(test),
-				result:resString,
-				testSourceCode:this._getSourceCode(test)
-			};
+			var data = this._getResultsData(test, {result:resString});
 			n.innerHTML += this._render(data, this._templates.SUCCESS);
 			doh.ui.results.push({result:"success", test:data});
 		},
@@ -147,7 +142,6 @@ var ui = {};
 		_failureOrError:function(test, error, isError){
 			var msg = (error.actualError && error.actualError.type) || error.message;
 			var errorParts = [];
-			var name = test.name;
 			// In actualError the error that was really thrown, most probably not an instance/child of Error, like a JIL Widget.Exception.
 			if (error.actualError){
 				for (var i in error.actualError){
@@ -161,14 +155,11 @@ var ui = {};
 			for (var i in error){
 				errorParts.push("<strong>"+i+"</strong>: "+error[i]);
 			}
-			var data = {
-				name: name,
-				id: util.getTestId(test),
-				messagePreview: msg.length>60 ? msg.substr(0,58)+"..." : msg,
+			var data = this._getResultsData(test, {
+				messagePreview: msg,
 				error:errorParts.join("\n"),
-				failureOrError:isError ? "error" : "failure",
-				testSourceCode:this._getSourceCode(test)
-			};
+				failureOrError:isError ? "error" : "failure"
+			});
 			n.innerHTML += this._render(data, this._templates.FAILURE_OR_ERROR);
 			doh.ui.results.push({result:isError ? "error" : "failure", test:data});
 		},
@@ -254,6 +245,17 @@ var ui = {};
 				}
 			}
 			return ret;
+		},
+		
+		_getResultsData:function(test, mixin){
+			// Returns results data for all possible cases, to provide a unique set of base data we do it in here.
+			var data = {
+				name:test.name,
+				id:util.getTestId(test),
+				testSourceCode:this._getSourceCode(test),
+				_rawId:test.id
+			};
+			return embed.mixin(data, mixin);
 		}
 	};
 })();
