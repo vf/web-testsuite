@@ -17,8 +17,8 @@
       %)
       <span class="notCustomConfigured" style="display:none; color:#FBB;">[not configured]</span>
     </div>
-    <a class="copyright" href="http://w3.org">
-      <img alt="by HTML5" src="img/logo.png"></img>
+    <a class="copyright" href="http://w3.org" title="HTML5 Logo by W3C">
+      <img alt="HTML5 Logo by W3C" src="img/logo.png"></img>
     </a>
     <div class="content"></div>
     <div id="dbg" style="color:red;"></div>
@@ -48,7 +48,8 @@
         <button class="noButton">No</button>
       </div>
     </div>
-    <button id="backButton" onclick="window.parent.showList()" style="display:none; z-index:200; position:fixed; bottom:0; heigth:1.5em;">BACK</button>
+    <button id="backButton" onclick="window.parent.showList()">BACK</button>
+    <div id="loading">Loading tests...</div>
     <script src="js/doh2/doh.js" type="text/javascript"></script>
     <script src="js/doh2/config.js" type="text/javascript"></script>
     <script src="js/doh2/util.js" type="text/javascript"></script>
@@ -63,34 +64,7 @@
     <script src="js/embed.js" type="text/javascript"></script>
     <script src="js/config.js" type="text/javascript"></script>
     <!-- Load it after the compat, so we can use Widget, etc. -->
-    <script type="text/javascript">// Try to override the console.log, so we can use it in the code, mainly for developing purposes though.
-		try{
-			var dbgNode = document.getElementById("dbg");
-			console = {log:function(){
-				dbgNode.innerHTML += Array.prototype.slice.call(arguments, 0).join(" ")+" ";
-			}};
-		}catch(e){}
-		
-		configHelper.onConfigured = function(){
-			var node = document.createElement("script");
-			node.type = "text/javascript";
-			node.src = "tests/w3c/config.xml/warp.js?nocache="+(+new Date());
-			document.body.appendChild(node);
-			// Add the timeout, just so the appended file above gets the time to load and run ... unfortunately not really bullet-proof
-			// but we are "only" doing that so the number of tests are shown properly.
-			setTimeout(function(){
-				util.query(".statusBar .numTests")[0].innerHTML = doh._numTests;
-				try{
-					doh.run();
-				}catch(e){
-					util.query(".content")[0].innerHTML += e;
-				}
-			}, 100);
-		};
-		if (config._meta.numAsynchConfigs==0){
-			configHelper.finishConfiguration();
-		}
-		
-		embed.style(embed.byId("backButton"), "display", location.href.match("embedded=true") ? "block" : "none");</script>
+    <script type="text/javascript">var TEST_FILE = "tests/w3c/config.xml/warp.js";</script>
+    <script src="js/loader.js" type="text/javascript"></script>
   </body>
 </html>
