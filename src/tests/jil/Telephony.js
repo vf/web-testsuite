@@ -12,6 +12,11 @@
 	
 	var DEFAULT_TIMEOUT = 60 * 1000; // Wait about a minute for receiving/initiating a call.
 	
+	function _resetOnCallEvent(){
+		// Actually we used to use "delete" but Nokia only understands setting onCallEvent to null.
+		wt.onCallEvent = null;
+	}
+	
 	dohx.add({name:"Telephony - Methods",
 		mqcExecutionOrderBaseOffset:240000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:["Widget.Telephony"],
@@ -407,9 +412,7 @@
 						t.success("onCallEvent was called.");
 					} 
 				},
-				tearDown:function(){
-					wt.onCallEvent = null;
-				}
+				tearDown: _resetOnCallEvent
 			},
 			{
 				id:2600,
@@ -428,9 +431,7 @@
 						t.assertEqual(wtcType.MISSED, recType);
 					} 
 				},
-				tearDown:function(){
-					wt.onCallEvent = null;
-				}
+				tearDown: _resetOnCallEvent
 			},
 			{
 				id:2700,
@@ -449,9 +450,7 @@
 						t.assertEqual(wtcType.RECEIVED, recType);
 					} 
 				},
-				tearDown:function(){
-					wt.onCallEvent = null;
-				}
+				tearDown: _resetOnCallEvent
 			},
 			{
 				id:2800,
@@ -469,9 +468,7 @@
 						t.assertEqual(wtcType.OUTGOING, recType);
 					} 
 				},
-				tearDown:function(){
-					delete wt.onCallEvent;
-				}
+				tearDown: _resetOnCallEvent
 			},
 			{
 				id:2900,
@@ -491,9 +488,7 @@
 						dohx.showInfo("API reported: ", phoneNumber);
 					} 
 				},
-				tearDown:function(){
-					wt.onCallEvent = null;
-				}
+				tearDown: _resetOnCallEvent
 			},
 			{
 				id:3000,
@@ -512,9 +507,7 @@
 						dohx.showInfo("API reported: ", phoneNumber);
 					} 
 				},
-				tearDown:function(){
-					wt.onCallEvent = null;
-				}
+				tearDown: _resetOnCallEvent
 			},
 			{
 				id:3100,
@@ -534,9 +527,7 @@
 						dohx.showInfo("API reported: ", phoneNumber);
 					} 
 				},
-				tearDown:function(){
-					delete wt.onCallEvent;
-				}
+				tearDown: _resetOnCallEvent
 			},
 			{
 				id:3200,
@@ -554,9 +545,7 @@
 					}
 					wt.initiateVoiceCall(_testRecipients.phoneNumber);
 				},
-				tearDown:function(){
-					wt.onCallEvent = null;
-				}
+				tearDown: _resetOnCallEvent
 			},
 			{
 				id:3210,
@@ -575,9 +564,7 @@
 					}
 					wt.initiateVoiceCall(_testRecipients.phoneNumber);
 				},
-				tearDown:function(){
-					wt.onCallEvent = null;
-				}
+				tearDown: _resetOnCallEvent
 			},
 			{
 				id:3220,
@@ -597,9 +584,7 @@
 					}
 					wt.initiateVoiceCall(num);
 				},
-				tearDown:function(){
-					wt.onCallEvent = null;
-				}
+				tearDown: _resetOnCallEvent
 			},
 			//
 			//	deleteCallRecord 
