@@ -48,6 +48,10 @@
 	
 	<button id="backButton" style="display:none; z-index:200; position:fixed; bottom:0; heigth:1.5em;" onclick="window.parent.showList()">BACK</button>
 	
+	<div id="loading" style="position:absolute; left:1em; top:1em; background-color:red; padding:1em; opacity:0.9;">
+		
+	</div>
+	
 	<script type="text/javascript" src="js/doh2/doh.js"></script>
 	<script type="text/javascript" src="js/doh2/config.js"></script>
 	<script type="text/javascript" src="js/doh2/util.js"></script>
@@ -63,38 +67,8 @@
 	<script type="text/javascript" src="js/embed.js"></script>
 	<script type="text/javascript" src="js/config.js"></script> <!-- Load it after the compat, so we can use Widget, etc. -->
 	<script type="text/javascript">
-
-		// Try to override the console.log, so we can use it in the code, mainly for developing purposes though.
-		try{
-			var dbgNode = document.getElementById("dbg");
-			console = {log:function(){
-				dbgNode.innerHTML += Array.prototype.slice.call(arguments, 0).join(" ")+" ";
-			}};
-		}catch(e){}
-		
-		configHelper.onConfigured = function(){
-			var node = document.createElement("script");
-			node.type = "text/javascript";
-			node.src = "{testFile}?nocache="+(+new Date());
-			document.body.appendChild(node);
-			// Add the timeout, just so the appended file above gets the time to load and run ... unfortunately not really bullet-proof
-			// but we are "only" doing that so the number of tests are shown properly.
-			setTimeout(function(){
-				util.query(".statusBar .numTests")[0].innerHTML = doh._numTests;
-				try{
-					doh.run();
-				}catch(e){
-					util.query(".content")[0].innerHTML += e;
-				}
-			}, 100);
-		};
-		if (config._meta.numAsynchConfigs==0){
-			configHelper.finishConfiguration();
-		}
-		
-		if (location.href.match("embedded=true")){
-			embed.style(embed.byId("backButton"), "display", "block");
-		}
+		var TEST_FILE = "{testFile}";
 	</script>
+	<script type="text/javascript" src="js/loader.js"></script>
 </body>
 </html>
