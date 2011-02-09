@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>misc (tests/w3c/mediaquery)</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type"></meta>
+    <link href="css/style.css" rel="stylesheet" type="text/css"></link>
+    <link href="tests/w3c/mediaquery/misc.css" rel="stylesheet" type="text/css"></link>
+    <style>@media all and (min-resolution: 10dpi) and (max-resolution: 19dpi) {#dpi10{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 20dpi) and (max-resolution: 29dpi) {#dpi20{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 30dpi) and (max-resolution: 39dpi) {#dpi30{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 40dpi) and (max-resolution: 49dpi) {#dpi40{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 50dpi) and (max-resolution: 59dpi) {#dpi50{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 60dpi) and (max-resolution: 69dpi) {#dpi60{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 70dpi) and (max-resolution: 79dpi) {#dpi70{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 80dpi) and (max-resolution: 89dpi) {#dpi80{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 90dpi) and (max-resolution: 99dpi) {#dpi90{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 100dpi) and (max-resolution: 109dpi) {#dpi100{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 110dpi) and (max-resolution: 119dpi) {#dpi110{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 120dpi) and (max-resolution: 129dpi) {#dpi120{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 130dpi) and (max-resolution: 139dpi) {#dpi130{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 140dpi) and (max-resolution: 149dpi) {#dpi140{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 150dpi) and (max-resolution: 159dpi) {#dpi150{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 160dpi) and (max-resolution: 169dpi) {#dpi160{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 170dpi) and (max-resolution: 179dpi) {#dpi170{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 180dpi) and (max-resolution: 189dpi) {#dpi180{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 190dpi) and (max-resolution: 199dpi) {#dpi190{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 200dpi) and (max-resolution: 209dpi) {#dpi200{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 210dpi) and (max-resolution: 219dpi) {#dpi210{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 220dpi) and (max-resolution: 229dpi) {#dpi220{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 230dpi) and (max-resolution: 239dpi) {#dpi230{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 240dpi) and (max-resolution: 249dpi) {#dpi240{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 250dpi) and (max-resolution: 259dpi) {#dpi250{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 260dpi) and (max-resolution: 269dpi) {#dpi260{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 270dpi) and (max-resolution: 279dpi) {#dpi270{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 280dpi) and (max-resolution: 289dpi) {#dpi280{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 290dpi) and (max-resolution: 299dpi) {#dpi290{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 300dpi) and (max-resolution: 309dpi) {#dpi300{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 310dpi) and (max-resolution: 319dpi) {#dpi310{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 320dpi) and (max-resolution: 329dpi) {#dpi320{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 330dpi) and (max-resolution: 339dpi) {#dpi330{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 340dpi) and (max-resolution: 349dpi) {#dpi340{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 350dpi) and (max-resolution: 359dpi) {#dpi350{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 360dpi) and (max-resolution: 369dpi) {#dpi360{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 370dpi) and (max-resolution: 379dpi) {#dpi370{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 380dpi) and (max-resolution: 389dpi) {#dpi380{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 390dpi) and (max-resolution: 399dpi) {#dpi390{display: block}#dpi {display: none;} }
+@media all and (min-resolution: 400dpi) and (max-resolution: 409dpi) {#dpi400{display: block}#dpi {display: none;} }</style>
+  </head>
+  <body>
+    <div class="statusBar">
+      <span class="numTestsDone">0</span>
+      /
+      <span class="numTests">0</span>
+      tests,
+      <span class="numFailed">0</span>
+      failed (
+      <span class="percentFailed">0</span>
+      %)
+      <span class="notCustomConfigured" style="display:none; color:#FBB;">[not configured]</span>
+    </div>
+    <a class="copyright" href="http://w3.org" title="HTML5 Logo by W3C">
+      <img alt="HTML5 Logo by W3C" src="img/logo.png"></img>
+    </a>
+    <div class="content"></div>
+    <div id="dbg" style="color:red;"></div>
+    <div class="manualTest">
+      <h1 class="testName"></h1>
+      <div class="whatToDo">
+        <h1>What to do?</h1>
+        <p class="text"></p>
+        <button class="goButton">GO</button>
+        <p class="testInfo"></p>
+      </div>
+      <div class="timeout">
+        <h1>Timeout</h1>
+        <p>
+          Test automatically fails in:
+          <span class="countdown">
+            <span class="minutes">0:00</span>
+            min
+          </span>
+          <!--<button class="failButton">Fail Now</button>i dont know how to implement this-->
+        </p>
+      </div>
+      <div class="result">
+        <h1>What should have happened?</h1>
+        <p class="text"></p>
+        <button class="yesButton">Yes</button>
+        <button class="noButton">No</button>
+      </div>
+    </div>
+    <button id="backButton" onclick="window.parent.showList()">BACK</button>
+    <div id="loading">Loading tests...</div>
+    <script src="js/doh2/doh.js" type="text/javascript"></script>
+    <script src="js/doh2/config.js" type="text/javascript"></script>
+    <script src="js/doh2/util.js" type="text/javascript"></script>
+    <script src="js/util.js" type="text/javascript"></script>
+    <script src="js/doh2/deferred.js" type="text/javascript"></script>
+    <script src="js/doh2/assert.js" type="text/javascript"></script>
+    <script src="js/ui.js" type="text/javascript"></script>
+    <script src="js/doh2_ui.js" type="text/javascript"></script>
+    <script src="js/dohx.js" type="text/javascript"></script>
+    <script src="js/compat.js" type="text/javascript"></script>
+    <!-- if compat is not packaged it wont be loaded -->
+    <script src="js/embed.js" type="text/javascript"></script>
+    <script src="js/config.js" type="text/javascript"></script>
+    <!-- Load it after the compat, so we can use Widget, etc. -->
+    <script type="text/javascript">var TEST_FILE = "tests/w3c/mediaquery/misc.js";</script>
+    <script src="js/loader.js" type="text/javascript"></script>
+  </body>
+</html>

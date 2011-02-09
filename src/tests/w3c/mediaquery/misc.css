@@ -1,0 +1,80 @@
+body {
+	background: white;
+}
+
+.query {
+	display: none;
+}
+
+p#touch1 {
+	display: none;
+}
+
+p#touch1 span {
+	display: none;
+}
+
+
+
+@media all and (resolution: 96dpi) {
+	li#dpi96 {
+		display: list-item;
+	}
+}
+
+@media all and (-o-touch) {
+	p#touch1 {
+		display: block;
+	}
+	p#touch2 {
+		display: none;
+	}
+	span.opera {
+		display: inline;
+	}
+}
+
+@media all and (-webkit-touch) {
+	p#touch1 {
+		display: block;
+	}
+	p#touch2 {
+		display: none;
+	}
+	span.webkit {
+		display: inline;
+	}
+}
+
+@media all and (-moz-touch) {
+	p#touch1 {
+		display: block;
+	}
+	p#touch2 {
+		display: none;
+	}
+	span.moz {
+		display: inline;
+	}
+}
+
+@media all and (-ms-touch) {
+	p#touch1 {
+		display: block;
+	}
+	p#touch2 {
+		display: none;
+	}
+	span.ms {
+		display: inline;
+	}
+}
+
+@media all and (touch) {
+	p#touch1 {
+		display: block;
+	}
+	p#touch2 {
+		display: none;
+	}
+}
