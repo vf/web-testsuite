@@ -10,8 +10,8 @@
 	// Currently we are using embed.toJson() and need the "vodafone-apps-manager2.2" version
 	// for those devices that have no JSON implementation natively.
 	if (!window["JSON"]){
-		__loadScriptFile("js/embedjs-vodafone-apps-manager2.2.js");
+		__loadScriptFile("embedjs-vodafone-apps-manager2.2.js");
 	} else {
-		__loadScriptFile("js/embedjs-android.js");
+		__loadScriptFile("embedjs-android.js");
 	}
 })();
