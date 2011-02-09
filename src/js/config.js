@@ -718,9 +718,9 @@ var configHelper = {
 					"Widget.Device.AccountInfo.phoneMSISDN",
 					"Widget.Device.AccountInfo.userSubscriptionType",
 					"Widget.Device.AccountInfo.userAccountBalance",
-					"Widget.Telephony*",
+					//"Widget.Telephony*",
 					"Widget.CallRecord*",
-					"Widget.Messag*", // includes Message, Messaging, etc.
+					//"Widget.Messag*", // includes Message, Messaging, etc.
 					"Widget.Attachment",
 					"Widget.Account",
 					"Widget.Config"
