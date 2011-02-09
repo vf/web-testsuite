@@ -3,6 +3,9 @@
 <head>
 	<title>HTML5 App test suite</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0,target-densitydpi=device-dpi"/>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
 
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
 	<link rel="stylesheet" href="css/all.css" type="text/css" />
@@ -28,7 +31,14 @@
 	<script type="text/javascript" src="testList.js"></script>
 	<script type="text/javascript">
 		;(function(){
-			var tests = testList.simple;
+			var tests = [];
+			// Get all tests where the requires match.
+			for (var cat in testList){
+				if (testList[cat].requires){
+					tests = tests.concat(testList[cat].files);
+				}
+			}
+			
 			var testListNode = embed.query(".content .testList")[0];
 			var lastHeadline = "";
 			
@@ -51,8 +61,16 @@
 				node.src = e.target._testFile.replace(/\.js$/, "").replace(/\//g, "-") + ".html?embedded=true";
 				window.scrollTo(0,0);
 				embed.style(node, "display", "block");
+				embed.style(embed.body(), "overflow", "hidden");
 			});
 		})();
+		
+		function showList(){
+			var node = embed.byId("testRunner");
+			embed.style(node, "display", "none");
+			embed.style(embed.body(), "overflow", "auto");
+			window.scrollTo(0,0);
+		}
 	</script>
 </body>
 </html>
