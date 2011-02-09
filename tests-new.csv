@@ -1,45 +1,36 @@
 "test file",ID,name,instructions,"expected result"
-test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3100,"Protocol   Test codec  h263  from  test video long h263 lq 3gp ","Click 'GO' to play video.","Did you see the video?"
-test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3110,"Protocol   Test codec  h263  from   virtual videos test video long h263 lq 3gp ","Click 'GO' to play video.","Did you see the video?"
-test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3120,"Protocol   Test codec  mpeg4  from  test video loop mpeg4 mp4 ","Click 'GO' to play video.","Did you see the video?"
-test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3130,"Protocol   Test codec  mpeg4  from   virtual videos test video loop mpeg4 mp4 ","Click 'GO' to play video.","Did you see the video?"
-test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3140,"Protocol   Test codec  theora  from  test video long theora ogv ","Click 'GO' to play video.","Did you see the video?"
-test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3150,"Protocol   Test codec  theora  from   virtual videos test video long theora ogv ","Click 'GO' to play video.","Did you see the video?"
-test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3160,"Protocol   Test codec  theora  from  test video loop theora ogv ","Click 'GO' to play video.","Did you see the video?"
-test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3170,"Protocol   Test codec  theora  from   virtual videos test video loop theora ogv ","Click 'GO' to play video.","Did you see the video?"
-test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3180,"Protocol   Test codec  webm  from  test video long webm webm ","Click 'GO' to play video.","Did you see the video?"
-test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3190,"Protocol   Test codec  webm  from   virtual videos test video long webm webm ","Click 'GO' to play video.","Did you see the video?"
-test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3200,"Protocol   Test codec  webm  from  test video loop webm webm ","Click 'GO' to play video.","Did you see the video?"
-test_jil_VideoPlayer.wgt,ID_JIL_VideoPlayer_3210,"Protocol   Test codec  webm  from   virtual videos test video loop webm webm ","Click 'GO' to play video.","Did you see the video?"
-test_misc_uri_sms.wgt,ID_JIL_sms_URI_scheme_100,"Only one local number","Follow the instructions on the screen.","Did the SMS app open a new message
-* to 12345?"
-test_misc_uri_sms.wgt,ID_JIL_sms_URI_scheme_200,"Only one global number","Follow the instructions on the screen.","Did the SMS app open a new message
-* to +12345678?"
-test_misc_uri_sms.wgt,ID_JIL_sms_URI_scheme_300,"Two local numbers","Follow the instructions on the screen.","Did the SMS app open a new message
-* to 2 recipients (12345, 223344)?"
-test_misc_uri_sms.wgt,ID_JIL_sms_URI_scheme_400,"Two global numbers","Follow the instructions on the screen.","Did the SMS app open a new message
-* to 2 recipients (+12345678, +333444)?"
-test_misc_uri_sms.wgt,ID_JIL_sms_URI_scheme_500,"Multiple local numbers","Follow the instructions on the screen.","Did the SMS app open a new message
-* to 5 recipients (12345, 223344, 444555, 9090909, 88888)?"
-test_misc_uri_sms.wgt,ID_JIL_sms_URI_scheme_600,"Multiple global numbers","Follow the instructions on the screen.","Did the SMS app open a new message
-* to 4 recipients (+12345678, +333444, +222222, +9990999)?"
-test_misc_uri_sms.wgt,ID_JIL_sms_URI_scheme_700,"One local and global number","Follow the instructions on the screen.","Did the SMS app open a new message
-* to 2 recipients (12345, +555666)?"
-test_misc_uri_sms.wgt,ID_JIL_sms_URI_scheme_800,"One global and local number","Follow the instructions on the screen.","Did the SMS app open a new message
-* to 2 recipients (+555666, 12345)?"
-test_misc_uri_sms.wgt,ID_JIL_sms_URI_scheme_1000,"One local number  body","Follow the instructions on the screen.","Did the SMS app open a new message
-* to 12345
-* with the content 'test content'?"
-test_misc_uri_sms.wgt,ID_JIL_sms_URI_scheme_1100,"One global number  body","Follow the instructions on the screen.","Did the SMS app open a new message
-* to +12345678
-* with the content 'test content'?"
-test_misc_uri_mailto.wgt,ID_JIL_mailto_URI_scheme_100,"mailto email1","Follow the instructions on the screen.","Did the mail client open the composer to
-* email1@home.com"
-test_misc_uri_mailto.wgt,ID_JIL_mailto_URI_scheme_200,"mailto  to email1","Follow the instructions on the screen.","Did the mail client open the composer to
-* email1@home.com"
-test_misc_uri_mailto.wgt,ID_JIL_mailto_URI_scheme_1000,"mailto email1 email2","Follow the instructions on the screen.","Did the mail client open the composer to
-* email1@home.com and email2@home.com"
-test_misc_uri_mailto.wgt,ID_JIL_mailto_URI_scheme_1100,"mailto  to email1 email2","Follow the instructions on the screen.","Did the mail client open the composer to
-* email1@home.com and email2@home.com"
-test_misc_uri_mailto.wgt,ID_JIL_mailto_URI_scheme_1200,"mailto email1 to email2","Follow the instructions on the screen.","Did the mail client open the composer to
-* email1@home.com and email2@home.com"
+test_w3c_mediaquery_orientation.wgt,ID_JIL_Mediaquery_orientation_100,"Portrait mode","1) Move the device into PORTRAIT mode.
+2) Click 'GO'!","See green colored line on the device screen."
+test_w3c_mediaquery_orientation.wgt,ID_JIL_Mediaquery_orientation_200,"Landscape mode","1) Move the device into LANDSCAPE mode.
+2) Click 'GO'!","See green colored line on the device screen."
+test_w3c_mediaquery_widthHeight.wgt,ID_JIL_Mediaquery_widthHeight_100,Preconditions,"1) Hold the device in PORTRAIT mode!
+2) For the next tests hold the device in PORTRAIT mode (until told otherwise)!
+3) Click 'GO'!","See green colored line on the device screen."
+test_w3c_mediaquery_widthHeight.wgt,ID_JIL_Mediaquery_widthHeight_200,"Portrait mode  check min max width","Follow the instructions on the screen.","See green colored line on the device screen."
+test_w3c_mediaquery_widthHeight.wgt,ID_JIL_Mediaquery_widthHeight_300,"Portrait mode  check min max height","Follow the instructions on the screen.","See green colored line on the device screen."
+test_w3c_mediaquery_widthHeight.wgt,ID_JIL_Mediaquery_widthHeight_400,"Portrait mode  check min max device width","Follow the instructions on the screen.","See green colored line on the device screen."
+test_w3c_mediaquery_widthHeight.wgt,ID_JIL_Mediaquery_widthHeight_500,"Portrait mode  check min max device height","Follow the instructions on the screen.","See green colored line on the device screen."
+test_w3c_mediaquery_widthHeight.wgt,ID_JIL_Mediaquery_widthHeight_1100,Preconditions,"1) Hold the device in LANDSCAPE mode!
+2) For the next tests hold the device in LANDSCAPE mode (until told otherwise)!
+3) Click 'GO'!","See green colored line on the device screen."
+test_w3c_mediaquery_widthHeight.wgt,ID_JIL_Mediaquery_widthHeight_1200,"Landscape mode  check min max width","Follow the instructions on the screen.","See green colored line on the device screen."
+test_w3c_mediaquery_widthHeight.wgt,ID_JIL_Mediaquery_widthHeight_1300,"Landscape mode  check min max height","Follow the instructions on the screen.","See green colored line on the device screen."
+test_w3c_mediaquery_widthHeight.wgt,ID_JIL_Mediaquery_widthHeight_1400,"Landscape mode  check min max device width","Follow the instructions on the screen.","See green colored line on the device screen."
+test_w3c_mediaquery_widthHeight.wgt,ID_JIL_Mediaquery_widthHeight_1500,"Landscape mode  check min max device height","Follow the instructions on the screen.","See green colored line on the device screen."
+test_w3c_mediaquery_misc.wgt,ID_JIL_Miscellaneous_media_queries_1,Precondition,"Please measure the width of your device with a ruler and enter the value. Press Done when you're ready.","See green colored line on the device screen."
+test_w3c_mediaquery_misc.wgt,ID_JIL_Miscellaneous_media_queries_100,"Touch media query","Follow the instructions on the screen.","Did it say YES?"
+test_w3c_mediaquery_misc.wgt,ID_JIL_Miscellaneous_media_queries_200,"device aspect ratio media query","Follow the instructions on the screen.","See green colored line on the device screen."
+test_w3c_mediaquery_misc.wgt,ID_JIL_Miscellaneous_media_queries_300,"dpi media query","Follow the instructions on the screen.","Is the value part of the range?"
+test_jil_Telephony.wgt,ID_JIL_Telephony_Methods_3210,"onCallEvent   after initiateVoiceCall gets correct CallRecordType","1) Click 'GO'.
+2) A call will be initiated.
+3) Hang up after a bit (if onCallEvent fires test will succeed, timeout otherwise)","See green colored line on the device screen."
+test_jil_Telephony.wgt,ID_JIL_Telephony_Methods_3220,"onCallEvent   after initiateVoiceCall gets correct phoneNumber","1) Click 'GO'.
+2) A call will be initiated.
+3) Hang up after a bit (if onCallEvent fires test will succeed, timeout otherwise)","See green colored line on the device screen."
+test_jil_Messaging.wgt,ID_JIL_Messaging_110,"sms messageId   Verify that the generated message has an ID ","Follow the instructions on the screen.","See green colored line on the device screen."
+test_jil_Messaging.wgt,ID_JIL_Messaging_210,"mms messageId   Verify that the generated message has an ID ","Follow the instructions on the screen.","See green colored line on the device screen."
+test_jil_Messaging.wgt,ID_JIL_Messaging_310,"email messageId   Verify that the generated message has an ID ","Follow the instructions on the screen.","See green colored line on the device screen."
+test_jil_Messaging.wgt,ID_JIL_Messaging_400,"createMessage   Throws INVALID PARAMETER for missing param ","Follow the instructions on the screen.","See green colored line on the device screen."
+test_jil_Messaging.wgt,ID_JIL_Messaging_500,"createMessage   Throws INVALID PARAMETER for invalid param ","Follow the instructions on the screen.","See green colored line on the device screen."
+test_jil_Messaging.wgt,ID_JIL_Messaging_600,"findMessages   Does callback fire ","Follow the instructions on the screen.","See green colored line on the device screen."
+test_jil_Messaging.wgt,ID_JIL_Messaging_700,"findMessages   Find message created  and sent  before ","Follow the instructions on the screen.","See green colored line on the device screen."
