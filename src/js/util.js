@@ -53,8 +53,7 @@ var util = new (doh.util.extend(function(){},{
 		//		It is used in the ui class and in the csv export.
 		var g = this.getObject("group.name", test) || groupName;
 		// Trim and replace all special chars, to have a proper test ID.
-		var group = g.replace(/^\s*/, "").replace(/\s*$/, "")
-					.replace(/[^0-9a-zA-Z]/g, "_");
+		var group = embed.trim(g).replace(/[^0-9a-zA-Z]/g, "_");
 		var ret = ("ID_" + group).replace(/_+/g, "_") // Replace multiple underscores with just one.;
 					.replace(/[_]+$/, "");
 		// CTC software has a limit of max. 40 chars for the ID.
