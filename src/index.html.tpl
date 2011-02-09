@@ -13,8 +13,8 @@
 		<span class="notCustomConfigured" style="display:none; color:#FBB;">[not configured]</span>
 	</div>
 	
-	<a href="http://w3.org" class="copyright">
-		<img src="img/logo.png" alt="by HTML5" />
+	<a href="http://w3.org" class="copyright" title="HTML5 Logo by W3C">
+		<img src="img/logo.png" alt="HTML5 Logo by W3C" />
 	</a>
 	
 	<div class="content"></div>
@@ -45,6 +45,8 @@
 			<button class="noButton">No</button>
 		</div>
 	</div>
+	
+	<button id="backButton" style="display:none; z-index:200; position:fixed; bottom:0; heigth:1.5em;" onclick="window.parent.showList()">BACK</button>
 	
 	<script type="text/javascript" src="js/doh2/doh.js"></script>
 	<script type="text/javascript" src="js/doh2/config.js"></script>
@@ -88,6 +90,10 @@
 		};
 		if (config._meta.numAsynchConfigs==0){
 			configHelper.finishConfiguration();
+		}
+		
+		if (location.href.match("embedded=true")){
+			embed.style(embed.byId("backButton"), "display", "block");
 		}
 	</script>
 </body>
