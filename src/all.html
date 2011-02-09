@@ -32,9 +32,9 @@
 	<script type="text/javascript">
 		;(function(){
 			var tests = [];
-			// Get all tests where the requires match.
+			// Get all tests where the applies is true.
 			for (var cat in testList){
-				if (testList[cat].requires){
+				if (testList[cat].applies){
 					tests = tests.concat(testList[cat].files);
 				}
 			}
