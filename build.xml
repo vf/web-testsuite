@@ -84,6 +84,10 @@
 		<copy file="${src}/index.html" todir="${tmp}"/>
 		<delete file="${tmp}/index.html.tpl"/>
 		
+		<!-- Create the whatever-test-name.html, by copying the index.html into it. -->
+		<propertyregex override="true" property="_htmlDestFile" input="${test}" regexp="/" replace="-" global="true"/>
+		<copy file="${src}/index.html" tofile="${src}/tests-${_htmlDestFile}.html"/>
+		
 		<!-- config.xml -->
 		
 		<property name="_tmp1" value="${testfile}" />
