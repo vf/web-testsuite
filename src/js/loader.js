@@ -36,7 +36,7 @@ function startTests(){
 	// Add the timeout, just so the appended file above gets the time to load and run ... unfortunately not really bullet-proof
 	// but we are "only" doing that so the number of tests are shown properly.
 	if (numTries>30){
-		loadingNode.innerHTML = 'This seems not to work<br /><a href="javasc'+'ript:numTries=0;startTests();">Try again</a>';
+		loadingNode.innerHTML = 'This seems not to work<br /><a href="javascript:numTries=0;startTests();">Try again</a>';
 	} else {
 		setTimeout(function(){
 			if (!doh._numTests){
@@ -62,6 +62,11 @@ if (config._meta.numAsynchConfigs==0){
 	configHelper.finishConfiguration();
 }
 
+var backButtonNode = embed.byId("backButton");
 if (location.href.match("embedded=true")){
-	embed.style(embed.byId("backButton"), "display", "block");
+	embed.style(backButtonNode, "display", "block");
 }
+
+embed.on(window, "onscroll", function(){
+	embed.style(backButtonNode, "bottom", "0");
+});
