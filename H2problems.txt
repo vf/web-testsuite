@@ -1,9 +1,0 @@
-* low battery bluetooth not useable.
-Bluetooth can't be turned on with low battery.
-So I plug in the USB cable for charging, but that doesnt allow me for turning on bluetooth either,
-so I can not use bluetooth in low-battery mode.
-
-* Bad german for error sending mail
-It says something like "Versenden Sie die Nachricht in 5min erneut" though its not me who is trying it again in 5min,
-but the device. So imho it should be "In 5min erneut versenden!"
-
