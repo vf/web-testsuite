@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML5 App test suite</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/all.css" type="text/css" />
+</head>
+<body>
+	<div class="statusBar">
+		HTML5 Apps Test Suite
+	</div>
+	
+	<a href="http://w3.org" class="copyright">
+		<img src="img/logo.png" alt="by HTML5" />
+	</a>
+	
+	<div class="content">
+		<div class="testList">
+			
+		</div>
+	</div>
+
+	<iframe id="testRunner"></iframe>
+	
+	<script type="text/javascript" src="js/embed.js"></script>
+	<script type="text/javascript" src="testList.js"></script>
+	<script type="text/javascript">
+		;(function(){
+			var tests = testList.simple;
+			var testListNode = embed.query(".content .testList")[0];
+			var lastHeadline = "";
+			
+			for (var i=0, l=tests.length; i<l; i++){
+				var t = tests[i];
+				var parts = t.replace(/^tests\/(.*)\.js$/, "$1").split("/");
+				if (parts[0] != lastHeadline){
+					embed.create("h1", {innerHTML:parts[0]}, testListNode);
+					lastHeadline = parts[0];
+				}
+				var name = parts[parts.length-1];
+				var details = parts.slice(1, -1).join(", ");
+				var readable = name + (details ? " (" + details + ")" : "");
+				var node = embed.create("a", {href:"javascript://", innerHTML:readable}, testListNode);
+				node._testFile = t;
+			}
+			
+			embed.on(testListNode, "click", function(e){
+				var node = embed.byId("testRunner");
+				node.src = e.target._testFile.replace(/\.js$/, "").replace(/\//g, "-") + ".html?embedded=true";
+				window.scrollTo(0,0);
+				embed.style(node, "display", "block");
+			});
+		})();
+	</script>
+</body>
+</html>

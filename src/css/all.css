@@ -1,0 +1,26 @@
+
+.content .testList {
+	padding: 1em;
+}
+
+	.content .testList a {
+		display: block;
+		padding: 0.5em;
+		border: 1px solid grey;
+		margin: 0.2em;
+		
+		color: darkorange;
+		font-weight: bold;
+	}
+
+
+#testRunner {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	z-index: 100;
+	display: none; /* Initially this layer should not be there! */
+}
