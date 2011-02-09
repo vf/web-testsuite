@@ -10,6 +10,8 @@
 		phoneNumber:undefined
 	};
 	
+	var DEFAULT_TIMEOUT = 60 * 1000; // Wait about a minute for receiving/initiating a call.
+	
 	dohx.add({name:"Telephony - Methods",
 		mqcExecutionOrderBaseOffset:240000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		requiredObjects:["Widget.Telephony"],
@@ -35,8 +37,9 @@
 						return ret;
 					}
 					
-					_testRecipients.phoneNumber = getPref("Please enter a phone number to call for testing!", "phoneNumber");
-					t.success("Preconditions met, user confirmed.");
+					// Make sure there are no leading spaces, Nokia doesn't like that.
+					_testRecipients.phoneNumber = embed.trim(getPref("Please enter a phone number to call for testing!", "phoneNumber"));
+					t.success("Preconditions met, user confirmed. (phone number is '" + _testRecipients.phoneNumber + "')");
 				}
 			},
 			//
@@ -393,7 +396,7 @@
 			{
 				id:2500,
 				name:"onCallEvent - Is callback invoked?",
-				timeout:30 * 1000,
+				timeout: DEFAULT_TIMEOUT,
 				instructions:[
 					"Click 'GO'.",
 					"Call this phone's number, make sure it rings.",
@@ -412,7 +415,7 @@
 				id:2600,
 				name:"onCallEvent - Verify call is '" + wtcType.MISSED + "'?",
 				requiredObjects:["Widget.Telephony.CallRecordTypes.MISSED"],
-				timeout:30 * 1000,
+				timeout: DEFAULT_TIMEOUT,
 				instructions:[
 					"Click 'GO'.",
 					"Call this phone's number, make sure it rings.",
@@ -433,7 +436,7 @@
 				id:2700,
 				name:"onCallEvent - Verify call is '" + wtcType.RECEIVED + "'?",
 				requiredObjects:["Widget.Telephony.CallRecordTypes.RECEIVED"],
-				timeout:30 * 1000,
+				timeout: DEFAULT_TIMEOUT,
 				instructions:[
 					"Click 'GO'.",
 					"Call this phone's number, make sure it rings.",
@@ -454,7 +457,7 @@
 				id:2800,
 				name:"onCallEvent - Verify call is '" + wtcType.OUTGOING + "'?",
 				requiredObjects:["Widget.Telephony.CallRecordTypes.OUTGOING"],
-				timeout:30 * 1000,
+				timeout: DEFAULT_TIMEOUT,
 				instructions:[
 					"Click 'GO'.",
 					"Put widget into mini/floating mode.",
@@ -474,12 +477,12 @@
 				id:2900,
 				name:"onCallEvent - Verify caller number for '" + wtcType.MISSED + "' call?",
 				requiredObjects:["Widget.Telephony.CallRecordTypes.MISSED"],
-				timeout:30 * 1000,
+				timeout: DEFAULT_TIMEOUT,
 				instructions:[
 					"Click 'GO'.",
 					"Call this phone's number, make sure it rings.",
 					"Don't pick up the phone!",
-					"This widget should be triggered and make this test pass automatically (times out otherwise)."
+					"The number you called from should be shown."
 				],
 				expectedResult:"Is the above number the one you called this phone from?",
 				test:function(t){
@@ -496,12 +499,11 @@
 				id:3000,
 				name:"onCallEvent - Verify caller number for '" + wtcType.RECEIVED + "' call?",
 				requiredObjects:["Widget.Telephony.CallRecordTypes.RECEIVED"],
-				timeout:30 * 1000,
 				instructions:[
 					"Click 'GO'.",
 					"Call this phone's number, make sure it rings.",
 					"Pick up the phone!",
-					"This widget should be triggered and make this test pass automatically (times out otherwise)."
+					"The number you called from should be shown."
 				],
 				expectedResult:"Is the above number the one you called this phone from?",
 				test:function(t){
@@ -518,13 +520,12 @@
 				id:3100,
 				name:"onCallEvent - Verify number for '" + wtcType.OUTGOING + "' call?",
 				requiredObjects:["Widget.Telephony.CallRecordTypes.OUTGOING"],
-				timeout:30 * 1000,
 				instructions:[
 					"Click 'GO'.",
 					"Put widget into mini/floating mode.",
 					"Open the dialer and call any number.",
 					"Hang up after it rang at least once.",
-					"This widget should be triggered and make this test pass automatically (times out otherwise)."
+					"The number you dialed should be shown, confirm it please!"
 				],
 				expectedResult:"Is the above number the one you dialed?",
 				test:function(t){
@@ -539,8 +540,8 @@
 			},
 			{
 				id:3200,
-				name:"onCallEvent after initiateVoiceCall",
-				timeout:30 * 1000,
+				name:"onCallEvent - after initiateVoiceCall fires at all",
+				timeout: DEFAULT_TIMEOUT,
 				requiredObjects:["Widget.Telephony.initiateVoiceCall"],
 				instructions:[
 					"Click 'GO'.",
@@ -552,6 +553,49 @@
 						t.success("onCallEvent fired");
 					}
 					wt.initiateVoiceCall(_testRecipients.phoneNumber);
+				},
+				tearDown:function(){
+					wt.onCallEvent = null;
+				}
+			},
+			{
+				id:3210,
+				name:"onCallEvent - after initiateVoiceCall gets correct CallRecordType",
+				timeout: DEFAULT_TIMEOUT,
+				requiredObjects:["Widget.Telephony.initiateVoiceCall"],
+				instructions:[
+					"Click 'GO'.",
+					"A call will be initiated.",
+					"Hang up after a bit (if onCallEvent fires test will succeed, timeout otherwise)",
+				],
+				test:function(t){
+					wt.onCallEvent = function(recType, phoneNumber){
+						t.assertEqual(wtcType.OUTGOING, recType);
+						t.result = recType;
+					}
+					wt.initiateVoiceCall(_testRecipients.phoneNumber);
+				},
+				tearDown:function(){
+					wt.onCallEvent = null;
+				}
+			},
+			{
+				id:3220,
+				name:"onCallEvent - after initiateVoiceCall gets correct phoneNumber",
+				timeout: DEFAULT_TIMEOUT,
+				requiredObjects:["Widget.Telephony.initiateVoiceCall"],
+				instructions:[
+					"Click 'GO'.",
+					"A call will be initiated.",
+					"Hang up after a bit (if onCallEvent fires test will succeed, timeout otherwise)",
+				],
+				test:function(t){
+					var num = _testRecipients.phoneNumber;
+					wt.onCallEvent = function(recType, phoneNumber){
+						t.assertEqual(num, phoneNumber);
+						t.result = phoneNumber;
+					}
+					wt.initiateVoiceCall(num);
 				},
 				tearDown:function(){
 					wt.onCallEvent = null;
