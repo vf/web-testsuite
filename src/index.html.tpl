@@ -13,8 +13,8 @@
 		<span class="notCustomConfigured" style="display:none; color:#FBB;">[not configured]</span>
 	</div>
 	
-	<a href="javascript:widget.openURL('http://vodafone.com')" class="copyright">
-		<img src="img/logo.png" alt="by Vodafone" />
+	<a href="http://w3.org" class="copyright">
+		<img src="img/logo.png" alt="by HTML5" />
 	</a>
 	
 	<div class="content"></div>
