@@ -69,10 +69,30 @@ dohx._testObject = {
 			t.failure("'" + missing[0] + "' is not implemented!");
 			return;
 		}
+		
+		// If no test is given and we basically use the test only for verifying the existence of some object,
+		// using requiredObjects succeed if they exist.
 		if (this.requiredObjects.length>0 && !this.test){
 			t.assertTrue(true);
 			return;
 		}
+		
+		// If a test depends on another to succeed verify this precondition.
+		if (this.dependsOn && this.dependsOn.length){
+			function _getResultById(id){
+				var res = doh.ui.results;
+				for (var i=0, l=res.length; i<l; i++){ if (res[i].test._rawId == id) return res[i]; }
+				return null;
+			}
+			for (var i=0, l=this.dependsOn.length; i<l; i++){
+				var res = _getResultById(this.dependsOn[i]);
+				if (!res || res.result!="success"){
+					throw new Error("Dependency not fullfilled: required test with ID ='" + this.dependsOn[i] + "' was '" + (res && res.result) + "' instead of expected 'success'.");
+					return;
+				}
+			}
+		}
+		
 		if (typeof this.test=="function"){
 			// Maybe no test is given.
 			return this.test(t);
