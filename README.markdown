@@ -21,7 +21,7 @@ We look for contributors from all sectors of mobile / web technologies.
 Whether you work at Mobile Handset Vendors, Network companies, build Mobile or Desktop browsers or emulators, create standards or implement them... We look for you!
 If you are interested in participating, download the testsuite, run it on your Software and submit your results! Every result helps us improving our testcoverage and brings us one step forward in becoming a serious datasource for browser capability difefrences!
 
-If you like what we did, start joining our mailing list (LINK) and begin to discuss your result/our tests!
+If you like what we did, start joining our [mailing list](http://groups.google.com/group/webtestsuite?hl=de) and begin to discuss your result/our tests!
 
 Provide patches, pull requests, fork away, build your project on top of ours, etc. We need your help to become a serious testing entity and database!
 
