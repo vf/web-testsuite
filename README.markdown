@@ -1,14 +1,17 @@
 # Webtestsuite (DRAFT)
 
 ## Links
-[twitter](https://twitter.com/webtestsuite)
-[google group](http://groups.google.com/group/webtestsuite?hl=de)
+[Wiki](https://github.com/vf/web-testsuite/wiki)  
+[twitter](https://twitter.com/webtestsuite)  
+[google groups](http://groups.google.com/group/webtestsuite?hl=de)
+
 
 ## About
 The _Webtestsuite_ was developed to create more visibility across multiple webrendering technologies (i.e. Desktop Browser, Mobile Browsers, Webruntimes for widgets, etc.). 
 The idea is to create a practical relevant set of tests as basis for all platform, targetable by web technologies, to create comparability and transparency over these platforms.
 HTML5 is still a new kid on the block and not all the features are available on all platforms, but to know what exists where and what is useable you still need deep knowledge. This _Webtestsuite_ aims to create visibility (first) on the practically relevant items.
-The _Webtestsuite_ itself is only a building block of this entire vision. In order to realize the full visibility not only the hereby provided tests need to be run, but the results need to be stored and visualized. Which is not part of this project (yet!!!).
+The _Webtestsuite_ itself is only a building block of this entire vision. In order to realize the full visibility not only the hereby provided tests need to be run, but the results need to be stored and visualized. Which is not part of this project (yet!!!). 
+See the [Roadmap](https://github.com/vf/web-testsuite/wiki/Roadmap) for more details on future planning.
 
 ## What is provided
 This project aims to create the technical platform to build an HTML5 App Test suite that aims not only on the HTML5 capabilities but also all extended functionality such as device APIs as provided by WAC (formerly JIL) APIs, PhoneGap, or any other project that allows to go well beyond HTML5.
@@ -18,10 +21,11 @@ The test suite is structured into multiple modules, which can be built as indivi
 
 ## Contributing
 We look for contributors from all sectors of mobile / web technologies. 
-Whether you work at Mobile Handset Vendors, Network companies, build Mobile or Desktop browsers or emulators, create standards or implement them... We look for you!
+Whether you work at Mobile Handset Vendors, Network companies, build mobile/ desktop browsers or emulators, create standards or implement them... __We look for you!__
+
 If you are interested in participating, download the testsuite, run it on your Software and submit your results! Every result helps us improving our testcoverage and brings us one step forward in becoming a serious datasource for browser capability difefrences!
 
-If you like what we did, start joining our mailing list (LINK) and begin to discuss your result/our tests!
+If you like what we did, start joining our mailing list <http://groups.google.com/group/webtestsuite?hl=de> and begin to discuss your result/our tests!
 
 Provide patches, pull requests, fork away, build your project on top of ours, etc. We need your help to become a serious testing entity and database!
 
