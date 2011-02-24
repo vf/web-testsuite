@@ -25,7 +25,7 @@ Widgets for now as ".wgt" files) and also as a website which can be hosted in so
 ## Contributing
 We look for contributors from all sectors of mobile / web technologies. 
 Whether you work at mobile handset vendors, network companies, build mobile/desktop browsers or emulators, create standards or implement them... __We look for you!__
-Find details here: [[contribute]]
+Find details here: <https://github.com/vf/web-testsuite/wiki/Contribute>
 
 
 ## Example Tests
