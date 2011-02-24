@@ -32,10 +32,12 @@ Find details here: <https://github.com/vf/web-testsuite/wiki/Contribute>
 
 ## Test philosophy
 The core of the webtestsuite is to make everything as transparent as possible while following the core principles of 
-our testsuite: [[Core principles]]
+our _webtestsuite_: <https://github.com/vf/web-testsuite/wiki/Core-principles>
 
 
 # Start using it
 
-If you like to run the tests on a device, check examples of testpieces to see how we actually did things or simply 
-start playing around with the _webtestsuite_, check out our [[getting started]] HOWTO to ramp up quickly!
+If you like to run the tests on a device or a website, check [__examples__](https://github.com/vf/web-testsuite/wiki/Run-tests) of testcode to see how we actually did 
+things or simply 
+start playing around with the _webtestsuite_ and check out our [HOWTO](https://github
+.com/vf/web-testsuite/wiki/Getting-started) to ramp up quickly!
