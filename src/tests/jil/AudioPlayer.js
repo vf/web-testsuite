@@ -18,7 +18,7 @@
 	var wm = util.isObject("Widget.Multimedia") ? Widget.Multimedia : {};
 	var wma = util.isObject("Widget.Multimedia.AudioPlayer") ? Widget.Multimedia.AudioPlayer : {};
 	var cf = config.fileSystem;
-	var inWidgetAudioFiles = cf.playableAudioFiles.inWidget;
+	var inWidgetAudioFiles = cf.playableAudioFiles.relativePath;
 	var onDeviceAudioFiles = cf.playableAudioFiles.onDevice;
 	
 	// This is a mini object, to wrap audio functionality and make it better useable inside the

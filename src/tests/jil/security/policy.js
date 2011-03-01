@@ -509,9 +509,9 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 			id: 600,
 			name:"AudioPlayer.open",
 			test:function(){
-				// We use the inWidget.songMp3 just because operas WRT for android currently cant open file:/// urls
+				// We use the relativePath.songMp3 just because operas WRT for android currently cant open file:/// urls
 				// it throws invalid_parameter ... grrrr but we want to be able to do this and the following tests :-|
-				Widget.Multimedia.AudioPlayer.open(config.fileSystem.playableAudioFiles.inWidget.songMp3);
+				Widget.Multimedia.AudioPlayer.open(config.fileSystem.playableAudioFiles.relativePath.songMp3);
 			}
 		},
 		{
@@ -1161,7 +1161,7 @@ throw new Error("TODO - a looooooooot of messaaging tests still missing");
 			id: 1506,
 			name:"Multimedia.VideoPlayer.open",
 			test:function(){
-				Widget.Multimedia.VideoPlayer.open(config.playableVideoFiles.mp4.inWidget);
+				Widget.Multimedia.VideoPlayer.open(config.playableVideoFiles.mp4.relativePath);
 			}
 		},
 		{

@@ -153,7 +153,7 @@ var configHelper = {
 				//-----------------+------------------------------------------
 				//loop.wav         | Uncomp. 16-bit PCM audio (PCM S16 LE)
 				//song.wav         | Stereo, 44.1 GHz, 16 bps
-				inWidget:{
+				relativePath:{
 					songFlac:"test-audio/song.flac",
 					songM4a:"test-audio/song.m4a",
 					songMp2:"test-audio/song.mp2",
@@ -200,33 +200,33 @@ var configHelper = {
 				//long-webm.webm   | VP8 video, 320*180, 30 fps
 				//loop-webm.webm   | Vorbis, Stereo, 44.1 GHz, 112 Kb/s
 				h263:{
-					inWidget:"test-video/long-h263_lq.3gp",
+					relativePath:"test-video/long-h263_lq.3gp",
 					onDevice:"/virtual/videos/test-video/long-h263_lq.3gp",
-					inWidget1:"test-video/loop-h263_lq.3gp",
+					relativePath1:"test-video/loop-h263_lq.3gp",
 					onDevice1:"/virtual/videos/test-video/loop-h263_lq.3gp"
 				},
 				h264:{
-					inWidget:"test-video/long-h264.mp4",
+					relativePath:"test-video/long-h264.mp4",
 					onDevice:"/virtual/videos/test-video/long-h264.mp4",
-					inWidget1:"test-video/loop-h264.mp4",
+					relativePath1:"test-video/loop-h264.mp4",
 					onDevice1:"/virtual/videos/test-video/loop-h264.mp4"
 				},
 				mpeg4:{
-					inWidget:"test-video/long-mpeg4.mp4",
+					relativePath:"test-video/long-mpeg4.mp4",
 					onDevice:"/virtual/videos/test-video/long-mpeg4.mp4",
-					inWidget1:"test-video/loop-mpeg4.mp4",
+					relativePath1:"test-video/loop-mpeg4.mp4",
 					onDevice1:"/virtual/videos/test-video/loop-mpeg4.mp4"
 				},
 				theora:{
-					inWidget:"test-video/long-theora.ogv",
+					relativePath:"test-video/long-theora.ogv",
 					onDevice:"/virtual/videos/test-video/long-theora.ogv",
-					inWidget1:"test-video/loop-theora.ogv",
+					relativePath1:"test-video/loop-theora.ogv",
 					onDevice1:"/virtual/videos/test-video/loop-theora.ogv"
 				},
 				webm:{
-					inWidget:"test-video/long-webm.webm",
+					relativePath:"test-video/long-webm.webm",
 					onDevice:"/virtual/videos/test-video/long-webm.webm",
-					inWidget1:"test-video/loop-webm.webm",
+					relativePath1:"test-video/loop-webm.webm",
 					onDevice1:"/virtual/videos/test-video/loop-webm.webm"
 				}
 			},

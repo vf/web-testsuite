@@ -18,7 +18,7 @@
 	var wd = util.isObject("Widget.Device") ? Widget.Device : {};
 	var wda = util.isObject("Widget.Device.ApplicationTypes") ? Widget.Device.ApplicationTypes : {};
 	var cfs = config.fileSystem;
-	var widgethomeMp3File = "/virtual/widgethome/" + cfs.playableAudioFiles.inWidget.songMp3;
+	var widgethomeMp3File = "/virtual/widgethome/" + cfs.playableAudioFiles.relativePath.songMp3;
 	var musicFolderMp3File = cfs.playableAudioFiles.onDevice.songMp3;
 	
 
