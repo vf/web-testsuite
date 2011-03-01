@@ -45,6 +45,8 @@ var testList = {
 			"tests/w3c/mediaquery/widthHeight.js",
 			"tests/w3c/mediaquery/misc.js",
 			
+			"tests/w3c/audio/properties.js",
+			
 			"tests/misc/uri/sms.js",
 			"tests/misc/uri/mailto.js",
 		]
