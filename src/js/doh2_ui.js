@@ -74,8 +74,6 @@ doh.ui = {
 	report:function(){
 		// summary: 
 		ui.report(doh._numTests, doh._groups.length, doh._numErrors, doh._numFailures, doh._numNotApplicable);
-		var el = util.query(".report .sendingResults")[0];
-		el.style.display = "block";
 		var infoData = [
 			"window.navigator.appCodeName",
 			"window.navigator.appName",
@@ -156,18 +154,22 @@ doh.ui = {
 		// ******************
 		info.__version__ = 20110104;
 		
-		util.xhrPost({
-			url:"http://developer.vodafone.com/widget-test/add/",
-			callback:function(){
-				el.innerHTML = "Test results sent.";
-				// Delay the hiding a bit, so the user sees it for sure.
-				setTimeout(function(){
-					// The Opera WRT doesn't seem to do this properly :(
-					el.style.display = "none";
-				}, 2000);
-			},
-			data: "info=" + window.encodeURIComponent(embed.toJson(info))
-				+ "&test_data=" + window.encodeURIComponent(embed.toJson(this.results))
-		});
+		if (confirm("Click OK to send the test results to 'developer.vodafone.com'")){
+			var el = util.query(".report .sendingResults")[0];
+			el.style.display = "block";
+			util.xhrPost({
+				url:"http://developer.vodafone.com/widget-test/add/",
+				callback:function(){
+					el.innerHTML = "Test results sent.";
+					// Delay the hiding a bit, so the user sees it for sure.
+					setTimeout(function(){
+						// The Opera WRT doesn't seem to do this properly :(
+						el.style.display = "none";
+					}, 2000);
+				},
+				data: "info=" + window.encodeURIComponent(embed.toJson(info))
+					+ "&test_data=" + window.encodeURIComponent(embed.toJson(this.results))
+			});
+		}
 	}
 };
