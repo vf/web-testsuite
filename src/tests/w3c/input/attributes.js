@@ -81,31 +81,46 @@
 				],
 				expectedResult:"Did the form NOT submit?",
 				test:function(t){
-					dohx.showInfo('<form onsubmit="t.failure(\'oops\'); return false;"><input type="text" required /><input type="submit" /></form>');
+					dohx.showInfo('<form id="_form"><input type="text" required /><input type="submit" /></form>');
+					embed.byId("_form").onsubmit = function(){
+						return false;
+					}
 				}
 			},
 			{
 				id:700,
-addIf:false, // cant stop the form submit after the t.success() :( ...
 				name:"required, validate non-empty field does submit",
 				instructions:[
 					"Click 'GO'!",
 					"Type something in the input field!",
 					"Click the submit button!"
 				],
-				//expectedResult:"Did the form NOT submit?",
 				test:function(t){
-					dohx.showInfo('<form onsubmit="t.success(); return false;"><input type="text" required /><input type="submit" /></form>');
+					dohx.showInfo('<form id="_form"><input type="text" required /><input type="submit" /></form>');
+					embed.byId("_form").onsubmit = function(){
+						t.success("Form did submit fine.");
+						return false;
+					};
 				}
 			},
 			{
 				id:800,
-				name:"pattern",
+				name:"pattern, simple positive test",
 				test:function(t){
-					dohx.showInfo('<input id="_pattern" pattern="[a-z]" title="Letters only accpeted." />');
+					dohx.showInfo('<input id="_pattern" pattern="[a-z]+" title="Letters only accpeted." />');
+					var e = embed.byId("_pattern");
+					e.value = "abcdefghijklmnopqrstuvwxyz";
+					t.assertEqual(true, e.validity.valid);
+				}
+			},
+			{
+				id:900,
+				name:"pattern, mismatch",
+				test:function(t){
+					dohx.showInfo('<input id="_pattern" pattern="[0-9]+" title="Letters only accpeted." />');
 					var e = embed.byId("_pattern");
 					e.value = "123";
-					t.assertTrue(true, e.validity.valid);
+					t.assertEqual(true, e.validity.valid);
 				}
 			},
 //*/
