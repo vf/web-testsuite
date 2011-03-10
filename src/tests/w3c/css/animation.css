@@ -46,6 +46,20 @@ div#test100.active {
 	100% {left: 0; width: 300px;}
 }
 
+@-moz-keyframes pos {
+	0% {left: 0; width: 300px;}
+	30% {left: 190px; width: 500px;}
+	70% {left: 190px; width: 100px;}
+	100% {left: 0; width: 300px;}
+}
+
+@-o-keyframes pos {
+	0% {left: 0; width: 300px;}
+	30% {left: 190px; width: 500px;}
+	70% {left: 190px; width: 100px;}
+	100% {left: 0; width: 300px;}
+}
+
 @keyframes pos {
 	0% {left: 0; width: 300px;}
 	30% {left: 190px; width: 500px;}
