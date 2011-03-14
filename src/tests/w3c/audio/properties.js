@@ -29,6 +29,7 @@
 	
 	dohx.add({name:"properties",
 		mqcExecutionOrderBaseOffset:580000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
+		definedInSpecs:["http://www.w3.org/TR/2010/WD-widgets-20101005/"],
 		tests:[
 			{
 				id:1,
@@ -50,6 +51,7 @@
 			{
 				id:100,
 				name:"src, is empty",
+				definedInSpecs:["http://www.w3.org/TR/2011/WD-html5-20110113/video.html#location-of-the-media-resource"],
 				test:function(t){
 					t.assertFalse(!!audioNode.src, "Attribute 'src' expected to by empty, but has the value: '" + audioNode.src + "'");
 				}
@@ -57,6 +59,7 @@
 			{
 				id:200,
 				name:"currentSrc, is empty",
+				definedInSpecs:["http://www.w3.org/TR/2011/WD-html5-20110113/video.html#location-of-the-media-resource"],
 				test:function(t){
 					t.assertFalse(!!audioNode.currentSrc, "Attribute 'currentSrc' expected to eb empty, but has the value: '" + audioNode.currentSrc + "'");
 				}
@@ -64,6 +67,7 @@
 			{
 				id:300,
 				name:"src, set it and verify it ends in '" + localAudioFiles.loopWav + "'",
+				definedInSpecs:["http://www.w3.org/TR/2011/WD-html5-20110113/video.html#location-of-the-media-resource"],
 				test:function(t){
 					audioNode.src = localAudioFiles.loopWav;
 					t.assertTrue(new RegExp(localAudioFiles.loopWav + "$").test(audioNode.src));
@@ -72,6 +76,7 @@
 			{
 				id:400,
 				name:"currentSrc, ends in '" + localAudioFiles.loopWav + "'",
+				definedInSpecs:["http://www.w3.org/TR/2011/WD-html5-20110113/video.html#location-of-the-media-resource"],
 				test:function(t){
 					t.assertTrue(new RegExp(localAudioFiles.loopWav + "$").test(audioNode.currentSrc));
 				}
@@ -83,6 +88,7 @@
 			{
 				id:1000,
 				name:"networkState, NETWORK_EMPTY",
+				definedInSpecs:["http://www.w3.org/TR/2011/WD-html5-20110113/video.html#network-states"],
 				test:function(t){
 					var node = document.createElement("audio")
 					t.assertEqual(node.NETWORK_EMPTY, node.networkState);
@@ -94,6 +100,7 @@ addIf:false,
 				// The src is already loaded, so it should be idle by now.
 				id:1100,
 				name:"networkState, NETWORK_IDLE",
+				definedInSpecs:["http://www.w3.org/TR/2011/WD-html5-20110113/video.html#network-states"],
 				test:function(t){
 					audioNode.load();
 					audioNode.addEventListener("loadeddata", function(){
@@ -105,6 +112,7 @@ addIf:false,
 				// Set some non-existing src, to check NETWORK_NO_SOURCE
 				id:1200,
 				name:"networkState, NETWORK_NO_SOURCE",
+				definedInSpecs:["http://www.w3.org/TR/2011/WD-html5-20110113/video.html#network-states"],
 				test:function(t){
 					var node = document.createElement("audio");
 					node.src = "non-existent-audio-file" + (+new Date());
@@ -118,6 +126,7 @@ addIf:false,
 			{
 				id:2000,
 				name:"readyState, HAVE_NOTHING",
+				definedInSpecs:["http://www.w3.org/TR/2011/WD-html5-20110113/video.html#the-ready-states"],
 				test:function(t){
 					var node = document.createElement("audio")
 					t.assertEqual(node.HAVE_NOTHING, node.readyState);
@@ -126,6 +135,7 @@ addIf:false,
 			{
 				id:2100,
 				name:"readyState, HAVE_METADATA",
+				definedInSpecs:["http://www.w3.org/TR/2011/WD-html5-20110113/video.html#the-ready-states"],
 				test:function(t){
 					audioNode.load();
 					audioNode._event = ["loadedmetadata", function(){
@@ -140,6 +150,7 @@ addIf:false,
 			{
 				id:2200,
 				name:"readyState, HAVE_CURRENT_DATA",
+				definedInSpecs:["http://www.w3.org/TR/2011/WD-html5-20110113/video.html#the-ready-states"],
 				test:function(t){
 					audioNode.load();
 					audioNode._event = ["loadeddata", function(){
@@ -154,6 +165,7 @@ addIf:false,
 			{
 				id:2300,
 				name:"readyState, HAVE_FUTURE_DATA",
+				definedInSpecs:["http://www.w3.org/TR/2011/WD-html5-20110113/video.html#the-ready-states"],
 				test:function(t){
 					audioNode.load(); // There is no reset() so reload the file for resetting.
 					audioNode.play();
@@ -170,6 +182,7 @@ addIf:false,
 			{
 				id:2400,
 				name:"readyState, HAVE_ENOUGH_DATA",
+				definedInSpecs:["http://www.w3.org/TR/2011/WD-html5-20110113/video.html#the-ready-states"],
 				test:function(t){
 					audioNode.load(); // There is no reset() so reload the file for resetting.
 					audioNode.play();
