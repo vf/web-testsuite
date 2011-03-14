@@ -29,7 +29,6 @@
 	
 	dohx.add({name:"properties",
 		mqcExecutionOrderBaseOffset:580000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
-		definedInSpecs:["http://www.w3.org/TR/2010/WD-widgets-20101005/"],
 		tests:[
 			{
 				id:1,
