@@ -40,34 +40,21 @@
 	</style>
 </head>
 <body>
-	The following describes the steps for issuing a new MQC Import. Since an MQC import must only contain the new rows
-	that will get imported into the MQC, a couple of things must be done to ensure this:
+	In order to release a new test suite please proceed the following steps:
 	<ol>
-		<li>Save the contents of the first tab into "mqc-tests-diff.csv"</li>
-		<li>Save the contents of the second tab into "mqc-tests-all.js"</li>
-		<li>Save the contents of tab three into "mqc-tests-all.csv"</li>
-		
 		<li>Save the contents of the first tab into "tests-new.csv"</li>
 		<li>Save the contents of the second tab into "tests-all.js"</li>
 		<li>Save the contents of tab three into "tests-all.csv"</li>
 	</ol>
 	<div class="tabNavi">
-		<a href="javascript://" onclick="selectTab(0)" class="tabLink0">Step 1, MQC Diff CSV</a>
-		<a href="javascript://" onclick="selectTab(1)" class="tabLink1">Step 2, MQC All IDs (JSON)</a>
-		<a href="javascript://" onclick="selectTab(2)" class="tabLink2">Step 3, MQC All Tests (CSV)</a>
-		
-		<a href="javascript://" onclick="selectTab(3)" class="tabLink3">Step 4, Diff (CSV)</a>
-		<a href="javascript://" onclick="selectTab(4)" class="tabLink4">Step 5, All IDs (JSON)</a>
-		<a href="javascript://" onclick="selectTab(5)" class="tabLink5">Step 6, All Tests (JSON)</a>
+		<a href="javascript://" onclick="selectTab(0)" class="tabLink0">Step 1, Diff (CSV)</a>
+		<a href="javascript://" onclick="selectTab(1)" class="tabLink1">Step 2, All IDs (JSON)</a>
+		<a href="javascript://" onclick="selectTab(2)" class="tabLink2">Step 3, All Tests (JSON)</a>
 	</div>
-	<!--MQC-->
-	<pre class="tab tab0" id="mqcDiffCsvNode"></pre>
-	<pre class="tab tab1" id="mqcAllIdsJsonNode"></pre>
-	<pre class="tab tab2" id="mqcAllCsvNode">ick bin tab 2</pre>
 	<!--normal--> 
-	<pre class="tab tab3" id="diffCsvNode">ick bin tab 3</pre>
-	<pre class="tab tab4" id="allIdsJsonNode">ick bin tab 4</pre>
-	<pre class="tab tab5" id="allCsvNode">ick bin tab 5</pre>
+	<pre class="tab tab0" id="diffCsvNode">ick bin tab 0</pre>
+	<pre class="tab tab1" id="allIdsJsonNode">ick bin tab 1</pre>
+	<pre class="tab tab2" id="allCsvNode">ick bin tab 2</pre>
 	
 	<script type="text/javascript" src="js/doh2/doh.js"></script>
 	<script type="text/javascript" src="js/doh2/config.js"></script>
@@ -99,8 +86,6 @@
 			isApiSupported:dohx_isApiSupported,
 			// The data are sorted in the order the tests are added.
 			_csvData:[], // This contains the list we will export for the "normal" users, all the tests and all relevant info for each.
-			_mqcCsvData:[], // All the MQC data as CSV.
-			_mqcCsvDiffData:[], // All the new MQC data.
 			_csvDiffData:[], // All the NEW data.
 			_allTestIds:[], // Store all the unique test IDs in here, those are actually the values we store in the field "execution order".
 			add:function(obj){
@@ -160,8 +145,6 @@
 						"None", // Certificate
 						"Not Replicated" // Replicate
 					];
-					this._mqcCsvData.push(data);
-					if (this.alreadyImportedMqcTestIds.indexOf(executionOrder)==-1) this._mqcCsvDiffData.push(data);
 					
 					// Prepare the "normal" test list.
 					var widgetFileName = testFileName.replace(/\.js$/, "").replace(/\//g, "_") + ".wgt";
@@ -184,7 +167,7 @@
 				}
 			},
 			createCsv:function(){
-				// The complete test list for normal use (not MQC specific!).
+				// The complete test list for normal use.
 				return this._getCsv(this._csvData);
 			},
 			_getCsv:function(data){
@@ -196,9 +179,6 @@
 					"expected result"
 				];
 				return this._createCsv(data, headers);
-			},
-			createMqcCsv:function(){
-				return this._getMqcCsv(this._mqcCsvData);
 			},
 			dumpStatsLog:function(){
 				// Group the number of tests by the first field, the widget-file name
@@ -215,25 +195,8 @@
 				}
 				console.log("Overall: ", sum, "tests");
 			},
-			createMqcCsvDiff:function(){
-				return this._getMqcCsv(this._mqcCsvDiffData);
-			},
 			createCsvDiff:function(){
 				return this._getCsv(this._csvDiffData);
-			},
-			_getMqcCsv:function(data){
-				var headers = [
-					"Test Name", "Subject", "Test ID", "TC Coordinator",
-					"Type", "Test Area", "Status", "Test Type", "Primary OpCo",
-					"Alternative OpCo’s", "TC Owner", "Suggested Severity",
-					"OpCo Network specific", "Country Specific Settings",
-					"Bearer Specific", "Coverage", "Physical Resource",
-					"Description", "Est. Effort (min.)", "Creation Date",
-					"Grouping Area", "Step Name (Design steps)",
-					"Description (Design steps)", "Expected (Design steps)",
-					"Execution Order", "Template", "Certificate", "Replicate"
-				];
-				return this._createCsv(data, headers);
 			},
 			_createCsv:function(data, headers){
 				var lines = [];
@@ -270,7 +233,6 @@
 			}
 		};
 	</script>
-	<script type="text/javascript" src="../mqc-tests-all.js"></script>
 	<script type="text/javascript" src="../tests-all.js"></script>
 	<script type="text/javascript" src="js/compat.js"></script>
 	<script type="text/javascript">
@@ -302,10 +264,6 @@
 //*/			
 			setTimeout(function(){
 				dohx.dumpStatsLog();
-				document.getElementById("mqcDiffCsvNode").innerHTML = dohx.createMqcCsvDiff() || "NO NEW DATA SETS";
-				document.getElementById("mqcAllIdsJsonNode").innerHTML = 'dohx.alreadyImportedMqcTestIds = ' + dohx.createAllIdsJs();
-				document.getElementById("mqcAllCsvNode").innerHTML = dohx.createMqcCsv();
-				
 				document.getElementById("diffCsvNode").innerHTML = dohx.createCsvDiff() || "NO NEW DATA SETS";
 				document.getElementById("allIdsJsonNode").innerHTML = 'dohx.alreadyImportedTestIds = ' + dohx.createAllIdsJs();
 				document.getElementById("allCsvNode").innerHTML = dohx.createCsv();
