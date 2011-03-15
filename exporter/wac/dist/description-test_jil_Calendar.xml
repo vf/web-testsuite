@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_Calendar_1" src="test_jil_Calendar.wgt">Verify Preconditions
+
+Instructions:
+1) Make sure all the preconditions listed are met. They will be required by upcoming tests.
+2) At least one calendar item has to exist on the phone. (calender item with the ID '1' will be used)
+3) Click 'GO' to start testing.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_100" src="test_jil_Calendar.wgt">update   Verify the method call works at all 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_200" src="test_jil_Calendar.wgt">1  addCalendarItem   Verify return value  undefined  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_300" src="test_jil_Calendar.wgt">2  findCalendarItems onCalendarItemsFound   Find the just added item  at least 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_400" src="test_jil_Calendar.wgt">3  findCalendarItems onCalendarItemsFound   Verify returned object s are of type  Widget PIM CalendarItem  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_500" src="test_jil_Calendar.wgt">4  findCalendarItems onCalendarItemsFound   Verify the returned object s properties 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_600" src="test_jil_Calendar.wgt">findCalendarItems onCalendarItemsFound   Search with wildcard 
+
+Instructions:
+1) Look up your calendar, make sure you have at least one item in there (add one if necessary).
+2) Press 'GO' to start test.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_700" src="test_jil_Calendar.wgt">findCalendarItems onCalendarItemsFound   Verify accessing found object s property directly  e g  item eventName  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_800" src="test_jil_Calendar.wgt">1  getCalendarItem   Get the one with ID 1 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_900" src="test_jil_Calendar.wgt">2  getCalendarItem   Verify returned  CalendarItem  object 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_1000" src="test_jil_Calendar.wgt">getCalendarItems   Does it return an array for all events in 2011 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_3000" src="test_jil_Calendar.wgt">EventRecurrenceTypes   Verify recurrence type  DAILY  
+
+Instructions:
+1) Create an event with the name 'recurring daily'!
+2) Set the event to occur DAILY!
+3) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_3100" src="test_jil_Calendar.wgt">EventRecurrenceTypes   Verify recurrence type  NOT REPEAT  
+
+Instructions:
+1) Create an event with the name 'recurring not_repeat'!
+2) Set the event to occur NOT_REPEAT!
+3) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_3200" src="test_jil_Calendar.wgt">EventRecurrenceTypes   Verify recurrence type  EVERY WEEKDAY  
+
+Instructions:
+1) Create an event with the name 'recurring every_weekday'!
+2) Set the event to occur EVERY_WEEKDAY!
+3) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_3300" src="test_jil_Calendar.wgt">EventRecurrenceTypes   Verify recurrence type  MONTHLY ON DAY  
+
+Instructions:
+1) Create an event with the name 'recurring monthly_on_day'!
+2) Set the event to occur MONTHLY_ON_DAY!
+3) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_3400" src="test_jil_Calendar.wgt">EventRecurrenceTypes   Verify recurrence type  MONTHLY ON DAY COUNT  
+
+Instructions:
+1) Create an event with the name 'recurring monthly_on_day_count'!
+2) Set the event to occur MONTHLY_ON_DAY_COUNT!
+3) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_3500" src="test_jil_Calendar.wgt">EventRecurrenceTypes   Verify recurrence type  WEEKLY ON DAY  
+
+Instructions:
+1) Create an event with the name 'recurring weekly_on_day'!
+2) Set the event to occur WEEKLY_ON_DAY!
+3) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Calendar_3600" src="test_jil_Calendar.wgt">EventRecurrenceTypes   Verify recurrence type  YEARLY  
+
+Instructions:
+1) Create an event with the name 'recurring yearly'!
+2) Set the event to occur YEARLY!
+3) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

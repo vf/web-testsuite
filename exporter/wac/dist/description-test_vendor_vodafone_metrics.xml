@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_Metrics_1" src="test_vendor_vodafone_metrics.wgt">Instructions
+
+Instructions:
+This series of tests checks whether physical lengths are displayed correctly on the device.
+
+You will need a ruler to measure objects on the screen.
+
+For each test, please check whether the size of the box displayed matches the expected result.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Metrics_100" src="test_vendor_vodafone_metrics.wgt">Millimeters
+
+Instructions:
+This test displays a box with width set to 3cm. 
+
+Please measure the width with the ruler.
+
+Expected behaviour:
+Is the width of the box exactly 3 cm? (1 cm = 0.3937 in)</test>
+  <test id="ID_JIL_Metrics_200" src="test_vendor_vodafone_metrics.wgt">Inches
+
+Instructions:
+This test displays a box with width set to 1in. 
+
+Please measure the width with the ruler.
+
+Expected behaviour:
+Is the width of the box exactly 1 inch? (1 in = 2.54  cm)</test>
+  <test id="ID_JIL_Metrics_300" src="test_vendor_vodafone_metrics.wgt">Font in  code mm  code   width in  code em  code 
+
+Instructions:
+This test displays a box with width:10 em; font-size: 3mm;.
+
+Please measure the width with the ruler.
+
+Expected behaviour:
+Is the width of the box exactly 3 cm? (1 cm = 0.3937 in)</test>
+  <test id="ID_JIL_Metrics_400" src="test_vendor_vodafone_metrics.wgt">Font in  code in  code   width in  code em  code 
+
+Instructions:
+This test displays a box with width:10 em; font-size: 0.1in;.
+
+Please measure the width with the ruler.
+
+Expected behaviour:
+Is the width of the box exactly 1 inch? (1 in = 2.54  cm)</test>
+  <test id="ID_JIL_Metrics_500" src="test_vendor_vodafone_metrics.wgt">Font in  code mm  code   CSS shorthand syntax   width in  code em  code 
+
+Instructions:
+This test displays a box with width: 10em; font: 3mm/1.5 sans-serif; to test the font shorthand syntax.
+
+Please measure the width with the ruler.
+
+Expected behaviour:
+Is the width of the box exactly 3 cm? (1 cm = 0.3937 in)</test>
+  <test id="ID_JIL_Metrics_600" src="test_vendor_vodafone_metrics.wgt">Font in  code in  code   CSS shorthand syntax   width in  code em  code 
+
+Instructions:
+This test displays a box with width: 10em; font: 0.1in/1.5 sans-serif; to test the font shorthand syntax.
+
+Please measure the width with the ruler.
+
+Expected behaviour:
+Is the width exactly 1 inch? (1 in = 2.54  cm)</test>
+</testsuite>

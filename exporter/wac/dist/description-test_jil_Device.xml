@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_Device_100" src="test_jil_Device.wgt">clipboardString   Does it return the copied stirng 
+
+Instructions:
+Copy 'THIS HERE' into the clipboard (without the apostrophes) using the phone's copy-functionality, then press 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Device_200" src="test_jil_Device.wgt">widgetEngineName   Verify that it is not     an empty string  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Device_300" src="test_jil_Device.wgt">widgetEngineName   Verify content 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the above value correct?</test>
+  <test id="ID_JIL_Device_400" src="test_jil_Device.wgt">widgetEngineProvider   Verify that it is not     an empty string  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Device_500" src="test_jil_Device.wgt">widgetEngineProvider   Verify content 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the above value correct?</test>
+  <test id="ID_JIL_Device_600" src="test_jil_Device.wgt">widgetEngineVersion   Verify that it is not     an empty string  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Device_700" src="test_jil_Device.wgt">widgetEngineVersion   Verify content  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the above value correct?</test>
+  <test id="ID_JIL_Device_900" src="test_jil_Device.wgt">vibrate 1s
+
+Instructions:
+Click 'GO', then the phone should vibrate for 1s.
+
+Expected behaviour:
+Did the phone vibrate for 1s?</test>
+  <test id="ID_JIL_Device_1000" src="test_jil_Device.wgt">vibrate 10s
+
+Instructions:
+Click 'GO', then the phone should vibrate for 10s.
+
+Expected behaviour:
+Did the phone vibrate for 10s?</test>
+</testsuite>

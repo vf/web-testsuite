@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_DeviceStateInfo_100" src="test_jil_DeviceStateInfo.wgt">audioPath
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceStateInfo_200" src="test_jil_DeviceStateInfo.wgt">availableMemory
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceStateInfo_300" src="test_jil_DeviceStateInfo.wgt">backLightOn
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceStateInfo_400" src="test_jil_DeviceStateInfo.wgt">keypadLightOn
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceStateInfo_500" src="test_jil_DeviceStateInfo.wgt">language
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceStateInfo_600" src="test_jil_DeviceStateInfo.wgt">processorUtilizationPercent
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceStateInfo_700" src="test_jil_DeviceStateInfo.wgt">onFlipEvent close
+
+Instructions:
+1) Please click 'GO'.
+2) Close the clamshell (and open it again to return here).
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceStateInfo_800" src="test_jil_DeviceStateInfo.wgt">onFlipEvent open
+
+Instructions:
+1) Please click 'GO'.
+2) Close and open the clamshell again.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceStateInfo_900" src="test_jil_DeviceStateInfo.wgt">onScreenChangeDimensions   does it fire at all 
+
+Instructions:
+1) Click 'GO'.
+2) Change the orientation of the phone (landscape/portrait)!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceStateInfo_1000" src="test_jil_DeviceStateInfo.wgt">onScreenChangeDimensions   do width height change 
+
+Instructions:
+1) Click 'GO'
+2) Switch the widget to mini/floating mode, to change it's dimensions.
+3) Switch back to fullscreen mode, the test should have ended successfully.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

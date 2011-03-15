@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_PositionInfo_1" src="test_jil_PositionInfo.wgt">Verify Preconditions
+
+Instructions:
+1) Make sure you have good GPS reception (best done outside).
+2) Click 'GO' to start testing.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PositionInfo_100" src="test_jil_PositionInfo.wgt">Widget Device DeviceStateInfo onPositionRetrieved   Verify that callback fires 
+
+Instructions:
+Click 'GO', to retreive your location.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PositionInfo_200" src="test_jil_PositionInfo.wgt">requestPositionInfo  cellid     Verify return value is of type  PositionInfo  
+
+Instructions:
+Click 'GO' to get position!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PositionInfo_300" src="test_jil_PositionInfo.wgt">requestPositionInfo  gps     Verify return value is of type  PositionInfo  
+
+Instructions:
+Click 'GO' to get position!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PositionInfo_350" src="test_jil_PositionInfo.wgt">requestPositionInfo  gps     Try getting position three times in a row 
+
+Instructions:
+Click 'GO' to start test!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PositionInfo_400" src="test_jil_PositionInfo.wgt">requestPositionInfo  agps     Verify return value is of type  PositionInfo  
+
+Instructions:
+Click 'GO' to get position!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PositionInfo_500" src="test_jil_PositionInfo.wgt">requestPositionInfo   Let user verify position 
+
+Instructions:
+Click 'GO', to retreive your location.
+
+Expected behaviour:
+Is the above your current position?</test>
+  <test id="ID_JIL_PositionInfo_600" src="test_jil_PositionInfo.wgt">requestPositionInfo   Verify properties of returned  PositionInfo  object 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

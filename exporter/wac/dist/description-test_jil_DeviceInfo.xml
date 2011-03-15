@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_DeviceInfo_100" src="test_jil_DeviceInfo.wgt">ownerInfo
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceInfo_200" src="test_jil_DeviceInfo.wgt">phoneColorDepthDefault
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceInfo_210" src="test_jil_DeviceInfo.wgt">phoneColorDepthDefault   verify
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the above the proper color depth? (May need to look it up in the device's specification)</test>
+  <test id="ID_JIL_DeviceInfo_300" src="test_jil_DeviceInfo.wgt">phoneFirmware
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceInfo_310" src="test_jil_DeviceInfo.wgt">phoneFirmware   verify
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the reported value correct?</test>
+  <test id="ID_JIL_DeviceInfo_400" src="test_jil_DeviceInfo.wgt">phoneManufacturer
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceInfo_410" src="test_jil_DeviceInfo.wgt">phoneManufacturer   verify
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the reported value correct?</test>
+  <test id="ID_JIL_DeviceInfo_500" src="test_jil_DeviceInfo.wgt">phoneModel
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceInfo_510" src="test_jil_DeviceInfo.wgt">phoneModel   verify
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the reported value correct?</test>
+  <test id="ID_JIL_DeviceInfo_600" src="test_jil_DeviceInfo.wgt">phoneOS
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceInfo_610" src="test_jil_DeviceInfo.wgt">phoneOS   verify
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the reported value correct?</test>
+  <test id="ID_JIL_DeviceInfo_700" src="test_jil_DeviceInfo.wgt">phoneScreenHeightDefault
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceInfo_710" src="test_jil_DeviceInfo.wgt">phoneScreenHeightDefault   verify
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceInfo_800" src="test_jil_DeviceInfo.wgt">phoneScreenWidthDefault
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceInfo_810" src="test_jil_DeviceInfo.wgt">phoneScreenHeightDefault
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceInfo_900" src="test_jil_DeviceInfo.wgt">phoneSoftware
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DeviceInfo_910" src="test_jil_DeviceInfo.wgt">phoneSoftware   verify
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the reported value correct?</test>
+  <test id="ID_JIL_DeviceInfo_1000" src="test_jil_DeviceInfo.wgt">totalMemory
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

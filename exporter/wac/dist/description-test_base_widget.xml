@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_widget_100" src="test_base_widget.wgt">showNotification   simple
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you see a notification with 1) headline 'Hello headline' and 2) the message telling you something nice?</test>
+  <test id="ID_JIL_widget_200" src="test_base_widget.wgt">showNotification   two lines
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you see a notification, with 1) the headline and 2) a TWO LINE message?</test>
+  <test id="ID_JIL_widget_300" src="test_base_widget.wgt">showNotification   callback
+
+Instructions:
+1) Click 'GO'!
+2) Confirm the notification.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_widget_400" src="test_base_widget.wgt">showNotification   Missing params
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_widget_500" src="test_base_widget.wgt">openURL     simply open a site 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the browser open?</test>
+  <test id="ID_JIL_widget_510" src="test_base_widget.wgt">openURL     invalid URL as param
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the browser open?</test>
+  <test id="ID_JIL_widget_600" src="test_base_widget.wgt">setPreferenceForKey preferenceForKey   Verify that get returns what set did 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_widget_700" src="test_base_widget.wgt">setPreferenceForKey preferenceForKey   Check for old params order   If this test fails the old params order for setPreferenceForKey is implemented  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_widget_800" src="test_base_widget.wgt">setPreferenceForKey   Verify that return value is  undefined  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_widget_900" src="test_base_widget.wgt">setPreferenceForKey   Set a preference string using all characters from char 1  through char 255   and verify them 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_widget_1000" src="test_base_widget.wgt">setPreferenceForKey   Store 1024 characters 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

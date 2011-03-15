@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_DataNetworkInfo_100" src="test_jil_DataNetworkInfo.wgt">isDataNetworkConnected   Does it return a boolean value 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DataNetworkInfo_200" src="test_jil_DataNetworkInfo.wgt">isDataNetworkConnected   Verify that  false  is returned properly 
+
+Instructions:
+1) Disconnect the phone from any network (WiFi, Bluetooth, Edge, IRDA, etc.)!
+2) Press 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DataNetworkInfo_300" src="test_jil_DataNetworkInfo.wgt">isDataNetworkConnected   Verify that  true  is returned properly 
+
+Instructions:
+1) Connect the phone to some network (WiFi, Bluetooth, Edge, IRDA, etc.)!
+2) Press 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DataNetworkInfo_400" src="test_jil_DataNetworkInfo.wgt">networkConnectionType   Verify it returns an array 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DataNetworkInfo_410" src="test_jil_DataNetworkInfo.wgt">networkConnectionType   Verify the values 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Are the listed connection types those that the phone is connected to?</test>
+  <test id="ID_JIL_DataNetworkInfo_500" src="test_jil_DataNetworkInfo.wgt">getNetworkConnectionName   Verify it is not     empty string  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DataNetworkInfo_510" src="test_jil_DataNetworkInfo.wgt">getNetworkConnectionName   Verify that each type returns a value 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DataNetworkInfo_520" src="test_jil_DataNetworkInfo.wgt">getNetworkConnectionName   missing parameter
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DataNetworkInfo_530" src="test_jil_DataNetworkInfo.wgt">getNetworkConnectionName   invalid parameter
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_DataNetworkInfo_600" src="test_jil_DataNetworkInfo.wgt">onNetworkConnectionChanged   Verify that the callback fires 
+
+Instructions:
+1) Click 'GO'!
+2) Connect to a different data network, e.g. from 3G to WiFi (within 2 minutes).
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

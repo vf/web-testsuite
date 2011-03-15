@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_CSS_basics_100" src="test_w3c_css_basics.wgt">Selectors  nth child
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Does the INNER element have a WHITE background color,
+and the OUTER element a RED background color?</test>
+  <test id="ID_JIL_CSS_basics_200" src="test_w3c_css_basics.wgt">Selectors    selector
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Does the element have a RED BACKGROUND color?</test>
+  <test id="ID_JIL_CSS_basics_300" src="test_w3c_css_basics.wgt">Selectors    selector  2 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Does 'The element' have a BLACK BACKGROUND color?</test>
+  <test id="ID_JIL_CSS_basics_400" src="test_w3c_css_basics.wgt">Selectors    last child  selector
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Does the THIRD ITEM have a RED BACKGROUND color?</test>
+  <test id="ID_JIL_CSS_basics_500" src="test_w3c_css_basics.wgt">Selectors    last child  selector  2 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Does the THIRD ITEM have a BLACK BACKGROUND color?</test>
+  <test id="ID_JIL_CSS_basics_600" src="test_w3c_css_basics.wgt">Selectors   disabled
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the text INPUT RED
+and is it NOT EDITABLE?</test>
+  <test id="ID_JIL_CSS_basics_700" src="test_w3c_css_basics.wgt">Selectors   checked
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Check the checkbox. Does it move to the right?</test>
+  <test id="ID_JIL_CSS_basics_800" src="test_w3c_css_basics.wgt">Selectors  attributes
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Does the FIRST element have a RED BACKGROUND color,
+and the SECOND a BLACK?</test>
+  <test id="ID_JIL_CSS_basics_900" src="test_w3c_css_basics.wgt">Selectors  attributes
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Does this element have a RED BACKGROUND
+and UNDERLINED text?</test>
+  <test id="ID_JIL_CSS_basics_1000" src="test_w3c_css_basics.wgt">Selectors   nth child
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Does this element have a RED BACKGROUND
+and UNDERLINED text?</test>
+  <test id="ID_JIL_CSS_basics_1100" src="test_w3c_css_basics.wgt">Selectors   nth child 2n 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Do the SECOND AND FOURTH items have a RED BACKGROUND?</test>
+  <test id="ID_JIL_CSS_basics_1200" src="test_w3c_css_basics.wgt">Selectors   nth child 2n 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Do the FIRST and THIRD items now have a BLACK BACKGROUND color?</test>
+  <test id="ID_JIL_CSS_basics_2000" src="test_w3c_css_basics.wgt">Selectors  overflow auto
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Can you scroll the element?</test>
+  <test id="ID_JIL_CSS_basics_2100" src="test_w3c_css_basics.wgt">multiple background images
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Do you see TWO IMAGES in the element?</test>
+  <test id="ID_JIL_CSS_basics_2200" src="test_w3c_css_basics.wgt">background position  local  ONLY to be done if overflow  auto is supported 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Scroll the element. DOES THE IMAGE SCROLL with the element?</test>
+  <test id="ID_JIL_CSS_basics_2300" src="test_w3c_css_basics.wgt">border radius
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Does the element have ROUNDED CORNERS?</test>
+  <test id="ID_JIL_CSS_basics_2400" src="test_w3c_css_basics.wgt">rgba colors
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the text RED?</test>
+  <test id="ID_JIL_CSS_basics_2500" src="test_w3c_css_basics.wgt">hsla colors
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the text RED?</test>
+  <test id="ID_JIL_CSS_basics_2600" src="test_w3c_css_basics.wgt">outline
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Does the element have a RED BORDER?</test>
+  <test id="ID_JIL_CSS_basics_2700" src="test_w3c_css_basics.wgt">letter spacing
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Are the letters in the second line farther apart than in the first?</test>
+  <test id="ID_JIL_CSS_basics_2800" src="test_w3c_css_basics.wgt">word spacing
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Are the words in the second line farther apart than in the first?</test>
+</testsuite>

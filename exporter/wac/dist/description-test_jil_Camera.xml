@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_Camera_100" src="test_jil_Camera.wgt">onCameraCaptured   Callback  onCameraCaptured  triggered 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Camera_200" src="test_jil_Camera.wgt">captureImage   Creates a file 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Camera_300" src="test_jil_Camera.wgt">Error during capture should pass  undefined  to onCameraCaptured 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Camera_400" src="test_jil_Camera.wgt">captureImage   Does callback pass the same filename as passed to captureImage   
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Camera_410" src="test_jil_Camera.wgt">captureImage   Is filename returned by captureImage   same as parameter passed in 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Camera_500" src="test_jil_Camera.wgt">Invalid destination path   throw INVALID PARAMETER 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Camera_600" src="test_jil_Camera.wgt">captureImage  lowRes   takes a picture at all 
+
+Instructions:
+1) Click 'GO'.
+2) The picture will be taken.
+3) This picture will be opened in the gallery app.
+
+Expected behaviour:
+Can you verify the taken picture is the one you expected?</test>
+  <test id="ID_JIL_Camera_700" src="test_jil_Camera.wgt">captureImage  lowRes   verify the stored file
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Camera_800" src="test_jil_Camera.wgt">captureImage  hiRes   verify the stored file
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Camera_900" src="test_jil_Camera.wgt">setWindow   Using  lt object gt  with 160x120
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Do you see a downscaled preview of the camera image?</test>
+  <test id="ID_JIL_Camera_1000" src="test_jil_Camera.wgt">setWindow   Using  lt object gt  with 200x200
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Do you see a downscaled preview of the camera image?</test>
+  <test id="ID_JIL_Camera_1100" src="test_jil_Camera.wgt">setWindow   Using  lt div gt  with 200x200
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Do you see a downscaled preview of the camera image?</test>
+  <test id="ID_JIL_Camera_1200" src="test_jil_Camera.wgt">setWindow   Using  lt object gt  fullscreen
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you see a fullscreen preview of the camera image?</test>
+  <test id="ID_JIL_Camera_1300" src="test_jil_Camera.wgt">setWindow   Using  lt div gt  fullscreen
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Do you see a fullscreen preview of the camera image?</test>
+  <test id="ID_JIL_Camera_1400" src="test_jil_Camera.wgt">setWindow   Disassociate preview window  setWindow null  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the preview window disappear after about 5 seconds?</test>
+</testsuite>

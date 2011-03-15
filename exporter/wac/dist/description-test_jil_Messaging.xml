@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_Messaging_1" src="test_jil_Messaging.wgt">Verify Preconditions
+
+Instructions:
+1) You will requested some phone numbers to use for sending SMS, MMS, etc.
+2) Click 'GO' to start.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_100" src="test_jil_Messaging.wgt">createMessage   Create SMS  and send it  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_110" src="test_jil_Messaging.wgt">sms messageId   Verify that the generated message has an ID 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_200" src="test_jil_Messaging.wgt">createMessage   Create MMS  and send it  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_210" src="test_jil_Messaging.wgt">mms messageId   Verify that the generated message has an ID 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_300" src="test_jil_Messaging.wgt">createMessage   Create Email  and send it  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_310" src="test_jil_Messaging.wgt">email messageId   Verify that the generated message has an ID 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_400" src="test_jil_Messaging.wgt">createMessage   Throws INVALID PARAMETER for missing param 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_500" src="test_jil_Messaging.wgt">createMessage   Throws INVALID PARAMETER for invalid param 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_600" src="test_jil_Messaging.wgt">findMessages   Does callback fire 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_700" src="test_jil_Messaging.wgt">findMessages   Find message created  and sent  before 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_800" src="test_jil_Messaging.wgt">getMessage   Verify SMS with content  test body 1300200975661  
+
+Instructions:
+Please verify that at least one SMS had been sent.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_900" src="test_jil_Messaging.wgt">getMessage   Verify EMail with subject  test subject 1300200975660  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_1000" src="test_jil_Messaging.wgt">getMessage   Verify MMS with subject  test subject 1300200975660  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_1010" src="test_jil_Messaging.wgt">getMessage   Throws INVALID PARAMETER for missing param 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_1020" src="test_jil_Messaging.wgt">getMessage   Throws INVALID PARAMETER for invalid param 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_1100" src="test_jil_Messaging.wgt">deleteMessage   Delete MMS with subject  test subject 1300200975660  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_1200" src="test_jil_Messaging.wgt">deleteMessage   Delete SMS with content  test body 1300200975661  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_1300" src="test_jil_Messaging.wgt">deleteMessage   Delete EMail with subject  test subject 1300200975660  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_1400" src="test_jil_Messaging.wgt">deleteMessage   Delete already deleted MMS again 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_1500" src="test_jil_Messaging.wgt">deleteMessage   Delete already deleted SMS again 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_1600" src="test_jil_Messaging.wgt">deleteMessage   Delete already deleted EMail again 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_1700" src="test_jil_Messaging.wgt">sendMessage   Send SMS to  undefined 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Please verify that you received the SMS with the subject 'test subject 1300200975660'</test>
+  <test id="ID_JIL_Messaging_1800" src="test_jil_Messaging.wgt">sendMessage   Throw INVALID PARAMETER missing parameter 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_1900" src="test_jil_Messaging.wgt">sendMessage   Throw UNKNOWN for SMS to 000000000000UNKNOWN
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_2000" src="test_jil_Messaging.wgt">sendMessage   Send MMS to  undefined 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Please verify that you received the MMS with the subject 'test subject 1300200975660'</test>
+  <test id="ID_JIL_Messaging_2100" src="test_jil_Messaging.wgt">sendMessage   Throw UNKNOWN for MMS to 000000000000UNKNOWN
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_2200" src="test_jil_Messaging.wgt">sendMessage   Send Email to  undefined 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Please verify that you received the Email with the subject 'test subject 1300200975660'</test>
+  <test id="ID_JIL_Messaging_2300" src="test_jil_Messaging.wgt">sendMessage   Throw UNKNOWN for Email to unknown vf commmmmm
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_2400" src="test_jil_Messaging.wgt">onMessageSendingFailure   Test SMS to  undefined  
+
+Instructions:
+1) Minimize this application, to mini mode.
+2) Turn off all network connections.
+3) Maximize it again, to full screen mode.
+4) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_2500" src="test_jil_Messaging.wgt">onMessageSendingFailure   Test MMS to  undefined  
+
+Instructions:
+1) Minimize this application, to mini mode.
+2) Turn off all network connections.
+3) Maximize it again, to full screen mode.
+4) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_2600" src="test_jil_Messaging.wgt">onMessageSendingFailure   Test Email to  undefined  
+
+Instructions:
+1) Minimize this application, to mini mode.
+2) Turn off all network connections.
+3) Maximize it again, to full screen mode.
+4) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_2700" src="test_jil_Messaging.wgt">onMessageArrived   Test SMS to  undefined  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_2800" src="test_jil_Messaging.wgt">onMessageArrived   Test MMS to  undefined  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Messaging_2900" src="test_jil_Messaging.wgt">undefined
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

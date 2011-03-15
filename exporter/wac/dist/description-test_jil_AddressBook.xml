@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_AddressBook_1" src="test_jil_AddressBook.wgt">Verify Preconditions
+
+Instructions:
+1) Make sure all the preconditions listed are met. They will be required by upcoming tests.
+2) At least one contact must exist and the ID must be known (currently found '47').
+3) Click 'GO' to start testing.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_100" src="test_jil_AddressBook.wgt">1  getAddressBookItem   Get the one with ID 47 
+
+Instructions:
+1) Make sure an address book item with the ID "47" exists.
+2) Press 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_200" src="test_jil_AddressBook.wgt">getAddressBookItem   Verify values 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Are the shown values as stored in your addressbook?</test>
+  <test id="ID_JIL_AddressBook_300" src="test_jil_AddressBook.wgt">getAddressBookItem   Verify returned  AddressBookItem  object 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_400" src="test_jil_AddressBook.wgt">getAddressBookItemsCount   Verify it returns a number 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_500" src="test_jil_AddressBook.wgt">getAddressBookItemsCount   Verify it returns the right number 
+
+Instructions:
+1) Look up the number of contacts you have in your address book!
+2) Click 'GO'.
+
+Expected behaviour:
+Is this the number of contacts in your addressbook?</test>
+  <test id="ID_JIL_AddressBook_600" src="test_jil_AddressBook.wgt">findAddressBookItems   Search for fullName    verify it returns an array 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_610" src="test_jil_AddressBook.wgt">findAddressBookItems   Search for fullName null  verify it returns an array 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_700" src="test_jil_AddressBook.wgt">findAddressBookItems   Search for  ab   
+
+Instructions:
+1) Make sure a contact who's name starts with 'ab' is in your addressbook.
+2) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_710" src="test_jil_AddressBook.wgt">findAddressBookItems   Search for  ab  
+
+Instructions:
+1) Make sure a contact who's name IS 'ab' is in your addressbook.
+2) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_720" src="test_jil_AddressBook.wgt">findAddressBookItems   case insensitive search for  ab    AB  
+
+Instructions:
+1) Make sure a contact who's name IS 'ab' is in your addressbook.
+2) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_800" src="test_jil_AddressBook.wgt">findAddressBookItems   If either startInx endInx is negative throw exception 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_900" src="test_jil_AddressBook.wgt">findAddressBookItems   If startInx  endInx return only one item 
+
+Instructions:
+1) Make sure you have at least one address in your address book!
+2) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_1000" src="test_jil_AddressBook.wgt">getAvailableAddressGroupNames   verify its an array 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_1100" src="test_jil_AddressBook.wgt">createAddressBookGroup   verify group is added 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_1200" src="test_jil_AddressBook.wgt">createAddressBookGroup   throw INVALID PARAMETER
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_1300" src="test_jil_AddressBook.wgt">deleteAddressBookGroup
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_1400" src="test_jil_AddressBook.wgt">deleteAddressBookGroup   throw INVALID PARAMETER
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_1500" src="test_jil_AddressBook.wgt">addAddressBookItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_1600" src="test_jil_AddressBook.wgt">addAddressBookItem   Verify just added item 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_1700" src="test_jil_AddressBook.wgt">addAddressBookItem   throw INVALID PARAMETER
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

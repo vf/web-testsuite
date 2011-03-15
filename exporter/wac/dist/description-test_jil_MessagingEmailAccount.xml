@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_MessagingEmailAccount_100" src="test_jil_MessagingEmailAccount.wgt">getCurrentEmailAccount   Verify it 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the above info correct?</test>
+  <test id="ID_JIL_MessagingEmailAccount_200" src="test_jil_MessagingEmailAccount.wgt">getEmailAccounts   Verify it returns an array 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingEmailAccount_300" src="test_jil_MessagingEmailAccount.wgt">getEmailAccounts   Verify return value 
+
+Instructions:
+1) Make sure you have at least one Email account configured.
+2) Click 'GO'.
+
+Expected behaviour:
+Is the above result correct?</test>
+  <test id="ID_JIL_MessagingEmailAccount_400" src="test_jil_MessagingEmailAccount.wgt">setCurrentEmailAccount   Switch 
+
+Instructions:
+1) Make sure you have at least TWO Email accounts configured.
+2) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingEmailAccount_500" src="test_jil_MessagingEmailAccount.wgt">setCurrentEmailAccount   Throw INVALID PARAMETER for invalid param 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingEmailAccount_600" src="test_jil_MessagingEmailAccount.wgt">setCurrentEmailAccount   Throw INVALID PARAMETER for no param 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingEmailAccount_700" src="test_jil_MessagingEmailAccount.wgt">deleteEmailAccount   Verify it works 
+
+Instructions:
+1) Make sure you have at least ONE Email accounts configured.
+2) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingEmailAccount_800" src="test_jil_MessagingEmailAccount.wgt">deleteEmailAccount   Throw INVALID PARAMETER for invalid param 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingEmailAccount_900" src="test_jil_MessagingEmailAccount.wgt">deleteEmailAccount   Throw INVALID PARAMETER for no param 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingEmailAccount_910" src="test_jil_MessagingEmailAccount.wgt">deleteEmailAccount not supported   throw exception
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

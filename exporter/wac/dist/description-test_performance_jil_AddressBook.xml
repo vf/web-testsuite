@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_AddressBook_1" src="test_performance_jil_AddressBook.wgt">Verify Preconditions
+
+Instructions:
+1) Make sure all the preconditions listed are met. They will be required by upcoming tests.
+2) Make sure at least 100 address book items exist!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AddressBook_100" src="test_performance_jil_AddressBook.wgt">findAddressBookItems   Fast enough   Find 100 items in less than 500ms 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

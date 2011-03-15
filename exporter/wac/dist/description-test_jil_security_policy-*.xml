@@ -1,0 +1,1280 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_Developer_signed_tests_1" src="test_jil_security_policy-*.wgt">Verify Preconditions
+
+Instructions:
+1) Make sure all the preconditions listed are met. They will be required by upcoming tests.
+2) At least one contact has to exist on the phone. (contact with the ID '47' will be used)
+3) At least one calendar item has to exist on the phone. (calender item with the ID '1' will be used)
+4) At least one MISSED call has to exist on the phone.
+5) Click 'GO' to start testing.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Developer_signed_tests_100" src="test_jil_security_policy-*.wgt">AccelerometerInfo  all properties 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_102" src="test_jil_security_policy-*.wgt">Widget Device DeviceStateInfo AccelerometerInfo
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_200" src="test_jil_security_policy-*.wgt">Account accountId  Widget Messaging getCurrentEmailAccount 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_202" src="test_jil_security_policy-*.wgt">Account accountName  Widget Messaging getCurrentEmailAccount 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_204" src="test_jil_security_policy-*.wgt">Widget Device AccountInfo phoneUserUniqueId
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_206" src="test_jil_security_policy-*.wgt">Widget Device AccountInfo phoneMSISDN
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_207" src="test_jil_security_policy-*.wgt">Widget Device AccountInfo phoneMSISDN
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_208" src="test_jil_security_policy-*.wgt">Widget Device AccountInfo phoneOperatorName
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_210" src="test_jil_security_policy-*.wgt">Widget Device AccountInfo userSubscriptionType
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_211" src="test_jil_security_policy-*.wgt">Widget Device AccountInfo userSubscriptionType
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_212" src="test_jil_security_policy-*.wgt">Widget Device AccountInfo userAccountBalance
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_213" src="test_jil_security_policy-*.wgt">Widget Device AccountInfo userAccountBalance
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_300" src="test_jil_security_policy-*.wgt">PIM getAddressBookItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_301" src="test_jil_security_policy-*.wgt">PIM getAddressBookItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_302" src="test_jil_security_policy-*.wgt">PIM getAvailableAddressGroupNames
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_303" src="test_jil_security_policy-*.wgt">PIM getAvailableAddressGroupNames
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_304" src="test_jil_security_policy-*.wgt">AddressBook  all properties 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_306" src="test_jil_security_policy-*.wgt">PIM AddressBookItem getAddressGroupNames
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_308" src="test_jil_security_policy-*.wgt">PIM AddressBookItem getAttributeValue
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_310" src="test_jil_security_policy-*.wgt">PIM AddressBookItem getAvailableAttributes
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_312" src="test_jil_security_policy-*.wgt">PIM AddressBookItem setAddressGroupNames
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_314" src="test_jil_security_policy-*.wgt">PIM AddressBookItem setAttributeValue
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_316" src="test_jil_security_policy-*.wgt">PIM AddressBookItem update
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_317" src="test_jil_security_policy-*.wgt">PIM AddressBookItem update
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_318" src="test_jil_security_policy-*.wgt">PIM AddressBookItem   new Widget PIM AddressBookItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_320" src="test_jil_security_policy-*.wgt">PIM AddressBookItem setAttributeValue
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_322" src="test_jil_security_policy-*.wgt">PIM addAddressBookItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_323" src="test_jil_security_policy-*.wgt">PIM addAddressBookItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_324" src="test_jil_security_policy-*.wgt">PIM getAddressBookGroupMembers
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_325" src="test_jil_security_policy-*.wgt">PIM getAddressBookGroupMembers
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_326" src="test_jil_security_policy-*.wgt">PIM createAddressBookGroup
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_327" src="test_jil_security_policy-*.wgt">PIM createAddressBookGroup
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_328" src="test_jil_security_policy-*.wgt">PIM deleteAddressBookGroup
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_329" src="test_jil_security_policy-*.wgt">PIM deleteAddressBookGroup
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_330" src="test_jil_security_policy-*.wgt">PIM deleteAddressBookItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_331" src="test_jil_security_policy-*.wgt">PIM deleteAddressBookItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_332" src="test_jil_security_policy-*.wgt">PIM exportAsVCard
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_333" src="test_jil_security_policy-*.wgt">PIM exportAsVCard
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_334" src="test_jil_security_policy-*.wgt">PIM findAddressBookItems
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_335" src="test_jil_security_policy-*.wgt">PIM findAddressBookItems
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_336" src="test_jil_security_policy-*.wgt">Device setRingtone
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_337" src="test_jil_security_policy-*.wgt">Device setRingtone
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_338" src="test_jil_security_policy-*.wgt">Device getAddressBookItemsCount
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_339" src="test_jil_security_policy-*.wgt">Device getAddressBookItemsCount
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_340" src="test_jil_security_policy-*.wgt">Device onAddressBookItemsFound
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_342" src="test_jil_security_policy-*.wgt">Device onVCardExportingFinish
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_400" src="test_jil_security_policy-*.wgt">Widget Device ApplicationTypes
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_402" src="test_jil_security_policy-*.wgt">Device getAvailableApplications
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_404" src="test_jil_security_policy-*.wgt">Device launchApplication
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_405" src="test_jil_security_policy-*.wgt">Device launchApplication
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_600" src="test_jil_security_policy-*.wgt">AudioPlayer open
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_602" src="test_jil_security_policy-*.wgt">AudioPlayer play
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_604" src="test_jil_security_policy-*.wgt">AudioPlayer pause
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_606" src="test_jil_security_policy-*.wgt">AudioPlayer resume
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_608" src="test_jil_security_policy-*.wgt">AudioPlayer stop
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_610" src="test_jil_security_policy-*.wgt">AudioPlayer onStateChange
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_612" src="test_jil_security_policy-*.wgt">Multimedia getVolume
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_614" src="test_jil_security_policy-*.wgt">Multimedia stopAll
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_616" src="test_jil_security_policy-*.wgt">Widget Multimedia isAudioPlaying
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_700" src="test_jil_security_policy-*.wgt">PIM getCalendarItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_701" src="test_jil_security_policy-*.wgt">PIM getCalendarItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_702" src="test_jil_security_policy-*.wgt">CalendarItem  all properties 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_704" src="test_jil_security_policy-*.wgt">CalendarItem update
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_705" src="test_jil_security_policy-*.wgt">CalendarItem update
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_706" src="test_jil_security_policy-*.wgt">Widget PIM EventRecurrenceTypes
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_708" src="test_jil_security_policy-*.wgt">CalendarItem   new CalendarItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_710" src="test_jil_security_policy-*.wgt">PIM addCalendarItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_711" src="test_jil_security_policy-*.wgt">PIM addCalendarItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_712" src="test_jil_security_policy-*.wgt">PIM deleteCalendarItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_713" src="test_jil_security_policy-*.wgt">PIM deleteCalendarItem
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_714" src="test_jil_security_policy-*.wgt">PIM findCalendarItems
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_715" src="test_jil_security_policy-*.wgt">PIM findCalendarItems
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_716" src="test_jil_security_policy-*.wgt">PIM getCalendarItems
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_717" src="test_jil_security_policy-*.wgt">PIM getCalendarItems
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_718" src="test_jil_security_policy-*.wgt">PIM onCalendarItemAlert
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_720" src="test_jil_security_policy-*.wgt">PIM onCalendarItemsFound
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_800" src="test_jil_security_policy-*.wgt">Telephony   new Telephony
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_802" src="test_jil_security_policy-*.wgt">Telephony onCallRecordsFound
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_804" src="test_jil_security_policy-*.wgt">Telephony findCallRecords
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_805" src="test_jil_security_policy-*.wgt">Telephony findCallRecords
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_806" src="test_jil_security_policy-*.wgt">Telephony getCallRecord
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_807" src="test_jil_security_policy-*.wgt">Telephony getCallRecord
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_808" src="test_jil_security_policy-*.wgt">CallRecord  all properties 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_810" src="test_jil_security_policy-*.wgt">Widget Telephony CallRecordTypes
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_812" src="test_jil_security_policy-*.wgt">Telephony deleteCallRecord
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_813" src="test_jil_security_policy-*.wgt">Telephony deleteCallRecord
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_814" src="test_jil_security_policy-*.wgt">Telephony getCallRecordCnt
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_816" src="test_jil_security_policy-*.wgt">Telephony initiateVoiceCall
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_817" src="test_jil_security_policy-*.wgt">Telephony initiateVoiceCall
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_818" src="test_jil_security_policy-*.wgt">Telephony onCallEvent
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_820" src="test_jil_security_policy-*.wgt">Telephony deleteAllCallRecords
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_821" src="test_jil_security_policy-*.wgt">Telephony deleteAllCallRecords
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_900" src="test_jil_security_policy-*.wgt">Multimedia Camera captureImage
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_901" src="test_jil_security_policy-*.wgt">Multimedia Camera captureImage
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_902" src="test_jil_security_policy-*.wgt">Multimedia Camera startVideoCapture
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_903" src="test_jil_security_policy-*.wgt">Multimedia Camera startVideoCapture
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_904" src="test_jil_security_policy-*.wgt">Multimedia Camera stopVideoCapture
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_904" src="test_jil_security_policy-*.wgt">Multimedia Camera onCameraCaptured
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1000" src="test_jil_security_policy-*.wgt">Widget Device DeviceStateInfo Config
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_1001" src="test_jil_security_policy-*.wgt">Widget Device DeviceStateInfo Config
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1002" src="test_jil_security_policy-*.wgt">Device DeviceStateInfo Config setAsWallpaper
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_1003" src="test_jil_security_policy-*.wgt">Device DeviceStateInfo Config setAsWallpaper
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1004" src="test_jil_security_policy-*.wgt">Device DeviceStateInfo Config setDefaultRingtone
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1100" src="test_jil_security_policy-*.wgt">Widget Device DataNetworkInfo DataNetworkConnectionTypes
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1102" src="test_jil_security_policy-*.wgt">Widget Device DataNetworkInfo
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1104" src="test_jil_security_policy-*.wgt">Device DataNetworkInfo onNetworkConnectionChanged
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1106" src="test_jil_security_policy-*.wgt">Device DataNetworkInfo getNetworkConnectionName
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1108" src="test_jil_security_policy-*.wgt">Device DataNetworkInfo isDataNetworkConnected
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1200" src="test_jil_security_policy-*.wgt">Device copyFile
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_1201" src="test_jil_security_policy-*.wgt">Device copyFile
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1202" src="test_jil_security_policy-*.wgt">Device deleteFile
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_1203" src="test_jil_security_policy-*.wgt">Device deleteFile
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1204" src="test_jil_security_policy-*.wgt">Device findFiles
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_1205" src="test_jil_security_policy-*.wgt">Device findFiles
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1206" src="test_jil_security_policy-*.wgt">Device onFilesFound
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1208" src="test_jil_security_policy-*.wgt">Device getDirectoryFileNames
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_1209" src="test_jil_security_policy-*.wgt">Device getDirectoryFileNames
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1210" src="test_jil_security_policy-*.wgt">Device getFile
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_1211" src="test_jil_security_policy-*.wgt">Device getFile
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1212" src="test_jil_security_policy-*.wgt">Device getFileSystemRoots
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1214" src="test_jil_security_policy-*.wgt">Device getFileSystemSize
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1216" src="test_jil_security_policy-*.wgt">Device moveFile
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_1217" src="test_jil_security_policy-*.wgt">Device moveFile
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1218" src="test_jil_security_policy-*.wgt">Widget Device File
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1300" src="test_jil_security_policy-*.wgt">Widget Device AccountInfo
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1302" src="test_jil_security_policy-*.wgt">Widget Device DeviceInfo
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1304" src="test_jil_security_policy-*.wgt">Widget Device DeviceStateInfo
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1306" src="test_jil_security_policy-*.wgt">Widget Device PowerInfo
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1308" src="test_jil_security_policy-*.wgt">Widget Device RadioInfo
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1310" src="test_jil_security_policy-*.wgt">Device clipboardString
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1312" src="test_jil_security_policy-*.wgt">Widget Device widgetEngineName
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1314" src="test_jil_security_policy-*.wgt">Widget Device widgetEngineProvider
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1316" src="test_jil_security_policy-*.wgt">Widget Device widgetEngineVersion
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1318" src="test_jil_security_policy-*.wgt">Widget Device DeviceInfo ownerInfo
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1320" src="test_jil_security_policy-*.wgt">Widget Device DeviceInfo phoneColorDepthDefault
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1322" src="test_jil_security_policy-*.wgt">Widget Device DeviceInfo phoneFirmware
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1324" src="test_jil_security_policy-*.wgt">Widget Device DeviceInfo phoneManufacturer
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1326" src="test_jil_security_policy-*.wgt">Widget Device DeviceInfo phoneModel
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1328" src="test_jil_security_policy-*.wgt">Widget Device DeviceInfo phoneOS
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1330" src="test_jil_security_policy-*.wgt">Widget Device DeviceInfo phoneSoftware
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1332" src="test_jil_security_policy-*.wgt">Widget Device DeviceInfo screenHeightDefault
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1334" src="test_jil_security_policy-*.wgt">Widget Device DeviceInfo screenWidthDefault
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1336" src="test_jil_security_policy-*.wgt">Widget Device DeviceInfo totalMemory
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1338" src="test_jil_security_policy-*.wgt">DeviceStateInfo onScreenChangeDimensions
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1340" src="test_jil_security_policy-*.wgt">DeviceStateInfo onFlipEvent
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1342" src="test_jil_security_policy-*.wgt">Widget Device DeviceStateInfo keypadLightOn
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1344" src="test_jil_security_policy-*.wgt">Widget Device DeviceStateInfo backLightOn
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1346" src="test_jil_security_policy-*.wgt">Widget Device DeviceStateInfo availableMemory
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1348" src="test_jil_security_policy-*.wgt">Widget Device DeviceStateInfo language
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1348" src="test_jil_security_policy-*.wgt">Widget Device DeviceStateInfo audioPath
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1350" src="test_jil_security_policy-*.wgt">Widget Device DeviceStateInfo processorUtilizationPercent
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1352" src="test_jil_security_policy-*.wgt">PowerInfo onLowBattery
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1354" src="test_jil_security_policy-*.wgt">PowerInfo onChargeLevelChange
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1356" src="test_jil_security_policy-*.wgt">PowerInfo onChargeStateChange
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1358" src="test_jil_security_policy-*.wgt">Widget Device PowerInfo isCharging
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1360" src="test_jil_security_policy-*.wgt">Widget Device PowerInfo percentRemaining
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1362" src="test_jil_security_policy-*.wgt">Widget Device RadioInfo isRadioEnabled
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1364" src="test_jil_security_policy-*.wgt">Widget Device RadioInfo isRoaming
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1366" src="test_jil_security_policy-*.wgt">Widget Device RadioInfo radioSignalSource
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1368" src="test_jil_security_policy-*.wgt">Widget Device RadioInfo radioSignalStrengthPercent
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1370" src="test_jil_security_policy-*.wgt">RadioInfo onSignalSourceChange
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1372" src="test_jil_security_policy-*.wgt">Widget Device RadioInfo RadioSignalSourceTypes
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1400" src="test_jil_security_policy-*.wgt">DeviceStateInfo onPositionRetreived
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1402" src="test_jil_security_policy-*.wgt">DeviceStateInfo requestPositionInfo
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you have to confirm the security message?</test>
+  <test id="ID_JIL_Developer_signed_tests_1403" src="test_jil_security_policy-*.wgt">DeviceStateInfo requestPositionInfo
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1404" src="test_jil_security_policy-*.wgt">Widget Device PositionInfo
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1500" src="test_jil_security_policy-*.wgt">Widget Multimedia isVideoPlaying
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1502" src="test_jil_security_policy-*.wgt">Multimedia VideoPlayer setWindow
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1504" src="test_jil_security_policy-*.wgt">Multimedia VideoPlayer onStateChange
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1506" src="test_jil_security_policy-*.wgt">Multimedia VideoPlayer open
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1508" src="test_jil_security_policy-*.wgt">Multimedia VideoPlayer play
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1508" src="test_jil_security_policy-*.wgt">Multimedia VideoPlayer pause
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1510" src="test_jil_security_policy-*.wgt">Multimedia VideoPlayer resume
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1512" src="test_jil_security_policy-*.wgt">Multimedia VideoPlayer stop
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1600" src="test_jil_security_policy-*.wgt">Widget onFocus
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1602" src="test_jil_security_policy-*.wgt">Widget onMaximize
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1604" src="test_jil_security_policy-*.wgt">Widget onRestore
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1606" src="test_jil_security_policy-*.wgt">Widget onWakeup
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1608" src="test_jil_security_policy-*.wgt">Widget openURL
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1610" src="test_jil_security_policy-*.wgt">Widget setPreferenceForKey
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+  <test id="ID_JIL_Developer_signed_tests_1612" src="test_jil_security_policy-*.wgt">Widget preferenceForKey
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+No security dialog should have opened, was that the case?</test>
+</testsuite>

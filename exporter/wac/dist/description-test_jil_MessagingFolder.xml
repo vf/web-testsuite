@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_MessagingFolder_100" src="test_jil_MessagingFolder.wgt">createFolder   in emails
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_200" src="test_jil_MessagingFolder.wgt">createFolder   in SMS
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_300" src="test_jil_MessagingFolder.wgt">createFolder   in MMS
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_400" src="test_jil_MessagingFolder.wgt">createFolder   Throw INVALID PARAMETER for adding existing folder 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_500" src="test_jil_MessagingFolder.wgt">createFolder   Throw INVALID PARAMETER for no params 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_600" src="test_jil_MessagingFolder.wgt">createFolder   Throw INVALID PARAMETER for missing params 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_700" src="test_jil_MessagingFolder.wgt">createFolder   Throw INVALID PARAMETER for invalid message type 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_800" src="test_jil_MessagingFolder.wgt">createFolder   Throw INVALID PARAMETER for empty message type 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_850" src="test_jil_MessagingFolder.wgt">createFolder is not supported   Throws UNSUPPORTED 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_860" src="test_jil_MessagingFolder.wgt">createFolder is not supported   Throws UNSUPPORTED also if parameters are missing 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_900" src="test_jil_MessagingFolder.wgt">deleteFolder   Let s remove the one we created in  SMS  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_1000" src="test_jil_MessagingFolder.wgt">deleteFolder   Delete the same one again  should throw an exception 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_1100" src="test_jil_MessagingFolder.wgt">deleteFolder   Let s remove the one we created in  MMS  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_1200" src="test_jil_MessagingFolder.wgt">deleteFolder   Delete the same one again  should throw an exception 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_1300" src="test_jil_MessagingFolder.wgt">deleteFolder   Let s remove the one we created in  EMail  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_1400" src="test_jil_MessagingFolder.wgt">deleteFolder   Delete the same one again  should throw an exception 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_1450" src="test_jil_MessagingFolder.wgt">deleteFolder is not supported   Throws UNSUPPORTED 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_1460" src="test_jil_MessagingFolder.wgt">deleteFolder is not supported   Throws UNSUPPORTED also if parameters are missing 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_MessagingFolder_1500" src="test_jil_MessagingFolder.wgt">getFolderNames   Verify folders in SMS 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Are the following the folders that exist in SMS?</test>
+  <test id="ID_JIL_MessagingFolder_1600" src="test_jil_MessagingFolder.wgt">getFolderNames   Verify folders in MMS 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Are the following the folders that exist in MMS?</test>
+  <test id="ID_JIL_MessagingFolder_1700" src="test_jil_MessagingFolder.wgt">getFolderNames   Verify folders in EMail 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Are the following the folders that exist in EMail?</test>
+</testsuite>

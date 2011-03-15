@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_AudioPlayer_1" src="test_jil_AudioPlayer.wgt">Verify Preconditions
+
+Instructions:
+1) Make sure all the preconditions listed are met. They will be required by upcoming tests.
+2) Copy the content of the testsuite's zip-file's  folder 'test-audio' into the music directory (should be: 'unknown') on the phone. (The exact name of the destination folder may vary on your device.)
+3) Ensure the volume is set to high, so you can hear the audio playing!
+4) Click 'GO' to start testing.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_isAudioPlaying_100" src="test_jil_AudioPlayer.wgt">Multimedia isAudioPlaying true  in widget file  test audio loop wav  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_isAudioPlaying_150" src="test_jil_AudioPlayer.wgt">Multimedia isAudioPlaying true  on device file   virtual music test audio loop wav  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_isAudioPlaying_200" src="test_jil_AudioPlayer.wgt">isAudioPlaying false
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_isAudioPlaying_300" src="test_jil_AudioPlayer.wgt">isAudioPlaying true after a while  in widget file  test audio song mp3  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_isAudioPlaying_350" src="test_jil_AudioPlayer.wgt">isAudioPlaying true after a while  on device file   virtual music test audio song mp3  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_isAudioPlaying_400" src="test_jil_AudioPlayer.wgt">isAudioPlaying false when paused  in widget file  test audio song mp3  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_isAudioPlaying_450" src="test_jil_AudioPlayer.wgt">isAudioPlaying false when paused  on device file   virtual music test audio song mp3  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_audio_Codecs_100" src="test_jil_AudioPlayer.wgt">mp3  song  in widget file 
+
+Instructions:
+Click 'GO' to play audio.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_audio_Codecs_150" src="test_jil_AudioPlayer.wgt">mp3  song  on device file 
+
+Instructions:
+Click 'GO' to play audio.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_audio_Codecs_200" src="test_jil_AudioPlayer.wgt">mp3  loop  very small file  in widget file 
+
+Instructions:
+Click 'GO' to play audio.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_audio_Codecs_250" src="test_jil_AudioPlayer.wgt">mp3  loop  very small file  on device file 
+
+Instructions:
+Click 'GO' to play audio.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_audio_Codecs_300" src="test_jil_AudioPlayer.wgt">wav  song   in widget file 
+
+Instructions:
+Click 'GO' to play audio.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_audio_Codecs_350" src="test_jil_AudioPlayer.wgt">wav  song   on device file 
+
+Instructions:
+Click 'GO' to play audio.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_audio_Codecs_400" src="test_jil_AudioPlayer.wgt">wav  loop  very small file  in widget file 
+
+Instructions:
+Click 'GO' to play audio.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_audio_Codecs_450" src="test_jil_AudioPlayer.wgt">wav  loop  very small file  on device file 
+
+Instructions:
+Click 'GO' to play audio.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_audio_Codecs_500" src="test_jil_AudioPlayer.wgt">streaming MP3  mp3 128k 
+
+Instructions:
+1) Click 'GO' to play audio.
+2) Please be patient, it might take a while, depending on your network, etc.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_audio_Codecs_510" src="test_jil_AudioPlayer.wgt">redirected streaming MP3  mp3 128k 
+
+Instructions:
+1) Click 'GO' to play audio.
+2) Please be patient, it might take a while, depending on your network, etc.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_audio_Codecs_600" src="test_jil_AudioPlayer.wgt">streaming OGG  ogg vorbis q4 
+
+Instructions:
+1) Click 'GO' to play audio.
+2) Please be patient, it might take a while, depending on your network, etc.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_audio_Codecs_610" src="test_jil_AudioPlayer.wgt">redirected streaming OGG  ogg vorbis q4 
+
+Instructions:
+1) Click 'GO' to play audio.
+2) Please be patient, it might take a while, depending on your network, etc.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_AudioPlayer_100" src="test_jil_AudioPlayer.wgt">open  play 1sec  stop  in widget file 
+
+Instructions:
+Click 'GO' to play audio for a second.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_AudioPlayer_150" src="test_jil_AudioPlayer.wgt">open  play 1sec  stop  on device file 
+
+Instructions:
+Click 'GO' to play audio for a second.
+
+Expected behaviour:
+Did you hear any playback?</test>
+  <test id="ID_JIL_AudioPlayer_200" src="test_jil_AudioPlayer.wgt">pause  in widget file 
+
+Instructions:
+Click 'GO' to play audio for a second.
+
+Expected behaviour:
+Did the playback stop after about 1 second?</test>
+  <test id="ID_JIL_AudioPlayer_250" src="test_jil_AudioPlayer.wgt">pause  on device file 
+
+Instructions:
+Click 'GO' to play audio for a second.
+
+Expected behaviour:
+Did the playback stop after about 1 second?</test>
+  <test id="ID_JIL_AudioPlayer_300" src="test_jil_AudioPlayer.wgt">pause and play again  in widget file 
+
+Instructions:
+Click 'GO' to play audio.
+
+Expected behaviour:
+Did the audio stop and play again?</test>
+  <test id="ID_JIL_AudioPlayer_350" src="test_jil_AudioPlayer.wgt">pause and play again  on device file 
+
+Instructions:
+Click 'GO' to play audio.
+
+Expected behaviour:
+Did the audio stop and play again?</test>
+  <test id="ID_JIL_AudioPlayer_400" src="test_jil_AudioPlayer.wgt">play loop  in widget file 
+
+Instructions:
+Click 'GO' to play audio looping twice.
+
+Expected behaviour:
+Did the audio play the same piece twice?</test>
+  <test id="ID_JIL_AudioPlayer_450" src="test_jil_AudioPlayer.wgt">play loop  on device file 
+
+Instructions:
+Click 'GO' to play audio looping twice.
+
+Expected behaviour:
+Did the audio play the same piece twice?</test>
+  <test id="ID_JIL_AudioPlayer_500" src="test_jil_AudioPlayer.wgt">play loop  in widget file 
+
+Instructions:
+Click 'GO' to play audio looping five times.
+
+Expected behaviour:
+Did the audio play the same piece five times (5x)?</test>
+  <test id="ID_JIL_AudioPlayer_550" src="test_jil_AudioPlayer.wgt">play loop  on device file 
+
+Instructions:
+Click 'GO' to play audio looping five times.
+
+Expected behaviour:
+Did the audio play the same piece five times (5x)?</test>
+  <test id="ID_JIL_AudioPlayer_600" src="test_jil_AudioPlayer.wgt">play  resume  in widget file 
+
+Instructions:
+Click 'GO' to play audio, pause and hear it continue.
+
+Expected behaviour:
+Did it pause for about 2secs and continue from where it had stopped?</test>
+  <test id="ID_JIL_AudioPlayer_650" src="test_jil_AudioPlayer.wgt">play  resume  on device file 
+
+Instructions:
+Click 'GO' to play audio, pause and hear it continue.
+
+Expected behaviour:
+Did it pause for about 2secs and continue from where it had stopped?</test>
+  <test id="ID_JIL_AudioPlayer_700" src="test_jil_AudioPlayer.wgt">play   Play MP3 file from device   virtual music test audio song mp3  
+
+Instructions:
+1) Make sure you have copied the audio files in to the devices music folder.
+2) Click 'GO'.
+
+Expected behaviour:
+Do you hear the audio play?</test>
+  <test id="ID_JIL_AudioPlayer_800" src="test_jil_AudioPlayer.wgt">play   Play WAV file from device   virtual music test audio song wav  
+
+Instructions:
+1) Make sure you have copied the audio files in to the devices music folder.
+2) Click 'GO'.
+
+Expected behaviour:
+Do you hear the audio play?</test>
+  <test id="ID_JIL_Multimedia_misc_100" src="test_jil_AudioPlayer.wgt">Check if Widget MultiMedia stopAll   stops audio playing 
+
+Instructions:
+Click 'GO' to play audio.
+
+Expected behaviour:
+Did it stop after about 2sec?</test>
+  <test id="ID_JIL_Multimedia_misc_200" src="test_jil_AudioPlayer.wgt">Verify the volume value 
+
+Instructions:
+1) Change the volume of the phone to very loud!
+2) Click 'GO'.
+
+Expected behaviour:
+Is the shown volume level correct?</test>
+  <test id="ID_JIL_Multimedia_misc_300" src="test_jil_AudioPlayer.wgt">Verify a different    volume value again 
+
+Instructions:
+1) Change the volumne of the phone to very low!
+2) Click 'GO'.
+
+Expected behaviour:
+Is the shown volume level correct?</test>
+  <test id="ID_JIL_Multimedia_misc_400" src="test_jil_AudioPlayer.wgt">Verify the volume value  100   10  
+
+Instructions:
+1) Change the volume of the phone to the loudest possible!
+2) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Multimedia_misc_500" src="test_jil_AudioPlayer.wgt">Verify the volume value  0 
+
+Instructions:
+1) Change the volume of the phone to the lowest possible value!
+2) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Multimedia_misc_600" src="test_jil_AudioPlayer.wgt">Change volume while song is playing
+
+Instructions:
+1) Click 'GO'!
+2) Turn down the volume.
+3) Turn down the volume back up.
+
+Expected behaviour:
+Had you been able to turn down the volume and back up?</test>
+</testsuite>

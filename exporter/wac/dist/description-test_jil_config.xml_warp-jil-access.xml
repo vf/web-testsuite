@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_access_tag_first_and_jil_ac_100" src="test_jil_config.xml_warp-jil-access.wgt">Use  lt img src gt  to load an external resource 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you see an image loading?</test>
+  <test id="ID_JIL_access_tag_first_and_jil_ac_200" src="test_jil_config.xml_warp-jil-access.wgt">Use  new Image    to load an external resource 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you see an image loading?</test>
+  <test id="ID_JIL_access_tag_first_and_jil_ac_300" src="test_jil_config.xml_warp-jil-access.wgt">Use XHR to load an external resource 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test for="http://tools.ietf.org/html/rfc5724#appendix-A" id="ID_JIL_sms_URI_scheme_100" src="test_misc_uri_sms.wgt">Only one local number
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the SMS app open a new message
+* to 12345?</test>
+  <test for="http://tools.ietf.org/html/rfc5724#appendix-A" id="ID_JIL_sms_URI_scheme_200" src="test_misc_uri_sms.wgt">Only one global number
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the SMS app open a new message
+* to +12345678?</test>
+  <test for="http://tools.ietf.org/html/rfc5724#appendix-A" id="ID_JIL_sms_URI_scheme_300" src="test_misc_uri_sms.wgt">Two local numbers
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the SMS app open a new message
+* to 2 recipients (12345, 223344)?</test>
+  <test for="http://tools.ietf.org/html/rfc5724#appendix-A" id="ID_JIL_sms_URI_scheme_400" src="test_misc_uri_sms.wgt">Two global numbers
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the SMS app open a new message
+* to 2 recipients (+12345678, +333444)?</test>
+  <test for="http://tools.ietf.org/html/rfc5724#appendix-A" id="ID_JIL_sms_URI_scheme_500" src="test_misc_uri_sms.wgt">Multiple local numbers
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the SMS app open a new message
+* to 5 recipients (12345, 223344, 444555, 9090909, 88888)?</test>
+  <test for="http://tools.ietf.org/html/rfc5724#appendix-A" id="ID_JIL_sms_URI_scheme_600" src="test_misc_uri_sms.wgt">Multiple global numbers
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the SMS app open a new message
+* to 4 recipients (+12345678, +333444, +222222, +9990999)?</test>
+  <test for="http://tools.ietf.org/html/rfc5724#appendix-A" id="ID_JIL_sms_URI_scheme_700" src="test_misc_uri_sms.wgt">One local and global number
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the SMS app open a new message
+* to 2 recipients (12345, +555666)?</test>
+  <test for="http://tools.ietf.org/html/rfc5724#appendix-A" id="ID_JIL_sms_URI_scheme_800" src="test_misc_uri_sms.wgt">One global and local number
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the SMS app open a new message
+* to 2 recipients (+555666, 12345)?</test>
+  <test for="http://tools.ietf.org/html/rfc5724#section-1.2.1" id="ID_JIL_sms_URI_scheme_1000" src="test_misc_uri_sms.wgt">One local number  body
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the SMS app open a new message
+* to 12345
+* with the content 'test content'?</test>
+  <test for="http://tools.ietf.org/html/rfc5724#section-1.2.1" id="ID_JIL_sms_URI_scheme_1100" src="test_misc_uri_sms.wgt">One global number  body
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the SMS app open a new message
+* to +12345678
+* with the content 'test content'?</test>
+</testsuite>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/association-of-controls-and-forms.html#autofocusing-a-form-control" id="ID_JIL_attributes_100" src="test_w3c_input_attributes.wgt">autofocus
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Was the input field focused right away?</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/common-input-element-attributes.html#the-placeholder-attribute" id="ID_JIL_attributes_200" src="test_w3c_input_attributes.wgt">placeholder
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Do you see placeholder text in the input field?</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/common-input-element-attributes.html#the-readonly-attribute" id="ID_JIL_attributes_300" src="test_w3c_input_attributes.wgt">readonly
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the input field NOT editable?</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/common-input-element-attributes.html#the-readonly-attribute" id="ID_JIL_attributes_350" src="test_w3c_input_attributes.wgt">readonly  set to false  but still readonly  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the input field NOT editable?</test>
+  <test for="http://www.w3.org/TR/html5/association-of-controls-and-forms.html#enabling-and-disabling-form-controls" id="ID_JIL_attributes_400" src="test_w3c_input_attributes.wgt">disabled  let user verify
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the input field disabled?</test>
+  <test for="http://www.w3.org/TR/html5/association-of-controls-and-forms.html#enabling-and-disabling-form-controls" id="ID_JIL_attributes_500" src="test_w3c_input_attributes.wgt">disabled  prevent firing events
+
+Instructions:
+1) Click 'GO'!
+2) Click the input element.
+
+Expected behaviour:
+Did clicking the input field NOT show 'FAIL'?</test>
+  <test for="http://www.w3.org/TR/html5/common-input-element-attributes.html#the-required-attribute" id="ID_JIL_attributes_600" src="test_w3c_input_attributes.wgt">required  validate empty field doesn t submit
+
+Instructions:
+1) Click 'GO'!
+2) Type nothing in the input field!
+3) Click the submit button!
+
+Expected behaviour:
+Did the form NOT submit?</test>
+  <test for="http://www.w3.org/TR/html5/common-input-element-attributes.html#the-required-attribute" id="ID_JIL_attributes_700" src="test_w3c_input_attributes.wgt">required  validate non empty field does submit
+
+Instructions:
+1) Click 'GO'!
+2) Type something in the input field!
+3) Click the submit button!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/html5/common-input-element-attributes.html#the-pattern-attribute" id="ID_JIL_attributes_800" src="test_w3c_input_attributes.wgt">pattern  simple positive test
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/html5/common-input-element-attributes.html#the-pattern-attribute" id="ID_JIL_attributes_900" src="test_w3c_input_attributes.wgt">pattern  match
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/html5/common-input-element-attributes.html#the-pattern-attribute" id="ID_JIL_attributes_1000" src="test_w3c_input_attributes.wgt">pattern  user input should match
+
+Instructions:
+1) Click 'GO'
+2) Type '123'!
+3) Click the submit button!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/html5/common-input-element-attributes.html#the-pattern-attribute" id="ID_JIL_attributes_1100" src="test_w3c_input_attributes.wgt">pattern  user input should NOT match
+
+Instructions:
+1) Click 'GO'
+2) Type 'abc'!
+3) Click the submit button!
+
+Expected behaviour:
+Was the form NOT submittable?</test>
+</testsuite>

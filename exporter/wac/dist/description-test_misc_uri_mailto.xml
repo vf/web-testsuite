@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_mailto_URI_scheme_100" src="test_misc_uri_mailto.wgt">mailto email1
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the mail client open the composer to
+* email1@home.com</test>
+  <test id="ID_JIL_mailto_URI_scheme_200" src="test_misc_uri_mailto.wgt">mailto  to email1
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the mail client open the composer to
+* email1@home.com</test>
+  <test id="ID_JIL_mailto_URI_scheme_1000" src="test_misc_uri_mailto.wgt">mailto email1 email2
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the mail client open the composer to
+* email1@home.com and email2@home.com</test>
+  <test id="ID_JIL_mailto_URI_scheme_1100" src="test_misc_uri_mailto.wgt">mailto  to email1 email2
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the mail client open the composer to
+* email1@home.com and email2@home.com</test>
+  <test id="ID_JIL_mailto_URI_scheme_1200" src="test_misc_uri_mailto.wgt">mailto email1 to email2
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the mail client open the composer to
+* email1@home.com and email2@home.com</test>
+</testsuite>

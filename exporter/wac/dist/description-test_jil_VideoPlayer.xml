@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_VideoPlayer_1" src="test_jil_VideoPlayer.wgt">Verify Preconditions
+
+Instructions:
+1) Make sure all the preconditions listed are met. They will be required by upcoming tests.
+2) Copy the content of the testsuite's zip-file's  folder 'video' into the videos directory on the phone. (The exact name of the destination folder may vary on your device.)
+3) Click 'GO' to start testing.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_VideoPlayer_600" src="test_jil_VideoPlayer.wgt">play 2x loop
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video twice?</test>
+  <test id="ID_JIL_VideoPlayer_700" src="test_jil_VideoPlayer.wgt">play 5x loop
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video five times?</test>
+  <test id="ID_JIL_VideoPlayer_800" src="test_jil_VideoPlayer.wgt">play  pause and play again
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did the video play, pause and play again?</test>
+  <test id="ID_JIL_VideoPlayer_1000" src="test_jil_VideoPlayer.wgt">setWindow   Disassociate preview window  setWindow null  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did the preview window disappear after about 5 seconds?</test>
+  <test id="ID_JIL_VideoPlayer_3020" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  h263  from  test video long h263 lq 3gp 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3030" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  h263  from   virtual videos test video long h263 lq 3gp 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3040" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  h264  from  test video long h264 mp4 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3050" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  h264  from   virtual videos test video long h264 mp4 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3060" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  mpeg4  from  test video long mpeg4 mp4 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3070" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  mpeg4  from   virtual videos test video long mpeg4 mp4 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3080" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  h264  from  test video loop h264 mp4 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3090" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  h264  from   virtual videos test video loop h264 mp4 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3100" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  h263  from  test video long h263 lq 3gp 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3110" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  h263  from   virtual videos test video long h263 lq 3gp 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3120" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  mpeg4  from  test video loop mpeg4 mp4 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3130" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  mpeg4  from   virtual videos test video loop mpeg4 mp4 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3140" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  theora  from  test video long theora ogv 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3150" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  theora  from   virtual videos test video long theora ogv 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3160" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  theora  from  test video loop theora ogv 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3170" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  theora  from   virtual videos test video loop theora ogv 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3180" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  webm  from  test video long webm webm 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3190" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  webm  from   virtual videos test video long webm webm 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3200" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  webm  from  test video loop webm webm 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+  <test id="ID_JIL_VideoPlayer_3210" src="test_jil_VideoPlayer.wgt">Protocol   Test codec  webm  from   virtual videos test video loop webm webm 
+
+Instructions:
+Click 'GO' to play video.
+
+Expected behaviour:
+Did you see the video?</test>
+</testsuite>

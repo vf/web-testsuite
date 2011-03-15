@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_Application_100" src="test_jil_Application.wgt">getAvailableApplications   Should return an array 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Application_200" src="test_jil_Application.wgt">Start  CALCULATOR  
+
+Instructions:
+Click 'GO', should launch the calculator.
+
+Expected behaviour:
+Did the calculator start?</test>
+  <test id="ID_JIL_Application_300" src="test_jil_Application.wgt">Start  MEDIAPLAYER  with   virtual widgethome test audio song mp3  
+
+Instructions:
+Click 'GO', should launch an the music player and play a tune.
+
+Expected behaviour:
+Did the music player start AND play the file?</test>
+  <test id="ID_JIL_Application_310" src="test_jil_Application.wgt">Start  MEDIAPLAYER  with   virtual music test audio song mp3  
+
+Instructions:
+1) Make sure the audio file '/virtual/music/test-audio/song.mp3' exists!
+2) Click 'GO', should launch an the music player and play a tune.
+
+Expected behaviour:
+Did the music player start AND play the file?</test>
+  <test id="ID_JIL_Application_500" src="test_jil_Application.wgt">Start  MAIL  to  email vodafone de  
+
+Instructions:
+1) Click 'GO', to init email to 'email@vodafone.de'.
+2) Close email app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did email to 'email@vodafone.de' get initiated?</test>
+  <test id="ID_JIL_Application_600" src="test_jil_Application.wgt">launchApplication   Open website  vodafone de  
+
+Instructions:
+1) Click 'GO', to open browser with 'vodafone.de'.
+2) Close browser (if it opened) and come back to this app.
+
+Expected behaviour:
+Did browser open the page 'vodafone.de'?</test>
+  <test id="ID_JIL_Application_700" src="test_jil_Application.wgt">launchApplication   Create a calendar event 
+
+Instructions:
+1) Click 'GO', to open calendar.
+2) Close calendar and come back to this app.
+
+Expected behaviour:
+Did calendar app open?</test>
+  <test id="ID_JIL_App_launching_100" src="test_jil_Application.wgt">launchApplication   Try start  ALARM  
+
+Instructions:
+1) Click 'GO', should launch 'ALARM'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_200" src="test_jil_Application.wgt">launchApplication   Try start  BROWSER  
+
+Instructions:
+1) Click 'GO', should launch 'BROWSER'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_300" src="test_jil_Application.wgt">launchApplication   Try start  CALCULATOR  
+
+Instructions:
+1) Click 'GO', should launch 'CALCULATOR'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_400" src="test_jil_Application.wgt">launchApplication   Try start  CALENDAR  
+
+Instructions:
+1) Click 'GO', should launch 'CALENDAR'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_500" src="test_jil_Application.wgt">launchApplication   Try start  CAMERA  
+
+Instructions:
+1) Click 'GO', should launch 'CAMERA'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_600" src="test_jil_Application.wgt">launchApplication   Try start  CONTACTS  
+
+Instructions:
+1) Click 'GO', should launch 'CONTACTS'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_700" src="test_jil_Application.wgt">launchApplication   Try start  FILES  
+
+Instructions:
+1) Click 'GO', should launch 'FILES'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_800" src="test_jil_Application.wgt">launchApplication   Try start  GAMES  
+
+Instructions:
+1) Click 'GO', should launch 'GAMES'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_900" src="test_jil_Application.wgt">launchApplication   Try start  MAIL  
+
+Instructions:
+1) Click 'GO', should launch 'MAIL'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_1000" src="test_jil_Application.wgt">launchApplication   Try start  MEDIAPLAYER  
+
+Instructions:
+1) Click 'GO', should launch 'MEDIAPLAYER'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_1100" src="test_jil_Application.wgt">launchApplication   Try start  MESSAGING  
+
+Instructions:
+1) Click 'GO', should launch 'MESSAGING'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_1200" src="test_jil_Application.wgt">launchApplication   Try start  PICTURES  
+
+Instructions:
+1) Click 'GO', should launch 'PICTURES'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_1300" src="test_jil_Application.wgt">launchApplication   Try start  PHONECALL  
+
+Instructions:
+1) Click 'GO', should launch 'PHONECALL'.
+2) Dial any number and hang up, the app will close automatically.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_1400" src="test_jil_Application.wgt">launchApplication   Try start  PROG MANAGER  
+
+Instructions:
+1) Click 'GO', should launch 'PROG_MANAGER'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_1500" src="test_jil_Application.wgt">launchApplication   Try start  SETTINGS  
+
+Instructions:
+1) Click 'GO', should launch 'SETTINGS'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_1600" src="test_jil_Application.wgt">launchApplication   Try start  TASKS  
+
+Instructions:
+1) Click 'GO', should launch 'TASKS'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+  <test id="ID_JIL_App_launching_1700" src="test_jil_Application.wgt">launchApplication   Try start  WIDGET MANAGER  
+
+Instructions:
+1) Click 'GO', should launch 'WIDGET_MANAGER'.
+2) Close app (if it opened) and come back to this app.
+
+Expected behaviour:
+Did app launch?</test>
+</testsuite>

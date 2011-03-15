@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_Mediaquery_widthHeight_100" src="test_w3c_mediaquery_widthHeight.wgt">Preconditions
+
+Instructions:
+1) Hold the device in PORTRAIT mode!
+2) For the next tests hold the device in PORTRAIT mode (until told otherwise)!
+3) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Mediaquery_widthHeight_200" src="test_w3c_mediaquery_widthHeight.wgt">Portrait mode  check min max width
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Mediaquery_widthHeight_300" src="test_w3c_mediaquery_widthHeight.wgt">Portrait mode  check min max height
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Mediaquery_widthHeight_400" src="test_w3c_mediaquery_widthHeight.wgt">Portrait mode  check min max device width
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Mediaquery_widthHeight_500" src="test_w3c_mediaquery_widthHeight.wgt">Portrait mode  check min max device height
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Mediaquery_widthHeight_1100" src="test_w3c_mediaquery_widthHeight.wgt">Preconditions
+
+Instructions:
+1) Hold the device in LANDSCAPE mode!
+2) For the next tests hold the device in LANDSCAPE mode (until told otherwise)!
+3) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Mediaquery_widthHeight_1200" src="test_w3c_mediaquery_widthHeight.wgt">Landscape mode  check min max width
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Mediaquery_widthHeight_1300" src="test_w3c_mediaquery_widthHeight.wgt">Landscape mode  check min max height
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Mediaquery_widthHeight_1400" src="test_w3c_mediaquery_widthHeight.wgt">Landscape mode  check min max device width
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Mediaquery_widthHeight_1500" src="test_w3c_mediaquery_widthHeight.wgt">Landscape mode  check min max device height
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_AccelerometerInfo_100" src="test_jil_AccelerometerInfo.wgt">Is xAxis a number 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccelerometerInfo_200" src="test_jil_AccelerometerInfo.wgt">Is yAxis a number 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccelerometerInfo_300" src="test_jil_AccelerometerInfo.wgt">Is zAxis a number 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccelerometerInfo_310" src="test_jil_AccelerometerInfo.wgt">Verify the values for x  z and y are different 
+
+Instructions:
+1) Click 'GO'!
+2) Move the phone while the test is running, to generate different values.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccelerometerInfo_320" src="test_jil_AccelerometerInfo.wgt">MUST SUCCEED  Initial position test   flat on the table 
+
+Instructions:
+1) Place the phone flat on the table, display facing upwards.
+2) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccelerometerInfo_330" src="test_jil_AccelerometerInfo.wgt">Check tight range   flat on the table 
+
+Instructions:
+1) Place the phone flat on the table, display facing upwards.
+2) Make sure it's really on a flat table, may use a gauge to ensure so.
+3) This test will be very pedantic!
+4) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccelerometerInfo_400" src="test_jil_AccelerometerInfo.wgt">Tilt RIGHT  xAxis 
+
+Instructions:
+1) Click 'Go'
+2) Move the phone to the initial position.
+3) Within 10 seconds, tilt phone 90 degrees to the RIGHT.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccelerometerInfo_500" src="test_jil_AccelerometerInfo.wgt">Tilt LEFT  xAxis 
+
+Instructions:
+1) Click 'Go'
+2) Move the phone to the initial position.
+3) Within 10 seconds, tilt phone 90 degrees to the LEFT.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccelerometerInfo_600" src="test_jil_AccelerometerInfo.wgt">Tilt FORWARD  zAxis 
+
+Instructions:
+1) Click 'Go'
+2) Move the phone to the initial position.
+3) Within 10 seconds, tilt phone 90 degrees FORWARD.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccelerometerInfo_700" src="test_jil_AccelerometerInfo.wgt">Tilt BACKWARD  zAxis 
+
+Instructions:
+1) Click 'Go'
+2) Move the phone to the initial position.
+3) Within 10 seconds, tilt phone 90 degrees BACKWARDS.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccelerometerInfo_800" src="test_jil_AccelerometerInfo.wgt">Tilt UPSIDE DOWN  zAxis 
+
+Instructions:
+1) Click 'Go'
+2) Move the phone to the initial position.
+3) Within 10 seconds, hold the phone facing downwards.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccelerometerInfo_900" src="test_jil_AccelerometerInfo.wgt">Facing me  yAxis 
+
+Instructions:
+1) Click 'Go'
+2) Move the phone to the initial position.
+3) Within 10 seconds, hold the phone facing towards you.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccelerometerInfo_1000" src="test_jil_AccelerometerInfo.wgt">Facing me upside down  yAxis 
+
+Instructions:
+1) Click 'Go'
+2) Move the phone to the initial position.
+3) Within 10 seconds, hold the phone facing towards you but upside down.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

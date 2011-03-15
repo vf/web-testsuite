@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_RadioInfo_100" src="test_jil_RadioInfo.wgt">isRadioEnabled   is it boolean 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_RadioInfo_110" src="test_jil_RadioInfo.wgt">isRadioEnabled   Verify false 
+
+Instructions:
+Make sure you have NO phone line coverage (e.g. remove the SIM card).
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_RadioInfo_120" src="test_jil_RadioInfo.wgt">isRadioEnabled   Verify true 
+
+Instructions:
+Make sure you have phone line coverage!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_RadioInfo_200" src="test_jil_RadioInfo.wgt">isRoaming   returns boolean 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_RadioInfo_210" src="test_jil_RadioInfo.wgt">isRoaming   Verify false 
+
+Instructions:
+Make sure your phone does NOT do roaming!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_RadioInfo_220" src="test_jil_RadioInfo.wgt">isRoaming   Verify true 
+
+Instructions:
+Make sure your phone is in roaming mode (e.g. by using a foreign SIM card).
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_RadioInfo_300" src="test_jil_RadioInfo.wgt">radioSignalSource   Exists at all 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_RadioInfo_310" src="test_jil_RadioInfo.wgt">radioSignalSource   Verify 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the above the type of source your phone currently uses for phone calls?</test>
+  <test id="ID_JIL_RadioInfo_320" src="test_jil_RadioInfo.wgt">radioSignalSource   Verify GSM 
+
+Instructions:
+Switch your phone to use GSM!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_RadioInfo_400" src="test_jil_RadioInfo.wgt">radioSignalStrengthPercent
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_RadioInfo_410" src="test_jil_RadioInfo.wgt">radioSignalStrengthPercent    Verify 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the above value correct?</test>
+  <test id="ID_JIL_RadioInfo_500" src="test_jil_RadioInfo.wgt">onSignalSourceChange   Turn roaming off 
+
+Instructions:
+1) Make sure roaming is turned off (usually this simply requires a SIM card from your country).
+2) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_RadioInfo_600" src="test_jil_RadioInfo.wgt">onSignalSourceChange   Turn roaming on 
+
+Instructions:
+1) Make sure roaming is turned on (mostly requires a foreign SIM card).
+2) Click 'GO'.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_RadioInfo_700" src="test_jil_RadioInfo.wgt">onSignalSourceChange   Turn on 2G 
+
+Instructions:
+1) Make sure 3G is turned on.
+2) Click 'GO'.
+3) Minimize the widget.
+4) Switch to 2G.
+5) Come back to this widget.
+
+Expected behaviour:
+Is the shown value correct?</test>
+  <test id="ID_JIL_RadioInfo_800" src="test_jil_RadioInfo.wgt">onSignalSourceChange   Turn on 3G 
+
+Instructions:
+1) Make sure 2G is turned on.
+2) Click 'GO'.
+3) Minimize the widget.
+4) Switch to 3G.
+5) Come back to this widget.
+
+Expected behaviour:
+Is the shown value correct?</test>
+</testsuite>

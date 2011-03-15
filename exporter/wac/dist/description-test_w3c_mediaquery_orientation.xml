@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_Mediaquery_orientation_100" src="test_w3c_mediaquery_orientation.wgt">Portrait mode
+
+Instructions:
+1) Move the device into PORTRAIT mode.
+2) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Mediaquery_orientation_200" src="test_w3c_mediaquery_orientation.wgt">Landscape mode
+
+Instructions:
+1) Move the device into LANDSCAPE mode.
+2) Click 'GO'!
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

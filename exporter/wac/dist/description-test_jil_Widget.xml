@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_Widget_preference_methods_100" src="test_jil_Widget.wgt">setPreferenceForKey preferenceForKey   Verify that get returns what set did 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Widget_preference_methods_150" src="test_jil_Widget.wgt">setPreferenceForKey preferenceForKey   Check for old params order   If this test fails the old params order for setPreferenceForKey is implemented  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Widget_preference_methods_200" src="test_jil_Widget.wgt">setPreferenceForKey   Verify that return value is  undefined  
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Widget_preference_methods_300" src="test_jil_Widget.wgt">setPreferenceForKey   Set a preference string using all characters from char 1  through char 255   and verify them 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Widget_preference_methods_400" src="test_jil_Widget.wgt">setPreferenceForKey   Store 1024 characters 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Widget_500" src="test_jil_Widget.wgt">openURL   Verify that it opens the browser 
+
+Instructions:
+Make sure your device is online. Click the 'GO' button, to open a browser window.
+
+Expected behaviour:
+Did the browser open?</test>
+  <test id="ID_JIL_Widget_600" src="test_jil_Widget.wgt">onFocus   Verify that callback is executed 
+
+Instructions:
+1) Open multiple widgets on your screen.
+2) Click 'GO'.
+3) Focus this one again.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Widget_700" src="test_jil_Widget.wgt">onMaximize   Verify that callback is executed 
+
+Instructions:
+1) Click 'GO'.
+2) Minimize this application, to mini mode.
+3) Maximize it again, to full screen mode, test should pass (will timeout otherwise).
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Widget_800" src="test_jil_Widget.wgt">onRestore   Verify that callback is executed 
+
+Instructions:
+1) Click 'GO'.
+2) Hide/Minimize this application.
+3) Restore it again, test should pass (will timeout otherwise).
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Widget_900" src="test_jil_Widget.wgt">onWakeup   Verify that callback is executed 
+
+Instructions:
+1) Click 'GO'.
+2) Make your phone enter sleep mode.
+3) Turn your phone back on, this should make this test pass (will timeout otherwise).
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_PowerInfo_100" src="test_jil_PowerInfo.wgt">isCharging   Verify reported state 
+
+Instructions:
+1) Unplug the charger!
+2) Then press "GO".
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PowerInfo_200" src="test_jil_PowerInfo.wgt">isCharging   Verify reported state 
+
+Instructions:
+1) Make sure the battery is NOT FULLY charged!
+2) Plug in the charger!
+3) Then press "GO".
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PowerInfo_300" src="test_jil_PowerInfo.wgt">percentRemaining   Verify value 
+
+Instructions:
+1) Look up the current battery capacity.
+2) Then press "GO".
+
+Expected behaviour:
+Is the battery level value correct?</test>
+  <test id="ID_JIL_PowerInfo_400" src="test_jil_PowerInfo.wgt">percentRemaining   Verify changed value 
+
+Instructions:
+1) Wait a bit until you are sure the battery capacity has changed (maybe unplug the charger).
+2) Look up the current battery capacity.
+3) Then press "GO".
+
+Expected behaviour:
+Is the battery level value correct?</test>
+  <test id="ID_JIL_PowerInfo_500" src="test_jil_PowerInfo.wgt">onChargeLevelChange   Verify that callback fires 
+
+Instructions:
+1) Make sure the phone is NOT FULLY charged.
+2) Plug in the charger.
+3) Then press "GO" and wait.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PowerInfo_600" src="test_jil_PowerInfo.wgt">onChargeLevelChange   Verify changing value 
+
+Instructions:
+1) Make sure the phone is NOT FULLY charged.
+2) Plug in the charger.
+3) Then press "GO" and wait.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PowerInfo_700" src="test_jil_PowerInfo.wgt">onChargeStateChange   Verify callback 
+
+Instructions:
+1) Click 'GO'.
+2) Change the charge stage, either by unplugging or plugging in the charger.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PowerInfo_800" src="test_jil_PowerInfo.wgt">onChargeStateChange   Verify change to  discharging  
+
+Instructions:
+1) Plug in the charger.
+2) Press 'GO'.
+3) Unplug the charger.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PowerInfo_900" src="test_jil_PowerInfo.wgt">onChargeStateChange   Verify change to  charging  
+
+Instructions:
+1) Unplug the charger.
+2) Press 'GO'.
+3) Plug in the charger.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_PowerInfo_1000" src="test_jil_PowerInfo.wgt">onChargeStateChange   Verify change to  full  
+
+Instructions:
+1) Plug in charger.
+2) Press 'GO'.
+3) Wait until fully charged (test waits max. 2h).
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

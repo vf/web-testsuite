@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_update0_100" src="test_base_widget-update_update0.wgt">Updatable widget version 0
+
+Instructions:
+1) Make sure you have version 1 available on the server.
+2) Close this widget
+3) Reopen it, it should get updated
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

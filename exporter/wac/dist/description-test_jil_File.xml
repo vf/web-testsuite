@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_File_methods_1" src="test_jil_File.wgt">Verify Preconditions
+
+Instructions:
+1) Make sure all the preconditions listed are met. They will be required by upcoming tests.
+2) Copy the folder 'test-photo' into the photo directory on the phone. (The exact name of the destination folder may vary on your device.)
+3) Click 'GO' to start testing.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_100" src="test_jil_File.wgt">1  copyFile   Copy   virtual photos test photo test txt  
+
+Instructions:
+Make sure the file '/virtual/photos/test-photo/test.txt' exists.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_200" src="test_jil_File.wgt">2  copyFile   Verify that copied file exists 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_210" src="test_jil_File.wgt">copyFile   Copy a directory 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_220" src="test_jil_File.wgt">copyFile   Copy a directory again  destination exists   should throw INVALID PARAMETER 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_300" src="test_jil_File.wgt">1  deleteFile   Verify that it returns true 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_400" src="test_jil_File.wgt">2  deleteFile   Verify that file doens t exist anymore 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_500" src="test_jil_File.wgt">3  deleteFile   Check that deleting again throws exception 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_510" src="test_jil_File.wgt">1  deleteFile   Apply it on a path 
+
+Instructions:
+Make sure an empty directory '/virtual/photos/test-photo/testdir' exists.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_520" src="test_jil_File.wgt">2  deleteFile path    Verify that path doens t exist anymore 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_530" src="test_jil_File.wgt">3  deleteFile   Check that deleting again throws exception 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_600" src="test_jil_File.wgt">findFiles  onFilesFound   Search for  fileName    jpg   
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_610" src="test_jil_File.wgt">findFiles  onFilesFound   Search for  pathName   virtual    fileName    jpg   
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_620" src="test_jil_File.wgt">findFiles  onFilesFound   Search for  pathName   virtual photos   fileName    jpg   
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_630" src="test_jil_File.wgt">findFiles  onFilesFound   Search for  pathName      fileName    jpg   
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_700" src="test_jil_File.wgt">getDirectoryFileNames   Read from path   virtual photos   
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_800" src="test_jil_File.wgt">getDirectoryFileNames   Read from path   virtual   
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_810" src="test_jil_File.wgt">getDirectoryFileNames   Find directory  virtual photos test photo testdir 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_900" src="test_jil_File.wgt">getDirectoryFileNames   Using invalid directory should throw ExceptionTypes INVALID PARAMETER 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_1100" src="test_jil_File.wgt">getFile   An invalid file should throw INVALID PARAMETER 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_1200" src="test_jil_File.wgt">getFile  File   Verify properties of  Widget Device File  object 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_1300" src="test_jil_File.wgt">getFile  File   Verify types of properties of  Widget Device File  object 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_1400" src="test_jil_File.wgt">getFileSystemRoots   Verify that an array is returned 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_File_methods_1500" src="test_jil_File.wgt">getFileSystemSize   Read sizes of all fileSystemRoots 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

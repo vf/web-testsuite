@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_AccountInfo_100" src="test_jil_AccountInfo.wgt">Check that phoneMSISDN is not empty 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccountInfo_200" src="test_jil_AccountInfo.wgt">Check value of phoneMSISDN 
+
+Instructions:
+1) Try to find out your Mobile Directory Number (MDN) and not the Mobile Identification Number (MIN)
+2) Click 'GO'.
+
+Expected behaviour:
+Is the above phoneMSISDN correct?</test>
+  <test id="ID_JIL_AccountInfo_300" src="test_jil_AccountInfo.wgt">Check that phoneOperatorName is not empty 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccountInfo_400" src="test_jil_AccountInfo.wgt">phoneOperatorName
+
+Instructions:
+1) Make sure you know the operator's name of this phone (e.g. Vodafone UK).
+2) Click 'GO'.
+
+Expected behaviour:
+Is the shown operator name correct?</test>
+  <test id="ID_JIL_AccountInfo_500" src="test_jil_AccountInfo.wgt">Check that phoneUserUniqueId is not empty 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccountInfo_600" src="test_jil_AccountInfo.wgt">userAccountBalance
+
+Instructions:
+1) Make sure you know your account balance.
+2) Click 'GO'.
+
+Expected behaviour:
+Is the above account balance correct?</test>
+  <test id="ID_JIL_AccountInfo_700" src="test_jil_AccountInfo.wgt">Check that userSubscriptionType is not empty 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_AccountInfo_800" src="test_jil_AccountInfo.wgt">userSubscriptionType
+
+Instructions:
+1) Make sure you know your subscription type, e.g. prepaid, postpaid or other.
+2) Click 'GO'.
+
+Expected behaviour:
+Is the shown subscription type correct?</test>
+</testsuite>

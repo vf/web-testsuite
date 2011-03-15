@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_Telephony_Methods_1" src="test_jil_Telephony.wgt">Preconditions for this widget
+
+Instructions:
+1) Make sure all conditions listed here are fullfilled, this test widget depends on them!
+2) Make sure you have at least 2 calls in your call records for MISSED calls.
+3) Make sure you have at least 2 calls in your call records for OUTGOING calls.
+4) Make sure you have at least 2 calls in your call records for RECEIVED calls.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_100" src="test_jil_Telephony.wgt">findCallRecords   Find all      
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_110" src="test_jil_Telephony.wgt">findCallRecords  onCallRecordsFound   Does callback fire at all 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_200" src="test_jil_Telephony.wgt">findCallRecords   Throw INVALID PARAMETER for no params 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_300" src="test_jil_Telephony.wgt">findCallRecords   Throw INVALID PARAMETER for missing params 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_400" src="test_jil_Telephony.wgt">findCallRecords   Throw INVALID PARAMETER for wrong param 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_500" src="test_jil_Telephony.wgt">findCallRecords   Throw INVALID PARAMETER for wrong param 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_600" src="test_jil_Telephony.wgt">findCallRecords   Verify number of  MISSED  calls 
+
+Instructions:
+1) Make sure you have at least one MISSED call in your phone's call record.
+2) Click 'GO'.
+
+Expected behaviour:
+Is the number correct?</test>
+  <test id="ID_JIL_Telephony_Methods_700" src="test_jil_Telephony.wgt">findCallRecords   Verify number of  OUTGOING  calls 
+
+Instructions:
+1) Make sure you have at least one OUTGOING call in your phone's call record.
+2) Click 'GO'.
+
+Expected behaviour:
+Is the number correct?</test>
+  <test id="ID_JIL_Telephony_Methods_800" src="test_jil_Telephony.wgt">findCallRecords   Verify number of  RECEIVED  calls 
+
+Instructions:
+1) Make sure you have at least one RECEIVED call in your phone's call record.
+2) Click 'GO'.
+
+Expected behaviour:
+Is the number correct?</test>
+  <test id="ID_JIL_Telephony_Methods_900" src="test_jil_Telephony.wgt">getCallRecord   Verify first MISSED call 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_1000" src="test_jil_Telephony.wgt">getCallRecord   Verify first OUTGOING call 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_1100" src="test_jil_Telephony.wgt">getCallRecord   Verify first RECEIVED call 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_1200" src="test_jil_Telephony.wgt">getCallRecord   Throw INVALID PARAMETER no params 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_1300" src="test_jil_Telephony.wgt">getCallRecord   Throw INVALID PARAMETER missing ID 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_1400" src="test_jil_Telephony.wgt">getCallRecord   Throw INVALID PARAMETER wrong type of ID 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_1500" src="test_jil_Telephony.wgt">getCallRecord   Throw INVALID PARAMETER wrong call record type 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_1600" src="test_jil_Telephony.wgt">getCallRecordCnt   Verify it returns a number 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_1610" src="test_jil_Telephony.wgt">getCallRecordCnt   Verify number of missed calls 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the number of missed calls correct?</test>
+  <test id="ID_JIL_Telephony_Methods_1620" src="test_jil_Telephony.wgt">getCallRecordCnt   Verify number of received calls 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the number of received calls correct?</test>
+  <test id="ID_JIL_Telephony_Methods_1630" src="test_jil_Telephony.wgt">getCallRecordCnt   Verify number of outgoing calls 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the number of outgoing calls correct?</test>
+  <test id="ID_JIL_Telephony_Methods_1700" src="test_jil_Telephony.wgt">getCallRecordCnt   Throws INVALID PARAMETER for no parameter 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_1800" src="test_jil_Telephony.wgt">getCallRecordCnt   Retruns 0 for unknown parameter 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_1900" src="test_jil_Telephony.wgt">initiateVoiceCall   Verify the method call works at all 
+
+Instructions:
+1) Click 'GO'.
+2) A phone call should be started.
+
+Expected behaviour:
+Did a phone call to the number undefined get initiated?</test>
+  <test id="ID_JIL_Telephony_Methods_2500" src="test_jil_Telephony.wgt">onCallEvent   Is callback invoked 
+
+Instructions:
+1) Click 'GO'.
+2) Call this phone's number, make sure it rings.
+3) This widget should be triggered and make this test pass automatically (times out otherwise).
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_2600" src="test_jil_Telephony.wgt">onCallEvent   Verify call is  MISSED  
+
+Instructions:
+1) Click 'GO'.
+2) Call this phone's number, make sure it rings.
+3) Don't pick up the phone!
+4) Hang up the phone you are calling from.
+5) This widget should be triggered and make this test pass automatically (times out otherwise).
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_2700" src="test_jil_Telephony.wgt">onCallEvent   Verify call is  RECEIVED  
+
+Instructions:
+1) Click 'GO'.
+2) Call this phone's number, make sure it rings.
+3) Pick up the phone (to make sure call was received)!
+4) Hang up now.
+5) This widget should be triggered and make this test pass automatically (times out otherwise).
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_2800" src="test_jil_Telephony.wgt">onCallEvent   Verify call is  OUTGOING  
+
+Instructions:
+1) Click 'GO'.
+2) Put widget into mini/floating mode.
+3) Open the dialer and call any number.
+4) This widget should be triggered and make this test pass automatically (times out otherwise).
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_2900" src="test_jil_Telephony.wgt">onCallEvent   Verify caller number for  MISSED  call 
+
+Instructions:
+1) Click 'GO'.
+2) Call this phone's number, make sure it rings.
+3) Don't pick up the phone!
+4) The number you called from should be shown.
+
+Expected behaviour:
+Is the above number the one you called this phone from?</test>
+  <test id="ID_JIL_Telephony_Methods_3000" src="test_jil_Telephony.wgt">onCallEvent   Verify caller number for  RECEIVED  call 
+
+Instructions:
+1) Click 'GO'.
+2) Call this phone's number, make sure it rings.
+3) Pick up the phone!
+4) The number you called from should be shown.
+
+Expected behaviour:
+Is the above number the one you called this phone from?</test>
+  <test id="ID_JIL_Telephony_Methods_3100" src="test_jil_Telephony.wgt">onCallEvent   Verify number for  OUTGOING  call 
+
+Instructions:
+1) Click 'GO'.
+2) Put widget into mini/floating mode.
+3) Open the dialer and call any number.
+4) Hang up after it rang at least once.
+5) The number you dialed should be shown, confirm it please!
+
+Expected behaviour:
+Is the above number the one you dialed?</test>
+  <test id="ID_JIL_Telephony_Methods_3200" src="test_jil_Telephony.wgt">onCallEvent   after initiateVoiceCall fires at all
+
+Instructions:
+1) Click 'GO'.
+2) A call will be initiated.
+3) Hang up after a bit (if onCallEvent fires test will succeed, timeout otherwise)
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_3210" src="test_jil_Telephony.wgt">onCallEvent   after initiateVoiceCall gets correct CallRecordType
+
+Instructions:
+1) Click 'GO'.
+2) A call will be initiated.
+3) Hang up after a bit (if onCallEvent fires test will succeed, timeout otherwise)
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Telephony_Methods_3220" src="test_jil_Telephony.wgt">onCallEvent   after initiateVoiceCall gets correct phoneNumber
+
+Instructions:
+1) Click 'GO'.
+2) A call will be initiated.
+3) Hang up after a bit (if onCallEvent fires test will succeed, timeout otherwise)
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

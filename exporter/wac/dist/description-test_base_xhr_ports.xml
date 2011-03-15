@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_xhr_ports_100" src="test_base_xhr_ports.wgt">xhr   Call to HTTP site
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_xhr_ports_200" src="test_base_xhr_ports.wgt">xhr   Call to HTTPS site
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_xhr_ports_300" src="test_base_xhr_ports.wgt">xhr   Call to HTTPS site with credentials
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_xhr_ports_400" src="test_base_xhr_ports.wgt">xhr   Page which runs on port 8000 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

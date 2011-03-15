@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_VideoCamera_100" src="test_jil_VideoCamera.wgt">Callback  onCameraCaptured  triggered 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_VideoCamera_200" src="test_jil_VideoCamera.wgt">Creates a file 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_VideoCamera_300" src="test_jil_VideoCamera.wgt">Error during capture should pass  undefined  to onCameraCaptured 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_VideoCamera_400" src="test_jil_VideoCamera.wgt">Proper return value from startVideoCapture   
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_VideoCamera_500" src="test_jil_VideoCamera.wgt">Invalid destination path   throw INVALID PARAMETER 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_VideoCamera_600" src="test_jil_VideoCamera.wgt">lowRes
+
+Instructions:
+1) Click 'GO'.
+2) A movie of about 3 seconds length will be recorded.
+3) This movie will be opened in the movie player.
+4) Please start the movie there and verify it's the one you recorded!
+
+Expected behaviour:
+Did the movie you had just taken open?</test>
+  <test id="ID_JIL_VideoCamera_700" src="test_jil_VideoCamera.wgt">lowRes   verify the stored file
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_VideoCamera_800" src="test_jil_VideoCamera.wgt">hiRes   verify the stored file
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_VideoCamera_810" src="test_jil_VideoCamera.wgt">hiRes
+
+Instructions:
+1) Click 'GO'.
+2) A movie of about 3 seconds length will be recorded.
+3) This movie will be opened in the movie player.
+4) Please start the movie there and verify it's the one you recorded!
+
+Expected behaviour:
+Did the high resolution movie you had just taken open?</test>
+  <test id="ID_JIL_VideoCamera_900" src="test_jil_VideoCamera.wgt">Controls shown 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you see the video recorder controls (e.g. play, pause, ...)?</test>
+  <test id="ID_JIL_VideoCamera_1000" src="test_jil_VideoCamera.wgt">stopVideoCapture   after 5 secs
+
+Instructions:
+1) Click 'GO' to start recording
+2) Recording should stop after 5 seconds.
+
+Expected behaviour:
+Did the video recording stop after about 5 secs?</test>
+</testsuite>

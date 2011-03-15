@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_properties_1" src="test_w3c_audio_properties.wgt">Verify Preconditions
+
+Instructions:
+1) Make sure all the preconditions listed are met. They will be required by upcoming tests.
+2) Be sure the content of the testsuite's zip-file's  folder 'test-audio' is available in the relative path 'test-audio'.
+3) Ensure the volume is set to high, so you can hear the audio playing!
+4) Click 'GO' to start testing.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/video.html#location-of-the-media-resource" id="ID_JIL_properties_100" src="test_w3c_audio_properties.wgt">src  is empty
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/video.html#location-of-the-media-resource" id="ID_JIL_properties_200" src="test_w3c_audio_properties.wgt">currentSrc  is empty
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/video.html#location-of-the-media-resource" id="ID_JIL_properties_300" src="test_w3c_audio_properties.wgt">src  set it and verify it ends in  test audio loop wav 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/video.html#location-of-the-media-resource" id="ID_JIL_properties_400" src="test_w3c_audio_properties.wgt">currentSrc  ends in  test audio loop wav 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/video.html#network-states" id="ID_JIL_properties_1000" src="test_w3c_audio_properties.wgt">networkState  NETWORK EMPTY
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/video.html#network-states" id="ID_JIL_properties_1100" src="test_w3c_audio_properties.wgt">networkState  NETWORK IDLE
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/video.html#network-states" id="ID_JIL_properties_1200" src="test_w3c_audio_properties.wgt">networkState  NETWORK NO SOURCE
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/video.html#the-ready-states" id="ID_JIL_properties_2000" src="test_w3c_audio_properties.wgt">readyState  HAVE NOTHING
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/video.html#the-ready-states" id="ID_JIL_properties_2100" src="test_w3c_audio_properties.wgt">readyState  HAVE METADATA
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/video.html#the-ready-states" id="ID_JIL_properties_2200" src="test_w3c_audio_properties.wgt">readyState  HAVE CURRENT DATA
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/video.html#the-ready-states" id="ID_JIL_properties_2300" src="test_w3c_audio_properties.wgt">readyState  HAVE FUTURE DATA
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test for="http://www.w3.org/TR/2011/WD-html5-20110113/video.html#the-ready-states" id="ID_JIL_properties_2400" src="test_w3c_audio_properties.wgt">readyState  HAVE ENOUGH DATA
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>

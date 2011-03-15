@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_Miscellaneous_media_queries_1" src="test_w3c_mediaquery_misc.wgt">Precondition
+
+Instructions:
+Please measure the width of your device with a ruler and enter the value. Press Done when you're ready.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Miscellaneous_media_queries_100" src="test_w3c_mediaquery_misc.wgt">Touch media query
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did it say YES?</test>
+  <test id="ID_JIL_Miscellaneous_media_queries_200" src="test_w3c_mediaquery_misc.wgt">device aspect ratio media query
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_Miscellaneous_media_queries_300" src="test_w3c_mediaquery_misc.wgt">dpi media query
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Is the value part of the range?</test>
+</testsuite>

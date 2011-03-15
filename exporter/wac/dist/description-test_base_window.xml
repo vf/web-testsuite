@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite>
+  <test id="ID_JIL_window_100" src="test_base_window.wgt">alert   simple
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you see an alert pop up, with a message in it?</test>
+  <test id="ID_JIL_window_200" src="test_base_window.wgt">alert   two lines
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you see an alert pop up, with a TWO LINE message?</test>
+  <test id="ID_JIL_window_210" src="test_base_window.wgt">alert   long text
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Did you see an alert pop up, with a long message which was still completely readable (e.g. properly wrapped and not cut off)?</test>
+  <test id="ID_JIL_window_300" src="test_base_window.wgt">confirm   positive
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_window_400" src="test_base_window.wgt">confirm   negative
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_window_410" src="test_base_window.wgt">confirm   long text
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_window_500" src="test_base_window.wgt">prompt   type in  yes 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_window_600" src="test_base_window.wgt">prompt   click  OK 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_window_610" src="test_base_window.wgt">prompt   long text
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+Was the text in the pop up completely readable?</test>
+  <test id="ID_JIL_window_620" src="test_base_window.wgt">prompt   multiple prompts
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_window_700" src="test_base_window.wgt">prompt   click  Cancel 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+  <test id="ID_JIL_window_800" src="test_base_window.wgt">prompt   Hide virtual keyboard and re open 
+
+Instructions:
+Follow the instructions on the screen.
+
+Expected behaviour:
+See green colored line on the device screen.</test>
+</testsuite>
