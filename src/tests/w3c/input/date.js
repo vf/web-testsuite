@@ -36,75 +36,68 @@
 
 
 
-	dohx.add({name:"Date inputs",
+	dohx.add({name:"Date inputs (type=date)",
 		mqcExecutionOrderBaseOffset:600000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
 		{
-
-				/*
-					Test INTERFACE purpose for input type="date"
-				*/
-
-				id:100,
-				name:"Date type - interface",
-				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
-				instructions:[
-					"Click 'GO'!",
-					"Click the input element."
-				],
-				expectedResult:"Does the input field have special interface features, such as a calendar or arrow buttons?",
-				test:function(t){
-					dohx.showInfo('<form><input type="date" /></form>');
-				}
-			},
+			//
+			// Test INTERFACE purpose for input type="date"
+			//
+			id:100,
+			name:"Verify date input interface.",
+			definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
+			instructions:[
+				"Click 'GO'!",
+				"Click the input element."
+			],
+			expectedResult:"Did you get a date selector?",
+			test:function(t){
+				dohx.showInfo('<form><input type="date" /></form>');
+			}
+		},
+//imho this test/question is tooo subjective ... i am not sure if this belongs here like this
+		//{  
+		//	//
+		//	// Test if the INTERFACE makes sense for input type="date"
+		//	//
+		//	id:200,
+		//	name:"Interface usability/usefullness",
+		//	definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
+		//	expectedResult:"Can you use the interface to easily select a date in the current year? (If there is no interface, answer 'No'.)",
+		//	test:function(t){
+		//		dohx.showInfo('<form><input type="date" /></form>');
+		//	}
+		//},
 		{
-		
-				/*
-					Test if the INTERFACE makes sense for input type="date"
-				*/
-		
-				id:200,
-				name:"Date type - interface use",
-				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
-				expectedResult:"Can you use the interface to easily select a date in the current year? (If there is no interface, answer 'No'.)",
-				test:function(t){
-					dohx.showInfo('<form><input type="date" /></form>');
-				}
-			},
+			//
+			// Test RESTRICTION purpose for input type="date"
+			//
+			id:300,
+			name:"Input restriction",
+			definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
+			instructions:[
+				"Click 'GO'!",
+				"Enter 'abc' in the input field"
+			],
+			expectedResult:"Does the input field NOT accept your input?",
+			test:function(t){
+				dohx.showInfo('<form><input type="date" /></form>');
+			}
+		}, 
 		{
-
-				/*
-					Test RESTRICTION purpose for input type="date"
-				*/
-
-				id:300,
-				name:"Date type - input restriction",
-				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
-				instructions:[
-					"Click 'GO'!",
-					"Enter 'abc' in the input field"
-				],
-				expectedResult:"Does the input field NOT accept them?",
-				test:function(t){
-					dohx.showInfo('<form><input type="date" /></form>');
-				}
-			}, 
-		{
-
-				/*
-					Test RESTRICTION purpose for input type="date" with a pre-filled value
-				*/
-
-				id:400,
-				name:"Date type - wrong default value",
-				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
-				expectedResult: "Do you NOT see 'abc' in the field?",
-				test:function(t){
-					dohx.showInfo('<form><input  id="_input400" type="date" /></form>');
-					var e = embed.byId("_input400");
-					e.value = "abc";
-				}
-			},
+			//
+			// Test RESTRICTION purpose for input type="date" with a pre-filled value
+			//
+			id:400,
+			name:"Date type - wrong default value",
+			definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
+			expectedResult: "Do you NOT see 'abc' in the field?",
+			test:function(t){
+				dohx.showInfo('<form><input  id="_input400" type="date" /></form>');
+				var e = embed.byId("_input400");
+				e.value = "abc";
+			}
+		},
 		/*{
 
 					Test VALIDATION purpose for input type="date"
