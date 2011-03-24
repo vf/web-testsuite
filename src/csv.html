@@ -49,12 +49,12 @@
 	<div class="tabNavi">
 		<a href="javascript://" onclick="selectTab(0)" class="tabLink0">Step 1, Diff (CSV)</a>
 		<a href="javascript://" onclick="selectTab(1)" class="tabLink1">Step 2, All IDs (JSON)</a>
-		<a href="javascript://" onclick="selectTab(2)" class="tabLink2">Step 3, All Tests (JSON)</a>
+		<a href="javascript://" onclick="selectTab(2)" class="tabLink2">Step 3, All Tests (CSV)</a>
 	</div>
 	<!--normal--> 
-	<pre class="tab tab0" id="diffCsvNode">ick bin tab 0</pre>
-	<pre class="tab tab1" id="allIdsJsonNode">ick bin tab 1</pre>
-	<pre class="tab tab2" id="allCsvNode">ick bin tab 2</pre>
+	<pre class="tab tab0" id="diffCsvNode">loading...</pre>
+	<pre class="tab tab1" id="allIdsJsonNode">loading...</pre>
+	<pre class="tab tab2" id="allCsvNode">loading...</pre>
 	
 	<script type="text/javascript" src="js/doh2/doh.js"></script>
 	<script type="text/javascript" src="js/doh2/config.js"></script>
@@ -109,42 +109,11 @@
 					var prefixToRemove = location.href.replace("/csv.html", "");
 					var testFileName = new Error().stack.match(/http:\/\/.*[a-zA-Z0-9/]+\.js/g).pop().replace(prefixToRemove+"/tests/", "");
 					wgtName = testFileName.replace(/\.js$/, "").replace(/[^a-zA-Z0-9]/g, "_");
-					var subject = "VF Test suite\\" + wgtName;
 					var executionOrder = obj.mqcExecutionOrderBaseOffset + t.id;
 					if (!util.isNumber(executionOrder)){
 						alert("Error, executionOrder ID missing in '" + wgtName + "' test name '" + t.name + "'");
 						throw Error("Error, executionOrder ID missing.");
 					}
-					data = [
-						(""+t.name).replace(/[^0-9a-zA-Z]/g, " "), // Test Name
-						subject, // Subject
-						util.getTestId(t, obj.name), // Test ID
-						"vg_phennes", // TC Coordinator
-						"manual", // Type
-						"APP_Widget_Manager", // Test Area
-						"Active", // Status
-						"Global", // Test Type
-						"Vodafone Global", // Primary OpCo
-						"", // Alternative OpCo’s
-						"vg_phennes", // TC Owner
-						"", // Suggested Severity
-						"", // OpCo Network specific
-						"No", // Country Specific Settings
-						"", // Bearer Specific
-						"FU", // Coverage
-						"None", // Physical Resource
-						t.name, // Description
-						t.instructions ? (t.expectedResult ? 1 : 0.5) : 0.1, // Est. Effort (min.)
-						"", // Creation Date
-						wgtName, // Grouping Area
-						"STEP1", // Step Name (Design steps)
-						instructions || "Follow the instructions on the screen.", // Description (Design steps)
-						t.expectedResult || "See green colored line on the device screen.", // Expected (Design steps)
-						executionOrder, // Execution Order
-						"", // Template
-						"None", // Certificate
-						"Not Replicated" // Replicate
-					];
 					
 					// Prepare the "normal" test list.
 					var widgetFileName = testFileName.replace(/\.js$/, "").replace(/\//g, "_") + ".wgt";
@@ -160,6 +129,7 @@
 						
 						instructions || "Follow the instructions on the screen.", // Instructions
 						t.expectedResult || "See green colored line on the device screen.", // Expected Result
+						t.definedInSpecs ? t.definedInSpecs.join(" ") : "" // definedInSpecs
 					];
 					this._csvData.push(data)
 					if (this.alreadyImportedTestIds.indexOf(executionOrder)==-1) this._csvDiffData.push(data);
@@ -176,7 +146,8 @@
 					"ID",
 					"name",
 					"instructions",
-					"expected result"
+					"expected result",
+					"specification references"
 				];
 				return this._createCsv(data, headers);
 			},
