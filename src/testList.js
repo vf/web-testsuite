@@ -49,6 +49,7 @@ var testList = {
 			
 			"tests/w3c/input/attributes.js",
 			"tests/w3c/input/typeDate.js",
+			"tests/w3c/input/typeDatetime.js",
 			
 			"tests/misc/uri/sms.js",
 			"tests/misc/uri/mailto.js",
