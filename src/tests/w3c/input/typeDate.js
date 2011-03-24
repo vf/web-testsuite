@@ -78,7 +78,7 @@
 				// 		"User agents must not allow the user to set the value to a non-empty string that is not a valid date string."
 				//
 				id:300,
-				name:"Input restriction",
+				name:"Don't allow invalid non-empty string!",
 				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
 				instructions:[
 					"Click 'GO'!",
@@ -97,7 +97,7 @@
 				// 		"User agents must not allow the user to set the value to a non-empty string that is not a valid date string."
 				//
 				id:400,
-				name:"Ignore invalid default value",
+				name:"Disallow invalid value",
 				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
 				expectedResult: "Do you NOT see 'abc' in the field?",
 				test:function(t){
@@ -130,6 +130,18 @@
 //				}
 //			}
 //		},
+			{
+				//
+				//
+				//
+				id:600,
+				name:"Disallow invalid value set as parameter",
+				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
+				expectedResult: "Do you NOT see 'abc' in the field?",
+				test:function(t){
+					dohx.showInfo('<form><input type="date" value="abc" /></form>');
+				}
+			},
 //*/
 		]
 	});
