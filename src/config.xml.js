@@ -17,4 +17,6 @@
 //	The real stuff
 //
 
-var xml = xmlHelper.getXmlObject(config, "all");
+// Per default we generate a config.xml with NO features in it.
+// This way we normally dont need to give a *.config.xml.js file for each test.
+var xml = xmlHelper.getXmlObject(config, []);
