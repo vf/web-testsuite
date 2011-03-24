@@ -51,7 +51,7 @@
 				}
 				var name = parts[parts.length-1];
 				var details = parts.slice(1, -1).join(", ");
-				var readable = name + (details ? " (" + details + ")" : "");
+				var readable = (details ? details + " - " + name : name);
 				var containerNode = embed.create("div", {}, testListNode);
 				var node = embed.create("a", {href:"javascript://", innerHTML:readable}, containerNode);
 				node._testFile = t;
