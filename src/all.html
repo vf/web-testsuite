@@ -52,8 +52,11 @@
 				var name = parts[parts.length-1];
 				var details = parts.slice(1, -1).join(", ");
 				var readable = name + (details ? " (" + details + ")" : "");
-				var node = embed.create("a", {href:"javascript://", innerHTML:readable}, testListNode);
+				var containerNode = embed.create("div", {}, testListNode);
+				var node = embed.create("a", {href:"javascript://", innerHTML:readable}, containerNode);
 				node._testFile = t;
+				var deeplink = embed.create("a", {href:t.replace(/\.js$/, ".html").replace(/\//g, "-"), innerHTML:"[deeplink]"}, containerNode);
+				embed.addClass(deeplink, "deeplink");
 			}
 			
 			embed.on(testListNode, "click", function(e){

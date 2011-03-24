@@ -18,15 +18,20 @@
 	padding: 1em;
 }
 
-	.content .testList a {
+	.content .testList div {
 		display: block;
 		padding: 0.5em;
 		border: 1px solid grey;
 		margin: 0.2em;
-		
-		color: darkorange;
-		font-weight: bold;
 	}
+		.content .testList div a {
+			color: darkorange;
+			font-weight: bold;
+			margin-right: 1em;
+		}
+			.content .testList div a.deeplink {
+				float: right;
+			}
 
 
 #testRunner {
