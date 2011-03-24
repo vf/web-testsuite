@@ -42,6 +42,9 @@
 		{
 			//
 			// Test INTERFACE purpose for input type="date"
+			// Spec says:
+			// 		"The input element represents a control for setting the element's value to a string representing a specific date."
+			// I know this is not a STRICT requirement though.
 			//
 			id:100,
 			name:"Verify date input interface.",
@@ -71,6 +74,8 @@
 		{
 			//
 			// Test RESTRICTION purpose for input type="date"
+			// Spec says:
+			// 		"User agents must not allow the user to set the value to a non-empty string that is not a valid date string."
 			//
 			id:300,
 			name:"Input restriction",
@@ -86,10 +91,13 @@
 		}, 
 		{
 			//
-			// Test RESTRICTION purpose for input type="date" with a pre-filled value
+			// Test RESTRICTION purpose for input type="date" with a pre-filled value, if we fill in a
+			// wrong value it should not be shown.
+			// Spec says:
+			// 		"User agents must not allow the user to set the value to a non-empty string that is not a valid date string."
 			//
 			id:400,
-			name:"Date type - wrong default value",
+			name:"Ignore invalid default value",
 			definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
 			expectedResult: "Do you NOT see 'abc' in the field?",
 			test:function(t){
