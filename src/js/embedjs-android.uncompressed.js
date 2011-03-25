@@ -6,13 +6,16 @@
 ********************/
 
 
-var embed = dojo = {};
+var embed, dojo;
+embed = dojo = {};
 embed.config = {};
-embed.global = window;
-embed.doc = document;
+embed.global = this;
+embed.doc = this.document || null;
 embed.body = function() {
-	return document.body;
+	var ebd = embed;
+	return ebd.doc && ebd.doc.body;
 };
+embed.version = "0.1";
 
 
 
