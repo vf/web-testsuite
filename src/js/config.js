@@ -314,7 +314,7 @@ var configHelper = {
 				_userInfo:{
 					audioDirectory:"/sdcard/media/audio",
 					videoDirectory:"/sdcard/DCIM/100media",
-					photoDirectory:"/sdcard/DCIM/100media",
+					photoDirectory:"/sdcard/DCIM/100media"
 				},
 				validAddressBookItemId:1,
 				fileSystem:{
@@ -739,7 +739,7 @@ var configHelper = {
 					"Widget.Attachment",
 					"Widget.Account",
 					"Widget.Config"
-				],
+				]
 			};
 			
 			// Testing the asynch config stuff.
@@ -848,4 +848,5 @@ var configHelper = {
 			config[key] = v;
 		}
 	}
+//*/
 })();
