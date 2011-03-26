@@ -139,7 +139,7 @@
 					];
 					t.assertEqual("new.wav", window.prompt("* " + instructions.join("\n* ")));
 				}
-			},
+			}
 //*/
 		]
 	});
