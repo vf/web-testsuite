@@ -26,7 +26,7 @@ var testList = {
 			"tests/jil/config.xml/missing-access.js",
 			"tests/jil/config.xml/warp-jil-access.js",
 			
-			"tests/w3c/config.xml/warp.js",
+			"tests/w3c/config.xml/warp.js"
 		]
 	},
 	
@@ -53,9 +53,10 @@ var testList = {
 			"tests/w3c/input/typeDatetimeLocal.js",
 			"tests/w3c/input/typeMonth.js",
 			"tests/w3c/input/typeWeek.js",
+			"tests/w3c/input/typeRange.js",
 			
 			"tests/misc/uri/sms.js",
-			"tests/misc/uri/mailto.js",
+			"tests/misc/uri/mailto.js"
 		]
 	},
 	
@@ -66,7 +67,7 @@ var testList = {
 			
 			"tests/base/widget.js",
 			"tests/base/widget-update/update0.js",
-			"tests/base/widget-update/update1.js",
+			"tests/base/widget-update/update1.js"
 		]
 	},
 	
@@ -102,7 +103,7 @@ var testList = {
 			"tests/jil/VideoPlayer.js",
 			"tests/jil/Widget.js",
 			
-			"tests/performance/jil/AddressBook.js",
+			"tests/performance/jil/AddressBook.js"
 		]
 	}
 	
