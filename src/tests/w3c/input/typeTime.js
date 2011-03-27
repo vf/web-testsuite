@@ -33,8 +33,6 @@
 	- ppk
 
 */
-
-
 	dohx.add({name:"Date inputs (type=time)",
 		mqcExecutionOrderBaseOffset:660000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
@@ -52,24 +50,24 @@
 					"Click 'GO'!",
 					"Click the input element."
 				],
-				expectedResult:"Did you get a time selector?",
+				expectedResult:"Did you get a time selector (or any other special interface)?",
 				test:function(t){
 					dohx.showInfo('<form><input type="time" /></form>');
 				}
 			},
-//imho this test/question is tooo subjective ... i am not sure if this belongs here like this
-			//{
-			//	//
-			//	// Test if the INTERFACE makes sense for input type="time"
-			//	//
-			//	id:200,
-			//	name:"time type - interface use",
-			//	definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#time-state"],
-			//	expectedResult:"Can you use the interface to easily select a time in the current year? (If there is no interface, answer 'No'.)",
-			//	test:function(t){
-			//		dohx.showInfo('<form><input type="time" /></form>');
-			//	}
-			//},
+			{
+				//
+				// Test if the INTERFACE makes sense for input type="time"
+				// We focus on selecting the current time easily, to be as objective as possible.
+				//
+				id:200,
+				name:"Interface usability/usefullness",
+				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#time-state"],
+				expectedResult:"Can you select the current time with one or two clicks?",
+				test:function(t){
+					dohx.showInfo('<form><input type="time" /></form>');
+				}
+			},
 			{
 				//
 				// Test RESTRICTION purpose for input type="time"

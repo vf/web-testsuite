@@ -33,9 +33,6 @@
 	- ppk
 
 */
-
-
-
 	dohx.add({name:"Date inputs (type=week)",
 		mqcExecutionOrderBaseOffset:670000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
@@ -53,24 +50,24 @@
 					"Click 'GO'!",
 					"Click the input element."
 				],
-				expectedResult:"Did you get a week selector?",
+				expectedResult:"Did you get a week selector (or any other special interface)?",
 				test:function(t){
 					dohx.showInfo('<form><input type="week" /></form>');
 				}
 			},
-//imho this test/question is tooo subjective ... i am not sure if this belongs here like this
-			//{
-			//	//
-			//	// Test if the INTERFACE makes sense for input type="week"
-			//	//
-			//	id:200,
-			//	name:"week type - interface use",
-			//	definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#week-state"],
-			//	expectedResult:"Can you use the interface to easily select a week in the current year? (If there is no interface, answer 'No'.)",
-			//	test:function(t){
-			//		dohx.showInfo('<form><input type="week" /></form>');
-			//	}
-			//},
+			{
+				//
+				// Test if the INTERFACE makes sense for input type="week"
+				// We focus on selecting the current week easily, to be as objective as possible.
+				//
+				id:200,
+				name:"Interface usability/usefullness",
+				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#week-state"],
+				expectedResult:"Can you select the current week with one or two clicks?",
+				test:function(t){
+					dohx.showInfo('<form><input type="week" /></form>');
+				}
+			},
 			{
 				//
 				// Test RESTRICTION purpose for input type="week"

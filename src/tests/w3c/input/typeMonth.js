@@ -33,9 +33,6 @@
 	- ppk
 
 */
-
-
-
 	dohx.add({name:"Date inputs (type=month)",
 		mqcExecutionOrderBaseOffset:650000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
@@ -53,24 +50,24 @@
 					"Click 'GO'!",
 					"Click the input element."
 				],
-				expectedResult:"Did you get a month selector?",
+				expectedResult:"Did you get a month selector (or any other special interface)?",
 				test:function(t){
 					dohx.showInfo('<form><input type="month" /></form>');
 				}
 			},
-//imho this test/question is tooo subjective ... i am not sure if this belongs here like this
-			//{
-			//	//
-			//	// Test if the INTERFACE makes sense for input type="month"
-			//	//
-			//	id:200,
-			//	name:"Month type - interface use",
-			//	definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#month-state"],
-			//	expectedResult:"Can you use the interface to easily select a month in the current year? (If there is no interface, answer 'No'.)",
-			//	test:function(t){
-			//		dohx.showInfo('<form><input type="month" /></form>');
-			//	}
-			//},
+			{
+				//
+				// Test if the INTERFACE makes sense for input type="month"
+				// We focus on selecting the current month easily, to be as objective as possible.
+				//
+				id:200,
+				name:"Interface usability/usefullness",
+				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#month-state"],
+				expectedResult:"Can you select the current month with one or two clicks?",
+				test:function(t){
+					dohx.showInfo('<form><input type="month" /></form>');
+				}
+			},
 			{
 				//
 				// Test RESTRICTION purpose for input type="month"

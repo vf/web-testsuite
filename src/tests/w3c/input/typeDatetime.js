@@ -33,9 +33,6 @@
 	- ppk
 
 */
-
-
-
 	dohx.add({name:"Date inputs (type=datetime)",
 		mqcExecutionOrderBaseOffset:620000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
@@ -53,24 +50,24 @@
 					"Click 'GO'!",
 					"Click the input element."
 				],
-				expectedResult:"Did you get a date and time selector?",
+				expectedResult:"Did you get a date and time selector (or any other special interface)?",
 				test:function(t){
 					dohx.showInfo('<form><input type="datetime" /></form>');
 				}
 			},
-			//{
-//imho this test/question is tooo subjective ... i am not sure if this belongs here like this
-			//	//
-			//	// Test if the INTERFACE makes sense for input type="datetime"
-			//	//
-			//	id:200,
-			//	name:"Datetime type - interface use",
-			//	definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-and-time-state"],
-			//	expectedResult:"Can you use the interface to easily select a date and time in the current year? (If there is no interface, answer 'No'.)",
-			//	test:function(t){
-			//		dohx.showInfo('<form><input type="datetime" /></form>');
-			//	}
-			//},
+			{
+				//
+				// Test if the INTERFACE makes sense for input type="datetime"
+				// We focus on selecting the current date and time easily, to be as objective as possible.
+				//
+				id:200,
+				name:"Interface usability/usefullness",
+				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-and-time-state"],
+				expectedResult:"Can you select the current date and time with one or two clicks?",
+				test:function(t){
+					dohx.showInfo('<form><input type="datetime" /></form>');
+				}
+			},
 			{
 				//
 				// Test RESTRICTION purpose for input type="datetime"
