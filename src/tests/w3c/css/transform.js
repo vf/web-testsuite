@@ -29,61 +29,71 @@
 		tests:[
 			{
 				id:100,
-				name:"Basics",
-				expectedResult:"Touch the test element. Does it change?",
+				summary:"Rotate 45° right",
+				instructions:[
+					"Click 'GO'!",
+					"Click the red box!"
+				],
+				expectedResult:"Did the box rotate 45° to the right around it's center?",
 				test:function(t){
 					dohx.showInfo(
-						'<div class="transform" id="test100" onclick="__toggleActive(this)">This is a transform test for rotate</div>'
+						'<div class="transform" id="test100" onclick="__toggleActive(this)">Click here!</div>'
 					);
 				}
 			},
 			{
 				id:200,
-				name:"Scale",
-				expectedResult:"Touch the test element. Does it change?",
+				summary:"Scale to half the size",
+				instructions:[
+					"Click 'GO'!",
+					"Click the red box!"
+				],
+				expectedResult:"Did the box scale down to half it's size towards it's center?",
 				test:function(t){
 					dohx.showInfo(
-						'<div class="transform" id="test200" onclick="__toggleActive(this)">This is a transform test for scale</div>'
+						'<div class="transform" id="test200" onclick="__toggleActive(this)">Click here!</div>'
 					);
 				}
 			},
 			{
 				id:300,
-				name:"Skew",
-				expectedResult:"Touch the test element. Does it change?",
+				summary:"Skew around x and y axis",
+				instructions:[
+					"Click 'GO'!",
+					"Click the red box!"
+				],
+				expectedResult:"Did the box skew around the X and the Y axis, left corner up and right corner down?",
 				test:function(t){
 					dohx.showInfo(
-						'<div class="transform" id="test300" onclick="__toggleActive(this)">This is a transform test for skew</div>'
+						'<div class="transform" id="test300" onclick="__toggleActive(this)">Click here!</div>'
 					);
 				}
 			},
 			{
 				id:400,
-				name:"Translate",
-				expectedResult:"Touch the test element. Does it change?",
+				summary:"Translate x and y axis",
+				instructions:[
+					"Click 'GO'!",
+					"Click the red box!"
+				],
+				expectedResult:"Did the box translate a bit down right?",
 				test:function(t){
 					dohx.showInfo(
-						'<div class="transform" id="test400" onclick="__toggleActive(this)">This is a transform test for translate</div>'
+						'<div class="transform" id="test400" onclick="__toggleActive(this)">Click here!</div>'
 					);
 				}
 			},
 			{
 				id:500,
-				name:"Multiple values",
-				expectedResult:"Touch the test element. Does it change?",
+				summary:"Multiple values",
+				instructions:[
+					"Click 'GO'!",
+					"Click the red box!"
+				],
+				expectedResult:"Does the box seem to stand on it's right side off to the right?",
 				test:function(t){
 					dohx.showInfo(
-						'<div class="transform" id="test500" onclick="__toggleActive(this)">This is a transform test for multiple values</div>'
-					);
-				}
-			},
-			{
-				id:600,
-				name:"Transform origin",
-				expectedResult:"Touch the test element. Does it rotate around its upper right corner?",
-				test:function(t){
-					dohx.showInfo(
-						'<div class="transform" id="test600" onclick="__toggleActive(this)">This is a transform test for transform-origin</div>'
+						'<div class="transform" id="test500" onclick="__toggleActive(this)">Click here!</div>'
 					);
 				}
 			}

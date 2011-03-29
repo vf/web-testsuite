@@ -45,20 +45,11 @@ div#test400.active {
 
 div#test500.active {
 	-webkit-transform: rotate(90deg);
-	-o-transform: rotate(90deg);
-	-moz-transform: rotate(90deg);
-	
 	-webkit-transform-origin: 100% 0;
-	-o-transform-origin: 100% 0;
-	-moz-transform-origin: 100% 0;
-}
 
-div#test600.active {
-	-webkit-transform: rotate(90deg);
 	-o-transform: rotate(90deg);
-	-moz-transform: rotate(90deg);
-	
-	-webkit-transform-origin: 100% 0;
 	-o-transform-origin: 100% 0;
+	
+	-moz-transform: rotate(90deg);	
 	-moz-transform-origin: 100% 0;
 }
