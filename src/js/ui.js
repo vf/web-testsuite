@@ -255,7 +255,8 @@ var ui = {};
 			for (var i in data){
 				if (ret.indexOf("${" + i + "}")==-1) continue; // If there is no variable to replace continue.
 				try{
-					ret = ret.replace(new RegExp("\\$\\{" + i + "\\}", "g"), data[i]);
+					var htmlified = (""+data[i]).replace(/&/gm, "&amp;").replace(/</gm, "&lt;").replace(/>/gm, "&gt;").replace(/"/gm, "&quot;");
+					ret = ret.replace(new RegExp("\\$\\{" + i + "\\}", "g"), htmlified);
 				}catch(e){
 					//console.log(e.message);
 				}
