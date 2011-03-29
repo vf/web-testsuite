@@ -282,7 +282,7 @@ var ui = {};
 	};
 })();
 
-util.connect(".content", "onclick", doh.util.hitch(ui, "onContentClick"));
+util.connect(".content", "onclick", embed.hitch(ui, "onContentClick"));
 
 
 
@@ -291,35 +291,36 @@ util.connect(".content", "onclick", doh.util.hitch(ui, "onContentClick"));
 
 
 ui.dialog = {
+	
 	show:function(testName, instructions, expectedResult){
-		util.style(".content", {opacity:0.2});
-		util.query(".manualTest .whatToDo .goButton")[0].removeAttribute("disabled");
-		util.style(".manualTest .result", {display:"none"});
-		util.style(".manualTest", {display:"block"});
-		util.query(".manualTest .testName")[0].innerHTML = testName;
-		util.query(".manualTest .whatToDo .text")[0].innerHTML = instructions;
+		embed.style(embed.query(".content")[0], {opacity:0.2});
+		embed.query(".manualTest .whatToDo .goButton")[0].removeAttribute("disabled");
+		embed.style(embed.query(".manualTest .result")[0], {display:"none"});
+		embed.style(embed.query(".manualTest")[0], {display:"block"});
+		embed.query(".manualTest .testName")[0].innerHTML = testName;
+		embed.query(".manualTest .whatToDo .text")[0].innerHTML = instructions;
 		if (expectedResult){
-			util.query(".manualTest .result .text")[0].innerHTML = expectedResult;
+			embed.query(".manualTest .result .text")[0].innerHTML = expectedResult;
 		}
 	},
 	
 	hide:function(){
-		util.style(".content", {opacity:1});
-		util.style(".manualTest", {display:"none"});
+		embed.style(embed.query(".content")[0], {opacity:1});
+		embed.style(embed.query(".manualTest")[0], {display:"none"});
 		// Hide countdown window too.
 		if (this._countdownInterval){
 			clearInterval(this._countdownInterval);
 			this._countdownInterval = null;
 		}
-		util.style(".manualTest .timeout", {display:"none"});
+		embed.style(embed.query(".manualTest .timeout")[0], {display:"none"});
 	},
 	
 	_countdownInterval:null,
 	showCountDown:function(startTime, timeout){
-		var countdownNode = util.query(".manualTest .timeout .countdown .minutes")[0];
+		var countdownNode = embed.query(".manualTest .timeout .countdown .minutes")[0];
 		var start = startTime.getTime();
-		util.style(".manualTest .timeout", {display:"block"});
-		this._countdownInterval = setInterval(doh.util.hitch(this, function(){
+		embed.style(embed.query(".manualTest .timeout")[0], {display:"block"});
+		this._countdownInterval = setInterval(embed.hitch(this, function(){
 			var delta = (timeout - (new Date().getTime() - start)) / 1000,
 				mins = parseInt(delta/60),
 				secs = parseInt(delta%60);

@@ -24,11 +24,11 @@ try{
 }catch(e){}
 
 function _startTests(){
-	util.query(".statusBar .numTests")[0].innerHTML = doh._numTests;
+	embed.query(".statusBar .numTests")[0].innerHTML = doh._numTests;
 	try{
 		doh.run();
 	}catch(e){
-		util.query(".content")[0].innerHTML += e;
+		embed.query(".content")[0].innerHTML += e;
 	}
 }
 

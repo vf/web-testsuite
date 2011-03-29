@@ -44,7 +44,7 @@
 			wma.stop();
 			wma.onStateChange = null;
 		}
-		wma.onStateChange = doh.util.hitch(this, function(newState){
+		wma.onStateChange = embed.hitch(this, function(newState){
 //document.getElementById("dbg").innerHTML += "<br />"+this.state +" =&gt; "+ newState;
 			var fsm = [
 				// oldState, newState, function to call

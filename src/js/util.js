@@ -13,7 +13,7 @@
 	See the License for the specific language governing permissions and
 	limitations under the License.
 */
-var util = new (doh.util.extend(function(){},{
+var util = new (embed.extend(function(){},{
 	
 	checkProperties:function(obj, expected){
 		// summary: This method checks if all the expected properties are given.
@@ -77,7 +77,7 @@ var util = new (doh.util.extend(function(){},{
 	},
 	
 	isArray:function(arr){
-		return doh.util.isArray(arr);
+		return embed.isArray(arr);
 	},
 	
 	isNumber:function(n){
@@ -144,7 +144,7 @@ var util = new (doh.util.extend(function(){},{
 	connectOnce:function(node, event, callback){
 		// summary: Connect the given event and disconnect right after it fired once.
 		var n = (typeof node=="string") ? this.query(node)[0] : node;
-		var handle = this.connect(n, event, doh.util.hitch(this, function(){
+		var handle = this.connect(n, event, embed.hitch(this, function(){
 			callback.apply(null, arguments);
 			this.disconnect(handle);
 		}));
