@@ -22,14 +22,17 @@ div.transition {
 div#test100, div#test200 {
 	position: relative;
 	left: 0;
+	
 	-webkit-transition-property: left;
 	-webkit-transition-duration: 1s;
 	-webkit-transition-delay: .1s;
 	-webkit-transition-timing-function: ease-out;
+	
 	-o-transition-property: left;
 	-o-transition-duration: 1s;
 	-o-transition-delay: .1s;
 	-o-transition-timing-function: ease-out;
+	
 	-moz-transition-property: left;
 	-moz-transition-duration: 1s;
 	-moz-transition-delay: .1s;

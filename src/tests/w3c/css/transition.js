@@ -29,11 +29,15 @@
 		tests:[
 			{
 				id:100,
-				name:"Basics",
-				expectedResult:"Touch the test element. Does it change?",
+				name:"One step transition",
+				instructions:[
+					"Click 'GO'!",
+					"Click the red box!"
+				],
+				expectedResult:"Did the box move to the right?",
 				test:function(t){
 					dohx.showInfo(
-						'<div class="transition" onclick="__toggleActive(this)" id="test100">This element should move</div>'
+						'<div class="transition" onclick="__toggleActive(this)" id="test100">Click here</div>'
 					);
 				}
 			},
