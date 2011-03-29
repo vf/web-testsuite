@@ -239,13 +239,17 @@ var ui = {};
 				return;
 			}
 			
-			if (node.className.indexOf("completeInfo")==-1){ // Was the "completeInfo" node clicked?
+			// Try to find out if a parent node has the class "row", then we toggle the current row.
+			while (node.className.indexOf("row")==-1 && node!=document.body){
+				node = node.parentNode;
+			}
+			if (node.className.indexOf("row")!=-1){
 				// Find the "completeInfo" node to toggle it.
-				node = util.query(".completeInfo", e.target);
+				node = embed.query(".completeInfo", node);
 				if (!node || node.length<1) return;
 				node = node[0];
+				this.toggleCompleteInfo(node);
 			}
-			this.toggleCompleteInfo(node);
 		},
 		
 		_oddCounter:0,
