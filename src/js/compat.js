@@ -101,7 +101,7 @@ widget = {};
 		// Methods
 		requestPositionInfo:function(method){
 			// Simulate onPositionRetrieved callback, which returns proper data.
-			setTimeout(doh.util.hitch(this, function(){
+			setTimeout(embed.hitch(this, function(){
 				if (this.onPositionRetrieved){
 					this.onPositionRetrieved(new Widget.Device.PositionInfo(), method);
 				}
@@ -143,7 +143,7 @@ widget = {};
 	};
 		
 	Widget.Exception = function(params){
-		doh.util.mixin(this, params);
+		embed.mixin(this, params);
 	};
 	Widget.ExceptionTypes = {
 		INVALID_PARAMETER:"INVALID_PARAMETER",
@@ -156,14 +156,14 @@ widget = {};
 			if (!util.isNumber(startIndex) || startIndex<0 || !util.isNumber(endIndex) || endIndex<0){
 				throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
 			}
-			setTimeout(doh.util.hitch(this, function(){
+			setTimeout(embed.hitch(this, function(){
 				if (this.onAddressBookItemsFound){
 					this.onAddressBookItemsFound([new Widget.PIM.AddressBookItem()]);
 				}
 			}), 400);
 		},
 		findCalendarItems:function(){
-			setTimeout(doh.util.hitch(this, function(){
+			setTimeout(embed.hitch(this, function(){
 				if (this.onCalendarItemsFound){
 					this.onCalendarItemsFound([new Widget.PIM.CalendarItem()]);
 				}
@@ -348,7 +348,7 @@ console.log("stop");
 			throw new Widget.Exception({"type":Widget.ExceptionTypes.INVALID_PARAMETER});
 		}
 		// Simulate that we do take a pic and trigger the callback after a bit :-).
-		setTimeout(doh.util.hitch(this, function(){
+		setTimeout(embed.hitch(this, function(){
 			if (this.onCameraCaptured){
 				this.onCameraCaptured(fileName);
 			}
@@ -420,7 +420,7 @@ Widget.Device.getFileSystemRoots = function(){return []};
 	};
 	
 	wt.findCallRecords = function(){
-		setTimeout(doh.util.hitch(this, function(){
+		setTimeout(embed.hitch(this, function(){
 			if (this.onCallRecordsFound){
 				this.onCallRecordsFound();
 			}
@@ -472,7 +472,7 @@ Widget.Device.getFileSystemRoots = function(){return []};
 	};
 	
 	wm.getMessageQuantities = function(){
-		return doh.util.mixin({}, Widget.Messaging.MessageQuantities); // Clone the object and return it
+		return embed.mixin({}, Widget.Messaging.MessageQuantities); // Clone the object and return it
 	}
 	wm.createMessage = function(msgType){
 		if (typeof msgType=="undefined" || msgType.toLowerCase().indexOf("invalid")!=-1){
@@ -504,10 +504,10 @@ Widget.Device.getFileSystemRoots = function(){return []};
 	//	Email account stuff
 	//
 	wm.getEmailAccounts = function(){
-		return [doh.util.mixin({}, wm.Account), doh.util.mixin({}, wm.Account)];
+		return [embed.mixin({}, wm.Account), embed.mixin({}, wm.Account)];
 	}
 	wm.getCurrentEmailAccount = function(){
-		return doh.util.mixin({}, wm.Account);
+		return embed.mixin({}, wm.Account);
 	}
 	wm.setCurrentEmailAccount = function(account){
 		if (typeof account=="undefined" || account.toLowerCase().indexOf("invalid")!=-1){
