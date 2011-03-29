@@ -25,6 +25,10 @@ div#test100 {
 }
 
 div#test100.active {
+	animation-name: pos;
+	animation-duration: 3s;
+	animation-iteration-count: 2;
+	
 	-webkit-animation-name: pos;
 	-webkit-animation-duration: 3s;
 	-webkit-animation-iteration-count: 2;
@@ -36,10 +40,16 @@ div#test100.active {
 	-moz-animation-name: pos;
 	-moz-animation-duration: 3s;
 	-moz-animation-iteration-count: 2;
-	
 }
 
-@-webkit-keyframes pos {
+@keyframes pos {
+	0% {left: 0; width: 300px;}
+	30% {left: 190px; width: 500px;}
+	70% {left: 190px; width: 100px;}
+	100% {left: 0; width: 300px;
+}
+
+}@-webkit-keyframes pos {
 	0% {left: 0; width: 300px;}
 	30% {left: 190px; width: 500px;}
 	70% {left: 190px; width: 100px;}
@@ -54,13 +64,6 @@ div#test100.active {
 }
 
 @-o-keyframes pos {
-	0% {left: 0; width: 300px;}
-	30% {left: 190px; width: 500px;}
-	70% {left: 190px; width: 100px;}
-	100% {left: 0; width: 300px;}
-}
-
-@keyframes pos {
 	0% {left: 0; width: 300px;}
 	30% {left: 190px; width: 500px;}
 	70% {left: 190px; width: 100px;}

@@ -29,11 +29,15 @@
 		tests:[
 			{
 				id:100,
-				name:"Basics",
-				expectedResult:"Touch the test element. Does it change?",
+				name:"Animate using keyframes",
+				instructions:[
+					"Click 'GO'!",
+					"Click the red box!"
+				],
+				expectedResult:"Did the box animate it's width?",
 				test:function(t){
 					dohx.showInfo(
-						'<div class="animation" onclick="__toggleActive(this)" id="test100">This element should move</div>'
+						'<div class="animation" onclick="__toggleActive(this)" id="test100">Click here</div>'
 					);
 				}
 			},
