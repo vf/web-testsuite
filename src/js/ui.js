@@ -31,7 +31,7 @@ var ui = {};
 						'Test function source code:'+
 						'<pre>${testSourceCode}</pre>'+
 						'Error message:'+
-						'<pre>${error}</pre>'+
+						'<pre>${error|safe}</pre>'+
 					'</div>'+
 				'</div>'
 			,
@@ -257,9 +257,17 @@ var ui = {};
 			var ret = tpl;
 			data.oddClass = (this._oddCounter++%2) ? "odd" : "";
 			for (var i in data){
-				if (ret.indexOf("${" + i + "}")==-1) continue; // If there is no variable to replace continue.
+				// Check if ${i} or ${i|safe} or alike is given.
+				if (!new RegExp("\\$\\{" + i + "(\\|\\w+)?\\}").test(ret)){
+					continue;
+				}
 				try{
-					var htmlified = (""+data[i]).replace(/&/gm, "&amp;").replace(/</gm, "&lt;").replace(/>/gm, "&gt;").replace(/"/gm, "&quot;");
+					// Replace ${i} by the raw string.
+					var htmlified = (""+data[i]);
+					ret = ret.replace(new RegExp("\\$\\{" + i + "\\|safe\\}", "g"), htmlified);
+					
+					// Replace "${i|safe}" by the HTML escaped one. Its an explicit tag matching, but ok for now imho.
+					htmlified = htmlified.replace(/&/gm, "&amp;").replace(/</gm, "&lt;").replace(/>/gm, "&gt;").replace(/"/gm, "&quot;");
 					ret = ret.replace(new RegExp("\\$\\{" + i + "\\}", "g"), htmlified);
 				}catch(e){
 					//console.log(e.message);
