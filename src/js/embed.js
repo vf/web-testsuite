@@ -16,6 +16,7 @@
 (function(){
 	
 	function __loadScriptFile(fileName){
+		//fileName = fileName.replace(".js", ".uncompressed.js")
 		//var node = document.createElement("script");
 		//node.type = "text/javascript";
 		//node.src = "js/" + fileName + "?nocache="+(+new Date());
