@@ -73,6 +73,7 @@ var ui = {};
 				'<div class="row report">'+
 					'<h1>Test Summary</h1>'+
 					'<div class="count">${numTests} tests in ${numGroups} groups<br />'+
+						'<button class="showStats" onclick="doh.ui.showStats()">Stats</button>'+
 						'<span class="error">${numErrors} errors (${percentError}%)</span><br />'+
 						'<span class="failure">${numFailures} failures (${percentFailure}%)</span><br />'+
 						'<span class="success">${numOks} ok (${percentOk}%)</span><br />'+
@@ -117,13 +118,13 @@ var ui = {};
 		notApplicable:function(test){
 			var data = this._getResultsData(test);
 			n.innerHTML += this._render(data, this._templates.NOT_APPLICABLE);
-			doh.ui.results.push({result:"not applicable", test:data});
+			doh.ui.storeResult({result:"not applicable", test:data});
 		},
 		
 		unsupportedApi:function(test, apis){
 			var data = this._getResultsData(test, {apis:apis.join(", ")});
 			n.innerHTML += this._render(data, this._templates.UNSUPPORTED_API);
-			doh.ui.results.push({result:"unsupported API", test:data});
+			doh.ui.storeResult({result:"unsupported API", test:data});
 		},
 		
 		success:function(test){
@@ -139,7 +140,7 @@ var ui = {};
 			}
 			var data = this._getResultsData(test, {result:resString});
 			n.innerHTML += this._render(data, this._templates.SUCCESS);
-			doh.ui.results.push({result:"success", test:data});
+			doh.ui.storeResult({result:"success", test:data});
 		},
 		
 		showInfo:function(txt){
@@ -176,7 +177,7 @@ var ui = {};
 				failureOrError:isError ? "error" : "failure"
 			});
 			n.innerHTML += this._render(data, this._templates.FAILURE_OR_ERROR);
-			doh.ui.results.push({result:isError ? "error" : "failure", test:data});
+			doh.ui.storeResult({result:isError ? "error" : "failure", test:data});
 		},
 		
 		_getSourceCode:function(test){
@@ -190,10 +191,10 @@ var ui = {};
 		},
 		
 		report:function(numTests, numGroups, numErrors, numFailures, numNotApplicable){
-			var percentFailure = Math.round((numFailures/numTests)*100),
-				percentError = Math.round((numErrors/numTests)*100),
-				percentNotApplicable = Math.round((numNotApplicable/numTests)*100),
-				percentOk = 100 - percentError - percentFailure - percentNotApplicable;
+			var percentFailure = Math.round((numFailures/numTests)*100);
+			var percentError = Math.round((numErrors/numTests)*100);
+			var percentNotApplicable = Math.round((numNotApplicable/numTests)*100);
+			var percentOk = 100 - percentError - percentFailure - percentNotApplicable;
 			n.innerHTML += this._render({
 				numTests: numTests,
 				numGroups: numGroups,
@@ -265,10 +266,11 @@ var ui = {};
 		_getResultsData:function(test, mixin){
 			// Returns results data for all possible cases, to provide a unique set of base data we do it in here.
 			var data = {
-				name:test.name,
-				id:util.getTestId(test),
-				testSourceCode:this._getSourceCode(test),
-				_rawId:test.id
+				name: test.name,
+				groupName: test.group.name,
+				id: util.getTestId(test),
+				testSourceCode: this._getSourceCode(test),
+				_rawId: test.id
 			};
 			return embed.mixin(data, mixin);
 		}

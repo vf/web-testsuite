@@ -50,6 +50,8 @@
 	
 	<div id="loading">Loading tests...</div>
 	
+	<div id="statsOverlay"></div>
+	
 	<script type="text/javascript" src="js/doh2/doh.js"></script>
 	<script type="text/javascript" src="js/doh2/config.js"></script>
 	<script type="text/javascript" src="js/doh2/util.js"></script>

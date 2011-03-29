@@ -263,6 +263,12 @@ button[disabled=disabled] {
 			color: grey;
 		}
 		
+		.content .row.report .count button.showStats {
+			border:1px solid black;
+			float:right;
+			padding:1em;
+		}
+		
 		.content .row.report .sendingResults {
 			background-color: lightyellow;
 			display: none;
@@ -391,3 +397,40 @@ button[disabled=disabled] {
 	bottom:0;
 	height:1.5em;
 }
+
+/*
+	The statistics overlay.
+*/
+#statsOverlay {
+	display: none;
+	position: absolute; /* We just position it 1em under the headline, position:fixed just doesnt work everywhere. */
+	top: 1em;
+	left: 1em;
+	padding: 0.5em;
+	z-index: 200;
+	background-color: white;
+	-moz-box-shadow: 10px 10px 5px #888;
+	-webkit-box-shadow: 10px 10px 5px #888;
+	box-shadow: 10px 10px 5px #888;
+}
+	#statsOverlay h1 {
+		font-size: 1em;
+		margin: 0.2em 0;
+	}
+
+	#statsOverlay .bar {
+		margin-bottom: 2px;
+		font-size: 0.7em;
+	}
+		#statsOverlay .bar.error {
+			background-color: red;
+		}
+		#statsOverlay .bar.success {
+			background-color: #AFA;
+		}
+		#statsOverlay .bar.failure {
+			background-color: #FAA;
+		}
+		#statsOverlay .bar.notapplicable {
+			background-color: grey;
+		}

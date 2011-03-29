@@ -71,6 +71,37 @@ doh.ui = {
 		ui.resetInfo();
 	},
 	
+	storeResult:function(resultData){
+		this.results.push(resultData);
+	},
+	
+	showStats:function(){
+		var node = document.getElementById("statsOverlay"); // Fill the stats in here.
+		node.innerHTML = ""; // Empty it first, multiple calls would add the same content again.
+		node.style.display = "block";
+		window.scrollTo(0, 0);
+		var lastGroup = null;
+		for (var i=0, l=this.results.length, res; i<l; i++){
+			res = this.results[i];
+			if (lastGroup!=res.test.groupName){
+				embed.create("h1", {innerHTML:"Tests: " + res.test.groupName}, node);
+				lastGroup = res.test.groupName;
+			}
+			var innerHTML = res.test._rawId + ": " + res.test.name;
+			var barNode = embed.create("div", {"class":"bar " + res.result.replace(/[^0-9a-zA-Z]/, ""), innerHTML:innerHTML}, node);
+		}
+		// Create and connect the close button.
+		// no idea why this
+		// 		 onclick:"doh.ui.hideStats()"
+		// as a property in the create() doesnt work :(
+		embed.connect(embed.create("button", {innerHTML:"Close"}, node), "onclick", function(){ doh.ui.hideStats() });
+	},
+	
+	hideStats:function(){
+		var node = document.getElementById("statsOverlay");
+		node.style.display = "none";
+	},
+	
 	report:function(){
 		// summary: 
 		ui.report(doh._numTests, doh._groups.length, doh._numErrors, doh._numFailures, doh._numNotApplicable);
