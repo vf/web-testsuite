@@ -417,7 +417,9 @@ button[disabled=disabled] {
 		font-size: 1em;
 		margin: 0.2em 0;
 	}
-
+	#statsOverlay button {
+		padding: 0.2em;
+	}
 	#statsOverlay .bar {
 		margin-bottom: 2px;
 		font-size: 0.7em;
