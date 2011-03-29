@@ -12,7 +12,7 @@
 				definedInSpecs:["http://www.w3.org/TR/html5/number-state.html#range-state"],
 				expectedResult:"Did you get a range control (i.e. a slider)?",
 				test:function(t){
-					dohx.showInfo('<form><input type="range" /></form>');
+					dohx.showInfo('<form><input type=range /></form>');
 				}
 			},
 			{
@@ -25,7 +25,7 @@
 				],
 				expectedResult:"Are only three values selectable?",
 				test:function(t){
-					dohx.showInfo('<form><input type="range" step=1 max=3 min=1 value=1 /></form>');
+					dohx.showInfo("<form><input type=range step=1 max=3 min=1 value=1 /></form>");
 				}
 			},
 			{
