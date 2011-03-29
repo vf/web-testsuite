@@ -30,6 +30,7 @@ dohx = {
 			if ("addIf" in obj){
 				t.addIf = !!obj.addIf;
 			}
+			t.name = t.name || t.summary;
 			if (t.instructions || t.expectedResult){
 				dohTests.push(dohx.extendManualTestObject(t));
 			} else if(t.timeout){
