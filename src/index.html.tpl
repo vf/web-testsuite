@@ -52,6 +52,8 @@
 	
 	<div id="statsOverlay"></div>
 	
+	<script type="text/javascript" src="js/embed.js"></script>
+	
 	<script type="text/javascript" src="js/doh2/doh.js"></script>
 	<script type="text/javascript" src="js/doh2/config.js"></script>
 	<script type="text/javascript" src="js/doh2/util.js"></script>
@@ -63,9 +65,7 @@
 	<script type="text/javascript" src="js/ui.js"></script>
 	<script type="text/javascript" src="js/doh2_ui.js"></script>
 	<script type="text/javascript" src="js/dohx.js"></script>
-	<script type="text/javascript" src="js/compat.js"></script> <!-- if compat is not packaged it wont be loaded -->
-	<script type="text/javascript" src="js/embed.js"></script>
-	<script type="text/javascript" src="js/config.js"></script> <!-- Load it after the compat, so we can use Widget, etc. -->
+	<script type="text/javascript" src="js/config.js"></script>
 	<script type="text/javascript">
 		var TEST_FILE = "{testFile}";
 	</script>
