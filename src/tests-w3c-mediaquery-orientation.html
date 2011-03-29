@@ -51,6 +51,8 @@
     </div>
     <button id="backButton" onclick="window.parent.showList()">BACK</button>
     <div id="loading">Loading tests...</div>
+    <div id="statsOverlay"></div>
+    <script src="js/embed.js" type="text/javascript"></script>
     <script src="js/doh2/doh.js" type="text/javascript"></script>
     <script src="js/doh2/config.js" type="text/javascript"></script>
     <script src="js/doh2/util.js" type="text/javascript"></script>
@@ -60,11 +62,7 @@
     <script src="js/ui.js" type="text/javascript"></script>
     <script src="js/doh2_ui.js" type="text/javascript"></script>
     <script src="js/dohx.js" type="text/javascript"></script>
-    <script src="js/compat.js" type="text/javascript"></script>
-    <!-- if compat is not packaged it wont be loaded -->
-    <script src="js/embed.js" type="text/javascript"></script>
     <script src="js/config.js" type="text/javascript"></script>
-    <!-- Load it after the compat, so we can use Widget, etc. -->
     <script type="text/javascript">var TEST_FILE = "tests/w3c/mediaquery/orientation.js";</script>
     <script src="js/loader.js" type="text/javascript"></script>
   </body>
