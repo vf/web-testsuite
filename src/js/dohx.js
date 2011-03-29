@@ -122,8 +122,8 @@ dohx._testObject = {
 };
 
 dohx._manualTestObject = {};
-doh.util.mixin(dohx._manualTestObject, dohx._testObject);
-doh.util.mixin(dohx._manualTestObject, {
+embed.mixin(dohx._manualTestObject, dohx._testObject);
+embed.mixin(dohx._manualTestObject, {
 	timeout:1 * 60 * 1000,
 	instructions:"",
 	
@@ -189,9 +189,9 @@ doh.util.mixin(dohx._manualTestObject, {
 // We could of course connect each time for each test, that would just mean we
 // would also have to clean up, too much hazzle imho. This way it's just scope mangling :-).
 if (util.query(".manualTest").length){ // Add this IF so we can use this file also in csv.html and wont get an error when trying to connect those nodes, since they are not needed there.
-	util.connect(".manualTest .whatToDo .goButton", "onclick", doh.util.hitch(dohx._manualTestObject, "_goClicked"));
-	util.connect(".manualTest .result .yesButton", "onclick", doh.util.hitch(dohx._manualTestObject, "_successfulTestFunction"));
-	util.connect(".manualTest .result .noButton", "onclick", doh.util.hitch(dohx._manualTestObject, "_failTestFunction"));
+	util.connect(".manualTest .whatToDo .goButton", "onclick", embed.hitch(dohx._manualTestObject, "_goClicked"));
+	util.connect(".manualTest .result .yesButton", "onclick", embed.hitch(dohx._manualTestObject, "_successfulTestFunction"));
+	util.connect(".manualTest .result .noButton", "onclick", embed.hitch(dohx._manualTestObject, "_failTestFunction"));
 }
 
 doh._runNextTest = function(){
@@ -207,7 +207,7 @@ doh._runNextTest = function(){
 			// Pass in the following structure, which is actually created inside
 			// doh, but we don't pass the test to doh.
 			var test = {};
-			doh.util.mixin(test, c.test);
+			embed.mixin(test, c.test);
 			test.group = c.group;
 // TODO I dont know if this is proper in this place.
 			doh._numNotApplicable++;
@@ -253,15 +253,15 @@ dohx.hideInfo = function(){
 dohx.extendTestObject = function(obj){
 	// summary: Clone the doh._testObject and add the properties of obj.
 	var ret = {};
-	doh.util.mixin(ret, dohx._testObject);
-	doh.util.mixin(ret, obj);
+	embed.mixin(ret, dohx._testObject);
+	embed.mixin(ret, obj);
 	return ret;
 };
 
 dohx.extendManualTestObject = function(obj){
 	var ret = {};
-	doh.util.mixin(ret, dohx._manualTestObject);
-	doh.util.mixin(ret, obj);
+	embed.mixin(ret, dohx._manualTestObject);
+	embed.mixin(ret, obj);
 	if (!ret.instructions){
 		ret.instructions = "Click 'GO' to run test!";
 	}
