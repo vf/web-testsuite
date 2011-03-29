@@ -16,7 +16,9 @@
 try{
 	// Try to override the console.log, so we can use it in the code, mainly for developing purposes though.
 	var dbgNode = document.getElementById("dbg");
+	var _console = console;
 	console = {log:function(){
+		_console.log.apply(_console, arguments);
 		dbgNode.innerHTML += Array.prototype.slice.call(arguments, 0).join(" ")+" ";
 	}};
 }catch(e){}
