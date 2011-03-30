@@ -23,7 +23,7 @@ doh.ui = {
 		// summary: This is called when run() was called the first time.
 		//console.log(doh._numTests + " tests registered, in " + doh._groups.length + " groups");
 		//console.log("--------");
-		util.query(".notCustomConfigured")[0].style.display = config._meta.isCustomConfiguration ? "none" : "inline";
+		embed.query(".notCustomConfigured")[0].style.display = config._meta.isCustomConfiguration ? "none" : "inline";
 	},
 
 	groupStarted:function(group){
@@ -65,9 +65,9 @@ doh.ui = {
 			ui.success(test);
 		}
 		var numFailed = doh._numFailures + doh._numErrors;
-		util.query(".statusBar .numFailed")[0].innerHTML = numFailed;
-		util.query(".statusBar .percentFailed")[0].innerHTML = Math.round(100 * numFailed / doh._numTestsExecuted);
-		util.query(".statusBar .numTestsDone")[0].innerHTML = doh._numTestsExecuted;
+		embed.query(".statusBar .numFailed")[0].innerHTML = numFailed;
+		embed.query(".statusBar .percentFailed")[0].innerHTML = Math.round(100 * numFailed / doh._numTestsExecuted);
+		embed.query(".statusBar .numTestsDone")[0].innerHTML = doh._numTestsExecuted;
 		ui.resetInfo();
 	},
 	
@@ -186,7 +186,7 @@ doh.ui = {
 		info.__version__ = 20110104;
 		
 		if (confirm("Click OK to send the test results to 'developer.vodafone.com'")){
-			var el = util.query(".report .sendingResults")[0];
+			var el = embed.query(".report .sendingResults")[0];
 			el.style.display = "block";
 			util.xhrPost({
 				url:"http://developer.vodafone.com/widget-test/add/",

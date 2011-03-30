@@ -301,10 +301,10 @@ util.connect(".content", "onclick", embed.hitch(ui, "onContentClick"));
 ui.dialog = {
 	
 	show:function(testName, instructions, expectedResult){
-		embed.style(embed.query(".content")[0], {opacity:0.2});
+		embed.query(".content").style({opacity:0.2});
 		embed.query(".manualTest .whatToDo .goButton")[0].removeAttribute("disabled");
-		embed.style(embed.query(".manualTest .result")[0], {display:"none"});
-		embed.style(embed.query(".manualTest")[0], {display:"block"});
+		embed.query(".manualTest .result").style({display:"none"});
+		embed.query(".manualTest").style({display:"block"});
 		embed.query(".manualTest .testName")[0].innerHTML = testName;
 		embed.query(".manualTest .whatToDo .text")[0].innerHTML = instructions;
 		if (expectedResult){
@@ -313,21 +313,22 @@ ui.dialog = {
 	},
 	
 	hide:function(){
-		embed.style(embed.query(".content")[0], {opacity:1});
-		embed.style(embed.query(".manualTest")[0], {display:"none"});
+		embed.query(".content").style({opacity:1});
+		embed.query(".manualTest")
+			 .style({display:"none"});
 		// Hide countdown window too.
 		if (this._countdownInterval){
 			clearInterval(this._countdownInterval);
 			this._countdownInterval = null;
 		}
-		embed.style(embed.query(".manualTest .timeout")[0], {display:"none"});
+		embed.query(".manualTest .timeout").style({display:"none"});
 	},
 	
 	_countdownInterval:null,
 	showCountDown:function(startTime, timeout){
 		var countdownNode = embed.query(".manualTest .timeout .countdown .minutes")[0];
 		var start = startTime.getTime();
-		embed.style(embed.query(".manualTest .timeout")[0], {display:"block"});
+		embed.query(".manualTest .timeout").style({display:"block"});
 		this._countdownInterval = setInterval(embed.hitch(this, function(){
 			var delta = (timeout - (new Date().getTime() - start)) / 1000,
 				mins = parseInt(delta/60),
