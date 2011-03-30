@@ -46,20 +46,14 @@ dojo.isFunction = function(it){
 }
 =====*/
 
-dojo.isFunction = (function(){
-	var _isFunction = function(/*anything*/ it){
-		var t = typeof it; // must evaluate separately due to bizarre Opera bug. See #8937
-		//Firefox thinks object HTML element is a function, so test for nodeType.
-		return it && (t == "function" || it instanceof Function) && !it.nodeType; // Boolean
-	};
-
-	return dojo.isSafari ?
-		// only slow this down w/ gratuitious casting in Safari (not WebKit)
-		function(/*anything*/ it){
-			if(typeof it == "function" && it == "[object NodeList]"){ return false; }
-			return _isFunction(it); // Boolean
-		} : _isFunction;
-})();
+dojo.isFunction = function(/*anything*/ it){
+	var t = typeof it; // must evaluate separately due to bizarre Opera bug. See #8937
+	//Firefox thinks object HTML element is a function, so test for nodeType.
+	//Safari (incl webkit mobile on iOS) thinks of NodeLists as funtions, so we need to check this.
+	// TODO: Find a less expensive way to test this instead of toString.
+	// TODO Check if this affects webkit mobile on android.
+	return it && (t == "function" || it instanceof Function) && !it.nodeType && it.toString() != "[object NodeList]"; // Boolean
+};
 
 dojo.isObject = function(/*anything*/ it){
 	// summary:
@@ -2334,6 +2328,56 @@ dojo.byId = function(id, doc){
 
 dojo.query = dojo._query = acme.query;
 
+})();
+
+
+
+/*********FILE**********
+/Users/cain/programming/uxebu/repositories/embedjs/src/query/chainable.js
+********************/
+
+
+;(function(){
+	
+	var _oldQuery = embed.query;
+	
+	embed.query = function(query, scope){
+		return new NodeList(_oldQuery.apply(embed, arguments));
+	}
+	
+	// Extend the Array prototype for the NodeList to provide all methods that
+	// are reachable by chainable functions.
+	var NodeList = function(arr){
+		var ret = []; // For some reason Array.apply(null, arguments) didn't work, so we push all from arr handish into ret, down there.
+		enhanceNodeList(ret);
+		if (arr){
+			for (var i=0, l=arr.length; i<l; i++){
+				ret.push(arr[i]);
+			}
+		}
+		return ret;
+	};
+	
+	function enhanceNodeList(obj){
+		var chainedFunctions = "attr addClass connect removeAttr removeClass style toggleClass place".split(" ");
+		for (var i=0, l=chainedFunctions.length, func; i<l; i++){
+			func = chainedFunctions[i];
+			// Create the functions on the object. I am sure this could be more efficiently done, i.e.
+			// on the prototype. Feel free to optimize it!
+			obj[func] = (function(func){
+				return function(){
+					var ret;
+					for (var i=0, l=this.length; i<l; i++){
+						// Concatenate this[i]+arguments into one array to be able to pass them as ONE array.
+						var argsAsArray = [].splice.call(arguments,0); // Convert arguments into an array, so we can use cancat() on it.
+						ret = embed[func].apply(embed, [this[i]].concat(argsAsArray));
+					}
+					return ret; // Return the last return value.
+				}
+			})(func);
+		}
+	}
+	
 })();
 
 
