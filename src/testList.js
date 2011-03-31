@@ -41,6 +41,8 @@ var testList = {
 			"tests/w3c/css/transform.js",
 			"tests/w3c/css/transition.js",
 			
+			"tests/w3c/indexedDb/basics.js",
+			
 			"tests/w3c/mediaquery/orientation.js",
 			"tests/w3c/mediaquery/widthHeight.js",
 			"tests/w3c/mediaquery/misc.js",
