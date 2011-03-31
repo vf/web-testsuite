@@ -117,8 +117,8 @@ doh.util.extend(doh.Deferred, {
 		this._check();
 		var ret;
 		if(!(res instanceof Error)){
-			ret = new Error(res);
-			ret.actualError = res;
+			ret = new Error(""+res);
+			//ret.actualError = res; this fails in FF when it throws a native error, it obviously stops the current tests completely :(
 		} else {
 			ret = res;
 		}
