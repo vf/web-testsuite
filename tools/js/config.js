@@ -1,9 +1,32 @@
+function relativePath(pathBase, pathDest){
+	if(!/^\//.test(pathBase) || !/^\//.test(pathDest)){
+		throw Error("Need two absolute paths");
+	}
+	function filterFunc(segment, i, segments){
+		if(segment === "/." || segment === "/.." || segment === "/"){
+			return false;
+		}
+		else if(segments[i+1] === "/.."){
+			return false;
+		}
+		return true;
+	}
 
+	var splitter = /(?=\/+)/;
+	var segmentsBase = pathBase.split(splitter).filter(filterFunc);
+	var segmentsDest = pathDest.split(splitter).filter(filterFunc);
+	var i = 0;
+	while(segmentsBase[i] === segmentsDest[i]){
+		i++;
+	}
+
+	return Array(segmentsBase.length - i + 1).join("../") + segmentsDest.slice(i).join("").slice(1);
+}
 
 var arg0 = arguments[0].split("/"); // This is something like "/Users/cain/bla/config.xml"
 var TARGET_FILE = arg0[arg0.length-1]; // This shall become "config.xml" or "index.html"
 var SRC_PATH = util.endInSlash(arg0.slice(0, -1).join("/")); // This shall be "/Users/cain/bla/"
-var TEST_FILE = arguments[1].replace(SRC_PATH, ""); // E.g. "tests/w3c/config.xml/warp.js"
+var TEST_FILE = relativePath(SRC_PATH, arguments[1]); // E.g. "tests/w3c/config.xml/warp.js"
 
 var pathParts = TEST_FILE.replace(/\.js$/, "").split("/");
 var now = new Date();
