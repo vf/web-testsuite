@@ -67,7 +67,38 @@ doh = {
 		}
 		this._runNextTest();
 	},
-	
+
+	_MultipleAssertWrapper: (function(){
+		function M(test){
+			this._test = test;
+			this._asserts = [];
+		}
+
+		M.prototype.run = function(){
+			var asserts = this._asserts;
+			setTimeout(function(){
+				var messages = [];
+				for(var i = 0, assertion; (assertion = asserts[i]); i += 2){
+					try{
+						assert[assertion].apply(assert, asserts[i+1]);
+					}catch(e){
+						if(e instanceof doh.assert.Failure){
+							messages.push("Assertion #" + (i/2+1) + " \u2013 " + e.message);
+						}else{
+							throw e;
+						}
+					}
+				}
+
+				if(messages.length){
+					test.failure(messages.join("\n\n"));
+				}else{
+					test.success();
+				}
+			}, 1);
+		};
+	}()),
+
 	_getAssertWrapper:function(d){
 		// summary: This returns an object which provides all the assert methods, and wraps a Deferred instance.
 		// description: Why that? The interface for doh tests should be the same
@@ -105,16 +136,29 @@ console.log('FIXXXXXME multiple asserts or timeout ... d.fired = ', d.fired, "GR
 			}
 		};
 
+		var multipleAssertsWrapper = this._MultipleAssertWrapper(myT);
+
+		myT.assertMultiple = function(){
+			return multipleAssertsWrapper;
+		};
+
 		for (var methodName in doh.assert){
 			if (methodName.indexOf("assert")===0){
-				myT[methodName] = (function(methodName){return function(){
-					// Make sure the current callstack is worked off before
-					// returning from any assert() method, we do this by
-					// setTimeout(). The bug was that assert() didn't make the
-					// test execute the return statement (if one was in there)
-					// before the test ended, this fixes it.
-					setTimeout(doh.util.hitch(that, "_assertClosure", methodName, arguments), 1);
-				}})(methodName);
+				(function(methodName){
+					myT[methodName] = function(){
+						// Make sure the current callstack is worked off before
+						// returning from any assert() method, we do this by
+						// setTimeout(). The bug was that assert() didn't make the
+						// test execute the return statement (if one was in there)
+						// before the test ended, this fixes it.
+						setTimeout(doh.util.hitch(that, "_assertClosure", methodName, arguments), 1);
+					}
+
+					multipleAssertsWrapper[methodName] = function(){
+						this._asserts.push(methodName, arguments);
+						return this;
+					};
+				}(methodName));
 			}
 		}
 
