@@ -76,11 +76,12 @@ doh = {
 
 		M.prototype.run = function(){
 			var asserts = this._asserts;
+			var test = this._test;
 			setTimeout(function(){
 				var messages = [];
 				for(var i = 0, assertion; (assertion = asserts[i]); i += 2){
 					try{
-						assert[assertion].apply(assert, asserts[i+1]);
+						doh.assert[assertion].apply(doh.assert, asserts[i+1]);
 					}catch(e){
 						if(e instanceof doh.assert.Failure){
 							messages.push("Assertion #" + (i/2+1) + " \u2013 " + e.message);
@@ -138,7 +139,7 @@ console.log('FIXXXXXME multiple asserts or timeout ... d.fired = ', d.fired, "GR
 			}
 		};
 
-		var multipleAssertsWrapper = this._MultipleAssertWrapper(myT);
+		var multipleAssertsWrapper = new this._MultipleAssertWrapper(myT);
 
 		myT.assertMultiple = function(){
 			return multipleAssertsWrapper;
@@ -153,7 +154,7 @@ console.log('FIXXXXXME multiple asserts or timeout ... d.fired = ', d.fired, "GR
 						// setTimeout(). The bug was that assert() didn't make the
 						// test execute the return statement (if one was in there)
 						// before the test ended, this fixes it.
-						setTimeout(doh.util.hitch(that, "_assertClosure", methodName, arguments), 1);
+						setTimeout(doh.util.hitch(myT, "_assertClosure", methodName, arguments), 1);
 					}
 
 					multipleAssertsWrapper[methodName] = function(){
