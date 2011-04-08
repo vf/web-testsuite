@@ -94,7 +94,7 @@ doh = {
 				if(messages.length){
 					test.failure(messages.join("\n\n"));
 				}else{
-					test.success(asserts.length + " assertions successful.");
+					test.success(asserts.length/2 + " assertions successful.");
 				}
 			}, 1);
 		};
