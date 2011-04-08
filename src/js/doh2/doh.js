@@ -77,8 +77,8 @@ doh = {
 		// 		asynchronous tests, you had to use doh.callback/errback.
 		// 		This allows to ONLY use assert*() methods. See the selftests
 		// 		for examples.
-		var myT = new function(){
-			this._assertClosure = function(method, args){
+		var myT = {
+			_assertClosure: function(method, args){
 				// If the Deferred instance is already "done", means callback or errback
 				// had already been called don't do it again.
 				// This might be the case when e.g. the test timed out.
@@ -92,31 +92,32 @@ console.log('FIXXXXXME multiple asserts or timeout ... d.fired = ', d.fired, "GR
 				}catch(e){
 					d.errback(e);
 				}
-			};
-			this.success = function(msg){
+			},
+			success: function(msg){
 				// This function can be used to directly make a test succeed.
 //TODO write selftest for it!!!!!!!!!
 				d.test.result = msg;
 				d.callback(msg);
-			};
-			this.failure = function(msg){
+			},
+			failure: function(msg){
 //TODO write selftest for it!!!!!!!!!
 				d.errback(new doh.assert.Failure(msg));
-			};
-			var that = this;
-			for (var methodName in doh.assert){
-				if (methodName.indexOf("assert")===0){
-					this[methodName] = (function(methodName){return function(){
-						// Make sure the current callstack is worked off before
-						// returning from any assert() method, we do this by
-						// setTimeout(). The bug was that assert() didn't make the
-						// test execute the return statement (if one was in there)
-						// before the test ended, this fixes it.
-						setTimeout(doh.util.hitch(that, "_assertClosure", methodName, arguments), 1);
-					}})(methodName);
-				}
 			}
 		};
+
+		for (var methodName in doh.assert){
+			if (methodName.indexOf("assert")===0){
+				myT[methodName] = (function(methodName){return function(){
+					// Make sure the current callstack is worked off before
+					// returning from any assert() method, we do this by
+					// setTimeout(). The bug was that assert() didn't make the
+					// test execute the return statement (if one was in there)
+					// before the test ended, this fixes it.
+					setTimeout(doh.util.hitch(that, "_assertClosure", methodName, arguments), 1);
+				}})(methodName);
+			}
+		}
+
 		return myT;
 	},
 	
