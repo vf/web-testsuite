@@ -97,6 +97,8 @@ doh = {
 				}
 			}, 1);
 		};
+
+		return M;
 	}()),
 
 	_getAssertWrapper:function(d){
