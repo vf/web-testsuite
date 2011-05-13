@@ -66,6 +66,29 @@ dohx._testObject = {
 		return ret;
 	},
 	
+	_unresolvedDeps:null,
+	canDepsBeResolved:function(){
+		// If a test depends on another to succeed verify this precondition.
+		if (this.dependsOn && this.dependsOn.length){
+			function _getResultById(id){
+				var res = doh.ui.results;
+				for (var i=0, l=res.length; i<l; i++){ if (res[i].test._rawId == id) return res[i]; }
+				return null;
+			}
+			for (var i=0, l=this.dependsOn.length; i<l; i++){
+				var res = _getResultById(this.dependsOn[i]);
+				if (!res || res.result!="success"){
+					this._unresolvedDeps = {
+						id: this.dependsOn[i],
+						result: (res && res.result)
+					};
+					return false;
+				}
+			}
+		}
+		return true;
+	},
+	
 	getUnsupportedApis:function(){
 		var ret = [];
 		var checkApis = this.requiredObjects.concat(this.mustSupportApis || []);
@@ -90,21 +113,9 @@ dohx._testObject = {
 			t.assertTrue(true);
 			return;
 		}
-		
-		// If a test depends on another to succeed verify this precondition.
-		if (this.dependsOn && this.dependsOn.length){
-			function _getResultById(id){
-				var res = doh.ui.results;
-				for (var i=0, l=res.length; i<l; i++){ if (res[i].test._rawId == id) return res[i]; }
-				return null;
-			}
-			for (var i=0, l=this.dependsOn.length; i<l; i++){
-				var res = _getResultById(this.dependsOn[i]);
-				if (!res || res.result!="success"){
-					throw new Error("Dependency not fullfilled: required test with ID ='" + this.dependsOn[i] + "' was '" + (res && res.result) + "' instead of expected 'success'.");
-					return;
-				}
-			}
+		if (!this.canDepsBeResolved()){
+			throw new Error("Dependency not fullfilled: required test with ID ='" + this._unresolvedDeps.id + "' was '" + this._unresolvedDeps.result + "' instead of expected 'success'.");
+			return;
 		}
 		
 		if (typeof this.test=="function"){
@@ -218,7 +229,7 @@ doh._runNextTest = function(){
 	}while(c.test.addIf===false || unsupportedApis.length);
 	var missingReqObj = c.test.getMissingRequiredObjects();
 	// If there are requiredObjects that don't exist don't even show the dialog.
-	if ((c.test.expectedResult || c.test.instructions) && missingReqObj.length==0){
+	if ((c.test.expectedResult || c.test.instructions) && missingReqObj.length==0 && c.test.canDepsBeResolved()){
 		// Show the instructions. The click on 'GO' will then call this._runTest().
 		var instructions;
 		if (util.isArray(c.test.instructions)){
