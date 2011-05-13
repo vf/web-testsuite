@@ -33,9 +33,7 @@ dohx = {
 			t.name = t.name || t.summary;
 			if (t.instructions || t.expectedResult){
 				dohTests.push(dohx.extendManualTestObject(t));
-			} else if(t.timeout){
-				t.instructions = "Click 'GO' to run test.";
-				dohTests.push(dohx.extendManualTestObject(t));
+			// If a timeout is given we dont automatically require an instruction anymore, that should be done explicitly by the user!
 			} else {
 				dohTests.push(dohx.extendTestObject(t));
 			}
