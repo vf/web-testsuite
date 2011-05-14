@@ -48,6 +48,7 @@ var eventUtil = {
 						return;
 					}
 					t.assertEqual(obj.expectedType, typeof e[obj.name]);
+					t.result = typeof e[obj.name];
 				});
 			},
 			tearDown: embed.hitch(eventUtil, "removeEventListener")
