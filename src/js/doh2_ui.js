@@ -184,7 +184,31 @@ doh.ui = {
 		// If any of the data change, update this version!!!!!!!!!!!
 		// ******************
 		info.__version__ = 20110104;
-		
+		//this._sendToJdrop(info);
+	},
+	
+	_sendToJdrop:function(info){
+// still TODO
+		if (confirm("Click OK to send the test results to 'http://jdrop.org/save'")){
+			var el = embed.query(".report .sendingResults")[0];
+			el.style.display = "block";
+			util.xhrPost({
+				url:"http://jdrop.org/save",
+				callback:function(){
+					el.innerHTML = "Test results sent.";
+					// Delay the hiding a bit, so the user sees it for sure.
+					setTimeout(function(){
+						// The Opera WRT doesn't seem to do this properly :(
+						el.style.display = "none";
+					}, 2000);
+				},
+				data: "info=" + window.encodeURIComponent(embed.toJson(info))
+					+ "&test_data=" + window.encodeURIComponent(embed.toJson(this.results))
+			});
+		}
+	},
+	
+	_sendToVodafone:function(info){
 		if (confirm("Click OK to send the test results to 'developer.vodafone.com'")){
 			var el = embed.query(".report .sendingResults")[0];
 			el.style.display = "block";
