@@ -76,7 +76,7 @@
 						dohx.showInfo("alpha: " + e.alpha + "<br />beta: " + e.beta + "<br />gamma: " + e.gamma);
 					});
 				},
-				tearDown: eventUtil.removeEventListener
+				tearDown: _removeEventListener
 			},
 
 //*/
