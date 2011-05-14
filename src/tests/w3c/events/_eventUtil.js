@@ -65,13 +65,15 @@ var eventUtil;
 				test:function(t){
 					eventUtil.addEventListener(function(e){
 						eventUtil.removeEventListener(); // Remove the event listener right away, so this callback is not called a second time before the tearDown
+						var ref = _getRef(e, obj.name); // Resolve deeper object structures.
+						var v = ref.object[ref.propertyName]; // Show the value to the user too. (It's always nice to see details :).)
 						// If the value is null its ok too, this is allowed by spec.
-						if (e[obj.name] === null){
+						if (v === null){
 							t.success("Value is 'null', which is valid too.");
 							return;
 						}
-						t.assertEqual(obj.expectedType, typeof e[obj.name]);
-						t.result = typeof e[obj.name];
+						t.assertEqual(obj.expectedType, typeof v);
+						t.result = typeof v;
 					});
 				},
 				tearDown: embed.hitch(eventUtil, "removeEventListener")
