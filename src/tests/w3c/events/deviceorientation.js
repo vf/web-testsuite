@@ -51,20 +51,27 @@
 			//
 			eventUtil.getPropertyExistTest({id: 1000, name: "alpha", dependsOn: [200], specs:[SPEC_URL_OBJECT]}),
 			eventUtil.getPropertyTypeTest({id: 1100, name: "alpha", dependsOn: [200], expectedType: "number", specs:[SPEC_URL_OBJECT]}),
-			eventUtil.getPropertyExistTest({id: 1200, name: "beta", dependsOn: [200], specs:[SPEC_URL_OBJECT]}),
-			eventUtil.getPropertyTypeTest({id: 1300, name: "beta", dependsOn: [200], expectedType: "number", specs:[SPEC_URL_OBJECT]}),
-			eventUtil.getPropertyExistTest({id: 1400, name: "gamma", dependsOn: [200], specs:[SPEC_URL_OBJECT]}),
-			eventUtil.getPropertyTypeTest({id: 1500, name: "gamma", dependsOn: [200], expectedType: "number", specs:[SPEC_URL_OBJECT]}),
-			eventUtil.getPropertyExistTest({id: 1600, name: "absolute", dependsOn: [200], specs:[SPEC_URL_OBJECT]}),
-			eventUtil.getPropertyTypeTest({id: 1700, name: "absolute", dependsOn: [200], expectedType: "boolean", specs:[SPEC_URL_OBJECT]}),
-			eventUtil.getPropertyExistTest({id: 1800, name: "compassCalibrated", dependsOn: [200], specs:[SPEC_URL_OBJECT]}),
-			eventUtil.getPropertyTypeTest({id: 1900, name: "compassCalibrated", dependsOn: [200], expectedType: "boolean", specs:[SPEC_URL_OBJECT]}),
+			eventUtil.getRangeTest({id: 1200, name: "alpha", dependsOn: [200], range:[-90, 90], specs:[SPEC_URL_OBJECT]}),
+			
+			eventUtil.getPropertyExistTest({id: 2000, name: "beta", dependsOn: [200], specs:[SPEC_URL_OBJECT]}),
+			eventUtil.getPropertyTypeTest({id: 2100, name: "beta", dependsOn: [200], expectedType: "number", specs:[SPEC_URL_OBJECT]}),
+			eventUtil.getRangeTest({id: 2200, name: "beta", dependsOn: [200], range:[-90, 90], specs:[SPEC_URL_OBJECT]}),
+			
+			eventUtil.getPropertyExistTest({id: 3000, name: "gamma", dependsOn: [200], specs:[SPEC_URL_OBJECT]}),
+			eventUtil.getPropertyTypeTest({id: 3100, name: "gamma", dependsOn: [200], expectedType: "number", specs:[SPEC_URL_OBJECT]}),
+			eventUtil.getRangeTest({id: 3200, name: "gamma", dependsOn: [200], range:[-90, 90], specs:[SPEC_URL_OBJECT]}),
+			
+			eventUtil.getPropertyExistTest({id: 4000, name: "absolute", dependsOn: [200], specs:[SPEC_URL_OBJECT]}),
+			eventUtil.getPropertyTypeTest({id: 4100, name: "absolute", dependsOn: [200], expectedType: "boolean", specs:[SPEC_URL_OBJECT]}),
+			
+			eventUtil.getPropertyExistTest({id: 5000, name: "compassCalibrated", dependsOn: [200], specs:[SPEC_URL_OBJECT]}),
+			eventUtil.getPropertyTypeTest({id: 5100, name: "compassCalibrated", dependsOn: [200], expectedType: "boolean", specs:[SPEC_URL_OBJECT]}),
 			
 			//
 			// real tests
 			//
 			{
-				id:3000,
+				id:6000,
 				name:"Initial position?",
 				definedInSpecs:["http://dev.w3.org/geo/api/spec-source-orientation.html"],
 				instructions:[
@@ -78,6 +85,8 @@
 				},
 				tearDown: _removeEventListener
 			},
+			
+// TODO let user move device a bit, to find out that the value is always in range
 
 //*/
 		]
