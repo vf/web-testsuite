@@ -1,10 +1,9 @@
 (function(){
 	
-	function _removeListener(){
-		window.removeEventListener("batterystatus");
-	}
+	eventUtil.EVENT_TYPE = "batterystatus";
+	var _removeEventListener = embed.hitch(eventUtil, "removeEventListener");
 	
-	dohx.add({name:"batterystatus",
+	dohx.add({name:eventUtil.EVENT_TYPE,
 		mqcExecutionOrderBaseOffset:720000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
 			//
@@ -24,11 +23,11 @@
 				timeout: 100,
 				definedInSpecs:["http://www.w3.org/TR/2011/WD-battery-status-20110426/#attributes"],
 				test:function(t){
-					window.addEventListener("batterystatus", function(e){
+					eventUtil.addEventListener(function(e){
 						t.success(true);
-					}, true);
+					});
 				},
-				tearDown:_removeListener
+				tearDown: _removeEventListener
 			},
 			{
 				id:300,
@@ -55,11 +54,11 @@
 				dependsOn: [200],
 				definedInSpecs:["http://www.w3.org/TR/2011/WD-battery-status-20110426/#attributes"],
 				test:function(t){
-					window.addEventListener("batterystatus", function(e){
+					eventUtil.addEventListener(function(e){
 						t.assertTrue(e.hasOwnProperty("isBattery"));
-					}, true);
+					});
 				},
-				tearDown:_removeListener
+				tearDown: _removeEventListener
 			},
 			{
 				id:1100,
@@ -67,11 +66,11 @@
 				dependsOn: [200],
 				definedInSpecs:["http://www.w3.org/TR/2011/WD-battery-status-20110426/#attributes"],
 				test:function(t){
-					window.addEventListener("batterystatus", function(e){
+					eventUtil.addEventListener(function(e){
 						t.assertTrue(e.hasOwnProperty("isCharging"));
-					}, true);
+					});
 				},
-				tearDown:_removeListener
+				tearDown: _removeEventListener
 			},
 			{
 				id:1200,
@@ -79,11 +78,11 @@
 				dependsOn: [200],
 				definedInSpecs:["http://www.w3.org/TR/2011/WD-battery-status-20110426/#attributes"],
 				test:function(t){
-					window.addEventListener("batterystatus", function(e){
+					eventUtil.addEventListener(function(e){
 						t.assertTrue(e.hasOwnProperty("level"));
-					}, true);
+					});
 				},
-				tearDown:_removeListener
+				tearDown: _removeEventListener
 			},
 			{
 				id:1300,
@@ -91,11 +90,11 @@
 				dependsOn: [200],
 				definedInSpecs:["http://www.w3.org/TR/2011/WD-battery-status-20110426/#attributes"],
 				test:function(t){
-					window.addEventListener("batterystatus", function(e){
+					eventUtil.addEventListener(function(e){
 						t.assertTrue(e.hasOwnProperty("timeRemaining"));
-					}, true);
+					});
 				},
-				tearDown:_removeListener
+				tearDown: _removeEventListener
 			},
 			
 			//
@@ -112,11 +111,11 @@
 					"Plug in the power charger, the event should fire."
 				],
 				test:function(t){
-					window.addEventListener("batterystatus", function(e){
+					eventUtil.addEventListener(function(e){
 						t.assertTrue(e.isCharging);
-					}, true);
+					});
 				},
-				tearDown:_removeListener
+				tearDown: _removeEventListener
 			},
 			{
 				id:2100,
@@ -129,11 +128,11 @@
 					"Unplug the charger, event should fire.",
 				],
 				test:function(t){
-					window.addEventListener("batterystatus", function(e){
+					eventUtil.addEventListener(function(e){
 						t.assertFalse(e.isCharging);
-					}, true);
+					});
 				},
-				tearDown:_removeListener
+				tearDown: _removeEventListener
 			},
 			
 			//
@@ -146,11 +145,11 @@
 				definedInSpecs:["http://www.w3.org/TR/2011/WD-battery-status-20110426/#methods"],
 				expectedResult: "Is the battery level correct?",
 				test:function(t){
-					window.addEventListener("batterystatus", function(e){
+					eventUtil.addEventListener(function(e){
 						dohx.showInfo("API reports battery level: " + e.level + "%");
-					}, true);
+					});
 				},
-				tearDown:_removeListener
+				tearDown: _removeEventListener
 			},
 			{
 				//
@@ -169,7 +168,7 @@
 				timeout: 30 * 60 * 1000, // Wait for 10 minutes.
 				test:function(t){
 					var oldData = null;
-					window.addEventListener("batterystatus", function(e){
+					eventUtil.addEventListener(function(e){
 						if (oldData === null){
 							// Store the initial level when coming in here the first time.
 							oldData = e;
@@ -187,9 +186,9 @@
 								// fail when the test times out.
 							}
 						}
-					}, true);
+					});
 				},
-				tearDown:_removeListener
+				tearDown: _removeEventListener
 			},
 			{
 				//
@@ -208,7 +207,7 @@
 				timeout: 30 * 60 * 1000, // Wait for 10 minutes.
 				test:function(t){
 					var oldData = null;
-					window.addEventListener("batterystatus", function(e){
+					eventUtil.addEventListener(function(e){
 						if (oldData === null){
 							// Store the initial level when coming in here the first time.
 							oldData = e;
@@ -226,9 +225,9 @@
 								// fail when the test times out.
 							}
 						}
-					}, true);
+					});
 				},
-				tearDown:_removeListener
+				tearDown: _removeEventListener
 			},
 			
 //*/
