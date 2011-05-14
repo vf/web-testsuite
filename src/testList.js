@@ -52,6 +52,7 @@ var testList = {
 			"tests/w3c/events/batterystatus.js",
 			"tests/w3c/events/devicemotion.js",
 			"tests/w3c/events/deviceorientation.js",
+			"tests/w3c/events/orientationchange.js",
 			
 			"tests/w3c/input/attributes.js",
 			"tests/w3c/input/typeDate.js",
