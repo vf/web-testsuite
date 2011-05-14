@@ -54,5 +54,25 @@ var eventUtil = {
 		};
 		if (obj.dependsOn) ret.dependsOn = obj.dependsOn;
 		return ret;
+	},
+	
+	getRangeTest: function(obj){
+		// Returns a test object that can be passed into dohx.add().
+		// This funcitons is for convinience to make writing property-exists tests less verbose.
+		var ret = {
+			id: obj.id,
+			name: "Is '" + obj.name + "' in the range of " + obj.range[0] + ".." + obj.range[1] + "?",
+			definedInSpecs: obj.specs,
+			test:function(t){
+				eventUtil.addEventListener(function(e){
+// use multiAssert() but didnt figure out how it works ...
+					t.assertTrue(e[obj.name] >= obj.range[0] && e[obj.name] <= obj.range[1]);
+					t.result = "" + e[obj.name]; // Show the value to the user too. (It's always nice to see details :).)
+				});
+			},
+			tearDown: embed.hitch(eventUtil, "removeEventListener")
+		};
+		if (obj.dependsOn) ret.dependsOn = obj.dependsOn;
+		return ret;
 	}
 };
