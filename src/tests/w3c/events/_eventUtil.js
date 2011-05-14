@@ -40,6 +40,7 @@ var eventUtil;
 			var ret = {
 				id: obj.id,
 				name: "Does attribute '" + obj.name + "' exist?",
+				timeout: 100,
 				definedInSpecs: obj.specs,
 				test:function(t){
 					eventUtil.addEventListener(function(e){
@@ -61,6 +62,7 @@ var eventUtil;
 			var ret = {
 				id: obj.id,
 				name: "Is attribute '" + obj.name + "' of type '" + obj.expectedType + "'?",
+				timeout: 100,
 				definedInSpecs: obj.specs,
 				test:function(t){
 					eventUtil.addEventListener(function(e){
@@ -88,6 +90,7 @@ var eventUtil;
 			var ret = {
 				id: obj.id,
 				name: "Is '" + obj.name + "' in the range of " + obj.range[0] + ".." + obj.range[1] + "?",
+				timeout: 100,
 				definedInSpecs: obj.specs,
 				test:function(t){
 					eventUtil.addEventListener(function(e){
