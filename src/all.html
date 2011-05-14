@@ -54,19 +54,7 @@
 				var readable = (details ? details + " - " + name : name);
 				var containerNode = embed.create("div", {}, testListNode);
 				embed.create("a", {href:t.replace(/\.js$/, ".html").replace(/\//g, "-"), innerHTML:readable}, containerNode);
-
-				var node = embed.create("a", {href:"javascript://", innerHTML:"[embedded]"}, containerNode);
-				node._testFile = t;
-				embed.addClass(node, "embedded");
 			}
-			
-			embed.on(testListNode, "click", function(e){
-				var node = embed.byId("testRunner");
-				node.src = e.target._testFile.replace(/\.js$/, "").replace(/\//g, "-") + ".html?embedded=true";
-				window.scrollTo(0,0);
-				embed.style(node, "display", "block");
-				embed.style(embed.body(), "overflow", "hidden");
-			});
 		})();
 		
 		function showList(){
