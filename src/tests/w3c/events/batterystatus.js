@@ -1,6 +1,7 @@
 (function(){
 	
 	eventUtil.EVENT_TYPE = "batterystatus";
+	var SPEC_URL_ATTRIBUTES = "http://www.w3.org/TR/2011/WD-battery-status-20110426/#attributes";
 	var _removeEventListener = embed.hitch(eventUtil, "removeEventListener");
 	
 	dohx.add({name:eventUtil.EVENT_TYPE,
@@ -48,54 +49,18 @@
 			//
 			//	attributes
 			//
-			{
-				id:1000,
-				name:"Does attribute 'isBattery' exist?",
-				dependsOn: [200],
-				definedInSpecs:["http://www.w3.org/TR/2011/WD-battery-status-20110426/#attributes"],
-				test:function(t){
-					eventUtil.addEventListener(function(e){
-						t.assertTrue(e.hasOwnProperty("isBattery"));
-					});
-				},
-				tearDown: _removeEventListener
-			},
-			{
-				id:1100,
-				name:"Does attribute 'isCharging' exist?",
-				dependsOn: [200],
-				definedInSpecs:["http://www.w3.org/TR/2011/WD-battery-status-20110426/#attributes"],
-				test:function(t){
-					eventUtil.addEventListener(function(e){
-						t.assertTrue(e.hasOwnProperty("isCharging"));
-					});
-				},
-				tearDown: _removeEventListener
-			},
-			{
-				id:1200,
-				name:"Does attribute 'level' exist?",
-				dependsOn: [200],
-				definedInSpecs:["http://www.w3.org/TR/2011/WD-battery-status-20110426/#attributes"],
-				test:function(t){
-					eventUtil.addEventListener(function(e){
-						t.assertTrue(e.hasOwnProperty("level"));
-					});
-				},
-				tearDown: _removeEventListener
-			},
-			{
-				id:1300,
-				name:"Does attribute 'timeRemaining' exist?",
-				dependsOn: [200],
-				definedInSpecs:["http://www.w3.org/TR/2011/WD-battery-status-20110426/#attributes"],
-				test:function(t){
-					eventUtil.addEventListener(function(e){
-						t.assertTrue(e.hasOwnProperty("timeRemaining"));
-					});
-				},
-				tearDown: _removeEventListener
-			},
+			eventUtil.getPropertyExistTest({id: 1000, name: "isBattery", dependsOn: [200], specs:[SPEC_URL_ATTRIBUTES]}),
+			eventUtil.getPropertyTypeTest({id: 1100, name: "isBattery", dependsOn: [200], expectedType: "boolean", specs:[SPEC_URL_ATTRIBUTES]}),
+			
+			eventUtil.getPropertyExistTest({id: 1200, name: "isCharging", dependsOn: [200], specs:[SPEC_URL_ATTRIBUTES]}),
+			eventUtil.getPropertyTypeTest({id: 1300, name: "isCharging", dependsOn: [200], expectedType: "boolean", specs:[SPEC_URL_ATTRIBUTES]}),
+			
+			eventUtil.getPropertyExistTest({id: 1400, name: "level", dependsOn: [200], specs:[SPEC_URL_ATTRIBUTES]}),
+			eventUtil.getPropertyTypeTest({id: 1500, name: "level", dependsOn: [200], expectedType: "number", specs:[SPEC_URL_ATTRIBUTES]}),
+			eventUtil.getRangeTest({id: 1600, name: "level", dependsOn: [200], range:[0, 100], specs:[SPEC_URL_ATTRIBUTES]}),
+			
+			eventUtil.getPropertyExistTest({id: 1700, name: "timeRemaining", dependsOn: [200], specs:[SPEC_URL_ATTRIBUTES]}),
+			eventUtil.getPropertyTypeTest({id: 1800, name: "timeRemaining", dependsOn: [200], expectedType: "number", specs:[SPEC_URL_ATTRIBUTES]}),
 			
 			//
 			// isCharging
