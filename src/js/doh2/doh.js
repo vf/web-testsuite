@@ -67,7 +67,41 @@ doh = {
 		}
 		this._runNextTest();
 	},
-	
+
+	_MultipleAssertWrapper: (function(){
+		function M(test){
+			this._test = test;
+			this._asserts = [];
+		}
+
+		M.prototype.run = function(){
+			var asserts = this._asserts;
+			var test = this._test;
+			setTimeout(function(){
+				var messages = [];
+				for(var i = 0, assertion; (assertion = asserts[i]); i += 2){
+					try{
+						doh.assert[assertion].apply(doh.assert, asserts[i+1]);
+					}catch(e){
+						if(e instanceof doh.assert.Failure){
+							messages.push("Assertion #" + (i/2+1) + " \u2013 " + e.message);
+						}else{
+							throw e;
+						}
+					}
+				}
+
+				if(messages.length){
+					test.failure(messages.join("\n\n"));
+				}else{
+					test.success(asserts.length/2 + " assertions successful.");
+				}
+			}, 1);
+		};
+
+		return M;
+	}()),
+
 	_getAssertWrapper:function(d){
 		// summary: This returns an object which provides all the assert methods, and wraps a Deferred instance.
 		// description: Why that? The interface for doh tests should be the same
@@ -77,8 +111,8 @@ doh = {
 		// 		asynchronous tests, you had to use doh.callback/errback.
 		// 		This allows to ONLY use assert*() methods. See the selftests
 		// 		for examples.
-		var myT = new function(){
-			this._assertClosure = function(method, args){
+		var myT = {
+			_assertClosure: function(method, args){
 				// If the Deferred instance is already "done", means callback or errback
 				// had already been called don't do it again.
 				// This might be the case when e.g. the test timed out.
@@ -92,31 +126,45 @@ console.log('FIXXXXXME multiple asserts or timeout ... d.fired = ', d.fired, "GR
 				}catch(e){
 					d.errback(e);
 				}
-			};
-			this.success = function(msg){
+			},
+			success: function(msg){
 				// This function can be used to directly make a test succeed.
 //TODO write selftest for it!!!!!!!!!
 				d.test.result = msg;
 				d.callback(msg);
-			};
-			this.failure = function(msg){
+			},
+			failure: function(msg){
 //TODO write selftest for it!!!!!!!!!
 				d.errback(new doh.assert.Failure(msg));
-			};
-			var that = this;
-			for (var methodName in doh.assert){
-				if (methodName.indexOf("assert")===0){
-					this[methodName] = (function(methodName){return function(){
+			}
+		};
+
+		var multipleAssertsWrapper = new this._MultipleAssertWrapper(myT);
+
+		myT.assertMultiple = function(){
+			return multipleAssertsWrapper;
+		};
+
+		for (var methodName in doh.assert){
+			if (methodName.indexOf("assert")===0){
+				(function(methodName){
+					myT[methodName] = function(){
 						// Make sure the current callstack is worked off before
 						// returning from any assert() method, we do this by
 						// setTimeout(). The bug was that assert() didn't make the
 						// test execute the return statement (if one was in there)
 						// before the test ended, this fixes it.
-						setTimeout(doh.util.hitch(that, "_assertClosure", methodName, arguments), 1);
-					}})(methodName);
-				}
+						setTimeout(doh.util.hitch(myT, "_assertClosure", methodName, arguments), 1);
+					}
+
+					multipleAssertsWrapper[methodName] = function(){
+						this._asserts.push(methodName, arguments);
+						return this;
+					};
+				}(methodName));
 			}
-		};
+		}
+
 		return myT;
 	},
 	
