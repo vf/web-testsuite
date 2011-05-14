@@ -70,21 +70,21 @@
 			//
 			// real tests
 			//
-			{
-				id:6000,
-				name:"Initial position?",
-				definedInSpecs:["http://dev.w3.org/geo/api/spec-source-orientation.html"],
-				instructions:[
-					"Click 'GO'!",
-					"Place the phone 1) flat on the table 2) pointing north!"
-				],
-				test:function(t){
-					eventUtil.addEventListener(function(e){
-						dohx.showInfo("alpha: " + e.alpha + "<br />beta: " + e.beta + "<br />gamma: " + e.gamma);
-					});
-				},
-				tearDown: _removeEventListener
-			},
+			//{
+			//	id:6000,
+			//	name:"Initial position?",
+			//	definedInSpecs:["http://dev.w3.org/geo/api/spec-source-orientation.html"],
+			//	instructions:[
+			//		"Click 'GO'!",
+			//		"Place the phone 1) flat on the table 2) pointing north!"
+			//	],
+			//	test:function(t){
+			//		eventUtil.addEventListener(function(e){
+			//			dohx.showInfo("alpha: " + e.alpha + "<br />beta: " + e.beta + "<br />gamma: " + e.gamma);
+			//		});
+			//	},
+			//	tearDown: _removeEventListener
+			//},
 			
 // TODO let user move device a bit, to find out that the value is always in range
 
