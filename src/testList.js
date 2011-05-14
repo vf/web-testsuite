@@ -49,6 +49,9 @@ var testList = {
 			
 			"tests/w3c/audio/properties.js",
 			
+			"tests/w3c/events/batterystatus.js",
+			"tests/w3c/events/deviceorientation.js",
+			
 			"tests/w3c/input/attributes.js",
 			"tests/w3c/input/typeDate.js",
 			"tests/w3c/input/typeDatetime.js",
