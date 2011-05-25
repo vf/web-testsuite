@@ -38,6 +38,7 @@ var testList = {
 			
 			"tests/w3c/css/animation.js",
 			"tests/w3c/css/basics.js",
+			"tests/w3c/css/pseudoClass.js",
 			"tests/w3c/css/transform.js",
 			"tests/w3c/css/transition.js",
 			
@@ -55,12 +56,18 @@ var testList = {
 			"tests/w3c/events/orientationchange.js",
 			
 			"tests/w3c/input/attributes.js",
+			//"tests/w3c/input/typeColor.js",
 			"tests/w3c/input/typeDate.js",
 			"tests/w3c/input/typeDatetime.js",
 			"tests/w3c/input/typeDatetimeLocal.js",
+			//"tests/w3c/input/typeEmail.js",
 			"tests/w3c/input/typeMonth.js",
+			//"tests/w3c/input/typeNumber.js",
 			"tests/w3c/input/typeWeek.js",
 			"tests/w3c/input/typeRange.js",
+			//"tests/w3c/input/typeSearch.js",
+			//"tests/w3c/input/typeTel.js",
+			//"tests/w3c/input/typeUrl.js",
 			
 			"tests/misc/uri/sms.js",
 			"tests/misc/uri/mailto.js"
