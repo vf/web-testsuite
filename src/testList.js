@@ -73,7 +73,10 @@ var testList = {
 			"tests/misc/uri/mailto.js",
 			
 			"tests/javascript/string/methods.js",
-			"tests/javascript/string/properties.js"
+			"tests/javascript/string/properties.js",
+			
+			"tests/javascript/array/methods.js",
+			"tests/javascript/array/properties.js"
 		]
 	},
 	
