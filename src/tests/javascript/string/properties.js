@@ -1,6 +1,6 @@
 (function(){
 	
-	dohx.add({name:"string methods",
+	dohx.add({name:"string properties",
 		mqcExecutionOrderBaseOffset:830000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
 			//
