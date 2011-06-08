@@ -152,8 +152,19 @@
 			//
 			// __noSuchMethod__
 			//
-			javascriptUtil.getExistsTest({id:2500, object:Object, property:"__noSuchMethod__", specs:[]}),
-			javascriptUtil.getTypeCheckTest({id:2510, object:Object, property:"__noSuchMethod__", expectedType:"function", dependsOn:[2500], specs:[]}),
+			{
+				id:2500,
+				name:"Does __noSuchMethod__ fire?",
+				dependsOn: [100],
+				definedInSpecs:["??????????"],
+				test:function(t){
+					var o = Object.create({});
+					o.__noSuchMethod__ = function(){
+						t.success("__noSuchMethod__ fired");
+					}
+					o.wtf();
+				}
+			},
 
 //*/
 		]
