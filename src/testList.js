@@ -70,7 +70,10 @@ var testList = {
 			//"tests/w3c/input/typeUrl.js",
 			
 			"tests/misc/uri/sms.js",
-			"tests/misc/uri/mailto.js"
+			"tests/misc/uri/mailto.js",
+			
+			"tests/javascript/string/methods.js",
+			"tests/javascript/string/properties.js"
 		]
 	},
 	
