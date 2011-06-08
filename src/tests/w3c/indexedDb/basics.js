@@ -16,7 +16,8 @@
 
 (function(){
 	
-	var indexedDB = window.mozIndexedDB || new ActiveXObject("SQLCE.Factory.4.0");
+	// still too early, seems nobody has implemented w/o and proprietary prefix yet.
+	var indexedDB = window.mozIndexedDB || (window["ActiveXObject"] && new ActiveXObject("SQLCE.Factory.4.0")) || {};
 	
 	//var db;
 	var store;
