@@ -76,7 +76,10 @@ var testList = {
 			"tests/javascript/string/properties.js",
 			
 			"tests/javascript/array/methods.js",
-			"tests/javascript/array/properties.js"
+			"tests/javascript/array/properties.js",
+			
+			"tests/javascript/object/methods.js",
+			"tests/javascript/object/properties.js"
 		]
 	},
 	
