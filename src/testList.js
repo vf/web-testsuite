@@ -69,6 +69,8 @@ var testList = {
 			//"tests/w3c/input/typeTel.js",
 			//"tests/w3c/input/typeUrl.js",
 			
+			"tests/w3c/dom/classList.js",
+			
 			"tests/misc/uri/sms.js",
 			"tests/misc/uri/mailto.js",
 			
@@ -79,9 +81,7 @@ var testList = {
 			"tests/javascript/array/properties.js",
 			
 			"tests/javascript/object/methods.js",
-			"tests/javascript/object/properties.js",
-			
-			"tests/w3c/dom/classList.js"
+			"tests/javascript/object/properties.js"
 		]
 	},
 	
