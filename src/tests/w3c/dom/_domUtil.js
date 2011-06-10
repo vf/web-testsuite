@@ -12,7 +12,7 @@ var _domUtil;
 			// This funcitons is for convinience to make writing property-exists tests less verbose.
 			var ret = {
 				id: obj.id,
-				name: "Does '" + obj.property + "' exist?",
+				name: obj.property + " - Does it exist?",
 				definedInSpecs: obj.specs,
 				test:function(t){
 					var actual = typeof obj.object[obj.property];
@@ -29,7 +29,7 @@ var _domUtil;
 			// This funcitons is for convinience to make writing property-exists tests less verbose.
 			var ret = {
 				id: obj.id,
-				name: "Is '" + obj.property + "' of type '" + obj.expectedType + "'?",
+				name: obj.property + " - Is it of type '" + obj.expectedType + "'?",
 				definedInSpecs: obj.specs,
 				test:function(t){
 					var actual = typeof obj.object[obj.property];

@@ -1,6 +1,12 @@
 (function(){
 	
 	var _obj = document.body.classList || {};
+	var _specs = {
+		add: "http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-add",
+		contains: "http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-contains",
+		remove: "http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-remove",
+		toggle: "http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-toggle"
+	};
 	
 	dohx.add({name:"classList ",
 		mqcExecutionOrderBaseOffset:880000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
@@ -16,64 +22,12 @@
 			//
 			// add
 			//
-			_domUtil.getExistsTest({id:1000, object:_obj, property:"add", dependsOn:[200], specs:[]}),
-			_domUtil.getTypeCheckTest({id:1100, object:_obj, property:"add", expectedType:"function", dependsOn:[1000], specs:[]}),
-			{
-				//
-				// From spec:
-				// 	If the token argument is the empty string, then raise a SYNTAX_ERR exception and stop the algorithm.
-				//
-				id: 1200,
-				name: "Raise SYNATX_ERR if parameter is an empty string?",
-				dependsOn: [1100],
-				definedInSpecs: ["http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-add"],
-				test: function(t){
-					var el = document.createElement("span");
-					t.assertError(DOMException, el.classList, "add", [""]);
-				}
-			},
-			{
-				//
-				// From spec:
-				// 	If the token argument contains any space characters, then raise an INVALID_CHARACTER_ERR exception and stop the algorithm.
-				//
-				id: 1300,
-				name: "Raise INVALID_CHARACTER_ERR if parameter is ONLY a space?",
-				dependsOn: [1100],
-				definedInSpecs: ["http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-add"],
-				test: function(t){
-					var el = document.createElement("span");
-					t.assertError(DOMException, el.classList, "add", [" "]);
-				}
-			},
-			{
-				//
-				// From spec:
-				// 	If the token argument contains any space characters, then raise an INVALID_CHARACTER_ERR exception and stop the algorithm.
-				//
-				id: 1300,
-				name: "Raise INVALID_CHARACTER_ERR if parameter CONTAINS a space?",
-				dependsOn: [1100],
-				definedInSpecs: ["http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-add"],
-				test: function(t){
-					var el = document.createElement("span");
-					t.assertError(DOMException, el.classList, "add", [" class1"]);
-				}
-			},
-			{
-				//
-				// From spec:
-				// 	If the token argument contains any space characters, then raise an INVALID_CHARACTER_ERR exception and stop the algorithm.
-				//
-				id: 1400,
-				name: "Raise INVALID_CHARACTER_ERR if parameter CONTAINS a space inbetween two classes?",
-				dependsOn: [1100],
-				definedInSpecs: ["http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-add"],
-				test: function(t){
-					var el = document.createElement("span");
-					t.assertError(DOMException, el.classList, "add", ["class1 class2"]);
-				}
-			},
+			_domUtil.getExistsTest({id:1000, object:_obj, property:"add", dependsOn:[200], specs:[_specs.add]}),
+			_domUtil.getTypeCheckTest({id:1100, object:_obj, property:"add", expectedType:"function", dependsOn:[1000], specs:[_specs.add]}),
+			_domTokenListUtil.getParameterIsEmptyStringTest({id:1200, object:_obj, property:"add", dependsOn:[1100], specs:[_specs.add]}),
+			_domTokenListUtil.getParameterIsOnlyASpaceTest({id:1300, object:_obj, property:"add", dependsOn:[1100], specs:[_specs.add]}),
+			_domTokenListUtil.getParameterContainsSpaceTest({id:1400, object:_obj, property:"add", dependsOn:[1100], specs:[_specs.add]}),
+			_domTokenListUtil.getParameterContainsSpace1Test({id:1500, object:_obj, property:"add", dependsOn:[1100], specs:[_specs.add]}),
 			// The real stuff :)
 			{
 				id: 1600,
@@ -126,8 +80,12 @@
 			//
 			// contains
 			//
-			_domUtil.getExistsTest({id:2000, object:_obj, property:"contains", dependsOn:[200], specs:[]}),
-			_domUtil.getTypeCheckTest({id:2100, object:_obj, property:"contains", expectedType:"function", dependsOn:[2000], specs:[]}),
+			_domUtil.getExistsTest({id:2000, object:_obj, property:"contains", dependsOn:[200], specs:[_specs.contains]}),
+			_domUtil.getTypeCheckTest({id:2100, object:_obj, property:"contains", expectedType:"function", dependsOn:[2000], specs:[_specs.contains]}),
+			_domTokenListUtil.getParameterIsEmptyStringTest({id:2200, object:_obj, property:"contains", dependsOn:[2100], specs:[_specs.contains]}),
+			_domTokenListUtil.getParameterIsOnlyASpaceTest({id:2300, object:_obj, property:"contains", dependsOn:[2100], specs:[_specs.contains]}),
+			_domTokenListUtil.getParameterContainsSpaceTest({id:2400, object:_obj, property:"contains", dependsOn:[2100], specs:[_specs.contains]}),
+			_domTokenListUtil.getParameterContainsSpace1Test({id:2500, object:_obj, property:"contains", dependsOn:[2100], specs:[_specs.contains]}),
 			
 			
 			//
@@ -148,12 +106,20 @@
 			//
 			_domUtil.getExistsTest({id:5000, object:_obj, property:"remove", dependsOn:[200], specs:[]}),
 			_domUtil.getTypeCheckTest({id:5100, object:_obj, property:"remove", expectedType:"function", dependsOn:[5000], specs:[]}),
+			_domTokenListUtil.getParameterIsEmptyStringTest({id:5200, object:_obj, property:"remove", dependsOn:[5100], specs:[_specs.remove]}),
+			_domTokenListUtil.getParameterIsOnlyASpaceTest({id:5300, object:_obj, property:"remove", dependsOn:[5100], specs:[_specs.remove]}),
+			_domTokenListUtil.getParameterContainsSpaceTest({id:5400, object:_obj, property:"remove", dependsOn:[5100], specs:[_specs.remove]}),
+			_domTokenListUtil.getParameterContainsSpace1Test({id:5500, object:_obj, property:"remove", dependsOn:[5100], specs:[_specs.remove]}),
 			
 			//
 			// toggle
 			//
 			_domUtil.getExistsTest({id:6000, object:_obj, property:"toggle", dependsOn:[200], specs:[]}),
 			_domUtil.getTypeCheckTest({id:6100, object:_obj, property:"toggle", expectedType:"function", dependsOn:[6000], specs:[]}),
+			_domTokenListUtil.getParameterIsEmptyStringTest({id:6200, object:_obj, property:"toggle", dependsOn:[6100], specs:[_specs.toggle]}),
+			_domTokenListUtil.getParameterIsOnlyASpaceTest({id:6300, object:_obj, property:"toggle", dependsOn:[6100], specs:[_specs.toggle]}),
+			_domTokenListUtil.getParameterContainsSpaceTest({id:6400, object:_obj, property:"toggle", dependsOn:[6100], specs:[_specs.toggle]}),
+			_domTokenListUtil.getParameterContainsSpace1Test({id:6500, object:_obj, property:"toggle", dependsOn:[6100], specs:[_specs.toggle]}),
 			
 			//
 			// Check what does ""+classList return?
