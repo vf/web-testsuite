@@ -70,6 +70,7 @@ var testList = {
 			//"tests/w3c/input/typeUrl.js",
 			
 			"tests/w3c/dom/classList.js",
+			"tests/w3c/dom/dataset.js",
 			
 			"tests/misc/uri/sms.js",
 			"tests/misc/uri/mailto.js",
