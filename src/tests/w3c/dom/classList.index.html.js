@@ -20,3 +20,6 @@ var xml = xmlHelper.getXmlObject(config);
 // Add the helper JS.
 xml.body.script += <script src="tests/w3c/dom/_domUtil.js"></script>;
 xml.body.script += <script src="tests/w3c/dom/_domTokenListUtil.js"></script>;
+
+// Add a couple test nodes after the last script tag, whcih is the last tag anyways.
+xml.body.script += <div id="test500" class="class1 class2 classXYZ"></div>;

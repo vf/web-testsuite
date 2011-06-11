@@ -77,6 +77,25 @@ var _domTokenListUtil;
 				}
 			};
 			return ret;
+		},
+		
+		getAddAndContainsTest: function(obj){
+			var ret = {
+				id: obj.id,
+				name: "add+contains - " + obj.name,
+				dependsOn: obj.dependsOn || [],
+				definedInSpecs: obj.specs,
+				test: function(t){
+					var el = document.createElement("span");
+					for (var i=0, l=obj.addClasses.length; i<l; i++){
+						el.classList.add(obj.addClasses[i]);
+					}
+					var actual = el.classList.contains(obj.contains);
+					t[obj.assert](actual);
+					return actual;
+				}
+			};
+			return ret;
 		}
 	};
 })();

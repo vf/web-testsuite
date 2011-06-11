@@ -5,7 +5,8 @@
 		add: "http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-add",
 		contains: "http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-contains",
 		remove: "http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-remove",
-		toggle: "http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-toggle"
+		toggle: "http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-toggle",
+		tostring: "http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-tostring"
 	};
 	
 	dohx.add({name:"classList ",
@@ -18,6 +19,23 @@
 			//
 			_domUtil.getExistsTest({id:100, object:document.body, property:"classList", specs:[]}),
 			_domUtil.getTypeCheckTest({id:200, object:document.body, property:"classList", expectedType:"object", dependsOn:[100], specs:[]}),
+			
+			
+			//
+			// Check what does ""+classList return?
+			//
+			{
+				id: 500,
+				name: "Does ''+classList return properly?",
+				dependsOn: [200],
+				definedInSpecs: [_specs.tostring],
+				test: function(t){
+					var el = document.getElementById("test500");
+					var actual = ""+el.classList;
+					t.assertEqual("class1 class2 classXYZ", actual);
+					return actual;
+				}
+			},
 			
 			//
 			// add
@@ -32,7 +50,7 @@
 			{
 				id: 1600,
 				name: "Does adding a class work?",
-				dependsOn: [1100],
+				dependsOn: [1100, 500],
 				definedInSpecs: ["http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-add"],
 				test: function(t){
 					var el = document.createElement("span");
@@ -45,7 +63,7 @@
 			{
 				id: 1610,
 				name: "Does adding a second class work?",
-				dependsOn: [1100],
+				dependsOn: [1100, 500],
 				definedInSpecs: ["http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-add"],
 				test: function(t){
 					var el = document.createElement("span");
@@ -61,7 +79,7 @@
 			{
 				id: 1620,
 				name: "Does adding an existing class NOT add it multiple times?",
-				dependsOn: [1100],
+				dependsOn: [1100, 500],
 				definedInSpecs: ["http://www.w3.org/TR/html5/common-dom-interfaces.html#dom-tokenlist-add"],
 				test: function(t){
 					var el = document.createElement("span");
@@ -120,12 +138,25 @@
 			_domTokenListUtil.getParameterIsOnlyASpaceTest({id:6300, object:_obj, property:"toggle", dependsOn:[6100], specs:[_specs.toggle]}),
 			_domTokenListUtil.getParameterContainsSpaceTest({id:6400, object:_obj, property:"toggle", dependsOn:[6100], specs:[_specs.toggle]}),
 			_domTokenListUtil.getParameterContainsSpace1Test({id:6500, object:_obj, property:"toggle", dependsOn:[6100], specs:[_specs.toggle]}),
-			
-			//
-			// Check what does ""+classList return?
-			//
-// TODO
 
+			//
+			// add+contains
+			//
+			_domTokenListUtil.getAddAndContainsTest({id:7000, name:"Does the add()ed class show up in contains()?",
+													addClasses:["abc"], contains:"abc", assert:"assertTrue",
+													dependsOn:[1100, 2100], specs:[_specs.add, _specs.contains]}),
+			_domTokenListUtil.getAddAndContainsTest({id:7010, name:"Does one of the add()ed classes show up in contains()?",
+													addClasses:["abc", "ABC", "xyz"], contains:"xyz", assert:"assertTrue",
+													dependsOn:[1100, 2100], specs:[_specs.add, _specs.contains]}),
+			_domTokenListUtil.getAddAndContainsTest({id:7020, name:"Does one that was NOT add()ed return false for contains()?",
+													addClasses:["abc", "ABC", "xyz"], contains:"Class1", assert:"assertFalse",
+													dependsOn:[1100, 2100], specs:[_specs.add, _specs.contains]}),
+			_domTokenListUtil.getAddAndContainsTest({id:7030, name:"Case-sensitive, does contains('Abc') fail if class is 'abc'?",
+													addClasses:["abc"], contains:"Abc", assert:"assertFalse",
+													dependsOn:[1100, 2100], specs:[_specs.add, _specs.contains]}),
+			_domTokenListUtil.getAddAndContainsTest({id:7040, name:"Does contains('abc') fail if class is 'abcd'?",
+													addClasses:["abcd"], contains:"abc", assert:"assertFalse",
+													dependsOn:[1100, 2100], specs:[_specs.add, _specs.contains]}),
 //*/
 		]
 	});
