@@ -39,6 +39,23 @@ var _domUtil;
 			};
 			if (obj.dependsOn) ret.dependsOn = obj.dependsOn;
 			return ret;
+		},
+		
+		getInstanceOfCheckTest: function(obj){
+			// Returns a test object that can be passed into dohx.add().
+			// This funcitons is for convinience to make writing property-exists tests less verbose.
+			var ret = {
+				id: obj.id,
+				name: obj.property + " - Is it an insatnce of '" + obj.expectedInstance + "'?",
+				definedInSpecs: obj.specs,
+				test:function(t){
+					var actual = obj.object[obj.property] instanceof window[obj.expectedInstance];
+					t.assertTrue(actual);
+					return actual;
+				}
+			};
+			if (obj.dependsOn) ret.dependsOn = obj.dependsOn;
+			return ret;
 		}
 	};
 })();

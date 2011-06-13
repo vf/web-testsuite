@@ -14,6 +14,7 @@
 			//
 			_domUtil.getExistsTest({id:100, object:_el, property:"dataset", specs:[]}),
 			_domUtil.getTypeCheckTest({id:200, object:_el, property:"dataset", expectedType:"object", dependsOn:[100], specs:[]}),
+			_domUtil.getInstanceOfCheckTest({id:300, object:_el, property:"dataset", expectedInstance:"DOMStringMap", dependsOn:[100], specs:[]}),
 			
 			{
 				id: 500,
@@ -26,6 +27,9 @@
 					t.assertTrue(!!actual);
 				}
 			},
+			
+			
+			
 //*/
 		]
 	});
