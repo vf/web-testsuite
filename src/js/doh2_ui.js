@@ -210,11 +210,11 @@ doh.ui = {
 	},
 	
 	_sendHome:function(info){
-		if (confirm("Click OK to send the test results to 'web-testsuite-backend.browserlove.com'")){
+		if (confirm("Click OK to send the test results to 'web-testsuite-backend.browserlove.org'")){
 			var el = embed.query(".report .sendingResults")[0];
 			el.style.display = "block";
 			util.xhrPost({
-				url:"http://web-testsuite-backend.browserlove.com/results",
+				url:"http://web-testsuite-backend.browserlove.org/results",
 				callback:function(){
 					el.innerHTML = "Test results sent.";
 					// Delay the hiding a bit, so the user sees it for sure.
