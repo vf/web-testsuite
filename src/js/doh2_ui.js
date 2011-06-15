@@ -185,6 +185,7 @@ doh.ui = {
 		// ******************
 		info.__version__ = 20110104;
 		//this._sendToJdrop(info);
+		this._sendHome(info);
 	},
 	
 	_sendToJdrop:function(info){
@@ -208,12 +209,12 @@ doh.ui = {
 		}
 	},
 	
-	_sendToVodafone:function(info){
-		if (confirm("Click OK to send the test results to 'developer.vodafone.com'")){
+	_sendHome:function(info){
+		if (confirm("Click OK to send the test results to 'web-testsuite-backend.browserlove.com'")){
 			var el = embed.query(".report .sendingResults")[0];
 			el.style.display = "block";
 			util.xhrPost({
-				url:"http://developer.vodafone.com/widget-test/add/",
+				url:"http://web-testsuite-backend.browserlove.com/results",
 				callback:function(){
 					el.innerHTML = "Test results sent.";
 					// Delay the hiding a bit, so the user sees it for sure.
