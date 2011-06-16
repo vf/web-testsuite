@@ -20,3 +20,11 @@
 #test100:active {
 	background-color: red;
 }
+
+#test200 {
+	font-size: 2em;
+}
+
+#test200:hover {
+	background-color: red;
+}

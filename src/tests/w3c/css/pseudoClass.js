@@ -39,6 +39,19 @@
 					dohx.showInfo(	'<button id="test100">CLICK ME</button>');
 				}
 			},
+			{
+				id:200,
+				name:":hover",
+				definedInSpecs:["http://www.w3.org/TR/css3-selectors/#the-user-action-pseudo-classes-hover-act"],
+				instructions:[
+					"Click GO!",
+					"Move the mouse (pointer) over the button!",
+				],
+				expectedResult:"Did the button turn red?",
+				test:function(t){
+					dohx.showInfo(	'<button id="test200">MOUSE OVER ME</button>');
+				}
+			},
 //*/
 		]
 	});
