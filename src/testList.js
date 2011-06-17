@@ -57,6 +57,7 @@ var testList = {
 			
 			"tests/w3c/input/attributes.js",
 			//"tests/w3c/input/typeColor.js",
+			"tests/w3c/input/typeCamera.js",
 			"tests/w3c/input/typeDate.js",
 			"tests/w3c/input/typeDatetime.js",
 			"tests/w3c/input/typeDatetimeLocal.js",
