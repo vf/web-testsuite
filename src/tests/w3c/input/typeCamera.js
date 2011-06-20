@@ -13,7 +13,7 @@
 				],
 				expectedResult:"Did a camera input open?",
 				test:function(t){
-					dohx.showInfo('<form><input type="file" accept="image/*;capture=camera"></input></form>');
+					dohx.showInfo('<form><input type="file" accept="image/*" capture="camera" id="capture"></form>');
 				}
 			},
 //*/
