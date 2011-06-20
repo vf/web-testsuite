@@ -62,6 +62,7 @@
 				//
 				id:200,
 				name:"Interface usability/usefullness",
+				dependsOn: [100],
 				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
 				expectedResult:"Can you select today's date with one or two clicks?",
 				test:function(t){
@@ -76,6 +77,7 @@
 				//
 				id:300,
 				name:"Don't allow invalid non-empty string!",
+				dependsOn: [100],
 				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
 				instructions:[
 					"Click 'GO'!",
@@ -95,6 +97,7 @@
 				//
 				id:400,
 				name:"Disallow invalid value",
+				dependsOn: [100],
 				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
 				expectedResult: "Do you NOT see 'abc' in the field?",
 				test:function(t){
@@ -133,6 +136,7 @@
 				//
 				id:600,
 				name:"Disallow invalid value set as parameter",
+				dependsOn: [100],
 				definedInSpecs:["http://www.w3.org/TR/html5/states-of-the-type-attribute.html#date-state"],
 				expectedResult: "Do you NOT see 'abc' in the field?",
 				test:function(t){
