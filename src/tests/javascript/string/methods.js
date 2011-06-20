@@ -202,7 +202,7 @@
 			// valueOf
 			//
 			javascriptUtil.getExistsTest({id:2400, object:"", property:"valueOf", specs:[]}),
-			javascriptUtil.getTypeCheckTest({id:2410, object:"", property:"valueOf", expectedType:"function", dependsOn:[2400], specs:[]}),
+			javascriptUtil.getTypeCheckTest({id:2410, object:"", property:"valueOf", expectedType:"function", dependsOn:[2400], specs:[]})
 //*/
 		]
 	});

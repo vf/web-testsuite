@@ -28,7 +28,7 @@
 					t.assertEqual(4, actual);
 					return actual;
 				}
-			},
+			}
 //*/
 		]
 	});

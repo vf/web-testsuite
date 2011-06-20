@@ -7,7 +7,7 @@
 			// prototype
 			//
 			javascriptUtil.getExistsTest({id:100, object:Object, property:"prototype", expectedType:"", specs:[]}),
-			javascriptUtil.getTypeCheckTest({id:200, object:Object, property:"prototype", expectedType:"object", dependsOn:[100], specs:[]}),
+			javascriptUtil.getTypeCheckTest({id:200, object:Object, property:"prototype", expectedType:"object", dependsOn:[100], specs:[]})
 //*/
 		]
 	});

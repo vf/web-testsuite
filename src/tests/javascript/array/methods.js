@@ -128,7 +128,7 @@
 			// unshift
 			//
 			javascriptUtil.getExistsTest({id:2100, object:[], property:"unshift", specs:[]}),
-			javascriptUtil.getTypeCheckTest({id:2110, object:[], property:"unshift", expectedType:"function", dependsOn:[2100], specs:[]}),
+			javascriptUtil.getTypeCheckTest({id:2110, object:[], property:"unshift", expectedType:"function", dependsOn:[2100], specs:[]})
 //*/
 		]
 	});
