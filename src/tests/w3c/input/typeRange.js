@@ -18,6 +18,7 @@
 			{
 				id:200,
 				summary:"Three values selectable?",
+				dependsOn: [100],
 				definedInSpecs:["http://www.w3.org/TR/html5/number-state.html#range-state"],
 				instrutions:[
 					'Click "GO"!',
@@ -31,6 +32,7 @@
 			{
 				id:300,
 				summary:"Does the initial value get rounded properly (from 0.5 to 2)?",
+				dependsOn: [100],
 				description:"Verify the auto-correction of the initial value.\
 					Spec says:\
 						When the element is suffering from a step mismatch, the user agent must round the element's\
@@ -47,6 +49,7 @@
 			},
 			{
 				id:400,
+				dependsOn: [100],
 				summary:"Does the initial value get rounded properly inside a range (from 1.5 to 2)?",
 				description:"If the min=0, step=1 then a value of 1.5 should be rounded to 2.\
 					Verify the auto-correction of the initial value.\
