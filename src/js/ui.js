@@ -279,9 +279,10 @@ var ui = {};
 		_getResultsData:function(test, mixin){
 			// Returns results data for all possible cases, to provide a unique set of base data we do it in here.
 			var data = {
-				name: test.name,
-				groupName: test.group.name,
 				id: util.getTestId(test),
+				name: test.name,
+				groupId: test.groupId,
+				groupName: test.group.name,
 				testSourceCode: this._getSourceCode(test),
 				_rawId: test.id
 			};
