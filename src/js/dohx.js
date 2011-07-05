@@ -31,6 +31,7 @@ dohx = {
 				t.addIf = !!obj.addIf;
 			}
 			t.groupId = obj.mqcExecutionOrderBaseOffset;
+			t.groupName = obj.name;
 			t.name = t.name || t.summary;
 			if (t.instructions || t.expectedResult){
 				dohTests.push(dohx.extendManualTestObject(t));
