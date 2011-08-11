@@ -44,7 +44,7 @@ var _objectUtil;
 			// This funcitons is for convinience to make writing property-exists tests less verbose.
 			var ret = {
 				id: obj.id,
-				name: obj.property + " - Is it an insatnce of '" + obj.expectedInstance + "'?",
+				name: obj.property + " - Is it an instance of '" + obj.expectedInstance + "'?",
 				definedInSpecs: obj.specs,
 				test:function(t){
 					var actual = obj.object[obj.property] instanceof window[obj.expectedInstance];
