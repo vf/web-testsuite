@@ -45,7 +45,7 @@
 				definedInSpecs:["http://www.w3.org/TR/css3-selectors/#the-user-action-pseudo-classes-hover-act"],
 				instructions:[
 					"Click GO!",
-					"Move the mouse (pointer) over the button!",
+					"Move the mouse (pointer) over the button (on touch devices click once)!",
 				],
 				expectedResult:"Did the button turn red?",
 				test:function(t){
