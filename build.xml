@@ -236,7 +236,7 @@
 					<condition property="isVideo" value="true">
 						<equals arg1="${test}" arg2="jil/VideoPlayer"/>
 					</condition>
-					<antcall target="createWgt" inheritall="true" />
+					<!--<antcall target="createWgt" inheritall="true" />-->
 				</then>
 				<else>
 					<antcall target="all"/>
