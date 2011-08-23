@@ -24,52 +24,26 @@
 	dohx.add({name:"Basic localStorage tests",
 		mqcExecutionOrderBaseOffset:920000, // This number is the base offset for the execution order, the test ID gets added. Never change this number unless you know what you are doing.
 		tests:[
+			// Existance and type checks upfront, and functional tests later, to be able to use dependsOn and not do tests in vain.
+			
 			_objectUtil.getExistsTest({id:100, object:window, property:"localStorage", specs:[]}),
 			_objectUtil.getTypeCheckTest({id:101, object:window, property:"localStorage", expectedType:"object", dependsOn:[100], specs:[]}),
 			_objectUtil.getInstanceOfCheckTest({id:102, object:window, property:"localStorage", expectedInstance:"Storage", dependsOn:[100], specs:[]}),
-			
-			//
 			// clear()
-			//
-			_objectUtil.getExistsTest({id:200, object:obj, property:"clear", specs:[]}),
-			_objectUtil.getTypeCheckTest({id:201, object:obj, property:"clear", expectedType:"function", dependsOn:[200], specs:[]}),
-			//{
-			//	id: 210,
-			//	name: "Does back() go to the previous location?",
-			//	dependsOn: [201],
-			//	test: function(t){
-			//		var win = document.getElementById("_iframe_").contentWindow;
-			//		__tmpFunction = function(){
-			//			win.history.back();
-			//			t.assertEqual("dummy.html", win.location.href);
-			//		}
-			//		win.location.href = "dummy1.html";
-			//	}
-			//},
-			
-			//
+			_objectUtil.getExistsTest({id:110, object:obj, property:"clear", specs:[]}),
+			_objectUtil.getTypeCheckTest({id:111, object:obj, property:"clear", expectedType:"function", dependsOn:[110], specs:[]}),
 			// getItem()
-			//
-			_objectUtil.getExistsTest({id:300, object:obj, property:"getItem", specs:[]}),
-			_objectUtil.getTypeCheckTest({id:301, object:obj, property:"getItem", expectedType:"function", dependsOn:[300], specs:[]}),
-			
-			//
+			_objectUtil.getExistsTest({id:120, object:obj, property:"getItem", specs:[]}),
+			_objectUtil.getTypeCheckTest({id:121, object:obj, property:"getItem", expectedType:"function", dependsOn:[120], specs:[]}),
 			// key()
-			//
-			_objectUtil.getExistsTest({id:400, object:obj, property:"key", specs:[]}),
-			_objectUtil.getTypeCheckTest({id:401, object:obj, property:"key", expectedType:"function", dependsOn:[400], specs:[]}),
-			
-			//
+			_objectUtil.getExistsTest({id:130, object:obj, property:"key", specs:[]}),
+			_objectUtil.getTypeCheckTest({id:131, object:obj, property:"key", expectedType:"function", dependsOn:[130], specs:[]}),
 			// removeItem()
-			//
-			_objectUtil.getExistsTest({id:500, object:obj, property:"removeItem", specs:[]}),
-			_objectUtil.getTypeCheckTest({id:501, object:obj, property:"removeItem", expectedType:"function", dependsOn:[500], specs:[]}),
-			
-			//
+			_objectUtil.getExistsTest({id:140, object:obj, property:"removeItem", specs:[]}),
+			_objectUtil.getTypeCheckTest({id:141, object:obj, property:"removeItem", expectedType:"function", dependsOn:[140], specs:[]}),
 			// setItem()
-			//
-			_objectUtil.getExistsTest({id:600, object:obj, property:"setItem", specs:[]}),
-			_objectUtil.getTypeCheckTest({id:601, object:obj, property:"setItem", expectedType:"function", dependsOn:[600], specs:[]}),
+			_objectUtil.getExistsTest({id:150, object:obj, property:"setItem", specs:[]}),
+			_objectUtil.getTypeCheckTest({id:151, object:obj, property:"setItem", expectedType:"function", dependsOn:[150], specs:[]}),
 //*/
 		]
 	});
