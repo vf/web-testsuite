@@ -154,6 +154,12 @@
 		<delete dir="${tmp}"/>
 	</target>
 
+	<!-- create the test's *.html file -->
+	<target name="createHtmlFile" depends="specializeTemplates, createTemp, -setFileNameForTest">
+		<!-- do cleanup -->
+		<delete dir="${tmp}"/>
+	</target>
+
     <!-- create temporary-folder -->
     <target name="createTemp">
         <mkdir dir="${tmp}"/>
@@ -237,6 +243,7 @@
 						<equals arg1="${test}" arg2="jil/VideoPlayer"/>
 					</condition>
 					<!--<antcall target="createWgt" inheritall="true" />-->
+					<antcall target="createHtmlFile" inheritall="true" />
 				</then>
 				<else>
 					<antcall target="all"/>
