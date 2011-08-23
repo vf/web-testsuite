@@ -33,6 +33,8 @@ var testList = {
 	simple:{
 		applies:true,
 		files:[
+			"tests/window/scroll/basics.js",
+			
 			"tests/base/window.js",
 			"tests/base/xhr/ports.js",
 			
