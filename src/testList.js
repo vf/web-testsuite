@@ -35,9 +35,6 @@ var testList = {
 		files:[
 			"tests/window/scroll/basics.js",
 			
-			"tests/base/window.js",
-			"tests/base/xhr/ports.js",
-			
 			"tests/w3c/css/animation.js",
 			"tests/w3c/css/basics.js",
 			"tests/w3c/css/pseudoClass.js",
@@ -79,9 +76,6 @@ var testList = {
 			
 			"tests/w3c/localStorage/basics.js",
 			
-			"tests/misc/uri/sms.js",
-			"tests/misc/uri/mailto.js",
-			
 			"tests/javascript/string/methods.js",
 			"tests/javascript/string/properties.js",
 			
@@ -89,7 +83,13 @@ var testList = {
 			"tests/javascript/array/properties.js",
 			
 			"tests/javascript/object/methods.js",
-			"tests/javascript/object/properties.js"
+			"tests/javascript/object/properties.js",
+			
+			"tests/misc/uri/sms.js",
+			"tests/misc/uri/mailto.js",
+			
+			"tests/base/window.js",
+			"tests/base/xhr/ports.js",
 		]
 	},
 	
